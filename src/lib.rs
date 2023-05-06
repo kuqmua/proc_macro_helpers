@@ -8,3 +8,4 @@
 
 pub mod global_variables;
 pub mod path;
+pub mod panic_location;
