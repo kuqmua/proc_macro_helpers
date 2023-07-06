@@ -8,6 +8,7 @@ pub mod lifetime;
 pub mod named_attribute;
 pub mod panic_if_not_str;
 pub mod panic_if_not_string;
+pub mod possible_lifetime_addition;
 pub mod supported_container;
 pub mod supported_enum_variant;
 pub mod vec_element_type;
