@@ -1,3 +1,4 @@
+pub mod attribute_view;
 pub mod error_or_code_occurence;
 pub mod form_last_arg_lifetime_vec;
 pub mod generate_path_from_segments;

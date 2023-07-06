@@ -656,7 +656,7 @@
 //                                                 supports_only_stringified,
 //                                                 &attribute
 //                                             );
-//                                             possible_lifetime_addition(
+//                                             crate::error_occurence::possible_lifetime_addition::possible_lifetime_addition(
 //                                                 lifetime_ident.to_string(),
 //                                                 &mut lifetimes_for_serialize_deserialize
 //                                             );
