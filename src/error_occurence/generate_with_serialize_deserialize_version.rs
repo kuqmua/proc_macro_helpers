@@ -832,7 +832,7 @@
 //                                             key_segments_stringified: String,
 //                                             key_vec_lifetime: Vec<crate::error_occurence::lifetime::Lifetime>,
 //                                         | -> proc_macro2::TokenStream {
-//                                             panic_if_not_string(
+//                                             crate::error_occurence::panic_if_not_string::panic_if_not_string(
 //                                                 &key_segments_stringified,
 //                                                 &std_string_string_stringified,
 //                                                 &proc_macro_name_ident_stringified,
@@ -937,7 +937,7 @@
 //                                                     value_vec_lifetime
 //                                                 }
 //                                             ) => {
-//                                                 panic_if_not_string(
+//                                                 crate::error_occurence::panic_if_not_string::panic_if_not_string(
 //                                                     &key_segments_stringified,
 //                                                     &std_string_string_stringified,
 //                                                     &proc_macro_name_ident_stringified,
@@ -966,7 +966,7 @@
 //                                                     value_lifetime_ident: _value_lifetime_ident
 //                                                 }
 //                                             ) => {
-//                                                 panic_if_not_string(
+//                                                 crate::error_occurence::panic_if_not_string::panic_if_not_string(
 //                                                     &key_segments_stringified,
 //                                                     &std_string_string_stringified,
 //                                                     &proc_macro_name_ident_stringified,
@@ -1149,7 +1149,7 @@
 //                                                     value_vec_lifetime
 //                                                 }
 //                                             ) => {
-//                                                 panic_if_not_string(
+//                                                 crate::error_occurence::panic_if_not_string::panic_if_not_string(
 //                                                     &key_segments_stringified,
 //                                                     &std_string_string_stringified,
 //                                                     &proc_macro_name_ident_stringified,
@@ -1241,7 +1241,7 @@
 //                                                     value_vec_lifetime
 //                                                 }
 //                                             ) => {
-//                                                 panic_if_not_string(
+//                                                 crate::error_occurence::panic_if_not_string::panic_if_not_string(
 //                                                     &key_segments_stringified,
 //                                                     &std_string_string_stringified,
 //                                                     &proc_macro_name_ident_stringified,
