@@ -1,5 +1,6 @@
 pub mod error_or_code_occurence;
 pub mod form_last_arg_lifetime_vec;
+pub mod generate_path_from_segments;
 pub mod generate_with_serialize_deserialize_version;
 pub mod hashmap_key_type;
 pub mod hashmap_value_type;
