@@ -642,7 +642,7 @@
 //                                     match supported_container {
 //                                         crate::error_occurence::supported_container::SupportedContainer::Path { path, vec_lifetime } => {
 //                                             {
-//                                                 let type_stringified = format!("{path}{}", vec_lifetime_to_string(&vec_lifetime));
+//                                                 let type_stringified = format!("{path}{}",  crate::error_occurence::vec_lifetime_to_string::vec_lifetime_to_string(&vec_lifetime));
 //                                                 type_stringified
 //                                                 .parse::<proc_macro2::TokenStream>()
 //                                                 .unwrap_or_else(|_| panic!("{proc_macro_name_ident_stringified} {type_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
@@ -677,7 +677,7 @@
 //                                 crate::error_occurence::named_attribute::NamedAttribute::EoDisplayForeignTypeWithSerializeDeserialize => {
 //                                     if let crate::error_occurence::supported_container::SupportedContainer::Path { path, vec_lifetime } = supported_container {
 //                                         {
-//                                             let type_stringified = format!("{path}{}", vec_lifetime_to_string(&vec_lifetime));
+//                                             let type_stringified = format!("{path}{}",  crate::error_occurence::vec_lifetime_to_string::vec_lifetime_to_string(&vec_lifetime));
 //                                                 type_stringified
 //                                             .parse::<proc_macro2::TokenStream>()
 //                                             .unwrap_or_else(|_| panic!("{proc_macro_name_ident_stringified} {type_stringified} {}",crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
@@ -734,7 +734,7 @@
 //                                     } = supported_container {
 //                                         match vec_element_type {
 //                                             crate::error_occurence::vec_element_type::VecElementType::Path { element_path, vec_lifetime } => {
-//                                                 let type_stringified = format!("{path}<{element_path}{}>", vec_lifetime_to_string(&vec_lifetime));
+//                                                 let type_stringified = format!("{path}<{element_path}{}>",  crate::error_occurence::vec_lifetime_to_string::vec_lifetime_to_string(&vec_lifetime));
 //                                                 type_stringified
 //                                                 .parse::<proc_macro2::TokenStream>()
 //                                                 .unwrap_or_else(|_| panic!("{proc_macro_name_ident_stringified} {type_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
@@ -784,7 +784,7 @@
 //                                     } = supported_container {
 //                                         if let crate::error_occurence::vec_element_type::VecElementType::Path { element_path, vec_lifetime } = vec_element_type {
 //                                             {
-//                                                 let type_stringified = format!("{path}<{element_path}{}>", vec_lifetime_to_string(&vec_lifetime));
+//                                                 let type_stringified = format!("{path}<{element_path}{}>",  crate::error_occurence::vec_lifetime_to_string::vec_lifetime_to_string(&vec_lifetime));
 //                                                 type_stringified
 //                                                 .parse::<proc_macro2::TokenStream>()
 //                                                 .unwrap_or_else(|_| panic!("{proc_macro_name_ident_stringified} {type_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
@@ -808,7 +808,7 @@
 //                                     } = supported_container {
 //                                         if let crate::error_occurence::vec_element_type::VecElementType::Path { element_path, vec_lifetime } = vec_element_type  {
 //                                             {
-//                                                 let type_stringified = format!("{path}<{element_path}{with_serialize_deserialize_camel_case}{}>", vec_lifetime_to_string(&vec_lifetime));
+//                                                 let type_stringified = format!("{path}<{element_path}{with_serialize_deserialize_camel_case}{}>",  crate::error_occurence::vec_lifetime_to_string::vec_lifetime_to_string(&vec_lifetime));
 //                                                 type_stringified
 //                                                 .parse::<proc_macro2::TokenStream>()
 //                                                 .unwrap_or_else(|_| panic!("{proc_macro_name_ident_stringified} {type_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
@@ -843,7 +843,7 @@
 //                                             {
 //                                                 let type_stringified = format!(
 //                                                     "{path}<{key_segments_stringified}{}, {std_string_string_stringified}>",
-//                                                     vec_lifetime_to_string(&key_vec_lifetime),
+//                                                      crate::error_occurence::vec_lifetime_to_string::vec_lifetime_to_string(&key_vec_lifetime),
 //                                                 );
 //                                                 type_stringified
 //                                                 .parse::<proc_macro2::TokenStream>()
@@ -948,8 +948,8 @@
 //                                                 {
 //                                                     let type_stringified = format!(
 //                                                         "{path}<{key_segments_stringified}{}, {value_segments_stringified}{}>",
-//                                                         vec_lifetime_to_string(&key_vec_lifetime),
-//                                                         vec_lifetime_to_string(&value_vec_lifetime)
+//                                                          crate::error_occurence::vec_lifetime_to_string::vec_lifetime_to_string(&key_vec_lifetime),
+//                                                          crate::error_occurence::vec_lifetime_to_string::vec_lifetime_to_string(&value_vec_lifetime)
 //                                                     );
 //                                                     type_stringified
 //                                                     .parse::<proc_macro2::TokenStream>()
@@ -984,7 +984,7 @@
 //                                                 {
 //                                                     let type_stringified = format!(
 //                                                         "{path}<{key_segments_stringified}{}, {std_string_string_stringified}>",
-//                                                         vec_lifetime_to_string(&key_vec_lifetime)
+//                                                          crate::error_occurence::vec_lifetime_to_string::vec_lifetime_to_string(&key_vec_lifetime)
 //                                                     );
 //                                                     type_stringified
 //                                                     .parse::<proc_macro2::TokenStream>()
@@ -1011,7 +1011,7 @@
 //                                                 {
 //                                                     let type_stringified = format!(
 //                                                         "{path}<{std_string_string_stringified}, {value_segments_stringified}{}>",
-//                                                         vec_lifetime_to_string(&value_vec_lifetime)
+//                                                          crate::error_occurence::vec_lifetime_to_string::vec_lifetime_to_string(&value_vec_lifetime)
 //                                                     );
 //                                                     type_stringified
 //                                                     .parse::<proc_macro2::TokenStream>()
@@ -1068,7 +1068,7 @@
 //                                             {
 //                                                 let type_stringified = format!(
 //                                                     "{path}<{key_segments_stringified}{},{std_string_string_stringified}>",
-//                                                     vec_lifetime_to_string(&key_vec_lifetime)
+//                                                      crate::error_occurence::vec_lifetime_to_string::vec_lifetime_to_string(&key_vec_lifetime)
 //                                                 );
 //                                                 type_stringified
 //                                                 .parse::<proc_macro2::TokenStream>()
@@ -1160,8 +1160,8 @@
 //                                                 {
 //                                                     let type_stringified = format!(
 //                                                         "{path}<{key_segments_stringified}{},{value_segments_stringified}{}>",
-//                                                         vec_lifetime_to_string(&key_vec_lifetime),
-//                                                         vec_lifetime_to_string(&value_vec_lifetime),
+//                                                          crate::error_occurence::vec_lifetime_to_string::vec_lifetime_to_string(&key_vec_lifetime),
+//                                                          crate::error_occurence::vec_lifetime_to_string::vec_lifetime_to_string(&value_vec_lifetime),
 //                                                     );
 //                                                     type_stringified
 //                                                     .parse::<proc_macro2::TokenStream>()
@@ -1198,7 +1198,7 @@
 //                                                 {
 //                                                         let type_stringified = format!(
 //                                                             "{path}<{std_string_string_stringified},{value_segments_stringified}{}>",
-//                                                             vec_lifetime_to_string(&value_vec_lifetime),
+//                                                              crate::error_occurence::vec_lifetime_to_string::vec_lifetime_to_string(&value_vec_lifetime),
 //                                                         );
 //                                                         type_stringified
 //                                                         .parse::<proc_macro2::TokenStream>()
@@ -1252,8 +1252,8 @@
 //                                                 {
 //                                                     let type_stringified = format!(
 //                                                         "{path}<{key_segments_stringified}{}, {value_segments_stringified}{with_serialize_deserialize_camel_case}{}>",
-//                                                         vec_lifetime_to_string(&key_vec_lifetime),
-//                                                         vec_lifetime_to_string(&value_vec_lifetime)
+//                                                          crate::error_occurence::vec_lifetime_to_string::vec_lifetime_to_string(&key_vec_lifetime),
+//                                                          crate::error_occurence::vec_lifetime_to_string::vec_lifetime_to_string(&value_vec_lifetime)
 //                                                     );
 //                                                     type_stringified
 //                                                     .parse::<proc_macro2::TokenStream>()
@@ -1290,7 +1290,7 @@
 //                                                 {
 //                                                     let type_stringified = format!(
 //                                                         "{path}<{std_string_string_stringified}, {value_segments_stringified}{with_serialize_deserialize_camel_case}{}>",
-//                                                         vec_lifetime_to_string(&value_vec_lifetime)
+//                                                          crate::error_occurence::vec_lifetime_to_string::vec_lifetime_to_string(&value_vec_lifetime)
 //                                                    );
 //                                                     type_stringified
 //                                                     .parse::<proc_macro2::TokenStream>()
@@ -1399,7 +1399,7 @@
 //                                             ) => {
 //                                                 let type_stringified = format!(
 //                                                     "{path}<{std_string_string_stringified},{value_segments_stringified}{}>",
-//                                                     vec_lifetime_to_string(&value_vec_lifetime)
+//                                                      crate::error_occurence::vec_lifetime_to_string::vec_lifetime_to_string(&value_vec_lifetime)
 //                                                 );
 //                                                 type_stringified
 //                                                 .parse::<proc_macro2::TokenStream>()
@@ -1534,7 +1534,7 @@
 //                                             ) => {
 //                                                 let type_stringified = format!(
 //                                                     "{path}<{std_string_string_stringified},{value_segments_stringified}{}>",
-//                                                     vec_lifetime_to_string(&value_vec_lifetime),
+//                                                      crate::error_occurence::vec_lifetime_to_string::vec_lifetime_to_string(&value_vec_lifetime),
 //                                                 );
 //                                                 type_stringified
 //                                                 .parse::<proc_macro2::TokenStream>()
@@ -1598,7 +1598,7 @@
 //                                             ) => {
 //                                                 let type_stringified = format!(
 //                                                     "{path}<{std_string_string_stringified}, {value_segments_stringified}{with_serialize_deserialize_camel_case}{}>",
-//                                                     vec_lifetime_to_string(&value_vec_lifetime)
+//                                                      crate::error_occurence::vec_lifetime_to_string::vec_lifetime_to_string(&value_vec_lifetime)
 //                                                 );
 //                                                 type_stringified
 //                                                 .parse::<proc_macro2::TokenStream>()
