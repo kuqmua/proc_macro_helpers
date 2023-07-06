@@ -649,7 +649,7 @@
 //                                             }
 //                                         },
 //                                         crate::error_occurence::supported_container::SupportedContainer::Reference{ reference_ident, lifetime_ident } => {
-//                                             panic_if_not_str(
+//                                             crate::error_occurence::panic_if_not_str::panic_if_not_str(
 //                                                 &reference_ident,
 //                                                 str_stringified,
 //                                                 &proc_macro_name_ident_stringified,
@@ -740,7 +740,7 @@
 //                                                 .unwrap_or_else(|_| panic!("{proc_macro_name_ident_stringified} {type_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
 //                                             },
 //                                             crate::error_occurence::vec_element_type::VecElementType::Reference { reference_ident, lifetime_ident: _lifetime_ident } => {
-//                                                 panic_if_not_str(
+//                                                 crate::error_occurence::panic_if_not_str::panic_if_not_str(
 //                                                     &reference_ident,
 //                                                     str_stringified,
 //                                                     &proc_macro_name_ident_stringified,
@@ -974,7 +974,7 @@
 //                                                     &as_std_collections_hashmap_key_type_stringified,
 //                                                     &attribute
 //                                                 );
-//                                                 panic_if_not_str(
+//                                                 crate::error_occurence::panic_if_not_str::panic_if_not_str(
 //                                                     &value_reference_ident,
 //                                                     str_stringified,
 //                                                     &proc_macro_name_ident_stringified,
@@ -1001,7 +1001,7 @@
 //                                                     value_vec_lifetime
 //                                                 }
 //                                             ) => {
-//                                                 panic_if_not_str(
+//                                                 crate::error_occurence::panic_if_not_str::panic_if_not_str(
 //                                                     &key_reference_ident,
 //                                                     str_stringified,
 //                                                     &proc_macro_name_ident_stringified,
@@ -1028,14 +1028,14 @@
 //                                                     value_lifetime_ident: _value_lifetime_ident
 //                                                 }
 //                                             ) => {
-//                                                 panic_if_not_str(
+//                                                 crate::error_occurence::panic_if_not_str::panic_if_not_str(
 //                                                     &key_reference_ident,
 //                                                     str_stringified,
 //                                                     &proc_macro_name_ident_stringified,
 //                                                     supports_only_stringified,
 //                                                     &attribute
 //                                                 );
-//                                                 panic_if_not_str(
+//                                                 crate::error_occurence::panic_if_not_str::panic_if_not_str(
 //                                                     &value_reference_ident,
 //                                                     str_stringified,
 //                                                     &proc_macro_name_ident_stringified,
@@ -1188,7 +1188,7 @@
 //                                                     value_vec_lifetime
 //                                                 }
 //                                             ) => {
-//                                                 panic_if_not_str(
+//                                                 crate::error_occurence::panic_if_not_str::panic_if_not_str(
 //                                                     &key_reference_ident,
 //                                                     str_stringified,
 //                                                     &proc_macro_name_ident_stringified,
@@ -1280,7 +1280,7 @@
 //                                                     value_vec_lifetime
 //                                                 }
 //                                             ) => {
-//                                                 panic_if_not_str(
+//                                                 crate::error_occurence::panic_if_not_str::panic_if_not_str(
 //                                                     &key_reference_ident,
 //                                                     str_stringified,
 //                                                     &proc_macro_name_ident_stringified,
@@ -1415,7 +1415,7 @@
 //                                                     value_lifetime_ident: _value_lifetime_ident
 //                                                 }
 //                                             ) => {
-//                                                 panic_if_not_str(
+//                                                 crate::error_occurence::panic_if_not_str::panic_if_not_str(
 //                                                     &value_reference_ident,
 //                                                     str_stringified,
 //                                                     &proc_macro_name_ident_stringified,
