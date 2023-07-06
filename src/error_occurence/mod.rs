@@ -11,3 +11,4 @@ pub mod panic_if_not_string;
 pub mod supported_container;
 pub mod supported_enum_variant;
 pub mod vec_element_type;
+pub mod vec_lifetime_to_string;
