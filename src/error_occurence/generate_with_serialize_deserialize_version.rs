@@ -15,23 +15,38 @@
 //     let something = match supported_enum_variant {
 //         crate::error_occurence::supported_enum_variant::SuportedEnumVariant::Named => {
 //             let code_occurence_camel_case = format!("Code{occurence_camel_case}");
-//             let code_occurence_lower_case = code_occurence_camel_case.to_case(convert_case::Case::Snake).to_lowercase();
+//             let code_occurence_lower_case = code_occurence_camel_case
+//                 .to_case(convert_case::Case::Snake)
+//                 .to_lowercase();
 //             let foreign_type_camel_case = "ForeignType";
 //             let display_camel_case = "Display";
-//             let display_foreign_type_camel_case = format!("{display_camel_case}{foreign_type_camel_case}");
-//             let display_foreign_type_lower_case = display_foreign_type_camel_case.to_case(convert_case::Case::Snake).to_lowercase();
-//             let display_lower_case = display_camel_case.to_case(convert_case::Case::Snake).to_lowercase();
+//             let display_foreign_type_camel_case =
+//                 format!("{display_camel_case}{foreign_type_camel_case}");
+//             let display_foreign_type_lower_case = display_foreign_type_camel_case
+//                 .to_case(convert_case::Case::Snake)
+//                 .to_lowercase();
+//             let display_lower_case = display_camel_case
+//                 .to_case(convert_case::Case::Snake)
+//                 .to_lowercase();
 //             let attribute_prefix_stringified = "eo_";
-//             let attribute_display_stringified = format!("{attribute_prefix_stringified}{display_lower_case}");
+//             let attribute_display_stringified =
+//                 format!("{attribute_prefix_stringified}{display_lower_case}");
 //             let attribute_display_with_serialize_deserialize_stringified = format!("{attribute_prefix_stringified}{display_lower_case}_{with_serialize_deserialize_lower_case}");
-//             let attribute_display_foreign_type_stringified = format!("{attribute_prefix_stringified}{display_foreign_type_lower_case}");
+//             let attribute_display_foreign_type_stringified =
+//                 format!("{attribute_prefix_stringified}{display_foreign_type_lower_case}");
 //             let attribute_display_foreign_type_with_serialize_deserialize_stringified = format!("{attribute_prefix_stringified}{display_foreign_type_lower_case}_{with_serialize_deserialize_lower_case}");
-//             let attribute_error_occurence_stringified = format!("{attribute_prefix_stringified}{error_occurence_lower_case}");
-//             let attribute_vec_display_stringified = format!("{attribute_prefix_stringified}{vec_lower_case}_{display_lower_case}");
+//             let attribute_error_occurence_stringified =
+//                 format!("{attribute_prefix_stringified}{error_occurence_lower_case}");
+//             let attribute_vec_display_stringified =
+//                 format!("{attribute_prefix_stringified}{vec_lower_case}_{display_lower_case}");
 //             let attribute_vec_display_with_serialize_deserialize_stringified = format!("{attribute_prefix_stringified}{vec_lower_case}_{display_lower_case}_{with_serialize_deserialize_lower_case}");
-//             let attribute_vec_display_foreign_type_stringified = format!("{attribute_prefix_stringified}{vec_lower_case}_{display_foreign_type_lower_case}");
+//             let attribute_vec_display_foreign_type_stringified = format!(
+//                 "{attribute_prefix_stringified}{vec_lower_case}_{display_foreign_type_lower_case}"
+//             );
 //             let attribute_vec_display_foreign_type_with_serialize_deserialize_stringified = format!("{attribute_prefix_stringified}{vec_lower_case}_{display_foreign_type_lower_case}_{with_serialize_deserialize_lower_case}");
-//             let attribute_vec_error_occurence_stringified = format!("{attribute_prefix_stringified}{vec_lower_case}_{error_occurence_lower_case}");
+//             let attribute_vec_error_occurence_stringified = format!(
+//                 "{attribute_prefix_stringified}{vec_lower_case}_{error_occurence_lower_case}"
+//             );
 //             let attribute_hashmap_key_display_with_serialize_deserialize_value_display_stringified = format!("{attribute_prefix_stringified}{hashmap_lower_case}_{key_lower_case}_{display_lower_case}_{with_serialize_deserialize_lower_case}_{value_lower_case}_{display_lower_case}");
 //             let attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified = format!("{attribute_prefix_stringified}{hashmap_lower_case}_{key_lower_case}_{display_lower_case}_{with_serialize_deserialize_lower_case}_{value_lower_case}_{display_lower_case}_{with_serialize_deserialize_lower_case}");
 //             let attribute_hashmap_key_display_with_serialize_deserialize_value_display_foreign_type_stringified = format!("{attribute_prefix_stringified}{hashmap_lower_case}_{key_lower_case}_{display_lower_case}_{with_serialize_deserialize_lower_case}_{value_lower_case}_{display_foreign_type_lower_case}");
@@ -73,7 +88,7 @@
 //                                                 }
 //                                                 code_occurence_segments_stringified_handle
 //                                             },
-//                                             form_last_arg_lifetime_vec(
+//                                             crate::error_occurence::form_last_arg_lifetime_vec::form_last_arg_lifetime_vec(
 //                                                 &type_path.path.segments,
 //                                                 &proc_macro_name_ident_stringified,
 //                                                 supports_only_stringified,
@@ -102,7 +117,7 @@
 //                                                     panic!("{error_message}");
 //                                                 }
 //                                                 else {
-//                                                     option_attribute = Some(NamedAttribute::EoDisplay);
+//                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoDisplay);
 //                                                 }
 //                                             }
 //                                             else if let true = attr.path.segments[0].ident == attribute_display_with_serialize_deserialize_stringified {
@@ -110,7 +125,7 @@
 //                                                     panic!("{error_message}");
 //                                                 }
 //                                                 else {
-//                                                     option_attribute = Some(NamedAttribute::EoDisplayWithSerializeDeserialize);
+//                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoDisplayWithSerializeDeserialize);
 //                                                 }
 //                                             }
 //                                             else if let true = attr.path.segments[0].ident == attribute_display_foreign_type_stringified {
@@ -118,7 +133,7 @@
 //                                                     panic!("{error_message}");
 //                                                 }
 //                                                 else {
-//                                                     option_attribute = Some(NamedAttribute::EoDisplayForeignType);
+//                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoDisplayForeignType);
 //                                                 }
 //                                             }
 //                                             else if let true = attr.path.segments[0].ident == attribute_display_foreign_type_with_serialize_deserialize_stringified {
@@ -126,7 +141,7 @@
 //                                                     panic!("{error_message}");
 //                                                 }
 //                                                 else {
-//                                                     option_attribute = Some(NamedAttribute::EoDisplayForeignTypeWithSerializeDeserialize);
+//                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoDisplayForeignTypeWithSerializeDeserialize);
 //                                                 }
 //                                             }
 //                                             else if let true = attr.path.segments[0].ident == attribute_error_occurence_stringified {
@@ -134,7 +149,7 @@
 //                                                     panic!("{error_message}");
 //                                                 }
 //                                                 else {
-//                                                     option_attribute = Some(NamedAttribute::EoErrorOccurence);
+//                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoErrorOccurence);
 //                                                 }
 //                                             }
 //                                             else if let true = attr.path.segments[0].ident == attribute_vec_display_stringified {
@@ -142,7 +157,7 @@
 //                                                     panic!("{error_message}");
 //                                                 }
 //                                                 else {
-//                                                     option_attribute = Some(NamedAttribute::EoVecDisplay);
+//                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoVecDisplay);
 //                                                 }
 //                                             }
 //                                             else if let true = attr.path.segments[0].ident == attribute_vec_display_with_serialize_deserialize_stringified {
@@ -150,7 +165,7 @@
 //                                                     panic!("{error_message}");
 //                                                 }
 //                                                 else {
-//                                                     option_attribute = Some(NamedAttribute::EoVecDisplayWithSerializeDeserialize);
+//                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoVecDisplayWithSerializeDeserialize);
 //                                                 }
 //                                             }
 //                                             else if let true = attr.path.segments[0].ident == attribute_vec_display_foreign_type_stringified {
@@ -158,7 +173,7 @@
 //                                                     panic!("{error_message}");
 //                                                 }
 //                                                 else {
-//                                                     option_attribute = Some(NamedAttribute::EoVecDisplayForeignType);
+//                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoVecDisplayForeignType);
 //                                                 }
 //                                             }
 //                                             else if let true = attr.path.segments[0].ident == attribute_vec_display_foreign_type_with_serialize_deserialize_stringified {
@@ -166,7 +181,7 @@
 //                                                     panic!("{error_message}");
 //                                                 }
 //                                                 else {
-//                                                     option_attribute = Some(NamedAttribute::EoVecDisplayForeignTypeWithSerializeDeserialize);
+//                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoVecDisplayForeignTypeWithSerializeDeserialize);
 //                                                 }
 //                                             }
 //                                             else if let true = attr.path.segments[0].ident == attribute_vec_error_occurence_stringified {
@@ -174,7 +189,7 @@
 //                                                     panic!("{error_message}");
 //                                                 }
 //                                                 else {
-//                                                     option_attribute = Some(NamedAttribute::EoVecErrorOccurence);
+//                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoVecErrorOccurence);
 //                                                 }
 //                                             }
 //                                             else if let true = attr.path.segments[0].ident == attribute_hashmap_key_display_with_serialize_deserialize_value_display_stringified {
@@ -182,7 +197,7 @@
 //                                                     panic!("{error_message}");
 //                                                 }
 //                                                 else {
-//                                                     option_attribute = Some(NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplay);
+//                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplay);
 //                                                 }
 //                                             }
 //                                             else if let true = attr.path.segments[0].ident == attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified {
@@ -190,7 +205,7 @@
 //                                                     panic!("{error_message}");
 //                                                 }
 //                                                 else {
-//                                                     option_attribute = Some(NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayWithSerializeDeserialize);
+//                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayWithSerializeDeserialize);
 //                                                 }
 //                                             }
 //                                             else if let true = attr.path.segments[0].ident == attribute_hashmap_key_display_with_serialize_deserialize_value_display_foreign_type_stringified {
@@ -198,7 +213,7 @@
 //                                                     panic!("{error_message}");
 //                                                 }
 //                                                 else {
-//                                                     option_attribute = Some(NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayForeignType);
+//                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayForeignType);
 //                                                 }
 //                                             }
 //                                             else if let true = attr.path.segments[0].ident == attribute_hashmap_key_display_with_serialize_deserialize_value_display_foreign_type_with_serialize_deserialize_stringified {
@@ -206,7 +221,7 @@
 //                                                     panic!("{error_message}");
 //                                                 }
 //                                                 else {
-//                                                     option_attribute = Some(NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayForeignTypeWithSerializeDeserialize);
+//                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayForeignTypeWithSerializeDeserialize);
 //                                                 }
 //                                             }
 //                                             else if let true = attr.path.segments[0].ident == attribute_hashmap_key_display_with_serialize_deserialize_value_error_occurence_stringified {
@@ -214,7 +229,7 @@
 //                                                     panic!("{error_message}");
 //                                                 }
 //                                                 else {
-//                                                     option_attribute = Some(NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueErrorOccurence);
+//                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueErrorOccurence);
 //                                                 }
 //                                             }
 //                                             else if let true = attr.path.segments[0].ident == attribute_hashmap_key_display_foreign_type_value_display_stringified {
@@ -222,7 +237,7 @@
 //                                                     panic!("{error_message}");
 //                                                 }
 //                                                 else {
-//                                                     option_attribute = Some(NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplay);
+//                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplay);
 //                                                 }
 //                                             }
 //                                             else if let true = attr.path.segments[0].ident == attribute_hashmap_key_display_foreign_type_value_display_with_serialize_deserialize_stringified {
@@ -230,7 +245,7 @@
 //                                                     panic!("{error_message}");
 //                                                 }
 //                                                 else {
-//                                                     option_attribute = Some(NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplayWithSerializeDeserialize);
+//                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplayWithSerializeDeserialize);
 //                                                 }
 //                                             }
 //                                             else if let true = attr.path.segments[0].ident == attribute_hashmap_key_display_foreign_type_value_display_foreign_type_stringified {
@@ -238,7 +253,7 @@
 //                                                     panic!("{error_message}");
 //                                                 }
 //                                                 else {
-//                                                     option_attribute = Some(NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplayForeignType);
+//                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplayForeignType);
 //                                                 }
 //                                             }
 //                                             else if let true = attr.path.segments[0].ident == attribute_hashmap_key_display_foreign_type_value_display_foreign_type_with_serialize_deserialize_stringified {
@@ -246,7 +261,7 @@
 //                                                     panic!("{error_message}");
 //                                                 }
 //                                                 else {
-//                                                     option_attribute = Some(NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplayForeignTypeWithSerializeDeserialize);
+//                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplayForeignTypeWithSerializeDeserialize);
 //                                                 }
 //                                             }
 //                                             else if let true = attr.path.segments[0].ident == attribute_hashmap_key_display_foreign_type_value_error_occurence_stringified {
@@ -254,7 +269,7 @@
 //                                                     panic!("{error_message}");
 //                                                 }
 //                                                 else {
-//                                                     option_attribute = Some(NamedAttribute::EoHashMapKeyDisplayForeignTypeValueErrorOccurence);
+//                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueErrorOccurence);
 //                                                 }
 //                                             }//other attributes are not for this proc_macro
 //                                         }//other attributes are not for this proc_macro
@@ -266,7 +281,7 @@
 //                                 let supported_container = match field.ty {
 //                                     syn::Type::Path(type_path) => {
 //                                         let path = generate_path_from_segments(&type_path.path.segments);
-//                                         let vec_lifetime = form_last_arg_lifetime_vec(
+//                                         let vec_lifetime = crate::error_occurence::form_last_arg_lifetime_vec::form_last_arg_lifetime_vec(
 //                                             &type_path.path.segments,
 //                                             &proc_macro_name_ident_stringified,
 //                                             supports_only_stringified,
@@ -286,7 +301,7 @@
 //                                                         match type_handle {
 //                                                             syn::Type::Path(type_path) => VecElementType::Path{
 //                                                                 element_path: generate_path_from_segments(&type_path.path.segments),
-//                                                                 vec_lifetime: form_last_arg_lifetime_vec(
+//                                                                 vec_lifetime: crate::error_occurence::form_last_arg_lifetime_vec::form_last_arg_lifetime_vec(
 //                                                                     &type_path.path.segments,
 //                                                                     &proc_macro_name_ident_stringified,
 //                                                                     supports_only_stringified,
@@ -372,7 +387,7 @@
 //                                                             syn::Type::Path(type_path) => {
 //                                                                 HashMapKeyType::Path{
 //                                                                     key_segments_stringified: generate_path_from_segments(&type_path.path.segments),
-//                                                                     key_vec_lifetime: form_last_arg_lifetime_vec(
+//                                                                     key_vec_lifetime: crate::error_occurence::form_last_arg_lifetime_vec::form_last_arg_lifetime_vec(
 //                                                                         &type_path.path.segments,
 //                                                                         &proc_macro_name_ident_stringified,
 //                                                                         supports_only_stringified,
@@ -412,7 +427,7 @@
 //                                                             syn::Type::Path(type_path) => {
 //                                                                 HashMapValueType::Path{
 //                                                                     value_segments_stringified: generate_path_from_segments(&type_path.path.segments),
-//                                                                     value_vec_lifetime: form_last_arg_lifetime_vec(
+//                                                                     value_vec_lifetime: crate::error_occurence::form_last_arg_lifetime_vec::form_last_arg_lifetime_vec(
 //                                                                         &type_path.path.segments,
 //                                                                         &proc_macro_name_ident_stringified,
 //                                                                         supports_only_stringified,
@@ -526,7 +541,8 @@
 //                 )>
 //             )>>();
 //             let mut lifetimes_for_serialize_deserialize = Vec::with_capacity(generics_len);
-//             let mut logic_for_enum_with_serialize_deserialize: Vec<proc_macro2::TokenStream> = Vec::with_capacity(variants_vec.len());
+//             let mut logic_for_enum_with_serialize_deserialize: Vec<proc_macro2::TokenStream> =
+//                 Vec::with_capacity(variants_vec.len());
 //             let mut should_generate_impl_compile_time_check_error_occurence_members = false;
 //             variants_vec.into_iter().for_each(|(
 //                 variant_ident,
@@ -583,7 +599,7 @@
 //                             let
 //                                 field_type_with_serialize_deserialize_token_stream
 //                             = match attribute {
-//                                 NamedAttribute::EoDisplay => {
+//                                 crate::error_occurence::named_attribute::NamedAttribute::EoDisplay => {
 //                                     if let SupportedContainer::Path { path, vec_lifetime: _vec_lifetime } = supported_container {
 //                                         inform_use_str_string_in_different_attribute(
 //                                             path,
@@ -598,7 +614,7 @@
 //                                         panic!("{proc_macro_name_ident_stringified} {} {supports_only_stringified} {supported_container_double_dot_double_dot}{path_camel_case}", attribute.attribute_view())
 //                                     }
 //                                 },
-//                                 NamedAttribute::EoDisplayWithSerializeDeserialize => {
+//                                 crate::error_occurence::named_attribute::NamedAttribute::EoDisplayWithSerializeDeserialize => {
 //                                     match supported_container {
 //                                         SupportedContainer::Path { path, vec_lifetime } => {
 //                                             {
@@ -625,7 +641,7 @@
 //                                         _ => panic!("{proc_macro_name_ident_stringified} {} only supports {supported_container_double_dot_double_dot}{path_camel_case} and {supported_container_double_dot_double_dot}{reference_camel_case}", attribute.attribute_view()),
 //                                     }
 //                                 },
-//                                 NamedAttribute::EoDisplayForeignType => {
+//                                 crate::error_occurence::named_attribute::NamedAttribute::EoDisplayForeignType => {
 //                                     if let SupportedContainer::Path { path: _path, vec_lifetime: _vec_lifetime } = supported_container {}
 //                                     else {
 //                                         panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{path_camel_case}", attribute.attribute_view());
@@ -634,7 +650,7 @@
 //                                         #std_string_string_token_stream
 //                                     }
 //                                 },
-//                                 NamedAttribute::EoDisplayForeignTypeWithSerializeDeserialize => {
+//                                 crate::error_occurence::named_attribute::NamedAttribute::EoDisplayForeignTypeWithSerializeDeserialize => {
 //                                     if let SupportedContainer::Path { path, vec_lifetime } = supported_container {
 //                                         {
 //                                             let type_stringified = format!("{path}{}", vec_lifetime_to_string(&vec_lifetime));
@@ -647,7 +663,7 @@
 //                                         panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{path_camel_case}", attribute.attribute_view());
 //                                     }
 //                                 },
-//                                 NamedAttribute::EoErrorOccurence => {
+//                                 crate::error_occurence::named_attribute::NamedAttribute::EoErrorOccurence => {
 //                                     if let false = should_generate_impl_compile_time_check_error_occurence_members {
 //                                         should_generate_impl_compile_time_check_error_occurence_members = true;
 //                                     }
@@ -663,7 +679,7 @@
 //                                         panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{path_camel_case}", attribute.attribute_view());
 //                                     }
 //                                 },
-//                                 NamedAttribute::EoVecDisplay => {
+//                                 crate::error_occurence::named_attribute::NamedAttribute::EoVecDisplay => {
 //                                     if let SupportedContainer::Vec {
 //                                         path,
 //                                         vec_element_type
@@ -687,7 +703,7 @@
 //                                         panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{vec_camel_case}", attribute.attribute_view());
 //                                     }
 //                                 },
-//                                 NamedAttribute::EoVecDisplayWithSerializeDeserialize => {
+//                                 crate::error_occurence::named_attribute::NamedAttribute::EoVecDisplayWithSerializeDeserialize => {
 //                                     if let SupportedContainer::Vec {
 //                                         path,
 //                                         vec_element_type
@@ -720,7 +736,7 @@
 //                                         panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{vec_camel_case}", attribute.attribute_view());
 //                                     }
 //                                 },
-//                                 NamedAttribute::EoVecDisplayForeignType => {
+//                                 crate::error_occurence::named_attribute::NamedAttribute::EoVecDisplayForeignType => {
 //                                     if let SupportedContainer::Vec {
 //                                         path: _path,
 //                                         vec_element_type
@@ -737,7 +753,7 @@
 //                                         std::vec::Vec<#std_string_string_token_stream>
 //                                     }
 //                                 },
-//                                 NamedAttribute::EoVecDisplayForeignTypeWithSerializeDeserialize => {
+//                                 crate::error_occurence::named_attribute::NamedAttribute::EoVecDisplayForeignTypeWithSerializeDeserialize => {
 //                                     if let SupportedContainer::Vec {
 //                                         path,
 //                                         vec_element_type
@@ -758,7 +774,7 @@
 //                                         panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{vec_camel_case}", attribute.attribute_view());
 //                                     }
 //                                 },
-//                                 NamedAttribute::EoVecErrorOccurence => {
+//                                 crate::error_occurence::named_attribute::NamedAttribute::EoVecErrorOccurence => {
 //                                     if let false = should_generate_impl_compile_time_check_error_occurence_members {
 //                                         should_generate_impl_compile_time_check_error_occurence_members = true;
 //                                     }
@@ -782,7 +798,7 @@
 //                                         panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{vec_camel_case}", attribute.attribute_view());
 //                                     }
 //                                 },
-//                                 NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplay => {
+//                                 crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplay => {
 //                                     let type_token_stream = if let SupportedContainer::HashMap {
 //                                         path,
 //                                         hashmap_key_type,
@@ -880,7 +896,7 @@
 //                                     };
 //                                     type_token_stream
 //                                 },
-//                                 NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayWithSerializeDeserialize => {
+//                                 crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayWithSerializeDeserialize => {
 //                                     if let SupportedContainer::HashMap {
 //                                         path,
 //                                         hashmap_key_type,
@@ -1015,7 +1031,7 @@
 //                                         panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{hashmap_camel_case}", attribute.attribute_view());
 //                                     }
 //                                 },
-//                                 NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayForeignType => {
+//                                 crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayForeignType => {
 //                                     if let SupportedContainer::HashMap {
 //                                         path,
 //                                         hashmap_key_type,
@@ -1092,7 +1108,7 @@
 //                                         panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{hashmap_camel_case}", attribute.attribute_view());
 //                                     }
 //                                 },
-//                                 NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayForeignTypeWithSerializeDeserialize => {
+//                                 crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayForeignTypeWithSerializeDeserialize => {
 //                                     if let SupportedContainer::HashMap {
 //                                         path,
 //                                         hashmap_key_type,
@@ -1181,7 +1197,7 @@
 //                                         panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{hashmap_camel_case}", attribute.attribute_view());
 //                                     }
 //                                 },
-//                                 NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueErrorOccurence => {
+//                                 crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueErrorOccurence => {
 //                                     if let false = should_generate_impl_compile_time_check_error_occurence_members {
 //                                         should_generate_impl_compile_time_check_error_occurence_members = true;
 //                                     }
@@ -1273,7 +1289,7 @@
 //                                         panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{hashmap_camel_case}", attribute.attribute_view());
 //                                     }
 //                                 },
-//                                 NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplay => {
+//                                 crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplay => {
 //                                     let type_token_stream = if let SupportedContainer::HashMap {
 //                                         path,
 //                                         hashmap_key_type,
@@ -1340,7 +1356,7 @@
 //                                     };
 //                                     type_token_stream
 //                                 },
-//                                 NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplayWithSerializeDeserialize => {
+//                                 crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplayWithSerializeDeserialize => {
 //                                     if let SupportedContainer::HashMap {
 //                                         path,
 //                                         hashmap_key_type,
@@ -1417,7 +1433,7 @@
 //                                         panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{hashmap_camel_case}", attribute.attribute_view());
 //                                     }
 //                                 },
-//                                 NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplayForeignType => {
+//                                 crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplayForeignType => {
 //                                     if let SupportedContainer::HashMap {
 //                                         path,
 //                                         hashmap_key_type,
@@ -1475,7 +1491,7 @@
 //                                         panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{hashmap_camel_case}", attribute.attribute_view());
 //                                     }
 //                                 },
-//                                 NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplayForeignTypeWithSerializeDeserialize => {
+//                                 crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplayForeignTypeWithSerializeDeserialize => {
 //                                     if let SupportedContainer::HashMap {
 //                                         path,
 //                                         hashmap_key_type,
@@ -1536,7 +1552,7 @@
 //                                         panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{hashmap_camel_case}", attribute.attribute_view());
 //                                     }
 //                                 },
-//                                 NamedAttribute::EoHashMapKeyDisplayForeignTypeValueErrorOccurence => {
+//                                 crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueErrorOccurence => {
 //                                     if let false = should_generate_impl_compile_time_check_error_occurence_members {
 //                                         should_generate_impl_compile_time_check_error_occurence_members = true;
 //                                     }
@@ -1629,17 +1645,19 @@
 //                     }
 //                 });
 //             });
-//             let logic_for_enum_with_serialize_deserialize_iter = logic_for_enum_with_serialize_deserialize.iter();
+//             let logic_for_enum_with_serialize_deserialize_iter =
+//                 logic_for_enum_with_serialize_deserialize.iter();
 //             quote::quote! {
 //                 #[derive(Debug, thiserror::Error, serde::Serialize, serde::Deserialize)]
 //                 pub enum #ident_with_serialize_deserialize_token_stream {
 //                     #(#logic_for_enum_with_serialize_deserialize_iter),*
 //                 }
 //             }
-//         },
+//         }
 //         crate::error_occurence::supported_enum_variant::SuportedEnumVariant::Unnamed => {
 //             let data_enum_variants_len = data_enum.variants.len();
-//             let mut logic_for_enum_with_serialize_deserialize: Vec<proc_macro2::TokenStream> = Vec::with_capacity(data_enum_variants_len);
+//             let mut logic_for_enum_with_serialize_deserialize: Vec<proc_macro2::TokenStream> =
+//                 Vec::with_capacity(data_enum_variants_len);
 //             data_enum.variants.iter().for_each(|variant|{
 //                 let variant_ident = &variant.ident;
 //                 let field_type = if let syn::Fields::Unnamed(fields_unnamed) = &variant.fields {
@@ -1670,14 +1688,15 @@
 //                     }
 //                 });
 //             });
-//             let logic_for_enum_with_serialize_deserialize_generated = logic_for_enum_with_serialize_deserialize.iter();
+//             let logic_for_enum_with_serialize_deserialize_generated =
+//                 logic_for_enum_with_serialize_deserialize.iter();
 //             quote::quote! {
 //                 #[derive(Debug, thiserror::Error, serde::Serialize, serde::Deserialize)]
 //                 pub enum #ident_with_serialize_deserialize_token_stream {
 //                     #(#logic_for_enum_with_serialize_deserialize_generated),*
 //                 }
 //             }
-//         },
+//         }
 //     };
 //     something
 // }
