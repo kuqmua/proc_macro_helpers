@@ -7,16 +7,18 @@ pub enum SuportedEnumVariant {
 pub fn create_supported_enum_variant(
     data_enum: &syn::DataEnum,
     proc_macro_name_ident_stringified: std::string::String,
-    supports_only_stringified: &str,
-    syn_fields: &str,
-    named_camel_case: &str,
     unnamed_camel_case: std::string::String,
 ) -> SuportedEnumVariant {
     let mut all_equal: Option<SuportedEnumVariant> = None;
     if let true = &data_enum.variants.is_empty() {
         panic!("{proc_macro_name_ident_stringified} enum variants are empty");
     }
-    let error_message = format!("{proc_macro_name_ident_stringified} {supports_only_stringified} enums where all variants are {syn_fields}::{named_camel_case} or all variants are {syn_fields}::{unnamed_camel_case}");
+    let error_message = format!("{proc_macro_name_ident_stringified} {} enums where all variants are {}::{} or all variants are {}::{unnamed_camel_case}",
+        crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
+        crate::error_occurence::hardcode::SYN_FIELDS,
+        crate::error_occurence::hardcode::SYN_FIELDS,
+        crate::error_occurence::hardcode::NAMED_CAMEL_CASE
+    );
     data_enum
         .variants
         .iter()
@@ -46,6 +48,6 @@ pub fn create_supported_enum_variant(
     if let Some(supported_enum_variant) = all_equal {
         supported_enum_variant
     } else {
-        panic!("{proc_macro_name_ident_stringified} {supports_only_stringified} with enums where all variants are named or unnamed");
+        panic!("{proc_macro_name_ident_stringified} {} with enums where all variants are named or unnamed", crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED);
     }
 }
