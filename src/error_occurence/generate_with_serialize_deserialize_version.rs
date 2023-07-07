@@ -28,9 +28,10 @@ pub fn generate_with_serialize_deserialize_version(
     unnamed_camel_case: std::string::String,
     syn_fields: &str,
     ident_with_serialize_deserialize_token_stream: proc_macro2::TokenStream,
+    optional_additional_named_variant: Option<proc_macro2::TokenStream>,
 ) -> proc_macro2::TokenStream {
     use convert_case::Casing;
-    let something = match supported_enum_variant {
+    let token_stream = match supported_enum_variant {
         crate::error_occurence::supported_enum_variant::SuportedEnumVariant::Named => {
             let code_occurence_camel_case = format!("Code{occurence_camel_case}");
             let code_occurence_lower_case = code_occurence_camel_case
@@ -1665,9 +1666,16 @@ pub fn generate_with_serialize_deserialize_version(
             });
             let logic_for_enum_with_serialize_deserialize_iter =
                 logic_for_enum_with_serialize_deserialize.iter();
+            let additional_variant_token_stream = match optional_additional_named_variant {
+                Some(additional_variant_token_stream) => {
+                    quote::quote! { #additional_variant_token_stream,}
+                }
+                None => quote::quote! {},
+            };
             quote::quote! {
                 #[derive(Debug, thiserror::Error, serde::Serialize, serde::Deserialize)]
                 pub enum #ident_with_serialize_deserialize_token_stream {
+                    #additional_variant_token_stream
                     #(#logic_for_enum_with_serialize_deserialize_iter),*
                 }
             }
@@ -1716,5 +1724,6 @@ pub fn generate_with_serialize_deserialize_version(
             }
         }
     };
-    something
+    // println!("{token_stream}");
+    token_stream
 }
