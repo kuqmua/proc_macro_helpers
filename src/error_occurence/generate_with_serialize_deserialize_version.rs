@@ -29,7 +29,12 @@ pub fn generate_with_serialize_deserialize_version(
     syn_fields: &str,
     ident_with_serialize_deserialize_token_stream: proc_macro2::TokenStream,
     optional_additional_named_variant: Option<proc_macro2::TokenStream>,
+    implements_this_error: bool,
 ) -> proc_macro2::TokenStream {
+    let this_error_token_stream = match implements_this_error {
+        true => quote::quote! { thiserror::Error, },
+        false => proc_macro2::TokenStream::new(),
+    };
     use convert_case::Casing;
     let token_stream = match supported_enum_variant {
         crate::error_occurence::supported_enum_variant::SuportedEnumVariant::Named => {
@@ -1673,7 +1678,7 @@ pub fn generate_with_serialize_deserialize_version(
                 None => quote::quote! {},
             };
             quote::quote! {
-                #[derive(Debug, thiserror::Error, serde::Serialize, serde::Deserialize)]
+                #[derive(Debug, #this_error_token_stream serde::Serialize, serde::Deserialize)]
                 pub enum #ident_with_serialize_deserialize_token_stream {
                     #additional_variant_token_stream
                     #(#logic_for_enum_with_serialize_deserialize_iter),*
@@ -1717,7 +1722,7 @@ pub fn generate_with_serialize_deserialize_version(
             let logic_for_enum_with_serialize_deserialize_generated =
                 logic_for_enum_with_serialize_deserialize.iter();
             quote::quote! {
-                #[derive(Debug, thiserror::Error, serde::Serialize, serde::Deserialize)]
+                #[derive(Debug, #this_error_token_stream serde::Serialize, serde::Deserialize)]
                 pub enum #ident_with_serialize_deserialize_token_stream {
                     #(#logic_for_enum_with_serialize_deserialize_generated),*
                 }
