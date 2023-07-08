@@ -1,6 +1,6 @@
 pub fn generate_with_serialize_deserialize_version(
     supported_enum_variant: crate::error_occurence::supported_enum_variant::SuportedEnumVariant,
-    data_enum: &syn::DataEnum,
+    variants: Vec<syn::Variant>,
     occurence_camel_case: &str,
     with_serialize_deserialize_lower_case: std::string::String,
     error_occurence_lower_case: std::string::String,
@@ -81,7 +81,7 @@ pub fn generate_with_serialize_deserialize_version(
             let attribute_hashmap_key_display_foreign_type_value_display_foreign_type_stringified = format!("{attribute_prefix_stringified}{hashmap_lower_case}_{key_lower_case}_{display_foreign_type_lower_case}_{value_lower_case}_{display_foreign_type_lower_case}");
             let attribute_hashmap_key_display_foreign_type_value_display_foreign_type_with_serialize_deserialize_stringified = format!("{attribute_prefix_stringified}{hashmap_lower_case}_{key_lower_case}_{display_foreign_type_lower_case}_{value_lower_case}_{display_foreign_type_lower_case}_{with_serialize_deserialize_lower_case}");
             let attribute_hashmap_key_display_foreign_type_value_error_occurence_stringified = format!("{attribute_prefix_stringified}{hashmap_lower_case}_{key_lower_case}_{display_foreign_type_lower_case}_{value_lower_case}_{error_occurence_lower_case}");
-            let variants_vec = data_enum.variants.clone().into_iter().map(|variant| {
+            let variants_vec = variants.clone().into_iter().map(|variant| {
                 let variant_fields_vec = if let syn::Fields::Named(fields_named) = variant.fields {
                     fields_named.named.into_iter().map(|field|{
                         let field_ident = field.ident.unwrap_or_else(|| panic!("{proc_macro_name_ident_stringified} field.ident {is_none_stringified}"));
@@ -1686,10 +1686,10 @@ pub fn generate_with_serialize_deserialize_version(
             }
         }
         crate::error_occurence::supported_enum_variant::SuportedEnumVariant::Unnamed => {
-            let data_enum_variants_len = data_enum.variants.len();
+            let variants_len = variants.len();
             let mut logic_for_enum_with_serialize_deserialize: Vec<proc_macro2::TokenStream> =
-                Vec::with_capacity(data_enum_variants_len);
-            data_enum.variants.iter().for_each(|variant|{
+                Vec::with_capacity(variants_len);
+            variants.iter().for_each(|variant|{
                 let variant_ident = &variant.ident;
                 let field_type = if let syn::Fields::Unnamed(fields_unnamed) = &variant.fields {
                     let unnamed = &fields_unnamed.unnamed;
