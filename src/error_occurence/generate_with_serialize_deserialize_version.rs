@@ -30,6 +30,7 @@ pub fn generate_with_serialize_deserialize_version(
     ident_with_serialize_deserialize_token_stream: proc_macro2::TokenStream,
     optional_additional_named_variant: Option<proc_macro2::TokenStream>,
     implements_this_error: bool,
+    //todo pub or not
 ) -> proc_macro2::TokenStream {
     let this_error_token_stream = match implements_this_error {
         true => quote::quote! { thiserror::Error, },
