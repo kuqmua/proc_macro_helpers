@@ -13,7 +13,8 @@ pub static IS_NONE_STRINGIFIED: &str = "is None";
 pub static GENERIC_ARGUMENT_TYPE_STRINGIFIED: &str = "syn::GenericArgument::Type";
 pub static PATH_CAMEL_CASE: &str = "Path";
 pub static REFERENCE_CAMEL_CASE: &str = "Reference";
-// pub static : &str = "";
-// pub static : &str = "";
-// pub static : &str = "";
-// pub static : &str = "";
+pub static STRING_CAMEL_CASE: &str = "String";
+pub static SUPPORTED_CONTAINER_DOUBLE_DOT_DOUBLE_DOT: &str =
+    "proc_macro_helpers::error_occurence::supported_container::SupportedContainer::";
+pub static SUPPORTED_ENUM_VARIANT_STRINGIFIED: &str =
+    "proc_macro_helpers::error_occurence::supported_enum_variant::SuportedEnumVariant";
