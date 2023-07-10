@@ -9,7 +9,6 @@ pub fn generate_with_serialize_deserialize_version(
     key_lower_case: std::string::String,
     value_lower_case: std::string::String,
     proc_macro_name_ident_stringified: std::string::String,
-    is_none_stringified: &str,
     supports_only_stringified: &str,
     syn_generic_argument_type_stringified: &str,
     syn_type_path_stringified: std::string::String,
@@ -82,10 +81,13 @@ pub fn generate_with_serialize_deserialize_version(
             let attribute_hashmap_key_display_foreign_type_value_display_foreign_type_stringified = format!("{attribute_prefix_stringified}{hashmap_lower_case}_{key_lower_case}_{display_foreign_type_lower_case}_{value_lower_case}_{display_foreign_type_lower_case}");
             let attribute_hashmap_key_display_foreign_type_value_display_foreign_type_with_serialize_deserialize_stringified = format!("{attribute_prefix_stringified}{hashmap_lower_case}_{key_lower_case}_{display_foreign_type_lower_case}_{value_lower_case}_{display_foreign_type_lower_case}_{with_serialize_deserialize_lower_case}");
             let attribute_hashmap_key_display_foreign_type_value_error_occurence_stringified = format!("{attribute_prefix_stringified}{hashmap_lower_case}_{key_lower_case}_{display_foreign_type_lower_case}_{value_lower_case}_{error_occurence_lower_case}");
-            let variants_vec = variants.clone().into_iter().map(|variant| {
+            let variants_vec = variants.into_iter().map(|variant| {
                 let variant_fields_vec = if let syn::Fields::Named(fields_named) = variant.fields {
                     fields_named.named.into_iter().map(|field|{
-                        let field_ident = field.ident.unwrap_or_else(|| panic!("{proc_macro_name_ident_stringified} field.ident {is_none_stringified}"));
+                        let field_ident = field.ident.unwrap_or_else(|| panic!(
+                            "{proc_macro_name_ident_stringified} field.ident {}",
+                            crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                        ));
                         let error_or_code_occurence = match field_ident == *code_occurence_lower_case {
                             true => {
                                 let (code_occurence_type_stringified, code_occurence_lifetime) = {
@@ -117,7 +119,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                 &type_path.path.segments,
                                                 &proc_macro_name_ident_stringified,
                                                 supports_only_stringified,
-                                                is_none_stringified,
+                                                crate::error_occurence::hardcode::IS_NONE_STRINGIFIED,
                                                 syn_generic_argument_type_stringified
                                             ),
                                         )
@@ -299,7 +301,10 @@ pub fn generate_with_serialize_deserialize_version(
                                             }//other attributes are not for this proc_macro
                                         }//other attributes are not for this proc_macro
                                     });
-                                    option_attribute.unwrap_or_else(|| panic!("{proc_macro_name_ident_stringified} option attribute {is_none_stringified}"))
+                                    option_attribute.unwrap_or_else(|| panic!(
+                                        "{proc_macro_name_ident_stringified} option attribute {}",
+                                        crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                                    ))
                                 };
                                 let syn_type_reference = format!("syn::Type::{reference_camel_case}");
                                 let error_message = format!("{supports_only_stringified} {syn_type_path_stringified} and {syn_type_reference}");
@@ -310,18 +315,24 @@ pub fn generate_with_serialize_deserialize_version(
                                             &type_path.path.segments,
                                             &proc_macro_name_ident_stringified,
                                             supports_only_stringified,
-                                            is_none_stringified,
+                                            crate::error_occurence::hardcode::IS_NONE_STRINGIFIED,
                                             syn_generic_argument_type_stringified
                                         );
                                         let path_segment = type_path.path.segments.into_iter().last()
-                                        .unwrap_or_else(|| panic!("{proc_macro_name_ident_stringified} type_path.path.segments.into_iter().last() {is_none_stringified}"));
+                                        .unwrap_or_else(|| panic!(
+                                            "{proc_macro_name_ident_stringified} type_path.path.segments.into_iter().last() {}",
+                                            crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                                        ));
                                         if path_segment.ident == vec_camel_case {
                                             let vec_element_type = if let syn::PathArguments::AngleBracketed(angle_brackets_generic_arguments) = path_segment.arguments {
                                                 if let true = angle_brackets_generic_arguments.args.len() == 1 {
                                                     if let syn::GenericArgument::Type(type_handle) =
                                                         angle_brackets_generic_arguments.args
                                                         .into_iter().next()
-                                                        .unwrap_or_else(|| panic!("{proc_macro_name_ident_stringified} angle_brackets_generic_arguments.args.into_iter().nth(0) {is_none_stringified}"))
+                                                        .unwrap_or_else(|| panic!(
+                                                            "{proc_macro_name_ident_stringified} angle_brackets_generic_arguments.args.into_iter().nth(0) {}",
+                                                            crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                                                        ))
                                                     {
                                                         match type_handle {
                                                             syn::Type::Path(type_path) => crate::error_occurence::vec_element_type::VecElementType::Path{
@@ -330,7 +341,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                                     &type_path.path.segments,
                                                                     &proc_macro_name_ident_stringified,
                                                                     supports_only_stringified,
-                                                                    is_none_stringified,
+                                                                    crate::error_occurence::hardcode::IS_NONE_STRINGIFIED,
                                                                     syn_generic_argument_type_stringified
                                                                 )
                                                             },
@@ -339,7 +350,10 @@ pub fn generate_with_serialize_deserialize_version(
                                                                     if let true = type_path.path.segments.len() == 1 {
                                                                         type_path.path.segments
                                                                         .into_iter().next()
-                                                                        .unwrap_or_else(|| panic!("{proc_macro_name_ident_stringified} type_path.path.segments.into_iter().nth(0) {is_none_stringified}"))
+                                                                        .unwrap_or_else(|| panic!(
+                                                                            "{proc_macro_name_ident_stringified} type_path.path.segments.into_iter().nth(0) {}",
+                                                                            crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                                                                        ))
                                                                         .ident
                                                                     }
                                                                     else {
@@ -351,7 +365,10 @@ pub fn generate_with_serialize_deserialize_version(
                                                                 };
                                                                 crate::error_occurence::vec_element_type::VecElementType::Reference {
                                                                     reference_ident,
-                                                                    lifetime_ident: type_reference.lifetime.unwrap_or_else(|| panic!("{proc_macro_name_ident_stringified} {syn_type_reference} lifetime {is_none_stringified}")).ident
+                                                                    lifetime_ident: type_reference.lifetime.unwrap_or_else(|| panic!(
+                                                                        "{proc_macro_name_ident_stringified} {syn_type_reference} lifetime {}",
+                                                                        crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                                                                    )).ident
                                                                 }
                                                             },
                                                             _ => panic!("{proc_macro_name_ident_stringified} type_handle {supports_only_stringified} {syn_type_path_stringified} and {syn_type_reference}"),
@@ -400,8 +417,14 @@ pub fn generate_with_serialize_deserialize_version(
                                                             }
                                                         });
                                                         (
-                                                            key_generic_argument_option.unwrap_or_else(|| panic!("{proc_macro_name_ident_stringified} key_generic_argument_option {is_none_stringified}")),
-                                                            value_generic_argument_option.unwrap_or_else(|| panic!("{proc_macro_name_ident_stringified} value_generic_argument_option {is_none_stringified}"))
+                                                            key_generic_argument_option.unwrap_or_else(|| panic!(
+                                                                "{proc_macro_name_ident_stringified} key_generic_argument_option {}",
+                                                                crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                                                            )),
+                                                            value_generic_argument_option.unwrap_or_else(|| panic!(
+                                                                "{proc_macro_name_ident_stringified} value_generic_argument_option {}",
+                                                                crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                                                            ))
                                                         )
                                                     };
                                                     let hashmap_key_type
@@ -416,7 +439,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                                         &type_path.path.segments,
                                                                         &proc_macro_name_ident_stringified,
                                                                         supports_only_stringified,
-                                                                        is_none_stringified,
+                                                                        crate::error_occurence::hardcode::IS_NONE_STRINGIFIED,
                                                                         syn_generic_argument_type_stringified
                                                                     )
                                                                 }
@@ -426,7 +449,10 @@ pub fn generate_with_serialize_deserialize_version(
                                                                     if let true = type_path.path.segments.len() == 1 {
                                                                         type_path.path.segments
                                                                         .into_iter().next()
-                                                                        .unwrap_or_else(|| panic!("{proc_macro_name_ident_stringified} type_path.path.segments.into_iter().nth(0) {is_none_stringified}"))
+                                                                        .unwrap_or_else(|| panic!(
+                                                                            "{proc_macro_name_ident_stringified} type_path.path.segments.into_iter().nth(0) {}",
+                                                                            crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                                                                        ))
                                                                         .ident
                                                                     }
                                                                     else {
@@ -438,7 +464,10 @@ pub fn generate_with_serialize_deserialize_version(
                                                                 };
                                                                 crate::error_occurence::hashmap_value_type::HashMapKeyType::Reference {
                                                                     key_reference_ident,
-                                                                    key_lifetime_ident: type_reference.lifetime.unwrap_or_else(|| panic!("{proc_macro_name_ident_stringified} {syn_type_reference} lifetime {is_none_stringified}")).ident
+                                                                    key_lifetime_ident: type_reference.lifetime.unwrap_or_else(|| panic!(
+                                                                        "{proc_macro_name_ident_stringified} {syn_type_reference} lifetime {}",
+                                                                        crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                                                                    )).ident
                                                                 }
                                                             },
                                                             _ => panic!("{proc_macro_name_ident_stringified} type_handle {supports_only_stringified} {syn_type_path_stringified} and {syn_type_reference}"),
@@ -456,7 +485,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                                         &type_path.path.segments,
                                                                         &proc_macro_name_ident_stringified,
                                                                         supports_only_stringified,
-                                                                        is_none_stringified,
+                                                                        crate::error_occurence::hardcode::IS_NONE_STRINGIFIED,
                                                                         syn_generic_argument_type_stringified
                                                                     )
                                                                 }
@@ -466,7 +495,10 @@ pub fn generate_with_serialize_deserialize_version(
                                                                     if let true = type_path.path.segments.len() == 1 {
                                                                         type_path.path.segments
                                                                         .into_iter().next()
-                                                                        .unwrap_or_else(|| panic!("{proc_macro_name_ident_stringified} type_path.path.segments.into_iter().nth(0) {is_none_stringified}"))
+                                                                        .unwrap_or_else(|| panic!(
+                                                                            "{proc_macro_name_ident_stringified} type_path.path.segments.into_iter().nth(0) {}",
+                                                                            crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                                                                        ))
                                                                         .ident
                                                                     }
                                                                     else {
@@ -478,7 +510,10 @@ pub fn generate_with_serialize_deserialize_version(
                                                                 };
                                                                crate::error_occurence::hashmap_key_type::HashMapValueType::Reference {
                                                                     value_reference_ident,
-                                                                    value_lifetime_ident: type_reference.lifetime.unwrap_or_else(|| panic!("{proc_macro_name_ident_stringified} {syn_type_reference} lifetime {is_none_stringified}")).ident
+                                                                    value_lifetime_ident: type_reference.lifetime.unwrap_or_else(|| panic!(
+                                                                        "{proc_macro_name_ident_stringified} {syn_type_reference} lifetime {}",
+                                                                        crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                                                                    )).ident
                                                                 }
                                                             },
                                                             _ => panic!("{proc_macro_name_ident_stringified} type_handle {supports_only_stringified} {syn_type_path_stringified} and syn::Type::Reference"),
@@ -517,7 +552,10 @@ pub fn generate_with_serialize_deserialize_version(
                                             if let true = type_path.path.segments.len() == 1 {
                                                 type_path.path.segments
                                                 .into_iter().next()
-                                                .unwrap_or_else(|| panic!("{proc_macro_name_ident_stringified} type_path.path.segments.into_iter().nth(0) {is_none_stringified}"))
+                                                .unwrap_or_else(|| panic!(
+                                                    "{proc_macro_name_ident_stringified} type_path.path.segments.into_iter().nth(0) {}",
+                                                    crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                                                ))
                                                 .ident
                                             }
                                             else {
@@ -529,7 +567,10 @@ pub fn generate_with_serialize_deserialize_version(
                                         };
                                         crate::error_occurence::supported_container::SupportedContainer::Reference{
                                             reference_ident,
-                                            lifetime_ident: type_reference.lifetime.unwrap_or_else(|| panic!("{proc_macro_name_ident_stringified} {syn_type_reference} lifetime {is_none_stringified}")).ident,
+                                            lifetime_ident: type_reference.lifetime.unwrap_or_else(|| panic!(
+                                                "{proc_macro_name_ident_stringified} {syn_type_reference} lifetime {}",
+                                                crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                                            )).ident,
                                         }
                                     },
                                     _ => panic!("{proc_macro_name_ident_stringified} {code_occurence_lower_case} {error_message}"),
