@@ -9,20 +9,10 @@ pub fn generate_with_serialize_deserialize_version(
     value_lower_case: std::string::String,
     proc_macro_name_ident_stringified: std::string::String,
     syn_type_path_stringified: std::string::String,
-    reference_camel_case: &str,
-    vec_camel_case: &str,
-    hashmap_camel_case: &str,
     generics_len: usize,
-    string_camel_case: &str,
-    path_camel_case: &str,
-    key_camel_case: &str,
-    value_camel_case: &str,
-    supported_container_double_dot_double_dot: &str,
     supports_only_supported_container_stringified: std::string::String,
     with_serialize_deserialize_camel_case: std::string::String,
-    suported_enum_variant_stringified: &str,
     unnamed_camel_case: std::string::String,
-    syn_fields: &str,
     ident_with_serialize_deserialize_token_stream: proc_macro2::TokenStream,
     optional_additional_named_variant: Option<proc_macro2::TokenStream>,
     implements_this_error: bool,
@@ -309,7 +299,10 @@ pub fn generate_with_serialize_deserialize_version(
                                         crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
                                     ))
                                 };
-                                let syn_type_reference = format!("syn::Type::{reference_camel_case}");
+                                let syn_type_reference = format!(
+                                    "syn::Type::{}",
+                                    crate::error_occurence::hardcode::REFERENCE_CAMEL_CASE
+                                );
                                 let error_message = format!(
                                     "{} {syn_type_path_stringified} and {syn_type_reference}",
                                     crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
@@ -329,7 +322,7 @@ pub fn generate_with_serialize_deserialize_version(
                                             "{proc_macro_name_ident_stringified} type_path.path.segments.into_iter().last() {}",
                                             crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
                                         ));
-                                        if path_segment.ident == vec_camel_case {
+                                        if path_segment.ident == crate::error_occurence::hardcode::VEC_CAMEL_CASE {
                                             let vec_element_type = if let syn::PathArguments::AngleBracketed(angle_brackets_generic_arguments) = path_segment.arguments {
                                                 if let true = angle_brackets_generic_arguments.args.len() == 1 {
                                                     if let syn::GenericArgument::Type(type_handle) =
@@ -409,7 +402,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                 vec_element_type
                                             }
                                         }
-                                        else if path_segment.ident == hashmap_camel_case {
+                                        else if path_segment.ident == crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE {
                                             let (
                                                 hashmap_key_type,
                                                 hashmap_value_type
@@ -666,26 +659,58 @@ pub fn generate_with_serialize_deserialize_version(
                             attribute,
                             supported_container,
                         } => {
-                            let string_lower_case = string_camel_case.to_lowercase();
+                            let string_lower_case = crate::error_occurence::hardcode::STRING_CAMEL_CASE.to_lowercase();
                             let std_stringified = "std";
-                            let std_string_string_stringified = format!("{std_stringified}::{string_lower_case}::{string_camel_case}");
+                            let std_string_string_stringified = format!(
+                                "{std_stringified}::{string_lower_case}::{}",
+                                crate::error_occurence::hardcode::STRING_CAMEL_CASE
+                            );
                             let std_string_string_token_stream = std_string_string_stringified
                             .parse::<proc_macro2::TokenStream>()
                             .unwrap_or_else(|_| panic!("{proc_macro_name_ident_stringified} {std_string_string_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE));
-                            let vec_element_type_path_stringified = format!("crate::error_occurence::vec_element_type::VecElementType::{path_camel_case}");
-                            let as_std_collections_hashmap_key_type_stringified = format!("as {std_stringified}::collections::{hashmap_camel_case} key type");
+                            let vec_element_type_path_stringified = format!(
+                                "crate::error_occurence::vec_element_type::VecElementType::{}",
+                                crate::error_occurence::hardcode::PATH_CAMEL_CASE
+                            );
+                            let as_std_collections_hashmap_key_type_stringified = format!(
+                                "as {std_stringified}::collections::{} key type",
+                                crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
+                            );
                             let str_stringified = "str";
-                            let string_string_stringified: String = format!("{string_lower_case}::{string_camel_case}");
+                            let string_string_stringified: String = format!(
+                                "{string_lower_case}::{}",
+                                crate::error_occurence::hardcode::STRING_CAMEL_CASE
+                            );
                             let std_string_string_stringified = format!("{std_stringified}::{string_string_stringified}");
                             let must_be_used_with_stringified = "must be used with";
                             let does_not_support_stringified = "does not support";
                             let type_camel_case = "Type";
-                            let hashmap_key_type_stringified = format!("{hashmap_camel_case}{key_camel_case}{type_camel_case}");
-                            let hashmap_value_type_stringified = format!("{hashmap_camel_case}{value_camel_case}{type_camel_case}");
-                            let hashmap_key_type_path_stringified = format!("{hashmap_key_type_stringified}::{path_camel_case}");
-                            let hashmap_key_type_reference_stringified = format!("{hashmap_key_type_stringified}::{reference_camel_case}");
-                            let hashmap_value_type_path_stringified = format!("{hashmap_value_type_stringified}::{path_camel_case}");
-                            let hashmap_value_type_reference_stringified = format!("{hashmap_value_type_stringified}::{reference_camel_case}");
+                            let hashmap_key_type_stringified = format!(
+                                "{}{}{type_camel_case}",
+                                crate::error_occurence::hardcode::KEY_CAMEL_CASE,
+                                crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
+                            );
+                            let hashmap_value_type_stringified = format!(
+                                "{}{}{type_camel_case}",
+                                crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE,
+                                crate::error_occurence::hardcode::VALUE_CAMEL_CASE
+                            );
+                            let hashmap_key_type_path_stringified = format!(
+                                "{hashmap_key_type_stringified}::{}",
+                                crate::error_occurence::hardcode::PATH_CAMEL_CASE
+                            );
+                            let hashmap_key_type_reference_stringified = format!(
+                                "{hashmap_key_type_stringified}::{}",
+                                crate::error_occurence::hardcode::REFERENCE_CAMEL_CASE
+                            );
+                            let hashmap_value_type_path_stringified = format!(
+                                "{hashmap_value_type_stringified}::{}",
+                                crate::error_occurence::hardcode::PATH_CAMEL_CASE
+                            );
+                            let hashmap_value_type_reference_stringified = format!(
+                                "{hashmap_value_type_stringified}::{}",
+                                crate::error_occurence::hardcode::REFERENCE_CAMEL_CASE
+                            );
                             let inform_use_str_string_in_different_attribute = |
                                 path: String,
                                 wrong_attribute: &String,
@@ -703,8 +728,11 @@ pub fn generate_with_serialize_deserialize_version(
                                 else if path == string_string_stringified {
                                     panic!("{proc_macro_name_ident_stringified} {wrong_attribute_view} {string_string_stringified} {must_be_used_with_stringified} {attribute_to_use_view}");
                                 }
-                                else if path == string_camel_case {
-                                    panic!("{proc_macro_name_ident_stringified} {wrong_attribute_view} {string_camel_case} {must_be_used_with_stringified} {attribute_to_use_view}");
+                                else if path == crate::error_occurence::hardcode::STRING_CAMEL_CASE {
+                                    panic!(
+                                        "{proc_macro_name_ident_stringified} {wrong_attribute_view} {} {must_be_used_with_stringified} {attribute_to_use_view}",
+                                        crate::error_occurence::hardcode::STRING_CAMEL_CASE
+                                    );
                                 }
                             };
                             let
@@ -723,9 +751,11 @@ pub fn generate_with_serialize_deserialize_version(
                                     }
                                     else {
                                         panic!(
-                                            "{proc_macro_name_ident_stringified} {} {} {supported_container_double_dot_double_dot}{path_camel_case}", 
+                                            "{proc_macro_name_ident_stringified} {} {} {}{}", 
                                             attribute.attribute_view(),
-                                            crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
+                                            crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
+                                            crate::error_occurence::hardcode::SUPPORTED_CONTAINER_DOUBLE_DOT_DOUBLE_DOT,
+                                            crate::error_occurence::hardcode::PATH_CAMEL_CASE
                                         )
                                     }
                                 },
@@ -753,13 +783,24 @@ pub fn generate_with_serialize_deserialize_version(
                                             );
                                             quote::quote!{#std_string_string_token_stream}
                                         },
-                                        _ => panic!("{proc_macro_name_ident_stringified} {} only supports {supported_container_double_dot_double_dot}{path_camel_case} and {supported_container_double_dot_double_dot}{reference_camel_case}", attribute.attribute_view()),
+                                        _ => panic!(
+                                            "{proc_macro_name_ident_stringified} {} only supports {}{} and {}{}", 
+                                            attribute.attribute_view(),
+                                            crate::error_occurence::hardcode::SUPPORTED_CONTAINER_DOUBLE_DOT_DOUBLE_DOT,
+                                            crate::error_occurence::hardcode::PATH_CAMEL_CASE,
+                                            crate::error_occurence::hardcode::SUPPORTED_CONTAINER_DOUBLE_DOT_DOUBLE_DOT,
+                                            crate::error_occurence::hardcode::REFERENCE_CAMEL_CASE
+                                        ),
                                     }
                                 },
                                 crate::error_occurence::named_attribute::NamedAttribute::EoDisplayForeignType => {
                                     if let crate::error_occurence::supported_container::SupportedContainer::Path { path: _path, vec_lifetime: _vec_lifetime } = supported_container {}
                                     else {
-                                        panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{path_camel_case}", attribute.attribute_view());
+                                        panic!(
+                                            "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
+                                            attribute.attribute_view(),
+                                            crate::error_occurence::hardcode::PATH_CAMEL_CASE
+                                        );
                                     }
                                     quote::quote! {
                                         #std_string_string_token_stream
@@ -775,7 +816,11 @@ pub fn generate_with_serialize_deserialize_version(
                                         }
                                     }
                                     else {
-                                        panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{path_camel_case}", attribute.attribute_view());
+                                        panic!(
+                                            "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
+                                            attribute.attribute_view(),
+                                            crate::error_occurence::hardcode::PATH_CAMEL_CASE
+                                        );
                                     }
                                 },
                                 crate::error_occurence::named_attribute::NamedAttribute::EoErrorOccurence => {
@@ -791,7 +836,11 @@ pub fn generate_with_serialize_deserialize_version(
                                         }
                                     }
                                     else {
-                                        panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{path_camel_case}", attribute.attribute_view());
+                                        panic!(
+                                            "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
+                                            attribute.attribute_view(),
+                                            crate::error_occurence::hardcode::PATH_CAMEL_CASE
+                                        );
                                     }
                                 },
                                 crate::error_occurence::named_attribute::NamedAttribute::EoVecDisplay => {
@@ -819,7 +868,11 @@ pub fn generate_with_serialize_deserialize_version(
                                         }
                                     }
                                     else {
-                                        panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{vec_camel_case}", attribute.attribute_view());
+                                        panic!(
+                                            "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
+                                            attribute.attribute_view(),
+                                            crate::error_occurence::hardcode::VEC_CAMEL_CASE
+                                        );
                                     }
                                 },
                                 crate::error_occurence::named_attribute::NamedAttribute::EoVecDisplayWithSerializeDeserialize => {
@@ -852,7 +905,11 @@ pub fn generate_with_serialize_deserialize_version(
                                         }
                                     }
                                     else {
-                                        panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{vec_camel_case}", attribute.attribute_view());
+                                        panic!(
+                                            "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
+                                            attribute.attribute_view(),
+                                            crate::error_occurence::hardcode::VEC_CAMEL_CASE
+                                        );
                                     }
                                 },
                                 crate::error_occurence::named_attribute::NamedAttribute::EoVecDisplayForeignType => {
@@ -870,7 +927,11 @@ pub fn generate_with_serialize_deserialize_version(
                                         }
                                     }
                                     else {
-                                        panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{vec_camel_case}", attribute.attribute_view());
+                                        panic!(
+                                            "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
+                                            attribute.attribute_view(),
+                                            crate::error_occurence::hardcode::VEC_CAMEL_CASE
+                                        );
                                     }
                                     quote::quote! {
                                         std::vec::Vec<#std_string_string_token_stream>
@@ -898,7 +959,11 @@ pub fn generate_with_serialize_deserialize_version(
                                         }
                                     }
                                     else {
-                                        panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{vec_camel_case}", attribute.attribute_view());
+                                        panic!(
+                                            "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
+                                            attribute.attribute_view(),
+                                            crate::error_occurence::hardcode::VEC_CAMEL_CASE
+                                        );
                                     }
                                 },
                                 crate::error_occurence::named_attribute::NamedAttribute::EoVecErrorOccurence => {
@@ -926,7 +991,11 @@ pub fn generate_with_serialize_deserialize_version(
                                         }
                                     }
                                     else {
-                                        panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{vec_camel_case}", attribute.attribute_view());
+                                        panic!(
+                                            "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
+                                            attribute.attribute_view(),
+                                            crate::error_occurence::hardcode::VEC_CAMEL_CASE
+                                        );
                                     }
                                 },
                                 crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplay => {
@@ -1023,7 +1092,11 @@ pub fn generate_with_serialize_deserialize_version(
                                         }
                                     }
                                     else {
-                                        panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{hashmap_camel_case}", attribute.attribute_view());
+                                        panic!(
+                                            "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
+                                            attribute.attribute_view(),
+                                            crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
+                                        );
                                     };
                                     type_token_stream
                                 },
@@ -1159,7 +1232,11 @@ pub fn generate_with_serialize_deserialize_version(
                                         }
                                     }
                                     else {
-                                        panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{hashmap_camel_case}", attribute.attribute_view());
+                                        panic!(
+                                            "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
+                                            attribute.attribute_view(),
+                                            crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
+                                        );
                                     }
                                 },
                                 crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayForeignType => {
@@ -1236,7 +1313,11 @@ pub fn generate_with_serialize_deserialize_version(
                                         }
                                     }
                                     else {
-                                        panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{hashmap_camel_case}", attribute.attribute_view());
+                                        panic!(
+                                            "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
+                                            attribute.attribute_view(),
+                                            crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
+                                        );
                                     }
                                 },
                                 crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayForeignTypeWithSerializeDeserialize => {
@@ -1325,7 +1406,11 @@ pub fn generate_with_serialize_deserialize_version(
                                         }
                                     }
                                     else {
-                                        panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{hashmap_camel_case}", attribute.attribute_view());
+                                        panic!(
+                                            "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
+                                            attribute.attribute_view(),
+                                            crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
+                                        );
                                     }
                                 },
                                 crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueErrorOccurence => {
@@ -1417,7 +1502,11 @@ pub fn generate_with_serialize_deserialize_version(
                                         }
                                     }
                                     else {
-                                        panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{hashmap_camel_case}", attribute.attribute_view());
+                                        panic!(
+                                            "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
+                                            attribute.attribute_view(),
+                                            crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
+                                        );
                                     }
                                 },
                                 crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplay => {
@@ -1483,7 +1572,11 @@ pub fn generate_with_serialize_deserialize_version(
                                         }
                                     }
                                     else {
-                                        panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{hashmap_camel_case}", attribute.attribute_view());
+                                        panic!(
+                                            "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
+                                            attribute.attribute_view(),
+                                            crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
+                                        );
                                     };
                                     type_token_stream
                                 },
@@ -1561,7 +1654,11 @@ pub fn generate_with_serialize_deserialize_version(
                                         }
                                     }
                                     else {
-                                        panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{hashmap_camel_case}", attribute.attribute_view());
+                                        panic!(
+                                            "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
+                                            attribute.attribute_view(),
+                                            crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
+                                        );
                                     }
                                 },
                                 crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplayForeignType => {
@@ -1619,7 +1716,11 @@ pub fn generate_with_serialize_deserialize_version(
                                         }
                                     }
                                     else {
-                                        panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{hashmap_camel_case}", attribute.attribute_view());
+                                        panic!(
+                                            "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
+                                            attribute.attribute_view(),
+                                            crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
+                                        );
                                     }
                                 },
                                 crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplayForeignTypeWithSerializeDeserialize => {
@@ -1680,7 +1781,11 @@ pub fn generate_with_serialize_deserialize_version(
                                         }
                                     }
                                     else {
-                                        panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{hashmap_camel_case}", attribute.attribute_view());
+                                        panic!(
+                                            "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
+                                            attribute.attribute_view(),
+                                            crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
+                                        );
                                     }
                                 },
                                 crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueErrorOccurence => {
@@ -1744,7 +1849,11 @@ pub fn generate_with_serialize_deserialize_version(
                                         }
                                     }
                                     else {
-                                        panic!("{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{hashmap_camel_case}", attribute.attribute_view());
+                                        panic!(
+                                            "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
+                                            attribute.attribute_view(),
+                                            crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
+                                        );
                                     }
                                 },
                             };
@@ -1801,14 +1910,18 @@ pub fn generate_with_serialize_deserialize_version(
                 let field_type = if let syn::Fields::Unnamed(fields_unnamed) = &variant.fields {
                     let unnamed = &fields_unnamed.unnamed;
                     if let false = unnamed.len() == 1 {
-                        panic!("{proc_macro_name_ident_stringified} {suported_enum_variant_stringified}::{unnamed_camel_case} variant fields unnamed len != 1");
+                        panic!(
+                            "{proc_macro_name_ident_stringified} {}::{unnamed_camel_case} variant fields unnamed len != 1",
+                            crate::error_occurence::hardcode::SUPPORTED_ENUM_VARIANT_STRINGIFIED
+                        );
                     }
                     &unnamed[0].ty
                 }
                 else {
                     panic!(
-                        "{proc_macro_name_ident_stringified} {} {syn_fields}::{unnamed_camel_case}",
-                        crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
+                        "{proc_macro_name_ident_stringified} {} {}::{unnamed_camel_case}",
+                        crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
+                        crate::error_occurence::hardcode::SYN_FIELDS
                     );
                 };
                 let type_token_stream = if let syn::Type::Path(type_path) = field_type {
