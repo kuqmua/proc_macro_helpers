@@ -107,10 +107,7 @@ pub fn generate_with_serialize_deserialize_version(
                                             },
                                             crate::error_occurence::form_last_arg_lifetime_vec::form_last_arg_lifetime_vec(
                                                 &type_path.path.segments,
-                                                &proc_macro_name_ident_stringified,
-                                                crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
-                                                crate::error_occurence::hardcode::IS_NONE_STRINGIFIED,
-                                                crate::error_occurence::hardcode::SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED
+                                                proc_macro_name_ident_stringified
                                             ),
                                         )
                                       }
@@ -312,10 +309,7 @@ pub fn generate_with_serialize_deserialize_version(
                                         let path = crate::error_occurence::generate_path_from_segments::generate_path_from_segments(&type_path.path.segments);
                                         let vec_lifetime = crate::error_occurence::form_last_arg_lifetime_vec::form_last_arg_lifetime_vec(
                                             &type_path.path.segments,
-                                            &proc_macro_name_ident_stringified,
-                                            crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
-                                            crate::error_occurence::hardcode::IS_NONE_STRINGIFIED,
-                                            crate::error_occurence::hardcode::SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED
+                                            &proc_macro_name_ident_stringified
                                         );
                                         let path_segment = type_path.path.segments.into_iter().last()
                                         .unwrap_or_else(|| panic!(
@@ -338,10 +332,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                                 element_path: crate::error_occurence::generate_path_from_segments::generate_path_from_segments(&type_path.path.segments),
                                                                 vec_lifetime: crate::error_occurence::form_last_arg_lifetime_vec::form_last_arg_lifetime_vec(
                                                                     &type_path.path.segments,
-                                                                    &proc_macro_name_ident_stringified,
-                                                                    crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
-                                                                    crate::error_occurence::hardcode::IS_NONE_STRINGIFIED,
-                                                                    crate::error_occurence::hardcode::SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED
+                                                                    &proc_macro_name_ident_stringified
                                                                 )
                                                             },
                                                             syn::Type::Reference(type_reference) => {
@@ -449,10 +440,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                                     key_segments_stringified: crate::error_occurence::generate_path_from_segments::generate_path_from_segments(&type_path.path.segments),
                                                                     key_vec_lifetime: crate::error_occurence::form_last_arg_lifetime_vec::form_last_arg_lifetime_vec(
                                                                         &type_path.path.segments,
-                                                                        &proc_macro_name_ident_stringified,
-                                                                        crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
-                                                                        crate::error_occurence::hardcode::IS_NONE_STRINGIFIED,
-                                                                        crate::error_occurence::hardcode::SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED
+                                                                        &proc_macro_name_ident_stringified
                                                                     )
                                                                 }
                                                             },
@@ -505,10 +493,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                                     value_segments_stringified: crate::error_occurence::generate_path_from_segments::generate_path_from_segments(&type_path.path.segments),
                                                                     value_vec_lifetime: crate::error_occurence::form_last_arg_lifetime_vec::form_last_arg_lifetime_vec(
                                                                         &type_path.path.segments,
-                                                                        &proc_macro_name_ident_stringified,
-                                                                        crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
-                                                                        crate::error_occurence::hardcode::IS_NONE_STRINGIFIED,
-                                                                        crate::error_occurence::hardcode::SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED
+                                                                        &proc_macro_name_ident_stringified
                                                                     )
                                                                 }
                                                             },
