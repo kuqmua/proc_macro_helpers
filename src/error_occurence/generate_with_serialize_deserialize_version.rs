@@ -1,6 +1,6 @@
 pub fn generate_with_serialize_deserialize_version(
     supported_enum_variant: &crate::error_occurence::supported_enum_variant::SuportedEnumVariant,
-    variants: Vec<syn::Variant>,
+    variants: syn::punctuated::Punctuated<syn::Variant, syn::token::Comma>,
     with_serialize_deserialize_lower_case: &std::string::String,
     error_occurence_lower_case: &std::string::String,
     vec_lower_case: &std::string::String,
