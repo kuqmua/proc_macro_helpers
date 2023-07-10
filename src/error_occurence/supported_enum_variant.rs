@@ -6,8 +6,8 @@ pub enum SuportedEnumVariant {
 
 pub fn create_supported_enum_variant(
     data_enum: &syn::DataEnum,
-    proc_macro_name_ident_stringified: std::string::String,
-    unnamed_camel_case: std::string::String,
+    proc_macro_name_ident_stringified: &std::string::String,
+    unnamed_camel_case: &std::string::String,
 ) -> SuportedEnumVariant {
     let mut all_equal: Option<SuportedEnumVariant> = None;
     if let true = &data_enum.variants.is_empty() {
