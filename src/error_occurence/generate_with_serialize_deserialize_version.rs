@@ -129,7 +129,11 @@ pub fn generate_with_serialize_deserialize_version(
                                     field.attrs.iter().for_each(|attr|{
                                         if let true = attr.path.segments.len() == 1 {
                                             let error_message = format!("{proc_macro_name_ident_stringified} two or more supported attributes!");
-                                            if let true = attr.path.segments[0].ident == attribute_display_stringified {
+                                            let attr_ident = match attr.path.segments.iter().next() {
+                                                Some(path_segment) => &path_segment.ident,
+                                                None => panic!("attr.path.segments.iter().next() is None"),
+                                            };
+                                            if let true = attr_ident == &attribute_display_stringified {
                                                 if let true = option_attribute.is_some() {
                                                     panic!("{error_message}");
                                                 }
@@ -137,7 +141,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoDisplay);
                                                 }
                                             }
-                                            else if let true = attr.path.segments[0].ident == attribute_display_with_serialize_deserialize_stringified {
+                                            else if let true = attr_ident == &attribute_display_with_serialize_deserialize_stringified {
                                                 if let true = option_attribute.is_some() {
                                                     panic!("{error_message}");
                                                 }
@@ -145,7 +149,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoDisplayWithSerializeDeserialize);
                                                 }
                                             }
-                                            else if let true = attr.path.segments[0].ident == attribute_display_foreign_type_stringified {
+                                            else if let true = attr_ident == &attribute_display_foreign_type_stringified {
                                                 if let true = option_attribute.is_some() {
                                                     panic!("{error_message}");
                                                 }
@@ -153,7 +157,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoDisplayForeignType);
                                                 }
                                             }
-                                            else if let true = attr.path.segments[0].ident == attribute_display_foreign_type_with_serialize_deserialize_stringified {
+                                            else if let true = attr_ident == &attribute_display_foreign_type_with_serialize_deserialize_stringified {
                                                 if let true = option_attribute.is_some() {
                                                     panic!("{error_message}");
                                                 }
@@ -161,7 +165,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoDisplayForeignTypeWithSerializeDeserialize);
                                                 }
                                             }
-                                            else if let true = attr.path.segments[0].ident == attribute_error_occurence_stringified {
+                                            else if let true = attr_ident == &attribute_error_occurence_stringified {
                                                 if let true = option_attribute.is_some() {
                                                     panic!("{error_message}");
                                                 }
@@ -169,7 +173,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoErrorOccurence);
                                                 }
                                             }
-                                            else if let true = attr.path.segments[0].ident == attribute_vec_display_stringified {
+                                            else if let true = attr_ident == &attribute_vec_display_stringified {
                                                 if let true = option_attribute.is_some() {
                                                     panic!("{error_message}");
                                                 }
@@ -177,7 +181,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoVecDisplay);
                                                 }
                                             }
-                                            else if let true = attr.path.segments[0].ident == attribute_vec_display_with_serialize_deserialize_stringified {
+                                            else if let true = attr_ident == &attribute_vec_display_with_serialize_deserialize_stringified {
                                                 if let true = option_attribute.is_some() {
                                                     panic!("{error_message}");
                                                 }
@@ -185,7 +189,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoVecDisplayWithSerializeDeserialize);
                                                 }
                                             }
-                                            else if let true = attr.path.segments[0].ident == attribute_vec_display_foreign_type_stringified {
+                                            else if let true = attr_ident == &attribute_vec_display_foreign_type_stringified {
                                                 if let true = option_attribute.is_some() {
                                                     panic!("{error_message}");
                                                 }
@@ -193,7 +197,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoVecDisplayForeignType);
                                                 }
                                             }
-                                            else if let true = attr.path.segments[0].ident == attribute_vec_display_foreign_type_with_serialize_deserialize_stringified {
+                                            else if let true = attr_ident == &attribute_vec_display_foreign_type_with_serialize_deserialize_stringified {
                                                 if let true = option_attribute.is_some() {
                                                     panic!("{error_message}");
                                                 }
@@ -201,7 +205,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoVecDisplayForeignTypeWithSerializeDeserialize);
                                                 }
                                             }
-                                            else if let true = attr.path.segments[0].ident == attribute_vec_error_occurence_stringified {
+                                            else if let true = attr_ident == &attribute_vec_error_occurence_stringified {
                                                 if let true = option_attribute.is_some() {
                                                     panic!("{error_message}");
                                                 }
@@ -209,7 +213,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoVecErrorOccurence);
                                                 }
                                             }
-                                            else if let true = attr.path.segments[0].ident == attribute_hashmap_key_display_with_serialize_deserialize_value_display_stringified {
+                                            else if let true = attr_ident == &attribute_hashmap_key_display_with_serialize_deserialize_value_display_stringified {
                                                 if let true = option_attribute.is_some() {
                                                     panic!("{error_message}");
                                                 }
@@ -217,7 +221,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplay);
                                                 }
                                             }
-                                            else if let true = attr.path.segments[0].ident == attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified {
+                                            else if let true = attr_ident == &attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified {
                                                 if let true = option_attribute.is_some() {
                                                     panic!("{error_message}");
                                                 }
@@ -225,7 +229,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayWithSerializeDeserialize);
                                                 }
                                             }
-                                            else if let true = attr.path.segments[0].ident == attribute_hashmap_key_display_with_serialize_deserialize_value_display_foreign_type_stringified {
+                                            else if let true = attr_ident == &attribute_hashmap_key_display_with_serialize_deserialize_value_display_foreign_type_stringified {
                                                 if let true = option_attribute.is_some() {
                                                     panic!("{error_message}");
                                                 }
@@ -233,7 +237,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayForeignType);
                                                 }
                                             }
-                                            else if let true = attr.path.segments[0].ident == attribute_hashmap_key_display_with_serialize_deserialize_value_display_foreign_type_with_serialize_deserialize_stringified {
+                                            else if let true = attr_ident == &attribute_hashmap_key_display_with_serialize_deserialize_value_display_foreign_type_with_serialize_deserialize_stringified {
                                                 if let true = option_attribute.is_some() {
                                                     panic!("{error_message}");
                                                 }
@@ -241,7 +245,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayForeignTypeWithSerializeDeserialize);
                                                 }
                                             }
-                                            else if let true = attr.path.segments[0].ident == attribute_hashmap_key_display_with_serialize_deserialize_value_error_occurence_stringified {
+                                            else if let true = attr_ident == &attribute_hashmap_key_display_with_serialize_deserialize_value_error_occurence_stringified {
                                                 if let true = option_attribute.is_some() {
                                                     panic!("{error_message}");
                                                 }
@@ -249,7 +253,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueErrorOccurence);
                                                 }
                                             }
-                                            else if let true = attr.path.segments[0].ident == attribute_hashmap_key_display_foreign_type_value_display_stringified {
+                                            else if let true = attr_ident == &attribute_hashmap_key_display_foreign_type_value_display_stringified {
                                                 if let true = option_attribute.is_some() {
                                                     panic!("{error_message}");
                                                 }
@@ -257,7 +261,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplay);
                                                 }
                                             }
-                                            else if let true = attr.path.segments[0].ident == attribute_hashmap_key_display_foreign_type_value_display_with_serialize_deserialize_stringified {
+                                            else if let true = attr_ident == &attribute_hashmap_key_display_foreign_type_value_display_with_serialize_deserialize_stringified {
                                                 if let true = option_attribute.is_some() {
                                                     panic!("{error_message}");
                                                 }
@@ -265,7 +269,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplayWithSerializeDeserialize);
                                                 }
                                             }
-                                            else if let true = attr.path.segments[0].ident == attribute_hashmap_key_display_foreign_type_value_display_foreign_type_stringified {
+                                            else if let true = attr_ident == &attribute_hashmap_key_display_foreign_type_value_display_foreign_type_stringified {
                                                 if let true = option_attribute.is_some() {
                                                     panic!("{error_message}");
                                                 }
@@ -273,7 +277,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplayForeignType);
                                                 }
                                             }
-                                            else if let true = attr.path.segments[0].ident == attribute_hashmap_key_display_foreign_type_value_display_foreign_type_with_serialize_deserialize_stringified {
+                                            else if let true = attr_ident == &attribute_hashmap_key_display_foreign_type_value_display_foreign_type_with_serialize_deserialize_stringified {
                                                 if let true = option_attribute.is_some() {
                                                     panic!("{error_message}");
                                                 }
@@ -281,7 +285,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     option_attribute = Some(crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplayForeignTypeWithSerializeDeserialize);
                                                 }
                                             }
-                                            else if let true = attr.path.segments[0].ident == attribute_hashmap_key_display_foreign_type_value_error_occurence_stringified {
+                                            else if let true = attr_ident == &attribute_hashmap_key_display_foreign_type_value_error_occurence_stringified {
                                                 if let true = option_attribute.is_some() {
                                                     panic!("{error_message}");
                                                 }
@@ -309,7 +313,7 @@ pub fn generate_with_serialize_deserialize_version(
                                         let path = crate::error_occurence::generate_path_from_segments::generate_path_from_segments(&type_path.path.segments);
                                         let vec_lifetime = crate::error_occurence::form_last_arg_lifetime_vec::form_last_arg_lifetime_vec(
                                             &type_path.path.segments,
-                                            &proc_macro_name_ident_stringified
+                                            proc_macro_name_ident_stringified
                                         );
                                         let path_segment = type_path.path.segments.into_iter().last()
                                         .unwrap_or_else(|| panic!(
@@ -332,7 +336,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                                 element_path: crate::error_occurence::generate_path_from_segments::generate_path_from_segments(&type_path.path.segments),
                                                                 vec_lifetime: crate::error_occurence::form_last_arg_lifetime_vec::form_last_arg_lifetime_vec(
                                                                     &type_path.path.segments,
-                                                                    &proc_macro_name_ident_stringified
+                                                                    proc_macro_name_ident_stringified
                                                                 )
                                                             },
                                                             syn::Type::Reference(type_reference) => {
@@ -440,7 +444,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                                     key_segments_stringified: crate::error_occurence::generate_path_from_segments::generate_path_from_segments(&type_path.path.segments),
                                                                     key_vec_lifetime: crate::error_occurence::form_last_arg_lifetime_vec::form_last_arg_lifetime_vec(
                                                                         &type_path.path.segments,
-                                                                        &proc_macro_name_ident_stringified
+                                                                        proc_macro_name_ident_stringified
                                                                     )
                                                                 }
                                                             },
@@ -493,7 +497,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                                     value_segments_stringified: crate::error_occurence::generate_path_from_segments::generate_path_from_segments(&type_path.path.segments),
                                                                     value_vec_lifetime: crate::error_occurence::form_last_arg_lifetime_vec::form_last_arg_lifetime_vec(
                                                                         &type_path.path.segments,
-                                                                        &proc_macro_name_ident_stringified
+                                                                        proc_macro_name_ident_stringified
                                                                     )
                                                                 }
                                                             },
@@ -758,7 +762,7 @@ pub fn generate_with_serialize_deserialize_version(
                                             crate::error_occurence::panic_if_not_str::panic_if_not_str(
                                                 &reference_ident,
                                                 str_stringified,
-                                                &proc_macro_name_ident_stringified,
+                                                proc_macro_name_ident_stringified,
                                                 crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
                                                 &attribute
                                             );
@@ -876,7 +880,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                 crate::error_occurence::panic_if_not_str::panic_if_not_str(
                                                     &reference_ident,
                                                     str_stringified,
-                                                    &proc_macro_name_ident_stringified,
+                                                    proc_macro_name_ident_stringified,
                                                     crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
                                                     &attribute
                                                 );
@@ -996,7 +1000,7 @@ pub fn generate_with_serialize_deserialize_version(
                                             crate::error_occurence::panic_if_not_string::panic_if_not_string(
                                                 &key_segments_stringified,
                                                 &std_string_string_stringified,
-                                                &proc_macro_name_ident_stringified,
+                                                proc_macro_name_ident_stringified,
                                                 crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
                                                 &as_std_collections_hashmap_key_type_stringified,
                                                 &attribute
@@ -1105,7 +1109,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                 crate::error_occurence::panic_if_not_string::panic_if_not_string(
                                                     &key_segments_stringified,
                                                     &std_string_string_stringified,
-                                                    &proc_macro_name_ident_stringified,
+                                                    proc_macro_name_ident_stringified,
                                                     crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
                                                     &as_std_collections_hashmap_key_type_stringified,
                                                     &attribute
@@ -1134,7 +1138,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                 crate::error_occurence::panic_if_not_string::panic_if_not_string(
                                                     &key_segments_stringified,
                                                     &std_string_string_stringified,
-                                                    &proc_macro_name_ident_stringified,
+                                                    proc_macro_name_ident_stringified,
                                                     crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
                                                     &as_std_collections_hashmap_key_type_stringified,
                                                     &attribute
@@ -1142,7 +1146,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                 crate::error_occurence::panic_if_not_str::panic_if_not_str(
                                                     &value_reference_ident,
                                                     str_stringified,
-                                                    &proc_macro_name_ident_stringified,
+                                                    proc_macro_name_ident_stringified,
                                                     crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
                                                     &attribute
                                                 );
@@ -1169,7 +1173,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                 crate::error_occurence::panic_if_not_str::panic_if_not_str(
                                                     &key_reference_ident,
                                                     str_stringified,
-                                                    &proc_macro_name_ident_stringified,
+                                                    proc_macro_name_ident_stringified,
                                                     crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
                                                     &attribute
                                                 );
@@ -1196,14 +1200,14 @@ pub fn generate_with_serialize_deserialize_version(
                                                 crate::error_occurence::panic_if_not_str::panic_if_not_str(
                                                     &key_reference_ident,
                                                     str_stringified,
-                                                    &proc_macro_name_ident_stringified,
+                                                    proc_macro_name_ident_stringified,
                                                     crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
                                                     &attribute
                                                 );
                                                 crate::error_occurence::panic_if_not_str::panic_if_not_str(
                                                     &value_reference_ident,
                                                     str_stringified,
-                                                    &proc_macro_name_ident_stringified,
+                                                    proc_macro_name_ident_stringified,
                                                     crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
                                                     &attribute
                                                 );
@@ -1325,7 +1329,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                 crate::error_occurence::panic_if_not_string::panic_if_not_string(
                                                     &key_segments_stringified,
                                                     &std_string_string_stringified,
-                                                    &proc_macro_name_ident_stringified,
+                                                    proc_macro_name_ident_stringified,
                                                     crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
                                                     &as_std_collections_hashmap_key_type_stringified,
                                                     &attribute
@@ -1364,7 +1368,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                 crate::error_occurence::panic_if_not_str::panic_if_not_str(
                                                     &key_reference_ident,
                                                     str_stringified,
-                                                    &proc_macro_name_ident_stringified,
+                                                    proc_macro_name_ident_stringified,
                                                     crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
                                                     &attribute
                                                 );
@@ -1421,7 +1425,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                 crate::error_occurence::panic_if_not_string::panic_if_not_string(
                                                     &key_segments_stringified,
                                                     &std_string_string_stringified,
-                                                    &proc_macro_name_ident_stringified,
+                                                    proc_macro_name_ident_stringified,
                                                     crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
                                                     &as_std_collections_hashmap_key_type_stringified,
                                                     &attribute
@@ -1460,7 +1464,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                 crate::error_occurence::panic_if_not_str::panic_if_not_str(
                                                     &key_reference_ident,
                                                     str_stringified,
-                                                    &proc_macro_name_ident_stringified,
+                                                    proc_macro_name_ident_stringified,
                                                     crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
                                                     &attribute
                                                 );
@@ -1603,7 +1607,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                 crate::error_occurence::panic_if_not_str::panic_if_not_str(
                                                     &value_reference_ident,
                                                     str_stringified,
-                                                    &proc_macro_name_ident_stringified,
+                                                    proc_macro_name_ident_stringified,
                                                     crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
                                                     &attribute
                                                 );
@@ -1900,7 +1904,10 @@ pub fn generate_with_serialize_deserialize_version(
                             crate::error_occurence::hardcode::SUPPORTED_ENUM_VARIANT_STRINGIFIED
                         );
                     }
-                    &unnamed[0].ty
+                    match unnamed.iter().next() {
+                        Some(field) => &field.ty,
+                        None => panic!("unnamed.iter().next() is None"),
+                    }
                 }
                 else {
                     panic!(
