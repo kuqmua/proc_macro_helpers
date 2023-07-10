@@ -1,7 +1,6 @@
 pub fn generate_with_serialize_deserialize_version(
     supported_enum_variant: crate::error_occurence::supported_enum_variant::SuportedEnumVariant,
     variants: Vec<syn::Variant>,
-    occurence_camel_case: &str,
     with_serialize_deserialize_lower_case: std::string::String,
     error_occurence_lower_case: std::string::String,
     vec_lower_case: std::string::String,
@@ -9,7 +8,6 @@ pub fn generate_with_serialize_deserialize_version(
     key_lower_case: std::string::String,
     value_lower_case: std::string::String,
     proc_macro_name_ident_stringified: std::string::String,
-    syn_generic_argument_type_stringified: &str,
     syn_type_path_stringified: std::string::String,
     reference_camel_case: &str,
     vec_camel_case: &str,
@@ -37,7 +35,10 @@ pub fn generate_with_serialize_deserialize_version(
     use convert_case::Casing;
     let token_stream = match supported_enum_variant {
         crate::error_occurence::supported_enum_variant::SuportedEnumVariant::Named => {
-            let code_occurence_camel_case = format!("Code{occurence_camel_case}");
+            let code_occurence_camel_case = format!(
+                "Code{}",
+                crate::error_occurence::hardcode::OCCURENCE_CAMEL_CASE
+            );
             let code_occurence_lower_case = code_occurence_camel_case
                 .to_case(convert_case::Case::Snake)
                 .to_lowercase();
@@ -119,7 +120,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                 &proc_macro_name_ident_stringified,
                                                 crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
                                                 crate::error_occurence::hardcode::IS_NONE_STRINGIFIED,
-                                                syn_generic_argument_type_stringified
+                                                crate::error_occurence::hardcode::SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED
                                             ),
                                         )
                                       }
@@ -321,7 +322,7 @@ pub fn generate_with_serialize_deserialize_version(
                                             &proc_macro_name_ident_stringified,
                                             crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
                                             crate::error_occurence::hardcode::IS_NONE_STRINGIFIED,
-                                            syn_generic_argument_type_stringified
+                                            crate::error_occurence::hardcode::SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED
                                         );
                                         let path_segment = type_path.path.segments.into_iter().last()
                                         .unwrap_or_else(|| panic!(
@@ -347,7 +348,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                                     &proc_macro_name_ident_stringified,
                                                                     crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
                                                                     crate::error_occurence::hardcode::IS_NONE_STRINGIFIED,
-                                                                    syn_generic_argument_type_stringified
+                                                                    crate::error_occurence::hardcode::SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED
                                                                 )
                                                             },
                                                             syn::Type::Reference(type_reference) => {
@@ -387,8 +388,9 @@ pub fn generate_with_serialize_deserialize_version(
                                                     }
                                                     else {
                                                         panic!(
-                                                            "{proc_macro_name_ident_stringified} angle_brackets_generic_arguments.args[0] {} {syn_generic_argument_type_stringified}",
-                                                            crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
+                                                            "{proc_macro_name_ident_stringified} angle_brackets_generic_arguments.args[0] {} {}",
+                                                            crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
+                                                            crate::error_occurence::hardcode::SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED
                                                         );
                                                     }
                                                 }
@@ -457,7 +459,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                                         &proc_macro_name_ident_stringified,
                                                                         crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
                                                                         crate::error_occurence::hardcode::IS_NONE_STRINGIFIED,
-                                                                        syn_generic_argument_type_stringified
+                                                                        crate::error_occurence::hardcode::SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED
                                                                     )
                                                                 }
                                                             },
@@ -498,8 +500,9 @@ pub fn generate_with_serialize_deserialize_version(
                                                     }
                                                     else {
                                                         panic!(
-                                                            "{proc_macro_name_ident_stringified} key_generic_argument {} {syn_generic_argument_type_stringified}",
-                                                            crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
+                                                            "{proc_macro_name_ident_stringified} key_generic_argument {} {}",
+                                                            crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
+                                                            crate::error_occurence::hardcode::SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED
                                                         );
                                                     };
                                                     let hashmap_value_type = if let syn::GenericArgument::Type(type_handle) = value_generic_argument {
@@ -512,7 +515,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                                         &proc_macro_name_ident_stringified,
                                                                         crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
                                                                         crate::error_occurence::hardcode::IS_NONE_STRINGIFIED,
-                                                                        syn_generic_argument_type_stringified
+                                                                        crate::error_occurence::hardcode::SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED
                                                                     )
                                                                 }
                                                             },
@@ -553,8 +556,9 @@ pub fn generate_with_serialize_deserialize_version(
                                                     }
                                                     else {
                                                         panic!(
-                                                            "{proc_macro_name_ident_stringified} angle_brackets_generic_arguments.args[0] {} {syn_generic_argument_type_stringified}",
-                                                            crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
+                                                            "{proc_macro_name_ident_stringified} angle_brackets_generic_arguments.args[0] {} {}",
+                                                            crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
+                                                            crate::error_occurence::hardcode::SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED
                                                         );
                                                     };
                                                     (
