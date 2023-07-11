@@ -16,10 +16,14 @@ pub fn generate_with_serialize_deserialize_version(
     ident_with_serialize_deserialize_token_stream: &proc_macro2::TokenStream,
     optional_additional_named_variant: Option<proc_macro2::TokenStream>,
     implements_this_error: bool,
-    //todo pub or not
+    is_pub: bool, //todo pub or not
 ) -> proc_macro2::TokenStream {
     let this_error_token_stream = match implements_this_error {
         true => quote::quote! { thiserror::Error, },
+        false => proc_macro2::TokenStream::new(),
+    };
+    let is_pub_token_stream = match is_pub {
+        true => quote::quote! { pub },
         false => proc_macro2::TokenStream::new(),
     };
     use convert_case::Casing;
@@ -1884,7 +1888,7 @@ pub fn generate_with_serialize_deserialize_version(
             };
             quote::quote! {
                 #[derive(Debug, #this_error_token_stream serde::Serialize, serde::Deserialize)]
-                pub enum #ident_with_serialize_deserialize_token_stream {
+                #is_pub_token_stream enum #ident_with_serialize_deserialize_token_stream {
                     #additional_variant_token_stream
                     #(#logic_for_enum_with_serialize_deserialize_iter),*
                 }
@@ -1941,7 +1945,7 @@ pub fn generate_with_serialize_deserialize_version(
                 logic_for_enum_with_serialize_deserialize.iter();
             quote::quote! {
                 #[derive(Debug, #this_error_token_stream serde::Serialize, serde::Deserialize)]
-                pub enum #ident_with_serialize_deserialize_token_stream {
+                #is_pub_token_stream enum #ident_with_serialize_deserialize_token_stream {
                     #(#logic_for_enum_with_serialize_deserialize_generated),*
                 }
             }
