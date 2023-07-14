@@ -9,3 +9,4 @@
 pub mod error_occurence;
 pub mod global_variables;
 pub mod panic_location;
+pub mod to_lower_snake_case;
