@@ -1,6 +1,6 @@
 pub fn generate_with_serialize_deserialize_version(
     supported_enum_variant: &crate::error_occurence::supported_enum_variant::SuportedEnumVariant,
-    variants: syn::punctuated::Punctuated<syn::Variant, syn::token::Comma>,
+    variants: &syn::punctuated::Punctuated<syn::Variant, syn::token::Comma>,
     with_serialize_deserialize_lower_case: &std::string::String,
     error_occurence_lower_case: &std::string::String,
     vec_lower_case: &std::string::String,
@@ -79,14 +79,14 @@ pub fn generate_with_serialize_deserialize_version(
             let attribute_hashmap_key_display_foreign_type_value_display_foreign_type_stringified = format!("{attribute_prefix_stringified}{hashmap_lower_case}_{key_lower_case}_{display_foreign_type_lower_case}_{value_lower_case}_{display_foreign_type_lower_case}");
             let attribute_hashmap_key_display_foreign_type_value_display_foreign_type_with_serialize_deserialize_stringified = format!("{attribute_prefix_stringified}{hashmap_lower_case}_{key_lower_case}_{display_foreign_type_lower_case}_{value_lower_case}_{display_foreign_type_lower_case}_{with_serialize_deserialize_lower_case}");
             let attribute_hashmap_key_display_foreign_type_value_error_occurence_stringified = format!("{attribute_prefix_stringified}{hashmap_lower_case}_{key_lower_case}_{display_foreign_type_lower_case}_{value_lower_case}_{error_occurence_lower_case}");
-            let variants_vec = variants.into_iter().map(|variant| {
-                let variant_fields_vec = if let syn::Fields::Named(fields_named) = variant.fields {
-                    fields_named.named.into_iter().map(|field|{
-                        let field_ident = field.ident.unwrap_or_else(|| panic!(
+            let variants_vec = variants.iter().map(|variant| {
+                let variant_fields_vec = if let syn::Fields::Named(fields_named) = &variant.fields {
+                    fields_named.named.iter().map(|field|{
+                        let field_ident = field.ident.clone().unwrap_or_else(|| panic!(
                             "{proc_macro_name_ident_stringified} field.ident {}",
                             crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
                         ));
-                        let error_or_code_occurence = match field_ident == *code_occurence_lower_case {
+                        let error_or_code_occurence = match field_ident == code_occurence_lower_case {
                             true => {
                                 let (code_occurence_type_stringified, code_occurence_lifetime) = {
                                     if let syn::Type::Path(type_path) = &field.ty {
@@ -316,24 +316,24 @@ pub fn generate_with_serialize_deserialize_version(
                                     "{} {syn_type_path_stringified} and {syn_type_reference}",
                                     crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
                                 );
-                                let supported_container = match field.ty {
+                                let supported_container = match &field.ty {
                                     syn::Type::Path(type_path) => {
                                         let path = crate::error_occurence::generate_path_from_segments::generate_path_from_segments(&type_path.path.segments);
                                         let vec_lifetime = crate::error_occurence::form_last_arg_lifetime_vec::form_last_arg_lifetime_vec(
                                             &type_path.path.segments,
                                             proc_macro_name_ident_stringified
                                         );
-                                        let path_segment = type_path.path.segments.into_iter().last()
+                                        let path_segment = type_path.path.segments.iter().last()
                                         .unwrap_or_else(|| panic!(
                                             "{proc_macro_name_ident_stringified} type_path.path.segments.into_iter().last() {}",
                                             crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
                                         ));
                                         if path_segment.ident == crate::error_occurence::hardcode::VEC_CAMEL_CASE {
-                                            let vec_element_type = if let syn::PathArguments::AngleBracketed(angle_brackets_generic_arguments) = path_segment.arguments {
+                                            let vec_element_type = if let syn::PathArguments::AngleBracketed(angle_brackets_generic_arguments) = &path_segment.arguments {
                                                 if let true = angle_brackets_generic_arguments.args.len() == 1 {
                                                     if let syn::GenericArgument::Type(type_handle) =
                                                         angle_brackets_generic_arguments.args
-                                                        .into_iter().next()
+                                                        .iter().next()
                                                         .unwrap_or_else(|| panic!(
                                                             "{proc_macro_name_ident_stringified} angle_brackets_generic_arguments.args.into_iter().nth(0) {}",
                                                             crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
@@ -348,7 +348,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                                 )
                                                             },
                                                             syn::Type::Reference(type_reference) => {
-                                                                let reference_ident = if let syn::Type::Path(type_path) = *type_reference.elem {
+                                                                let reference_ident = if let syn::Type::Path(type_path) = *type_reference.elem.clone() {
                                                                     if let true = type_path.path.segments.len() == 1 {
                                                                         type_path.path.segments
                                                                         .into_iter().next()
@@ -370,7 +370,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                                 };
                                                                 crate::error_occurence::vec_element_type::VecElementType::Reference {
                                                                     reference_ident,
-                                                                    lifetime_ident: type_reference.lifetime.unwrap_or_else(|| panic!(
+                                                                    lifetime_ident: type_reference.lifetime.clone().unwrap_or_else(|| panic!(
                                                                         "{proc_macro_name_ident_stringified} {syn_type_reference} lifetime {}",
                                                                         crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
                                                                     )).ident
@@ -409,7 +409,7 @@ pub fn generate_with_serialize_deserialize_version(
                                             let (
                                                 hashmap_key_type,
                                                 hashmap_value_type
-                                            ) = if let syn::PathArguments::AngleBracketed(angle_brackets_generic_arguments) = path_segment.arguments {
+                                            ) = if let syn::PathArguments::AngleBracketed(angle_brackets_generic_arguments) = &path_segment.arguments {
                                                 if let true = angle_brackets_generic_arguments.args.len() == 2 {
                                                     let (
                                                         key_generic_argument,
@@ -418,7 +418,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                         let mut key_generic_argument_option = None;
                                                         let mut value_generic_argument_option = None;
                                                         angle_brackets_generic_arguments.args
-                                                        .into_iter()
+                                                        .iter()
                                                         .enumerate()
                                                         .for_each(|(index, generic_argument)|{
                                                             match index {
@@ -457,7 +457,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                                 }
                                                             },
                                                             syn::Type::Reference(type_reference) => {
-                                                                let key_reference_ident = if let syn::Type::Path(type_path) = *type_reference.elem {
+                                                                let key_reference_ident = if let syn::Type::Path(type_path) = *type_reference.elem.clone() {
                                                                     if let true = type_path.path.segments.len() == 1 {
                                                                         type_path.path.segments
                                                                         .into_iter().next()
@@ -479,7 +479,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                                 };
                                                                 crate::error_occurence::hashmap_value_type::HashMapKeyType::Reference {
                                                                     key_reference_ident,
-                                                                    key_lifetime_ident: type_reference.lifetime.unwrap_or_else(|| panic!(
+                                                                    key_lifetime_ident: type_reference.lifetime.clone().unwrap_or_else(|| panic!(
                                                                         "{proc_macro_name_ident_stringified} {syn_type_reference} lifetime {}",
                                                                         crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
                                                                     )).ident
@@ -510,7 +510,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                                 }
                                                             },
                                                             syn::Type::Reference(type_reference) => {
-                                                                let value_reference_ident = if let syn::Type::Path(type_path) = *type_reference.elem {
+                                                                let value_reference_ident = if let syn::Type::Path(type_path) = *type_reference.elem.clone() {
                                                                     if let true = type_path.path.segments.len() == 1 {
                                                                         type_path.path.segments
                                                                         .into_iter().next()
@@ -532,7 +532,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                                 };
                                                                crate::error_occurence::hashmap_key_type::HashMapValueType::Reference {
                                                                     value_reference_ident,
-                                                                    value_lifetime_ident: type_reference.lifetime.unwrap_or_else(|| panic!(
+                                                                    value_lifetime_ident: type_reference.lifetime.clone().unwrap_or_else(|| panic!(
                                                                         "{proc_macro_name_ident_stringified} {syn_type_reference} lifetime {}",
                                                                         crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
                                                                     )).ident
@@ -580,7 +580,7 @@ pub fn generate_with_serialize_deserialize_version(
                                         }
                                     },
                                     syn::Type::Reference(type_reference) => {
-                                        let reference_ident = if let syn::Type::Path(type_path) = *type_reference.elem {
+                                        let reference_ident = if let syn::Type::Path(type_path) = *type_reference.elem.clone() {
                                             if let true = type_path.path.segments.len() == 1 {
                                                 type_path.path.segments
                                                 .into_iter().next()
@@ -602,7 +602,7 @@ pub fn generate_with_serialize_deserialize_version(
                                         };
                                         crate::error_occurence::supported_container::SupportedContainer::Reference{
                                             reference_ident,
-                                            lifetime_ident: type_reference.lifetime.unwrap_or_else(|| panic!(
+                                            lifetime_ident: type_reference.lifetime.clone().unwrap_or_else(|| panic!(
                                                 "{proc_macro_name_ident_stringified} {syn_type_reference} lifetime {}",
                                                 crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
                                             )).ident,
@@ -630,12 +630,12 @@ pub fn generate_with_serialize_deserialize_version(
                     panic!("{proc_macro_name_ident_stringified} expected fields would be named");
                 };
                 (
-                    variant.ident,
+                    &variant.ident,
                     variant_fields_vec,
                 )
             })
             .collect::<Vec<(
-                proc_macro2::Ident,
+                &proc_macro2::Ident,
                  Vec<(
                     proc_macro2::Ident,
                     crate::error_occurence::error_or_code_occurence::ErrorOrCodeOccurence
