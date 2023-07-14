@@ -26,26 +26,30 @@ pub fn generate_with_serialize_deserialize_version(
         true => quote::quote! { pub },
         false => proc_macro2::TokenStream::new(),
     };
-    use convert_case::Casing;
+    let variants_len = variants.len();
     let token_stream = match supported_enum_variant {
         crate::error_occurence::supported_enum_variant::SuportedEnumVariant::Named => {
             let code_occurence_camel_case = format!(
                 "Code{}",
                 crate::error_occurence::hardcode::OCCURENCE_CAMEL_CASE
             );
-            let code_occurence_lower_case = code_occurence_camel_case
-                .to_case(convert_case::Case::Snake)
-                .to_lowercase();
+            let code_occurence_lower_case = convert_case::Casing::to_case(
+                &code_occurence_camel_case,
+                convert_case::Case::Snake,
+            )
+            .to_lowercase();
             let foreign_type_camel_case = "ForeignType";
             let display_camel_case = "Display";
             let display_foreign_type_camel_case =
                 format!("{display_camel_case}{foreign_type_camel_case}");
-            let display_foreign_type_lower_case = display_foreign_type_camel_case
-                .to_case(convert_case::Case::Snake)
-                .to_lowercase();
-            let display_lower_case = display_camel_case
-                .to_case(convert_case::Case::Snake)
-                .to_lowercase();
+            let display_foreign_type_lower_case = convert_case::Casing::to_case(
+                &display_foreign_type_camel_case,
+                convert_case::Case::Snake,
+            )
+            .to_lowercase();
+            let display_lower_case =
+                convert_case::Casing::to_case(&display_camel_case, convert_case::Case::Snake)
+                    .to_lowercase();
             let attribute_prefix_stringified = "eo_";
             let attribute_display_stringified =
                 format!("{attribute_prefix_stringified}{display_lower_case}");
@@ -639,7 +643,7 @@ pub fn generate_with_serialize_deserialize_version(
             )>>();
             let mut lifetimes_for_serialize_deserialize = Vec::with_capacity(generics_len);
             let mut logic_for_enum_with_serialize_deserialize: Vec<proc_macro2::TokenStream> =
-                Vec::with_capacity(variants_vec.len());
+                Vec::with_capacity(variants_len);
             let mut should_generate_impl_compile_time_check_error_occurence_members = false;
             variants_vec.into_iter().for_each(|(
                 variant_ident,
@@ -1895,7 +1899,6 @@ pub fn generate_with_serialize_deserialize_version(
             }
         }
         crate::error_occurence::supported_enum_variant::SuportedEnumVariant::Unnamed => {
-            let variants_len = variants.len();
             let mut logic_for_enum_with_serialize_deserialize: Vec<proc_macro2::TokenStream> =
                 Vec::with_capacity(variants_len);
             variants.iter().for_each(|variant|{
