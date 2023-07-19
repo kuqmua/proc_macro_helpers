@@ -1,7 +1,6 @@
 pub fn generate_with_serialize_deserialize_version(
     supported_enum_variant: &crate::error_occurence::supported_enum_variant::SuportedEnumVariant,
     variants: &Vec<&syn::Variant>, //&syn::punctuated::Punctuated<syn::Variant, syn::token::Comma>
-    with_serialize_deserialize_lower_case: &std::string::String,
     error_occurence_lower_case: &std::string::String,
     vec_lower_case: &std::string::String,
     hashmap_lower_case: &std::string::String,
@@ -11,11 +10,10 @@ pub fn generate_with_serialize_deserialize_version(
     syn_type_path_stringified: &std::string::String,
     generics_len: usize,
     supports_only_supported_container_stringified: &std::string::String,
-    with_serialize_deserialize_camel_case: &std::string::String,
     ident_with_serialize_deserialize_token_stream: &proc_macro2::TokenStream,
     optional_additional_named_variant: Option<proc_macro2::TokenStream>,
     implements_this_error: bool,
-    is_pub: bool, //todo pub or not
+    is_pub: bool,
 ) -> proc_macro2::TokenStream {
     let this_error_token_stream = match implements_this_error {
         true => quote::quote! { thiserror::Error, },
@@ -26,6 +24,8 @@ pub fn generate_with_serialize_deserialize_version(
         false => proc_macro2::TokenStream::new(),
     };
     let variants_len = variants.len();
+    let with_serialize_deserialize_camel_case =
+        crate::error_occurence::hardcode::with_serialize_deserialize_camel_case();
     let token_stream = match supported_enum_variant {
         crate::error_occurence::supported_enum_variant::SuportedEnumVariant::Named => {
             let code_occurence_camel_case = format!(
@@ -53,7 +53,10 @@ pub fn generate_with_serialize_deserialize_version(
             let attribute_prefix_stringified = "eo_";
             let attribute_display_stringified =
                 format!("{attribute_prefix_stringified}{display_lower_case}");
-            let attribute_display_with_serialize_deserialize_stringified = format!("{attribute_prefix_stringified}{display_lower_case}_{with_serialize_deserialize_lower_case}");
+            let with_serialize_deserialize_lower_case =
+                crate::error_occurence::hardcode::with_serialize_deserialize_lower_case();
+            let attribute_display_with_serialize_deserialize_stringified = format!(
+                "{attribute_prefix_stringified}{display_lower_case}_{with_serialize_deserialize_lower_case}");
             let attribute_display_foreign_type_stringified =
                 format!("{attribute_prefix_stringified}{display_foreign_type_lower_case}");
             let attribute_display_foreign_type_with_serialize_deserialize_stringified = format!("{attribute_prefix_stringified}{display_foreign_type_lower_case}_{with_serialize_deserialize_lower_case}");
