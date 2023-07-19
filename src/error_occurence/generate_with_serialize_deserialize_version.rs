@@ -1,15 +1,8 @@
 pub fn generate_with_serialize_deserialize_version(
     supported_enum_variant: &crate::error_occurence::supported_enum_variant::SuportedEnumVariant,
     variants: &Vec<&syn::Variant>, //&syn::punctuated::Punctuated<syn::Variant, syn::token::Comma>
-    error_occurence_lower_case: &std::string::String,
-    vec_lower_case: &std::string::String,
-    hashmap_lower_case: &std::string::String,
-    key_lower_case: &std::string::String,
-    value_lower_case: &std::string::String,
     proc_macro_name_ident_stringified: &std::string::String,
-    syn_type_path_stringified: &std::string::String,
     generics_len: usize,
-    supports_only_supported_container_stringified: &std::string::String,
     ident_with_serialize_deserialize_token_stream: &proc_macro2::TokenStream,
     optional_additional_named_variant: Option<proc_macro2::TokenStream>,
     implements_this_error: bool,
@@ -26,6 +19,14 @@ pub fn generate_with_serialize_deserialize_version(
     let variants_len = variants.len();
     let with_serialize_deserialize_camel_case =
         crate::error_occurence::hardcode::with_serialize_deserialize_camel_case();
+    let error_occurence_lower_case = crate::error_occurence::hardcode::error_occurence_lower_case();
+    let vec_lower_case = crate::error_occurence::hardcode::vec_lower_case();
+    let hashmap_lower_case = crate::error_occurence::hardcode::hashmap_lower_case();
+    let key_lower_case = crate::error_occurence::hardcode::key_lower_case();
+    let value_lower_case = crate::error_occurence::hardcode::value_lower_case();
+    let syn_type_path_stringified = crate::error_occurence::hardcode::syn_type_path_stringified();
+    let supports_only_supported_container_stringified =
+        crate::error_occurence::hardcode::supports_only_supported_container_stringified();
     let token_stream = match supported_enum_variant {
         crate::error_occurence::supported_enum_variant::SuportedEnumVariant::Named => {
             let code_occurence_camel_case = format!(
