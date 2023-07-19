@@ -12,7 +12,6 @@ pub fn generate_with_serialize_deserialize_version(
     generics_len: usize,
     supports_only_supported_container_stringified: &std::string::String,
     with_serialize_deserialize_camel_case: &std::string::String,
-    unnamed_camel_case: &std::string::String,
     ident_with_serialize_deserialize_token_stream: &proc_macro2::TokenStream,
     optional_additional_named_variant: Option<proc_macro2::TokenStream>,
     implements_this_error: bool,
@@ -1908,8 +1907,9 @@ pub fn generate_with_serialize_deserialize_version(
                     let unnamed = &fields_unnamed.unnamed;
                     if let false = unnamed.len() == 1 {
                         panic!(
-                            "{proc_macro_name_ident_stringified} {}::{unnamed_camel_case} variant fields unnamed len != 1",
-                            crate::error_occurence::hardcode::SUPPORTED_ENUM_VARIANT_STRINGIFIED
+                            "{proc_macro_name_ident_stringified} {}::{} variant fields unnamed len != 1",
+                            crate::error_occurence::hardcode::SUPPORTED_ENUM_VARIANT_STRINGIFIED,
+                            crate::error_occurence::hardcode::unnamed_camel_case()
                         );
                     }
                     match unnamed.iter().next() {
@@ -1919,9 +1919,10 @@ pub fn generate_with_serialize_deserialize_version(
                 }
                 else {
                     panic!(
-                        "{proc_macro_name_ident_stringified} {} {}::{unnamed_camel_case}",
+                        "{proc_macro_name_ident_stringified} {} {}::{}",
                         crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
-                        crate::error_occurence::hardcode::SYN_FIELDS
+                        crate::error_occurence::hardcode::SYN_FIELDS,
+                        crate::error_occurence::hardcode::unnamed_camel_case()
                     );
                 };
                 let type_token_stream = if let syn::Type::Path(type_path) = field_type {

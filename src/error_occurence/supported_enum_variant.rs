@@ -7,17 +7,17 @@ pub enum SuportedEnumVariant {
 pub fn create_supported_enum_variant(
     data_enum: &syn::DataEnum,
     proc_macro_name_ident_stringified: &std::string::String,
-    unnamed_camel_case: &std::string::String,
 ) -> SuportedEnumVariant {
     let mut all_equal: Option<SuportedEnumVariant> = None;
     if let true = &data_enum.variants.is_empty() {
         panic!("{proc_macro_name_ident_stringified} enum variants are empty");
     }
-    let error_message = format!("{proc_macro_name_ident_stringified} {} enums where all variants are {}::{} or all variants are {}::{unnamed_camel_case}",
+    let error_message = format!("{proc_macro_name_ident_stringified} {} enums where all variants are {}::{} or all variants are {}::{}",
         crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
         crate::error_occurence::hardcode::SYN_FIELDS,
         crate::error_occurence::hardcode::SYN_FIELDS,
-        crate::error_occurence::hardcode::NAMED_CAMEL_CASE
+        crate::error_occurence::hardcode::NAMED_CAMEL_CASE,
+        crate::error_occurence::hardcode::unnamed_camel_case()
     );
     data_enum
         .variants
