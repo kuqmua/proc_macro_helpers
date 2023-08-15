@@ -1866,15 +1866,15 @@ pub fn generate_with_serialize_deserialize_version(
                             field_type,
                             vec_lifetime: _vec_lifetime,
                          } => {
-                            let code_occurence_type_with_serialize_deserialize_token_stream = {
-                                let code_occurence_type_with_serialize_deserialize_stringified =
-                                format!("{field_type}{with_serialize_deserialize_camel_case}");
-                                code_occurence_type_with_serialize_deserialize_stringified
+                            let code_occurence_type_token_stream = {
+                                let code_occurence_type_stringified =
+                                format!("{field_type}");
+                                code_occurence_type_stringified
                                 .parse::<proc_macro2::TokenStream>()
-                                .unwrap_or_else(|_| panic!("{proc_macro_name_ident_stringified} {code_occurence_type_with_serialize_deserialize_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+                                .unwrap_or_else(|_| panic!("{proc_macro_name_ident_stringified} {code_occurence_type_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
                             };
                             enum_fields_logic_for_enum_with_serialize_deserialize.push(quote::quote!{
-                                #field_ident: #code_occurence_type_with_serialize_deserialize_token_stream
+                                #field_ident: #code_occurence_type_token_stream
                             });
                         },
                     }
