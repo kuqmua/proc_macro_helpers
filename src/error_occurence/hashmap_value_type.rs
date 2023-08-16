@@ -1,4 +1,3 @@
-#[derive(Debug)]
 pub enum HashMapKeyType {
     Path {
         key_segments_stringified: String,

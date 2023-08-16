@@ -1,4 +1,3 @@
-#[derive(Debug)]
 pub enum VecElementType {
     Path {
         element_path: String,
