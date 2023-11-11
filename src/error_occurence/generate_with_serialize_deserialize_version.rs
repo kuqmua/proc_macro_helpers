@@ -1867,8 +1867,7 @@ pub fn generate_with_serialize_deserialize_version(
                             vec_lifetime: _vec_lifetime,
                          } => {
                             let code_occurence_type_token_stream = {
-                                let code_occurence_type_stringified =
-                                format!("{field_type}");
+                                let code_occurence_type_stringified = field_type.to_string();
                                 code_occurence_type_stringified
                                 .parse::<proc_macro2::TokenStream>()
                                 .unwrap_or_else(|_| panic!("{proc_macro_name_ident_stringified} {code_occurence_type_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
