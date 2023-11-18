@@ -20,7 +20,7 @@ pub fn generate_tvfrr_extraction_logic_lower_case_token_stream(
     .unwrap_or_else(|_| panic!("{proc_macro_name_ident_stringified} {tvfrr_extraction_logic_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
 }
 
-pub fn generate_ident_request_error_token_stream(
+pub fn generate_ident_request_error_camel_case_token_stream(
     ident: &syn::Ident,
     proc_macro_name_ident_stringified: &str,
 ) -> proc_macro2::TokenStream {
