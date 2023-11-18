@@ -19,3 +19,13 @@ pub fn generate_tvfrr_extraction_logic_token_stream(
     .parse::<proc_macro2::TokenStream>()
     .unwrap_or_else(|_| panic!("{proc_macro_name_ident_stringified} {tvfrr_extraction_logic_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
 }
+
+pub fn ident_request_error_token_stream(
+    ident: &syn::Ident,
+    proc_macro_name_ident_stringified: &str,
+) -> proc_macro2::TokenStream {
+    let ident_request_error_stringified = format!("{ident}RequestError");
+    ident_request_error_stringified
+    .parse::<proc_macro2::TokenStream>()
+    .unwrap_or_else(|_| panic!("{proc_macro_name_ident_stringified} {ident_request_error_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+}
