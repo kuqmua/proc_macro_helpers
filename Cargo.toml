@@ -11,3 +11,6 @@ syn = {version = "=1.0.107"}
 strum = {version = "=0.24.1"}
 strum_macros = {version = "=0.24.3"}
 convert_case = {version = "=0.6.0"}
+
+[lints]
+workspace = true
