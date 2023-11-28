@@ -714,11 +714,11 @@ pub fn generate_with_serialize_deserialize_version(
                             );
                             let inform_use_str_string_in_different_attribute = |
                                 path: String,
-                                wrong_attribute: &String,
-                                attribute_to_use: &String
+                                wrong_attribute: &std::string::String,
+                                attribute_to_use: &std::string::String
                             | {
-                                let wrong_attribute_view = crate::error_occurence::attribute_view::attribute_view(wrong_attribute);
-                                let attribute_to_use_view = crate::error_occurence::attribute_view::attribute_view(attribute_to_use);
+                                let wrong_attribute_view = crate::error_occurence::named_attribute::attribute_view(wrong_attribute);
+                                let attribute_to_use_view = crate::error_occurence::named_attribute::attribute_view(attribute_to_use);
                                 //maybe additional cases exists
                                 if path == str_stringified {
                                     panic!("{proc_macro_name_ident_stringified} {wrong_attribute_view} {str_stringified} {must_be_used_with_stringified} {attribute_to_use_view}");
@@ -743,7 +743,7 @@ pub fn generate_with_serialize_deserialize_version(
                                     if let crate::error_occurence::supported_container::SupportedContainer::Path { path, vec_lifetime: _vec_lifetime } = supported_container {
                                         inform_use_str_string_in_different_attribute(
                                             path,
-                                            &attribute.to_str().to_string(),
+                                            &attribute.to_string(),
                                             &attribute_display_with_serialize_deserialize_stringified
                                         );
                                         quote::quote! {
@@ -753,7 +753,7 @@ pub fn generate_with_serialize_deserialize_version(
                                     else {
                                         panic!(
                                             "{proc_macro_name_ident_stringified} {} {} {}{}", 
-                                            attribute.attribute_view(),
+                                            attribute.attribute_view_stringified(),
                                             crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
                                             crate::error_occurence::hardcode::SUPPORTED_CONTAINER_DOUBLE_DOT_DOUBLE_DOT,
                                             crate::error_occurence::hardcode::PATH_CAMEL_CASE
@@ -786,7 +786,7 @@ pub fn generate_with_serialize_deserialize_version(
                                         },
                                         _ => panic!(
                                             "{proc_macro_name_ident_stringified} {} only supports {}{} and {}{}", 
-                                            attribute.attribute_view(),
+                                            attribute.attribute_view_stringified(),
                                             crate::error_occurence::hardcode::SUPPORTED_CONTAINER_DOUBLE_DOT_DOUBLE_DOT,
                                             crate::error_occurence::hardcode::PATH_CAMEL_CASE,
                                             crate::error_occurence::hardcode::SUPPORTED_CONTAINER_DOUBLE_DOT_DOUBLE_DOT,
@@ -799,7 +799,7 @@ pub fn generate_with_serialize_deserialize_version(
                                     else {
                                         panic!(
                                             "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
-                                            attribute.attribute_view(),
+                                            attribute.attribute_view_stringified(),
                                             crate::error_occurence::hardcode::PATH_CAMEL_CASE
                                         );
                                     }
@@ -819,7 +819,7 @@ pub fn generate_with_serialize_deserialize_version(
                                     else {
                                         panic!(
                                             "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
-                                            attribute.attribute_view(),
+                                            attribute.attribute_view_stringified(),
                                             crate::error_occurence::hardcode::PATH_CAMEL_CASE
                                         );
                                     }
@@ -839,7 +839,7 @@ pub fn generate_with_serialize_deserialize_version(
                                     else {
                                         panic!(
                                             "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
-                                            attribute.attribute_view(),
+                                            attribute.attribute_view_stringified(),
                                             crate::error_occurence::hardcode::PATH_CAMEL_CASE
                                         );
                                     }
@@ -852,7 +852,7 @@ pub fn generate_with_serialize_deserialize_version(
                                         if let crate::error_occurence::vec_element_type::VecElementType::Path { element_path, vec_lifetime: _vec_lifetime } = vec_element_type {
                                             inform_use_str_string_in_different_attribute(
                                                 element_path,
-                                                &attribute.to_str().to_string(),
+                                                &attribute.to_string(),
                                                 &attribute_vec_display_with_serialize_deserialize_stringified
                                             );
                                             let type_stringified = format!("{path}<{std_string_string_stringified}>");
@@ -863,7 +863,7 @@ pub fn generate_with_serialize_deserialize_version(
                                         else {
                                             panic!(
                                                 "{proc_macro_name_ident_stringified} {} {} {vec_element_type_path_stringified}", 
-                                                attribute.attribute_view(),
+                                                attribute.attribute_view_stringified(),
                                                 crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
                                             );
                                         }
@@ -871,7 +871,7 @@ pub fn generate_with_serialize_deserialize_version(
                                     else {
                                         panic!(
                                             "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
-                                            attribute.attribute_view(),
+                                            attribute.attribute_view_stringified(),
                                             crate::error_occurence::hardcode::VEC_CAMEL_CASE
                                         );
                                     }
@@ -908,7 +908,7 @@ pub fn generate_with_serialize_deserialize_version(
                                     else {
                                         panic!(
                                             "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
-                                            attribute.attribute_view(),
+                                            attribute.attribute_view_stringified(),
                                             crate::error_occurence::hardcode::VEC_CAMEL_CASE
                                         );
                                     }
@@ -922,7 +922,7 @@ pub fn generate_with_serialize_deserialize_version(
                                         else {
                                             panic!(
                                                 "{proc_macro_name_ident_stringified} {} {} {vec_element_type_path_stringified}", 
-                                                attribute.attribute_view(),
+                                                attribute.attribute_view_stringified(),
                                                 crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
                                             );
                                         }
@@ -930,7 +930,7 @@ pub fn generate_with_serialize_deserialize_version(
                                     else {
                                         panic!(
                                             "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
-                                            attribute.attribute_view(),
+                                            attribute.attribute_view_stringified(),
                                             crate::error_occurence::hardcode::VEC_CAMEL_CASE
                                         );
                                     }
@@ -954,7 +954,7 @@ pub fn generate_with_serialize_deserialize_version(
                                         else {
                                             panic!(
                                                 "{proc_macro_name_ident_stringified} {} {} {vec_element_type_path_stringified}", 
-                                                attribute.attribute_view(),
+                                                attribute.attribute_view_stringified(),
                                                 crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
                                             );
                                         }
@@ -962,7 +962,7 @@ pub fn generate_with_serialize_deserialize_version(
                                     else {
                                         panic!(
                                             "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
-                                            attribute.attribute_view(),
+                                            attribute.attribute_view_stringified(),
                                             crate::error_occurence::hardcode::VEC_CAMEL_CASE
                                         );
                                     }
@@ -986,7 +986,7 @@ pub fn generate_with_serialize_deserialize_version(
                                         else {
                                             panic!(
                                                 "{proc_macro_name_ident_stringified} {} {} {vec_element_type_path_stringified}", 
-                                                attribute.attribute_view(),
+                                                attribute.attribute_view_stringified(),
                                                 crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
                                             );
                                         }
@@ -994,7 +994,7 @@ pub fn generate_with_serialize_deserialize_version(
                                     else {
                                         panic!(
                                             "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
-                                            attribute.attribute_view(),
+                                            attribute.attribute_view_stringified(),
                                             crate::error_occurence::hardcode::VEC_CAMEL_CASE
                                         );
                                     }
@@ -1040,7 +1040,7 @@ pub fn generate_with_serialize_deserialize_version(
                                             ) => {
                                                 inform_use_str_string_in_different_attribute(
                                                     value_segments_stringified,
-                                                    &attribute.to_str().to_string(),
+                                                    &attribute.to_string(),
                                                     &attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified
                                                 );
                                                 hashmap_key_type_path_case(
@@ -1057,7 +1057,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     value_reference_ident: _value_reference_ident,
                                                     value_lifetime_ident: _value_lifetime_ident
                                                 }
-                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view()),
+                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view_stringified()),
                                             (
                                                 crate::error_occurence::hashmap_value_type::HashMapKeyType::Reference {
                                                     key_reference_ident: _key_reference_ident,
@@ -1070,7 +1070,7 @@ pub fn generate_with_serialize_deserialize_version(
                                             ) => {
                                                 inform_use_str_string_in_different_attribute(
                                                     value_segments_stringified,
-                                                    &attribute.to_str().to_string(),
+                                                    &attribute.to_string(),
                                                     &attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified
                                                 );
                                                 {
@@ -1089,13 +1089,13 @@ pub fn generate_with_serialize_deserialize_version(
                                                     value_reference_ident: _value_reference_ident,
                                                     value_lifetime_ident: _value_lifetime_ident
                                                 }
-                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view()),
+                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view_stringified()),
                                         }
                                     }
                                     else {
                                         panic!(
                                             "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
-                                            attribute.attribute_view(),
+                                            attribute.attribute_view_stringified(),
                                             crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
                                         );
                                     };
@@ -1235,7 +1235,7 @@ pub fn generate_with_serialize_deserialize_version(
                                     else {
                                         panic!(
                                             "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
-                                            attribute.attribute_view(),
+                                            attribute.attribute_view_stringified(),
                                             crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
                                         );
                                     }
@@ -1283,7 +1283,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     value_reference_ident: _value_reference_ident,
                                                     value_lifetime_ident: _value_lifetime_ident
                                                 }
-                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_path_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view()),
+                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_path_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view_stringified()),
                                             (
                                                 crate::error_occurence::hashmap_value_type::HashMapKeyType::Reference {
                                                     key_reference_ident: _key_reference_ident,
@@ -1310,13 +1310,13 @@ pub fn generate_with_serialize_deserialize_version(
                                                     value_reference_ident: _value_reference_ident,
                                                     value_lifetime_ident: _value_lifetime_ident
                                                 }
-                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view()),
+                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view_stringified()),
                                         }
                                     }
                                     else {
                                         panic!(
                                             "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
-                                            attribute.attribute_view(),
+                                            attribute.attribute_view_stringified(),
                                             crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
                                         );
                                     }
@@ -1366,7 +1366,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     value_reference_ident: _value_reference_ident,
                                                     value_lifetime_ident: _value_lifetime_ident
                                                 }
-                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_path_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view()),
+                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_path_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view_stringified()),
                                             (
                                                 crate::error_occurence::hashmap_value_type::HashMapKeyType::Reference {
                                                     key_reference_ident,
@@ -1403,13 +1403,13 @@ pub fn generate_with_serialize_deserialize_version(
                                                     value_reference_ident: _value_reference_ident,
                                                     value_lifetime_ident: _value_lifetime_ident
                                                 }
-                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view()),
+                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view_stringified()),
                                         }
                                     }
                                     else {
                                         panic!(
                                             "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
-                                            attribute.attribute_view(),
+                                            attribute.attribute_view_stringified(),
                                             crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
                                         );
                                     }
@@ -1462,7 +1462,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     value_reference_ident: _value_reference_ident,
                                                     value_lifetime_ident: _value_lifetime_ident
                                                 }
-                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_path_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view()),
+                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_path_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view_stringified()),
                                             (
                                                 crate::error_occurence::hashmap_value_type::HashMapKeyType::Reference {
                                                     key_reference_ident,
@@ -1499,13 +1499,13 @@ pub fn generate_with_serialize_deserialize_version(
                                                     value_reference_ident: _value_reference_ident,
                                                     value_lifetime_ident: _value_lifetime_ident
                                                 }
-                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view()),
+                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view_stringified()),
                                         }
                                     }
                                     else {
                                         panic!(
                                             "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
-                                            attribute.attribute_view(),
+                                            attribute.attribute_view_stringified(),
                                             crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
                                         );
                                     }
@@ -1535,7 +1535,7 @@ pub fn generate_with_serialize_deserialize_version(
                                             ) => {
                                                 inform_use_str_string_in_different_attribute(
                                                     value_segments_stringified,
-                                                    &attribute.to_str().to_string(),
+                                                    &attribute.to_string(),
                                                     &attribute_hashmap_key_display_foreign_type_value_display_with_serialize_deserialize_stringified
                                                 );
                                                 hashmap_key_type_path_case()
@@ -1549,7 +1549,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     value_reference_ident: _value_reference_ident,
                                                     value_lifetime_ident: _value_lifetime_ident
                                                 }
-                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_path_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view()),
+                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_path_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view_stringified()),
                                             (
                                                 crate::error_occurence::hashmap_value_type::HashMapKeyType::Reference {
                                                     key_reference_ident: _key_reference_ident,
@@ -1559,7 +1559,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     value_segments_stringified: _value_segments_stringified,
                                                     value_vec_lifetime: _value_vec_lifetime
                                                 }
-                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_path_stringified}", attribute.attribute_view()),
+                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_path_stringified}", attribute.attribute_view_stringified()),
                                             (
                                                 crate::error_occurence::hashmap_value_type::HashMapKeyType::Reference {
                                                     key_reference_ident: _key_reference_ident,
@@ -1569,13 +1569,13 @@ pub fn generate_with_serialize_deserialize_version(
                                                     value_reference_ident: _value_reference_ident,
                                                     value_lifetime_ident: _value_lifetime_ident
                                                 }
-                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_path_stringified}", attribute.attribute_view()),
+                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_path_stringified}", attribute.attribute_view_stringified()),
                                         }
                                     }
                                     else {
                                         panic!(
                                             "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
-                                            attribute.attribute_view(),
+                                            attribute.attribute_view_stringified(),
                                             crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
                                         );
                                     };
@@ -1641,7 +1641,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     value_segments_stringified: _value_segments_stringified,
                                                     value_vec_lifetime: _value_vec_lifetime
                                                 }
-                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_path_stringified}", attribute.attribute_view()),
+                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_path_stringified}", attribute.attribute_view_stringified()),
                                             (
                                                 crate::error_occurence::hashmap_value_type::HashMapKeyType::Reference {
                                                     key_reference_ident: _key_reference_ident,
@@ -1651,13 +1651,13 @@ pub fn generate_with_serialize_deserialize_version(
                                                     value_reference_ident: _value_reference_ident,
                                                     value_lifetime_ident: _value_lifetime_ident
                                                 }
-                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view()),
+                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view_stringified()),
                                         }
                                     }
                                     else {
                                         panic!(
                                             "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
-                                            attribute.attribute_view(),
+                                            attribute.attribute_view_stringified(),
                                             crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
                                         );
                                     }
@@ -1693,7 +1693,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     value_reference_ident: _value_reference_ident,
                                                     value_lifetime_ident: _value_lifetime_ident
                                                 }
-                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_path_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view()),
+                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_path_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view_stringified()),
                                             (
                                                 crate::error_occurence::hashmap_value_type::HashMapKeyType::Reference {
                                                     key_reference_ident: _key_reference_ident,
@@ -1703,7 +1703,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     value_segments_stringified: _value_segments_stringified,
                                                     value_vec_lifetime: _value_vec_lifetime
                                                 }
-                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_path_stringified}", attribute.attribute_view()),
+                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_path_stringified}", attribute.attribute_view_stringified()),
                                             (
                                                 crate::error_occurence::hashmap_value_type::HashMapKeyType::Reference {
                                                     key_reference_ident: _key_reference_ident,
@@ -1713,13 +1713,13 @@ pub fn generate_with_serialize_deserialize_version(
                                                     value_reference_ident: _value_reference_ident,
                                                     value_lifetime_ident: _value_lifetime_ident
                                                 }
-                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view()),
+                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view_stringified()),
                                         }
                                     }
                                     else {
                                         panic!(
                                             "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
-                                            attribute.attribute_view(),
+                                            attribute.attribute_view_stringified(),
                                             crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
                                         );
                                     }
@@ -1758,7 +1758,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     value_reference_ident: _value_reference_ident,
                                                     value_lifetime_ident: _value_lifetime_ident
                                                 }
-                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_path_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view()),
+                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_path_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view_stringified()),
                                             (
                                                 crate::error_occurence::hashmap_value_type::HashMapKeyType::Reference {
                                                     key_reference_ident: _key_reference_ident,
@@ -1768,7 +1768,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     value_segments_stringified: _value_segments_stringified,
                                                     value_vec_lifetime: _value_vec_lifetime
                                                 }
-                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_path_stringified}", attribute.attribute_view()),
+                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_path_stringified}", attribute.attribute_view_stringified()),
                                             (
                                                 crate::error_occurence::hashmap_value_type::HashMapKeyType::Reference {
                                                     key_reference_ident: _key_reference_ident,
@@ -1778,13 +1778,13 @@ pub fn generate_with_serialize_deserialize_version(
                                                     value_reference_ident: _value_reference_ident,
                                                     value_lifetime_ident: _value_lifetime_ident
                                                 }
-                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view()),
+                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view_stringified()),
                                         }
                                     }
                                     else {
                                         panic!(
                                             "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
-                                            attribute.attribute_view(),
+                                            attribute.attribute_view_stringified(),
                                             crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
                                         );
                                     }
@@ -1826,7 +1826,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     value_reference_ident: _value_reference_ident,
                                                     value_lifetime_ident: _value_lifetime_ident
                                                 }
-                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_path_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view()),
+                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_path_stringified} && {hashmap_value_type_reference_stringified}", attribute.attribute_view_stringified()),
                                             (
                                                 crate::error_occurence::hashmap_value_type::HashMapKeyType::Reference {
                                                     key_reference_ident: _key_reference_ident,
@@ -1836,7 +1836,7 @@ pub fn generate_with_serialize_deserialize_version(
                                                     value_segments_stringified: _value_segments_stringified,
                                                     value_vec_lifetime: _value_vec_lifetime
                                                 }
-                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_path_stringified}", attribute.attribute_view()),
+                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_value_type_path_stringified}", attribute.attribute_view_stringified()),
                                             (
                                                 crate::error_occurence::hashmap_value_type::HashMapKeyType::Reference {
                                                     key_reference_ident: _key_reference_ident,
@@ -1846,13 +1846,13 @@ pub fn generate_with_serialize_deserialize_version(
                                                     value_reference_ident: _value_reference_ident,
                                                     value_lifetime_ident: _value_lifetime_ident
                                                 }
-                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_key_type_reference_stringified}", attribute.attribute_view()),
+                                            ) => panic!("{proc_macro_name_ident_stringified} {} {does_not_support_stringified} {hashmap_key_type_reference_stringified} && {hashmap_key_type_reference_stringified}", attribute.attribute_view_stringified()),
                                         }
                                     }
                                     else {
                                         panic!(
                                             "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
-                                            attribute.attribute_view(),
+                                            attribute.attribute_view_stringified(),
                                             crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
                                         );
                                     }
