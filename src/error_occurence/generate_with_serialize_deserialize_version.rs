@@ -712,6 +712,11 @@ pub fn generate_with_serialize_deserialize_version(
                                 "{hashmap_value_type_stringified}::{}",
                                 crate::error_occurence::hardcode::REFERENCE_CAMEL_CASE
                             );
+                            modify_should_generate_impl_compile_time_check_error_occurence_members(
+                                &attribute,
+                                &supported_container,
+                                &mut should_generate_impl_compile_time_check_error_occurence_members,
+                            );
                             modify_lifetimes_for_serialize_deserialize(
                                 &attribute,
                                 &supported_container,
@@ -739,7 +744,6 @@ pub fn generate_with_serialize_deserialize_version(
                                 &as_std_collections_hashmap_key_type_stringified,
                                 &attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified,
                                 &attribute_hashmap_key_display_foreign_type_value_display_with_serialize_deserialize_stringified,
-                                &mut should_generate_impl_compile_time_check_error_occurence_members,
                             );
                             enum_fields_logic_for_enum_with_serialize_deserialize.push(quote::quote!{
                                 #field_ident: #field_type_with_serialize_deserialize_token_stream
@@ -897,7 +901,6 @@ fn generate_field_type_with_serialize_deserialize_version(
     as_std_collections_hashmap_key_type_stringified: &std::string::String,
     attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified: &std::string::String,
     attribute_hashmap_key_display_foreign_type_value_display_with_serialize_deserialize_stringified: &std::string::String,
-    should_generate_impl_compile_time_check_error_occurence_members: &mut bool,
 ) -> proc_macro2::TokenStream {
     match attribute {
         crate::error_occurence::named_attribute::NamedAttribute::EoDisplay => {
@@ -987,9 +990,6 @@ fn generate_field_type_with_serialize_deserialize_version(
             }
         },
         crate::error_occurence::named_attribute::NamedAttribute::EoErrorOccurence => {
-            if let false = should_generate_impl_compile_time_check_error_occurence_members {
-                *should_generate_impl_compile_time_check_error_occurence_members = true;
-            }
             if let crate::error_occurence::supported_container::SupportedContainer::Path { path, vec_lifetime: _vec_lifetime } = supported_container {
                 {
                     let type_stringified = format!("{path}{with_serialize_deserialize_camel_case}");
@@ -1135,9 +1135,6 @@ fn generate_field_type_with_serialize_deserialize_version(
             }
         },
         crate::error_occurence::named_attribute::NamedAttribute::EoVecErrorOccurence => {
-            if let false = should_generate_impl_compile_time_check_error_occurence_members {
-                *should_generate_impl_compile_time_check_error_occurence_members = true;
-            }
             if let crate::error_occurence::supported_container::SupportedContainer::Vec {
                 path,
                 vec_element_type
@@ -1592,9 +1589,6 @@ fn generate_field_type_with_serialize_deserialize_version(
             }
         },
         crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueErrorOccurence => {
-            if let false = should_generate_impl_compile_time_check_error_occurence_members {
-                *should_generate_impl_compile_time_check_error_occurence_members = true;
-            }
             if let crate::error_occurence::supported_container::SupportedContainer::HashMap {
                 path,
                 hashmap_key_type,
@@ -1972,9 +1966,6 @@ fn generate_field_type_with_serialize_deserialize_version(
             }
         },
         crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueErrorOccurence => {
-            if let false = should_generate_impl_compile_time_check_error_occurence_members {
-                *should_generate_impl_compile_time_check_error_occurence_members = true;
-            }
             if let crate::error_occurence::supported_container::SupportedContainer::HashMap {
                 path,
                 hashmap_key_type,
@@ -2078,5 +2069,50 @@ fn modify_lifetimes_for_serialize_deserialize(
         crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplayForeignType => (),
         crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplayForeignTypeWithSerializeDeserialize => (),
         crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueErrorOccurence => (),
+    }
+}
+
+fn modify_should_generate_impl_compile_time_check_error_occurence_members(
+    attribute: &crate::error_occurence::named_attribute::NamedAttribute,
+    supported_container: &crate::error_occurence::supported_container::SupportedContainer,
+    should_generate_impl_compile_time_check_error_occurence_members: &mut bool,
+){
+    match attribute {
+        crate::error_occurence::named_attribute::NamedAttribute::EoDisplay => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoDisplayWithSerializeDeserialize => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoDisplayForeignType => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoDisplayForeignTypeWithSerializeDeserialize => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoErrorOccurence => {
+            if let false = should_generate_impl_compile_time_check_error_occurence_members {
+                *should_generate_impl_compile_time_check_error_occurence_members = true;
+            }
+        },
+        crate::error_occurence::named_attribute::NamedAttribute::EoVecDisplay => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoVecDisplayWithSerializeDeserialize => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoVecDisplayForeignType => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoVecDisplayForeignTypeWithSerializeDeserialize => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoVecErrorOccurence => {
+            if let false = should_generate_impl_compile_time_check_error_occurence_members {
+                *should_generate_impl_compile_time_check_error_occurence_members = true;
+            }
+        },
+        crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplay => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayWithSerializeDeserialize => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayForeignType => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayForeignTypeWithSerializeDeserialize => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueErrorOccurence => {
+            if let false = should_generate_impl_compile_time_check_error_occurence_members {
+                *should_generate_impl_compile_time_check_error_occurence_members = true;
+            }
+        },
+        crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplay => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplayWithSerializeDeserialize => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplayForeignType => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplayForeignTypeWithSerializeDeserialize => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueErrorOccurence => {
+            if let false = should_generate_impl_compile_time_check_error_occurence_members {
+                *should_generate_impl_compile_time_check_error_occurence_members = true;
+            }
+        },
     }
 }
