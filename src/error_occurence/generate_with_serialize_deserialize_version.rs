@@ -658,18 +658,6 @@ pub fn generate_with_serialize_deserialize_version(
                             attribute,
                             supported_container,
                         } => {
-                            let as_std_collections_hashmap_key_type_stringified = format!(
-                                "as {}::collections::{} key type",
-                                crate::error_occurence::hardcode::STD_STRINGIFIED,
-                                crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
-                            );
-                            let str_stringified = "str";
-                            let string_string_stringified: String = format!(
-                                "{}::{}",
-                                crate::error_occurence::hardcode::STRING_LOWER_CASE,
-                                crate::error_occurence::hardcode::STRING_CAMEL_CASE,
-                            );
-                            let must_be_used_with_stringified = "must be used with";
                             modify_should_generate_impl_compile_time_check_error_occurence_members(
                                 &attribute,
                                 &mut should_generate_impl_compile_time_check_error_occurence_members,
@@ -685,11 +673,7 @@ pub fn generate_with_serialize_deserialize_version(
                                 proc_macro_name_ident_stringified,
                                 &attribute_display_with_serialize_deserialize_stringified,
                                 &with_serialize_deserialize_camel_case,
-                                str_stringified,
                                 &attribute_vec_display_with_serialize_deserialize_stringified,
-                                must_be_used_with_stringified,
-                                string_string_stringified,
-                                &as_std_collections_hashmap_key_type_stringified,
                                 &attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified,
                                 &attribute_hashmap_key_display_foreign_type_value_display_with_serialize_deserialize_stringified,
                             );
@@ -833,16 +817,19 @@ fn generate_field_type_with_serialize_deserialize_version(
     proc_macro_name_ident_stringified: &std::string::String,
     attribute_display_with_serialize_deserialize_stringified: &std::string::String,
     with_serialize_deserialize_camel_case: &std::string::String,
-    str_stringified: &str,
     attribute_vec_display_with_serialize_deserialize_stringified: &std::string::String,
-    must_be_used_with_stringified: &str,
-    string_string_stringified: std::string::String,
-    as_std_collections_hashmap_key_type_stringified: &std::string::String,
     attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified: &std::string::String,
     attribute_hashmap_key_display_foreign_type_value_display_with_serialize_deserialize_stringified: &std::string::String,
 ) -> proc_macro2::TokenStream {
     let supports_only_supported_container_stringified = crate::error_occurence::hardcode::supports_only_supported_container_stringified();
     let does_not_support_stringified = "does not support";
+    let must_be_used_with_stringified = "must be used with";
+    let str_stringified = "str";
+    let string_string_stringified: String = format!(
+        "{}::{}",
+        crate::error_occurence::hardcode::STRING_LOWER_CASE,
+        crate::error_occurence::hardcode::STRING_CAMEL_CASE,
+    );
     let std_string_string_stringified = format!(
         "{}::{}::{}",
         crate::error_occurence::hardcode::STD_STRINGIFIED,
@@ -852,7 +839,12 @@ fn generate_field_type_with_serialize_deserialize_version(
     let std_string_string_token_stream = std_string_string_stringified
     .parse::<proc_macro2::TokenStream>()
     .unwrap_or_else(|_| panic!("{proc_macro_name_ident_stringified} {std_string_string_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE));
-     let type_camel_case = "Type";
+    let as_std_collections_hashmap_key_type_stringified = format!(
+        "as {}::collections::{} key type",
+        crate::error_occurence::hardcode::STD_STRINGIFIED,
+        crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
+    );
+    let type_camel_case = "Type";
     let hashmap_value_type_stringified = format!(
         "{}{}{type_camel_case}",
         crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE,
