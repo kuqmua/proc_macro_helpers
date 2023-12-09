@@ -658,10 +658,10 @@ pub fn generate_with_serialize_deserialize_version(
                             attribute,
                             supported_container,
                         } => {
-                            let string_lower_case = crate::error_occurence::hardcode::STRING_CAMEL_CASE.to_lowercase();
                             let std_string_string_stringified = format!(
-                                "{}::{string_lower_case}::{}",
+                                "{}::{}::{}",
                                 crate::error_occurence::hardcode::STD_STRINGIFIED,
+                                crate::error_occurence::hardcode::STRING_LOWER_CASE,
                                 crate::error_occurence::hardcode::STRING_CAMEL_CASE
                             );
                             let std_string_string_token_stream = std_string_string_stringified
@@ -678,8 +678,9 @@ pub fn generate_with_serialize_deserialize_version(
                             );
                             let str_stringified = "str";
                             let string_string_stringified: String = format!(
-                                "{string_lower_case}::{}",
-                                crate::error_occurence::hardcode::STRING_CAMEL_CASE
+                                "{}::{}",
+                                crate::error_occurence::hardcode::STRING_LOWER_CASE,
+                                crate::error_occurence::hardcode::STRING_CAMEL_CASE,
                             );
                             let std_string_string_stringified = format!("
                                 {}::{string_string_stringified}",
