@@ -686,25 +686,13 @@ pub fn generate_with_serialize_deserialize_version(
                                 crate::error_occurence::hardcode::KEY_CAMEL_CASE,
                                 crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
                             );
-                            let hashmap_value_type_stringified = format!(
-                                "{}{}{type_camel_case}",
-                                crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE,
-                                crate::error_occurence::hardcode::VALUE_CAMEL_CASE
-                            );
+
                             let hashmap_key_type_path_stringified = format!(
                                 "{hashmap_key_type_stringified}::{}",
                                 crate::error_occurence::hardcode::PATH_CAMEL_CASE
                             );
                             let hashmap_key_type_reference_stringified = format!(
                                 "{hashmap_key_type_stringified}::{}",
-                                crate::error_occurence::hardcode::REFERENCE_CAMEL_CASE
-                            );
-                            let hashmap_value_type_path_stringified = format!(
-                                "{hashmap_value_type_stringified}::{}",
-                                crate::error_occurence::hardcode::PATH_CAMEL_CASE
-                            );
-                            let hashmap_value_type_reference_stringified = format!(
-                                "{hashmap_value_type_stringified}::{}",
                                 crate::error_occurence::hardcode::REFERENCE_CAMEL_CASE
                             );
                             modify_should_generate_impl_compile_time_check_error_occurence_members(
@@ -721,9 +709,8 @@ pub fn generate_with_serialize_deserialize_version(
                                 supported_container,
                                 proc_macro_name_ident_stringified,
                                 &hashmap_key_type_path_stringified,
-                                &hashmap_value_type_path_stringified,
+                                &type_camel_case,
                                 &vec_element_type_path_stringified,
-                                &hashmap_value_type_reference_stringified,
                                 &attribute_display_with_serialize_deserialize_stringified,
                                 &with_serialize_deserialize_camel_case,
                                 std_string_string_stringified,
@@ -875,9 +862,8 @@ fn generate_field_type_with_serialize_deserialize_version(
     supported_container: crate::error_occurence::supported_container::SupportedContainer,
     proc_macro_name_ident_stringified: &std::string::String,
     hashmap_key_type_path_stringified: &std::string::String,
-    hashmap_value_type_path_stringified: &std::string::String,
+    type_camel_case: &str,
     vec_element_type_path_stringified: &std::string::String,
-    hashmap_value_type_reference_stringified: &std::string::String,
     attribute_display_with_serialize_deserialize_stringified: &std::string::String,
     with_serialize_deserialize_camel_case: &std::string::String,
     std_string_string_stringified: std::string::String,
@@ -895,6 +881,19 @@ fn generate_field_type_with_serialize_deserialize_version(
     let std_string_string_token_stream = std_string_string_stringified
     .parse::<proc_macro2::TokenStream>()
     .unwrap_or_else(|_| panic!("{proc_macro_name_ident_stringified} {std_string_string_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE));
+    let hashmap_value_type_stringified = format!(
+        "{}{}{type_camel_case}",
+        crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE,
+        crate::error_occurence::hardcode::VALUE_CAMEL_CASE
+    );
+    let hashmap_value_type_path_stringified = format!(
+        "{hashmap_value_type_stringified}::{}",
+        crate::error_occurence::hardcode::PATH_CAMEL_CASE
+    );
+    let hashmap_value_type_reference_stringified = format!(
+        "{hashmap_value_type_stringified}::{}",
+        crate::error_occurence::hardcode::REFERENCE_CAMEL_CASE
+    );
     match attribute {
         crate::error_occurence::named_attribute::NamedAttribute::EoDisplay => {
             if let crate::error_occurence::supported_container::SupportedContainer::Path { path, vec_lifetime: _vec_lifetime } = supported_container {
