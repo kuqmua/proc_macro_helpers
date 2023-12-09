@@ -680,11 +680,8 @@ pub fn generate_with_serialize_deserialize_version(
                                 attribute,
                                 supported_container,
                                 proc_macro_name_ident_stringified,
-                                &attribute_display_with_serialize_deserialize_stringified,
                                 &with_serialize_deserialize_camel_case,
                                 &attribute_vec_display_with_serialize_deserialize_stringified,
-                                &attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified,
-                                &attribute_hashmap_key_display_foreign_type_value_display_with_serialize_deserialize_stringified,
                             );
                             enum_fields_logic_for_enum_with_serialize_deserialize.push(quote::quote!{
                                 #field_ident: #field_type_with_serialize_deserialize_token_stream
@@ -867,7 +864,7 @@ fn attribute_supported_container_inform_use_str_string_in_different_attribute(
         crate::error_occurence::named_attribute::NamedAttribute::EoVecDisplay => {
             match supported_container {
                 crate::error_occurence::supported_container::SupportedContainer::Vec {
-                    path,
+                    path: _,
                     vec_element_type
                 } => match vec_element_type {
                     crate::error_occurence::vec_element_type::VecElementType::Path { element_path, vec_lifetime: _vec_lifetime } => {
@@ -894,14 +891,14 @@ fn attribute_supported_container_inform_use_str_string_in_different_attribute(
         crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplay => {
             match supported_container {
                 crate::error_occurence::supported_container::SupportedContainer::HashMap {
-                    path,
+                    path: _,
                     hashmap_key_type,
                     hashmap_value_type,
                 } => match (hashmap_key_type, hashmap_value_type) {
                     (
                         crate::error_occurence::hashmap_value_type::HashMapKeyType::Path {
-                            key_segments_stringified,
-                            key_vec_lifetime
+                            key_segments_stringified: _,
+                            key_vec_lifetime: _
                         },
                        crate::error_occurence::hashmap_key_type::HashMapValueType::Path {
                             value_segments_stringified,
@@ -952,7 +949,7 @@ fn attribute_supported_container_inform_use_str_string_in_different_attribute(
         crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplay => {
             match supported_container {
                 crate::error_occurence::supported_container::SupportedContainer::HashMap {
-                path,
+                path: _,
                 hashmap_key_type,
                 hashmap_value_type
                 } => {
@@ -995,21 +992,12 @@ fn generate_field_type_with_serialize_deserialize_version(
     attribute: crate::error_occurence::named_attribute::NamedAttribute,
     supported_container: crate::error_occurence::supported_container::SupportedContainer,
     proc_macro_name_ident_stringified: &std::string::String,
-    attribute_display_with_serialize_deserialize_stringified: &std::string::String,
     with_serialize_deserialize_camel_case: &std::string::String,
     attribute_vec_display_with_serialize_deserialize_stringified: &std::string::String,
-    attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified: &std::string::String,
-    attribute_hashmap_key_display_foreign_type_value_display_with_serialize_deserialize_stringified: &std::string::String,
 ) -> proc_macro2::TokenStream {
     let supports_only_supported_container_stringified = crate::error_occurence::hardcode::supports_only_supported_container_stringified();
     let does_not_support_stringified = "does not support";
-    let must_be_used_with_stringified = "must be used with";
     let str_stringified = "str";
-    let string_string_stringified: String = format!(
-        "{}::{}",
-        crate::error_occurence::hardcode::STRING_LOWER_CASE,
-        crate::error_occurence::hardcode::STRING_CAMEL_CASE,
-    );
     let std_string_string_stringified = format!(
         "{}::{}::{}",
         crate::error_occurence::hardcode::STD_STRINGIFIED,
@@ -1057,17 +1045,7 @@ fn generate_field_type_with_serialize_deserialize_version(
     );
     match attribute {
         crate::error_occurence::named_attribute::NamedAttribute::EoDisplay => {
-            if let crate::error_occurence::supported_container::SupportedContainer::Path { path, vec_lifetime: _vec_lifetime } = supported_container {
-                inform_use_str_string_in_different_attribute(
-                    &path,
-                    &attribute.to_string(),
-                    &attribute_display_with_serialize_deserialize_stringified,
-                    &str_stringified,
-                    &proc_macro_name_ident_stringified,
-                    &must_be_used_with_stringified,
-                    &std_string_string_stringified,
-                    &string_string_stringified,
-                );
+            if let crate::error_occurence::supported_container::SupportedContainer::Path { path: _, vec_lifetime: _vec_lifetime } = supported_container {
                 quote::quote! {
                     #std_string_string_token_stream
                 }
@@ -1164,17 +1142,7 @@ fn generate_field_type_with_serialize_deserialize_version(
                 path,
                 vec_element_type
             } = supported_container {
-                if let crate::error_occurence::vec_element_type::VecElementType::Path { element_path, vec_lifetime: _vec_lifetime } = vec_element_type {
-                    inform_use_str_string_in_different_attribute(
-                        &element_path,
-                        &attribute.to_string(),
-                        &attribute_vec_display_with_serialize_deserialize_stringified,
-                        &str_stringified,
-                        &proc_macro_name_ident_stringified,
-                        &must_be_used_with_stringified,
-                        &std_string_string_stringified,
-                        &string_string_stringified,
-                    );
+                if let crate::error_occurence::vec_element_type::VecElementType::Path { element_path: _, vec_lifetime: _vec_lifetime } = vec_element_type {
                     let type_stringified = format!("{path}<{std_string_string_stringified}>");
                     type_stringified
                     .parse::<proc_macro2::TokenStream>()
@@ -1351,20 +1319,10 @@ fn generate_field_type_with_serialize_deserialize_version(
                             key_vec_lifetime
                         },
                        crate::error_occurence::hashmap_key_type::HashMapValueType::Path {
-                            value_segments_stringified,
+                            value_segments_stringified: _,
                             value_vec_lifetime: _value_vec_lifetime
                         }
                     ) => {
-                        inform_use_str_string_in_different_attribute(
-                            &value_segments_stringified,
-                            &attribute.to_string(),
-                            &attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified,
-                            &str_stringified,
-                            &proc_macro_name_ident_stringified,
-                            &must_be_used_with_stringified,
-                            &std_string_string_stringified,
-                            &string_string_stringified,
-                        );
                         hashmap_key_type_path_case(
                             key_segments_stringified,
                             key_vec_lifetime,
@@ -1386,20 +1344,10 @@ fn generate_field_type_with_serialize_deserialize_version(
                             key_lifetime_ident: _key_lifetime_ident
                         },
                        crate::error_occurence::hashmap_key_type::HashMapValueType::Path {
-                            value_segments_stringified,
+                            value_segments_stringified: _,
                             value_vec_lifetime: _value_vec_lifetime
                         }
                     ) => {
-                        inform_use_str_string_in_different_attribute(
-                            &value_segments_stringified,
-                            &attribute.to_string(),
-                            &attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified,
-                            &str_stringified,
-                            &proc_macro_name_ident_stringified,
-                            &must_be_used_with_stringified,
-                            &std_string_string_stringified,
-                            &string_string_stringified,
-                        );
                         {
                             let type_stringified = format!("{path}<{std_string_string_stringified}, {std_string_string_stringified}>");
                             type_stringified
@@ -1853,20 +1801,10 @@ fn generate_field_type_with_serialize_deserialize_version(
                             key_vec_lifetime: _key_vec_lifetime
                         },
                        crate::error_occurence::hashmap_key_type::HashMapValueType::Path {
-                            value_segments_stringified,
+                            value_segments_stringified: _,
                             value_vec_lifetime: _value_vec_lifetime
                         }
                     ) => {
-                        inform_use_str_string_in_different_attribute(
-                            &value_segments_stringified,
-                            &attribute.to_string(),
-                            &attribute_hashmap_key_display_foreign_type_value_display_with_serialize_deserialize_stringified,
-                            &str_stringified,
-                            &proc_macro_name_ident_stringified,
-                            &must_be_used_with_stringified,
-                            &std_string_string_stringified,
-                            &string_string_stringified,
-                        );
                         hashmap_key_type_path_case()
                     },
                     (
