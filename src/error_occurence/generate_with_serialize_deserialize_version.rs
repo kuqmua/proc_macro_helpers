@@ -664,9 +664,6 @@ pub fn generate_with_serialize_deserialize_version(
                                 crate::error_occurence::hardcode::STRING_LOWER_CASE,
                                 crate::error_occurence::hardcode::STRING_CAMEL_CASE
                             );
-                            let std_string_string_token_stream = std_string_string_stringified
-                            .parse::<proc_macro2::TokenStream>()
-                            .unwrap_or_else(|_| panic!("{proc_macro_name_ident_stringified} {std_string_string_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE));
                             let vec_element_type_path_stringified = format!(
                                 "crate::error_occurence::vec_element_type::VecElementType::{}",
                                 crate::error_occurence::hardcode::PATH_CAMEL_CASE
@@ -682,12 +679,7 @@ pub fn generate_with_serialize_deserialize_version(
                                 crate::error_occurence::hardcode::STRING_LOWER_CASE,
                                 crate::error_occurence::hardcode::STRING_CAMEL_CASE,
                             );
-                            let std_string_string_stringified = format!("
-                                {}::{string_string_stringified}",
-                                crate::error_occurence::hardcode::STD_STRINGIFIED,
-                            );
                             let must_be_used_with_stringified = "must be used with";
-                            let does_not_support_stringified = "does not support";
                             let type_camel_case = "Type";
                             let hashmap_key_type_stringified = format!(
                                 "{}{}{type_camel_case}",
@@ -728,8 +720,6 @@ pub fn generate_with_serialize_deserialize_version(
                                 attribute,
                                 supported_container,
                                 proc_macro_name_ident_stringified,
-                                // &supports_only_supported_container_stringified,
-                                does_not_support_stringified,
                                 &hashmap_key_type_path_stringified,
                                 &hashmap_value_type_path_stringified,
                                 &vec_element_type_path_stringified,
@@ -737,7 +727,6 @@ pub fn generate_with_serialize_deserialize_version(
                                 &attribute_display_with_serialize_deserialize_stringified,
                                 &with_serialize_deserialize_camel_case,
                                 std_string_string_stringified,
-                                &std_string_string_token_stream,
                                 &hashmap_key_type_reference_stringified,
                                 str_stringified,
                                 &attribute_vec_display_with_serialize_deserialize_stringified,
@@ -885,7 +874,6 @@ fn generate_field_type_with_serialize_deserialize_version(
     attribute: crate::error_occurence::named_attribute::NamedAttribute,
     supported_container: crate::error_occurence::supported_container::SupportedContainer,
     proc_macro_name_ident_stringified: &std::string::String,
-    does_not_support_stringified: &str,
     hashmap_key_type_path_stringified: &std::string::String,
     hashmap_value_type_path_stringified: &std::string::String,
     vec_element_type_path_stringified: &std::string::String,
@@ -893,7 +881,6 @@ fn generate_field_type_with_serialize_deserialize_version(
     attribute_display_with_serialize_deserialize_stringified: &std::string::String,
     with_serialize_deserialize_camel_case: &std::string::String,
     std_string_string_stringified: std::string::String,
-    std_string_string_token_stream: &proc_macro2::TokenStream,
     hashmap_key_type_reference_stringified: &std::string::String,
     str_stringified: &str,
     attribute_vec_display_with_serialize_deserialize_stringified: &std::string::String,
@@ -904,6 +891,10 @@ fn generate_field_type_with_serialize_deserialize_version(
     attribute_hashmap_key_display_foreign_type_value_display_with_serialize_deserialize_stringified: &std::string::String,
 ) -> proc_macro2::TokenStream {
     let supports_only_supported_container_stringified = crate::error_occurence::hardcode::supports_only_supported_container_stringified();
+    let does_not_support_stringified = "does not support";
+    let std_string_string_token_stream = std_string_string_stringified
+    .parse::<proc_macro2::TokenStream>()
+    .unwrap_or_else(|_| panic!("{proc_macro_name_ident_stringified} {std_string_string_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE));
     match attribute {
         crate::error_occurence::named_attribute::NamedAttribute::EoDisplay => {
             if let crate::error_occurence::supported_container::SupportedContainer::Path { path, vec_lifetime: _vec_lifetime } = supported_container {
