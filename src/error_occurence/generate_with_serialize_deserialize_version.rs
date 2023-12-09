@@ -738,6 +738,7 @@ pub fn generate_with_serialize_deserialize_version(
                             };
                             let field_type_with_serialize_deserialize_token_stream = generate_field_type_with_serialize_deserialize_version(
                                 attribute,
+                                supported_container,
                                 proc_macro_name_ident_stringified,
                                 &supports_only_supported_container_stringified,
                                 does_not_support_stringified,
@@ -758,7 +759,6 @@ pub fn generate_with_serialize_deserialize_version(
                                 &attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified,
                                 &attribute_hashmap_key_display_foreign_type_value_display_with_serialize_deserialize_stringified,
                                 &mut should_generate_impl_compile_time_check_error_occurence_members,
-                                supported_container,
                                 &mut lifetimes_for_serialize_deserialize,
                             );
                             // match attribute {
@@ -1979,9 +1979,9 @@ pub fn generate_with_serialize_deserialize_version(
             }
         }
     };
-    if &ident_with_serialize_deserialize_token_stream.to_string() == "KekwWithSerializeDeserialize" {
-        println!("{token_stream}");
-    }
+    // if &ident_with_serialize_deserialize_token_stream.to_string() == "" {
+    //     println!("{token_stream}");
+    // }
     token_stream
 }
 
@@ -2017,6 +2017,7 @@ fn inform_use_str_string_in_different_attribute(
 
 fn generate_field_type_with_serialize_deserialize_version(
     attribute: crate::error_occurence::named_attribute::NamedAttribute,
+    supported_container: crate::error_occurence::supported_container::SupportedContainer,
     proc_macro_name_ident_stringified: &std::string::String,
     supports_only_supported_container_stringified: &std::string::String,
     does_not_support_stringified: &str,
@@ -2037,7 +2038,6 @@ fn generate_field_type_with_serialize_deserialize_version(
     attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified: &std::string::String,
     attribute_hashmap_key_display_foreign_type_value_display_with_serialize_deserialize_stringified: &std::string::String,
     should_generate_impl_compile_time_check_error_occurence_members: &mut bool,
-    supported_container: crate::error_occurence::supported_container::SupportedContainer,
     lifetimes_for_serialize_deserialize: &mut Vec<String>,
 ) -> proc_macro2::TokenStream {
     match attribute {
@@ -3184,5 +3184,53 @@ fn generate_field_type_with_serialize_deserialize_version(
                 );
             }
         },
+    }
+}
+
+fn modify_lifetimes_for_serialize_deserialize(
+    attribute: &crate::error_occurence::named_attribute::NamedAttribute,
+    supported_container: &crate::error_occurence::supported_container::SupportedContainer,
+    proc_macro_name_ident_stringified: &std::string::String,
+    lifetimes_for_serialize_deserialize: &mut std::vec::Vec<std::string::String>,
+) {
+    match attribute {
+        crate::error_occurence::named_attribute::NamedAttribute::EoDisplay => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoDisplayWithSerializeDeserialize => {
+            match supported_container {
+                crate::error_occurence::supported_container::SupportedContainer::Path { path, vec_lifetime } => (),
+                crate::error_occurence::supported_container::SupportedContainer::Reference{ reference_ident, lifetime_ident } => {
+                    crate::error_occurence::possible_lifetime_addition::possible_lifetime_addition(
+                        lifetime_ident.to_string(),
+                        lifetimes_for_serialize_deserialize
+                    );
+                },
+                _ => panic!(
+                    "{proc_macro_name_ident_stringified} {} only supports {}{} and {}{}", 
+                    attribute.attribute_view_stringified(),
+                    crate::error_occurence::hardcode::SUPPORTED_CONTAINER_DOUBLE_DOT_DOUBLE_DOT,
+                    crate::error_occurence::hardcode::PATH_CAMEL_CASE,
+                    crate::error_occurence::hardcode::SUPPORTED_CONTAINER_DOUBLE_DOT_DOUBLE_DOT,
+                    crate::error_occurence::hardcode::REFERENCE_CAMEL_CASE
+                ),
+            }
+        },
+        crate::error_occurence::named_attribute::NamedAttribute::EoDisplayForeignType => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoDisplayForeignTypeWithSerializeDeserialize => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoErrorOccurence => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoVecDisplay => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoVecDisplayWithSerializeDeserialize => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoVecDisplayForeignType => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoVecDisplayForeignTypeWithSerializeDeserialize => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoVecErrorOccurence => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplay => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayWithSerializeDeserialize => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayForeignType => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayForeignTypeWithSerializeDeserialize => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayWithSerializeDeserializeValueErrorOccurence => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplay => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplayWithSerializeDeserialize => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplayForeignType => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueDisplayForeignTypeWithSerializeDeserialize => (),
+        crate::error_occurence::named_attribute::NamedAttribute::EoHashMapKeyDisplayForeignTypeValueErrorOccurence => (),
     }
 }
