@@ -1963,6 +1963,36 @@ pub fn generate_with_serialize_deserialize_version(
     token_stream
 }
 
+fn inform_use_str_string_in_different_attribute(
+    path: String,
+    wrong_attribute: &std::string::String,
+    attribute_to_use: &std::string::String,
+    str_stringified: &str,
+    proc_macro_name_ident_stringified: &str,
+    must_be_used_with_stringified: &str,
+    std_string_string_stringified: &str,
+    string_string_stringified: &str,
+) {
+    let wrong_attribute_view = crate::error_occurence::named_attribute::attribute_view(wrong_attribute);
+    let attribute_to_use_view = crate::error_occurence::named_attribute::attribute_view(attribute_to_use);
+    //maybe additional cases exists
+    if path == str_stringified {
+        panic!("{proc_macro_name_ident_stringified} {wrong_attribute_view} {str_stringified} {must_be_used_with_stringified} {attribute_to_use_view}");
+    }
+    else if path == std_string_string_stringified {
+        panic!("{proc_macro_name_ident_stringified} {wrong_attribute_view} {std_string_string_stringified} {must_be_used_with_stringified} {attribute_to_use_view}");
+    }
+    else if path == string_string_stringified {
+        panic!("{proc_macro_name_ident_stringified} {wrong_attribute_view} {string_string_stringified} {must_be_used_with_stringified} {attribute_to_use_view}");
+    }
+    else if path == crate::error_occurence::hardcode::STRING_CAMEL_CASE {
+        panic!(
+            "{proc_macro_name_ident_stringified} {wrong_attribute_view} {} {must_be_used_with_stringified} {attribute_to_use_view}",
+            crate::error_occurence::hardcode::STRING_CAMEL_CASE
+        );
+    }
+}
+
 fn generate_field_type_with_serialize_deserialize_version(
     attribute: crate::error_occurence::named_attribute::NamedAttribute,
     proc_macro_name_ident_stringified: &std::string::String,
@@ -1988,37 +2018,18 @@ fn generate_field_type_with_serialize_deserialize_version(
     supported_container: crate::error_occurence::supported_container::SupportedContainer,
     lifetimes_for_serialize_deserialize: &mut Vec<String>,
 ) -> proc_macro2::TokenStream {
-    let inform_use_str_string_in_different_attribute = |
-        path: String,
-        wrong_attribute: &std::string::String,
-        attribute_to_use: &std::string::String
-    | {
-        let wrong_attribute_view = crate::error_occurence::named_attribute::attribute_view(wrong_attribute);
-        let attribute_to_use_view = crate::error_occurence::named_attribute::attribute_view(attribute_to_use);
-        //maybe additional cases exists
-        if path == str_stringified {
-            panic!("{proc_macro_name_ident_stringified} {wrong_attribute_view} {str_stringified} {must_be_used_with_stringified} {attribute_to_use_view}");
-        }
-        else if path == std_string_string_stringified {
-            panic!("{proc_macro_name_ident_stringified} {wrong_attribute_view} {std_string_string_stringified} {must_be_used_with_stringified} {attribute_to_use_view}");
-        }
-        else if path == string_string_stringified {
-            panic!("{proc_macro_name_ident_stringified} {wrong_attribute_view} {string_string_stringified} {must_be_used_with_stringified} {attribute_to_use_view}");
-        }
-        else if path == crate::error_occurence::hardcode::STRING_CAMEL_CASE {
-            panic!(
-                "{proc_macro_name_ident_stringified} {wrong_attribute_view} {} {must_be_used_with_stringified} {attribute_to_use_view}",
-                crate::error_occurence::hardcode::STRING_CAMEL_CASE
-            );
-        }
-    };
     match attribute {
         crate::error_occurence::named_attribute::NamedAttribute::EoDisplay => {
             if let crate::error_occurence::supported_container::SupportedContainer::Path { path, vec_lifetime: _vec_lifetime } = supported_container {
                 inform_use_str_string_in_different_attribute(
                     path,
                     &attribute.to_string(),
-                    &attribute_display_with_serialize_deserialize_stringified
+                    &attribute_display_with_serialize_deserialize_stringified,
+                    &str_stringified,
+                    &proc_macro_name_ident_stringified,
+                    &must_be_used_with_stringified,
+                    &std_string_string_stringified,
+                    &string_string_stringified,
                 );
                 quote::quote! {
                     #std_string_string_token_stream
@@ -2127,7 +2138,12 @@ fn generate_field_type_with_serialize_deserialize_version(
                     inform_use_str_string_in_different_attribute(
                         element_path,
                         &attribute.to_string(),
-                        &attribute_vec_display_with_serialize_deserialize_stringified
+                        &attribute_vec_display_with_serialize_deserialize_stringified,
+                        &str_stringified,
+                        &proc_macro_name_ident_stringified,
+                        &must_be_used_with_stringified,
+                        &std_string_string_stringified,
+                        &string_string_stringified,
                     );
                     let type_stringified = format!("{path}<{std_string_string_stringified}>");
                     type_stringified
@@ -2315,7 +2331,12 @@ fn generate_field_type_with_serialize_deserialize_version(
                         inform_use_str_string_in_different_attribute(
                             value_segments_stringified,
                             &attribute.to_string(),
-                            &attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified
+                            &attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified,
+                            &str_stringified,
+                            &proc_macro_name_ident_stringified,
+                            &must_be_used_with_stringified,
+                            &std_string_string_stringified,
+                            &string_string_stringified,
                         );
                         hashmap_key_type_path_case(
                             key_segments_stringified,
@@ -2345,7 +2366,12 @@ fn generate_field_type_with_serialize_deserialize_version(
                         inform_use_str_string_in_different_attribute(
                             value_segments_stringified,
                             &attribute.to_string(),
-                            &attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified
+                            &attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified,
+                            &str_stringified,
+                            &proc_macro_name_ident_stringified,
+                            &must_be_used_with_stringified,
+                            &std_string_string_stringified,
+                            &string_string_stringified,
                         );
                         {
                             let type_stringified = format!("{path}<{std_string_string_stringified}, {std_string_string_stringified}>");
@@ -2810,7 +2836,12 @@ fn generate_field_type_with_serialize_deserialize_version(
                         inform_use_str_string_in_different_attribute(
                             value_segments_stringified,
                             &attribute.to_string(),
-                            &attribute_hashmap_key_display_foreign_type_value_display_with_serialize_deserialize_stringified
+                            &attribute_hashmap_key_display_foreign_type_value_display_with_serialize_deserialize_stringified,
+                            &str_stringified,
+                            &proc_macro_name_ident_stringified,
+                            &must_be_used_with_stringified,
+                            &std_string_string_stringified,
+                            &string_string_stringified,
                         );
                         hashmap_key_type_path_case()
                     },
