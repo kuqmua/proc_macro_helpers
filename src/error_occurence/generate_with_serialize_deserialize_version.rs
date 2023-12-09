@@ -19,7 +19,7 @@ pub fn generate_with_serialize_deserialize_version(
     let variants_len = variants.len();
     let with_serialize_deserialize_camel_case =
         crate::error_occurence::hardcode::with_serialize_deserialize_camel_case();
-    let error_occurence_lower_case = crate::error_occurence::hardcode::error_occurence_lower_case();
+    // let error_occurence_lower_case = crate::error_occurence::hardcode::error_occurence_lower_case();
     let vec_lower_case = crate::error_occurence::hardcode::vec_lower_case();
     let hashmap_lower_case = crate::error_occurence::hardcode::hashmap_lower_case();
     let key_lower_case = crate::error_occurence::hardcode::key_lower_case();
@@ -50,37 +50,12 @@ pub fn generate_with_serialize_deserialize_version(
                     &display_camel_case,
                 );
             let attribute_prefix_stringified = "eo_";
-            let attribute_display_stringified =
-                format!("{attribute_prefix_stringified}{display_lower_case}");
-            let with_serialize_deserialize_lower_case =
-                crate::error_occurence::hardcode::with_serialize_deserialize_lower_case();
+            let with_serialize_deserialize_lower_case = crate::error_occurence::hardcode::with_serialize_deserialize_lower_case();
             let attribute_display_with_serialize_deserialize_stringified = format!(
                 "{attribute_prefix_stringified}{display_lower_case}_{with_serialize_deserialize_lower_case}");
-            let attribute_display_foreign_type_stringified =
-                format!("{attribute_prefix_stringified}{display_foreign_type_lower_case}");
-            let attribute_display_foreign_type_with_serialize_deserialize_stringified = format!("{attribute_prefix_stringified}{display_foreign_type_lower_case}_{with_serialize_deserialize_lower_case}");
-            let attribute_error_occurence_stringified =
-                format!("{attribute_prefix_stringified}{error_occurence_lower_case}");
-            let attribute_vec_display_stringified =
-                format!("{attribute_prefix_stringified}{vec_lower_case}_{display_lower_case}");
             let attribute_vec_display_with_serialize_deserialize_stringified = format!("{attribute_prefix_stringified}{vec_lower_case}_{display_lower_case}_{with_serialize_deserialize_lower_case}");
-            let attribute_vec_display_foreign_type_stringified = format!(
-                "{attribute_prefix_stringified}{vec_lower_case}_{display_foreign_type_lower_case}"
-            );
-            let attribute_vec_display_foreign_type_with_serialize_deserialize_stringified = format!("{attribute_prefix_stringified}{vec_lower_case}_{display_foreign_type_lower_case}_{with_serialize_deserialize_lower_case}");
-            let attribute_vec_error_occurence_stringified = format!(
-                "{attribute_prefix_stringified}{vec_lower_case}_{error_occurence_lower_case}"
-            );
-            let attribute_hashmap_key_display_with_serialize_deserialize_value_display_stringified = format!("{attribute_prefix_stringified}{hashmap_lower_case}_{key_lower_case}_{display_lower_case}_{with_serialize_deserialize_lower_case}_{value_lower_case}_{display_lower_case}");
             let attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified = format!("{attribute_prefix_stringified}{hashmap_lower_case}_{key_lower_case}_{display_lower_case}_{with_serialize_deserialize_lower_case}_{value_lower_case}_{display_lower_case}_{with_serialize_deserialize_lower_case}");
-            let attribute_hashmap_key_display_with_serialize_deserialize_value_display_foreign_type_stringified = format!("{attribute_prefix_stringified}{hashmap_lower_case}_{key_lower_case}_{display_lower_case}_{with_serialize_deserialize_lower_case}_{value_lower_case}_{display_foreign_type_lower_case}");
-            let attribute_hashmap_key_display_with_serialize_deserialize_value_display_foreign_type_with_serialize_deserialize_stringified = format!("{attribute_prefix_stringified}{hashmap_lower_case}_{key_lower_case}_{display_lower_case}_{with_serialize_deserialize_lower_case}_{value_lower_case}_{display_foreign_type_lower_case}_{with_serialize_deserialize_lower_case}");
-            let attribute_hashmap_key_display_with_serialize_deserialize_value_error_occurence_stringified = format!("{attribute_prefix_stringified}{hashmap_lower_case}_{key_lower_case}_{display_lower_case}_{with_serialize_deserialize_lower_case}_{value_lower_case}_{error_occurence_lower_case}");
-            let attribute_hashmap_key_display_foreign_type_value_display_stringified = format!("{attribute_prefix_stringified}{hashmap_lower_case}_{key_lower_case}_{display_foreign_type_lower_case}_{value_lower_case}_{display_lower_case}");
             let attribute_hashmap_key_display_foreign_type_value_display_with_serialize_deserialize_stringified = format!("{attribute_prefix_stringified}{hashmap_lower_case}_{key_lower_case}_{display_foreign_type_lower_case}_{value_lower_case}_{display_lower_case}_{with_serialize_deserialize_lower_case}");
-            let attribute_hashmap_key_display_foreign_type_value_display_foreign_type_stringified = format!("{attribute_prefix_stringified}{hashmap_lower_case}_{key_lower_case}_{display_foreign_type_lower_case}_{value_lower_case}_{display_foreign_type_lower_case}");
-            let attribute_hashmap_key_display_foreign_type_value_display_foreign_type_with_serialize_deserialize_stringified = format!("{attribute_prefix_stringified}{hashmap_lower_case}_{key_lower_case}_{display_foreign_type_lower_case}_{value_lower_case}_{display_foreign_type_lower_case}_{with_serialize_deserialize_lower_case}");
-            let attribute_hashmap_key_display_foreign_type_value_error_occurence_stringified = format!("{attribute_prefix_stringified}{hashmap_lower_case}_{key_lower_case}_{display_foreign_type_lower_case}_{value_lower_case}_{error_occurence_lower_case}");
             let variants_vec = variants.iter().map(|variant| {
                 let fields_named = if let syn::Fields::Named(fields_named) = &variant.fields {
                     fields_named
