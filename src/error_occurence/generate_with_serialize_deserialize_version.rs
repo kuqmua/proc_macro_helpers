@@ -667,6 +667,15 @@ pub fn generate_with_serialize_deserialize_version(
                                 &supported_container,
                                 &mut lifetimes_for_serialize_deserialize
                             );
+                            attribute_supported_container_inform_use_str_string_in_different_attribute(
+                                &attribute,
+                                &supported_container,
+                                &proc_macro_name_ident_stringified,
+                                &attribute_display_with_serialize_deserialize_stringified,
+                                &attribute_vec_display_with_serialize_deserialize_stringified,
+                                &attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified,
+                                &attribute_hashmap_key_display_foreign_type_value_display_with_serialize_deserialize_stringified,
+                            );
                             let field_type_with_serialize_deserialize_token_stream = generate_field_type_with_serialize_deserialize_version(
                                 attribute,
                                 supported_container,
@@ -782,7 +791,7 @@ pub fn generate_with_serialize_deserialize_version(
 }
 
 fn inform_use_str_string_in_different_attribute(
-    path: String,
+    path: &std::string::String,
     wrong_attribute: &std::string::String,
     attribute_to_use: &std::string::String,
     str_stringified: &str,
@@ -812,8 +821,8 @@ fn inform_use_str_string_in_different_attribute(
 }
 
 fn attribute_supported_container_inform_use_str_string_in_different_attribute(
-    attribute: crate::error_occurence::named_attribute::NamedAttribute,
-    supported_container: crate::error_occurence::supported_container::SupportedContainer,
+    attribute: &crate::error_occurence::named_attribute::NamedAttribute,
+    supported_container: &crate::error_occurence::supported_container::SupportedContainer,
     proc_macro_name_ident_stringified: &std::string::String,
     attribute_display_with_serialize_deserialize_stringified: &std::string::String,
     attribute_vec_display_with_serialize_deserialize_stringified: &std::string::String,
@@ -1050,7 +1059,7 @@ fn generate_field_type_with_serialize_deserialize_version(
         crate::error_occurence::named_attribute::NamedAttribute::EoDisplay => {
             if let crate::error_occurence::supported_container::SupportedContainer::Path { path, vec_lifetime: _vec_lifetime } = supported_container {
                 inform_use_str_string_in_different_attribute(
-                    path,
+                    &path,
                     &attribute.to_string(),
                     &attribute_display_with_serialize_deserialize_stringified,
                     &str_stringified,
@@ -1157,7 +1166,7 @@ fn generate_field_type_with_serialize_deserialize_version(
             } = supported_container {
                 if let crate::error_occurence::vec_element_type::VecElementType::Path { element_path, vec_lifetime: _vec_lifetime } = vec_element_type {
                     inform_use_str_string_in_different_attribute(
-                        element_path,
+                        &element_path,
                         &attribute.to_string(),
                         &attribute_vec_display_with_serialize_deserialize_stringified,
                         &str_stringified,
@@ -1347,7 +1356,7 @@ fn generate_field_type_with_serialize_deserialize_version(
                         }
                     ) => {
                         inform_use_str_string_in_different_attribute(
-                            value_segments_stringified,
+                            &value_segments_stringified,
                             &attribute.to_string(),
                             &attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified,
                             &str_stringified,
@@ -1382,7 +1391,7 @@ fn generate_field_type_with_serialize_deserialize_version(
                         }
                     ) => {
                         inform_use_str_string_in_different_attribute(
-                            value_segments_stringified,
+                            &value_segments_stringified,
                             &attribute.to_string(),
                             &attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified,
                             &str_stringified,
@@ -1849,7 +1858,7 @@ fn generate_field_type_with_serialize_deserialize_version(
                         }
                     ) => {
                         inform_use_str_string_in_different_attribute(
-                            value_segments_stringified,
+                            &value_segments_stringified,
                             &attribute.to_string(),
                             &attribute_hashmap_key_display_foreign_type_value_display_with_serialize_deserialize_stringified,
                             &str_stringified,
