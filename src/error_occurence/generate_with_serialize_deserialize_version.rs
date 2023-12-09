@@ -659,9 +659,9 @@ pub fn generate_with_serialize_deserialize_version(
                             supported_container,
                         } => {
                             let string_lower_case = crate::error_occurence::hardcode::STRING_CAMEL_CASE.to_lowercase();
-                            let std_stringified = "std";
                             let std_string_string_stringified = format!(
-                                "{std_stringified}::{string_lower_case}::{}",
+                                "{}::{string_lower_case}::{}",
+                                crate::error_occurence::hardcode::STD_STRINGIFIED,
                                 crate::error_occurence::hardcode::STRING_CAMEL_CASE
                             );
                             let std_string_string_token_stream = std_string_string_stringified
@@ -672,7 +672,8 @@ pub fn generate_with_serialize_deserialize_version(
                                 crate::error_occurence::hardcode::PATH_CAMEL_CASE
                             );
                             let as_std_collections_hashmap_key_type_stringified = format!(
-                                "as {std_stringified}::collections::{} key type",
+                                "as {}::collections::{} key type",
+                                crate::error_occurence::hardcode::STD_STRINGIFIED,
                                 crate::error_occurence::hardcode::HASHMAP_CAMEL_CASE
                             );
                             let str_stringified = "str";
@@ -680,7 +681,10 @@ pub fn generate_with_serialize_deserialize_version(
                                 "{string_lower_case}::{}",
                                 crate::error_occurence::hardcode::STRING_CAMEL_CASE
                             );
-                            let std_string_string_stringified = format!("{std_stringified}::{string_string_stringified}");
+                            let std_string_string_stringified = format!("
+                                {}::{string_string_stringified}",
+                                crate::error_occurence::hardcode::STD_STRINGIFIED,
+                            );
                             let must_be_used_with_stringified = "must be used with";
                             let does_not_support_stringified = "does not support";
                             let type_camel_case = "Type";
