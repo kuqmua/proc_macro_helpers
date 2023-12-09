@@ -1,5 +1,6 @@
 #[allow(clippy::enum_variant_names)]
 // #[derive(strum_macros::EnumIter, strum_macros::Display)]
+#[derive(Debug)]
 pub enum NamedAttribute {
     EoDisplay,
     EoDisplayWithSerializeDeserialize,
@@ -21,6 +22,35 @@ pub enum NamedAttribute {
     EoHashMapKeyDisplayForeignTypeValueDisplayForeignType,
     EoHashMapKeyDisplayForeignTypeValueDisplayForeignTypeWithSerializeDeserialize,
     EoHashMapKeyDisplayForeignTypeValueErrorOccurence,
+}
+
+impl std::str::FromStr for NamedAttribute {
+    type Err = std::string::String;
+    fn from_str(value: &str) -> Result<Self, Self::Err> {
+        match value {
+            "eo_display" => Ok(Self::EoDisplay),
+            "eo_display_with_serialize_deserialize" => Ok(Self::EoDisplayWithSerializeDeserialize),
+            "eo_display_foreign_type" => Ok(Self::EoDisplayForeignType),
+            "eo_display_foreign_type_with_serialize_deserialize" => Ok(Self::EoDisplayForeignTypeWithSerializeDeserialize),
+            "eo_error_occurence" => Ok(Self::EoErrorOccurence),
+            "eo_vec_display" => Ok(Self::EoVecDisplay),
+            "eo_vec_display_with_serialize_deserialize" => Ok(Self::EoVecDisplayWithSerializeDeserialize),
+            "eo_vec_display_foreign_type" => Ok(Self::EoVecDisplayForeignType),
+            "eo_vec_display_foreign_type_with_serialize_deserialize" => Ok(Self::EoVecDisplayForeignTypeWithSerializeDeserialize),
+            "eo_vec_error_occurence" => Ok(Self::EoVecErrorOccurence),
+            "eo_hashmap_key_display_with_serialize_deserialize_value_display" => Ok(Self::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplay),
+            "eo_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize" => Ok(Self::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayWithSerializeDeserialize),
+            "eo_hashmap_key_display_with_serialize_deserialize_value_display_foreign_type" => Ok(Self::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayForeignType),
+            "eo_hashmap_key_display_with_serialize_deserialize_value_display_foreign_type_with_serialize_deserialize" => Ok(Self::EoHashMapKeyDisplayWithSerializeDeserializeValueDisplayForeignTypeWithSerializeDeserialize),
+            "eo_hashmap_key_display_with_serialize_deserialize_value_error_occurence" => Ok(Self::EoHashMapKeyDisplayWithSerializeDeserializeValueErrorOccurence),
+            "eo_hashmap_key_display_foreign_type_value_display" => Ok(Self::EoHashMapKeyDisplayForeignTypeValueDisplay),
+            "eo_hashmap_key_display_foreign_type_value_display_with_serialize_deserialize" => Ok(Self::EoHashMapKeyDisplayForeignTypeValueDisplayWithSerializeDeserialize),
+            "eo_hashmap_key_display_foreign_type_value_display_foreign_type" => Ok(Self::EoHashMapKeyDisplayForeignTypeValueDisplayForeignType),
+            "eo_hashmap_key_display_foreign_type_value_display_foreign_type_with_serialize_deserialize" => Ok(Self::EoHashMapKeyDisplayForeignTypeValueDisplayForeignTypeWithSerializeDeserialize),
+            "eo_hashmap_key_display_foreign_type_value_error_occurence" => Ok(Self::EoHashMapKeyDisplayForeignTypeValueErrorOccurence),
+            _ => Err(format!("unsupported NamedAttribute: {value}"))
+        }
+    }
 }
 
 impl std::string::ToString for NamedAttribute {
