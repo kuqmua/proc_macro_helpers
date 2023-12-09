@@ -681,7 +681,6 @@ pub fn generate_with_serialize_deserialize_version(
                                 supported_container,
                                 proc_macro_name_ident_stringified,
                                 &with_serialize_deserialize_camel_case,
-                                &attribute_vec_display_with_serialize_deserialize_stringified,
                             );
                             enum_fields_logic_for_enum_with_serialize_deserialize.push(quote::quote!{
                                 #field_ident: #field_type_with_serialize_deserialize_token_stream
@@ -993,7 +992,6 @@ fn generate_field_type_with_serialize_deserialize_version(
     supported_container: crate::error_occurence::supported_container::SupportedContainer,
     proc_macro_name_ident_stringified: &std::string::String,
     with_serialize_deserialize_camel_case: &std::string::String,
-    attribute_vec_display_with_serialize_deserialize_stringified: &std::string::String,
 ) -> proc_macro2::TokenStream {
     let supports_only_supported_container_stringified = crate::error_occurence::hardcode::supports_only_supported_container_stringified();
     let does_not_support_stringified = "does not support";
