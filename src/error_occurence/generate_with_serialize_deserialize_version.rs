@@ -310,21 +310,9 @@ pub fn generate_with_serialize_deserialize_version(
                                         crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
                                     ))
                                 };
-                                let syn_type_reference = format!(
-                                    "syn::Type::{}",
-                                    crate::error_occurence::hardcode::REFERENCE_CAMEL_CASE
-                                );
-                                let error_message = format!(
-                                    "{} {syn_type_path_stringified} and {syn_type_reference}",
-                                    crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
-                                );
                                 let supported_container = generate_supported_container(
                                     &field,
                                     &proc_macro_name_ident_stringified,
-                                    &syn_type_reference,
-                                    &syn_type_path_stringified,
-                                    &code_occurence_lower_case,
-                                    &error_message
                                 );
                                 crate::error_occurence::error_or_code_occurence::ErrorOrCodeOccurence::Error {
                                     attribute,
@@ -1921,11 +1909,16 @@ fn modify_should_generate_impl_compile_time_check_error_occurence_members(
 pub fn generate_supported_container(
     field: &syn::Field,
     proc_macro_name_ident_stringified: &std::string::String,
-    syn_type_reference: &str,
-    syn_type_path_stringified: &str,
-    code_occurence_lower_case: &str,
-    error_message: &str
 ) -> crate::error_occurence::supported_container::SupportedContainer {
+    let syn_type_path_stringified = crate::error_occurence::hardcode::syn_type_path_stringified();
+    let syn_type_reference = format!(
+        "syn::Type::{}",
+        crate::error_occurence::hardcode::REFERENCE_CAMEL_CASE
+    );
+    let error_message = format!(
+        "{} {syn_type_path_stringified} and {syn_type_reference}",
+        crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
+    );
     match &field.ty {
         syn::Type::Path(type_path) => {
             let path = crate::error_occurence::generate_path_from_segments::generate_path_from_segments(&type_path.path.segments);
@@ -2218,6 +2211,6 @@ pub fn generate_supported_container(
                 )).ident,
             }
         },
-        _ => panic!("{proc_macro_name_ident_stringified} {code_occurence_lower_case} {error_message}"),
+        _ => panic!("{proc_macro_name_ident_stringified} field.ty is not syn::Type::Path or syn::Type::Reference {error_message}"),
     }
 }
