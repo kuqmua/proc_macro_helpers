@@ -664,10 +664,6 @@ pub fn generate_with_serialize_deserialize_version(
                                 crate::error_occurence::hardcode::STRING_LOWER_CASE,
                                 crate::error_occurence::hardcode::STRING_CAMEL_CASE
                             );
-                            let vec_element_type_path_stringified = format!(
-                                "crate::error_occurence::vec_element_type::VecElementType::{}",
-                                crate::error_occurence::hardcode::PATH_CAMEL_CASE
-                            );
                             let as_std_collections_hashmap_key_type_stringified = format!(
                                 "as {}::collections::{} key type",
                                 crate::error_occurence::hardcode::STD_STRINGIFIED,
@@ -693,7 +689,6 @@ pub fn generate_with_serialize_deserialize_version(
                                 attribute,
                                 supported_container,
                                 proc_macro_name_ident_stringified,
-                                &vec_element_type_path_stringified,
                                 &attribute_display_with_serialize_deserialize_stringified,
                                 &with_serialize_deserialize_camel_case,
                                 std_string_string_stringified,
@@ -843,7 +838,6 @@ fn generate_field_type_with_serialize_deserialize_version(
     attribute: crate::error_occurence::named_attribute::NamedAttribute,
     supported_container: crate::error_occurence::supported_container::SupportedContainer,
     proc_macro_name_ident_stringified: &std::string::String,
-    vec_element_type_path_stringified: &std::string::String,
     attribute_display_with_serialize_deserialize_stringified: &std::string::String,
     with_serialize_deserialize_camel_case: &std::string::String,
     std_string_string_stringified: std::string::String,
@@ -886,6 +880,10 @@ fn generate_field_type_with_serialize_deserialize_version(
     let hashmap_key_type_reference_stringified = format!(
         "{hashmap_key_type_stringified}::{}",
         crate::error_occurence::hardcode::REFERENCE_CAMEL_CASE
+    );
+    let vec_element_type_path_stringified = format!(
+        "crate::error_occurence::vec_element_type::VecElementType::{}",
+        crate::error_occurence::hardcode::PATH_CAMEL_CASE
     );
     match attribute {
         crate::error_occurence::named_attribute::NamedAttribute::EoDisplay => {
