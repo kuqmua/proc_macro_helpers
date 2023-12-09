@@ -128,7 +128,7 @@ pub fn generate_with_serialize_deserialize_version(
                                         );
                                     }
                                 };
-                                crate::error_occurence::error_or_code_occurence::ErrorOrCodeOccurence::CodeOccurence {
+                                crate::error_occurence::error_field_or_code_occurence::ErrorFieldOrCodeOccurence::CodeOccurence {
                                     field_type: code_occurence_type_stringified,
                                     vec_lifetime: code_occurence_lifetime
                                 }
@@ -314,7 +314,7 @@ pub fn generate_with_serialize_deserialize_version(
                                     &field,
                                     &proc_macro_name_ident_stringified,
                                 );
-                                crate::error_occurence::error_or_code_occurence::ErrorOrCodeOccurence::Error {
+                                crate::error_occurence::error_field_or_code_occurence::ErrorFieldOrCodeOccurence::ErrorField {
                                     attribute,
                                     supported_container,
                                 }
@@ -327,7 +327,7 @@ pub fn generate_with_serialize_deserialize_version(
                     })
                     .collect::<Vec<(
                         proc_macro2::Ident,
-                        crate::error_occurence::error_or_code_occurence::ErrorOrCodeOccurence
+                        crate::error_occurence::error_field_or_code_occurence::ErrorFieldOrCodeOccurence
                     )>>()
                 }
                 else {
@@ -342,7 +342,7 @@ pub fn generate_with_serialize_deserialize_version(
                 &proc_macro2::Ident,
                  Vec<(
                     proc_macro2::Ident,
-                    crate::error_occurence::error_or_code_occurence::ErrorOrCodeOccurence
+                    crate::error_occurence::error_field_or_code_occurence::ErrorFieldOrCodeOccurence
                 )>
             )>>();
             let mut lifetimes_for_serialize_deserialize = Vec::with_capacity(generics_len);
@@ -356,7 +356,7 @@ pub fn generate_with_serialize_deserialize_version(
                 let mut enum_fields_logic_for_enum_with_serialize_deserialize: Vec<proc_macro2::TokenStream> = Vec::with_capacity(fields_vec.len());
                 fields_vec.into_iter().for_each(|(field_ident, error_or_code_occurence)|{
                     match error_or_code_occurence {
-                        crate::error_occurence::error_or_code_occurence::ErrorOrCodeOccurence::Error {
+                        crate::error_occurence::error_field_or_code_occurence::ErrorFieldOrCodeOccurence::ErrorField {
                             attribute,
                             supported_container,
                         } => {
@@ -387,7 +387,7 @@ pub fn generate_with_serialize_deserialize_version(
                                 #field_ident: #field_type_with_serialize_deserialize_token_stream
                             });
                         },
-                        crate::error_occurence::error_or_code_occurence::ErrorOrCodeOccurence::CodeOccurence {
+                        crate::error_occurence::error_field_or_code_occurence::ErrorFieldOrCodeOccurence::CodeOccurence {
                             field_type,
                             vec_lifetime: _vec_lifetime,
                          } => {

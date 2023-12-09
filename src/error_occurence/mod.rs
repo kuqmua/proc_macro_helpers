@@ -1,5 +1,5 @@
 pub mod attribute_view;
-pub mod error_or_code_occurence;
+pub mod error_field_or_code_occurence;
 pub mod form_last_arg_lifetime_vec;
 pub mod generate_path_from_segments;
 pub mod generate_with_serialize_deserialize_version;

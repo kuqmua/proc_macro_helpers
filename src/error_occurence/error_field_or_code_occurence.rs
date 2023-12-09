@@ -1,5 +1,5 @@
-pub enum ErrorOrCodeOccurence {
-    Error {
+pub enum ErrorFieldOrCodeOccurence {
+    ErrorField {
         attribute: crate::error_occurence::named_attribute::NamedAttribute,
         supported_container: crate::error_occurence::supported_container::SupportedContainer,
     },
