@@ -712,7 +712,6 @@ pub fn generate_with_serialize_deserialize_version(
                             );
                             modify_should_generate_impl_compile_time_check_error_occurence_members(
                                 &attribute,
-                                &supported_container,
                                 &mut should_generate_impl_compile_time_check_error_occurence_members,
                             );
                             modify_lifetimes_for_serialize_deserialize(
@@ -2072,7 +2071,6 @@ fn modify_lifetimes_for_serialize_deserialize(
 
 fn modify_should_generate_impl_compile_time_check_error_occurence_members(
     attribute: &crate::error_occurence::named_attribute::NamedAttribute,
-    supported_container: &crate::error_occurence::supported_container::SupportedContainer,
     should_generate_impl_compile_time_check_error_occurence_members: &mut bool,
 ){
     match attribute {
