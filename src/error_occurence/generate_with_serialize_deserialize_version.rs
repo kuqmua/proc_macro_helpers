@@ -31,11 +31,6 @@ pub fn generate_with_serialize_deserialize_version(
                 "Code{}",
                 crate::error_occurence::hardcode::OCCURENCE_CAMEL_CASE
             );
-            let code_occurence_lower_case =
-                crate::to_lower_snake_case::ToLowerSnakeCase::to_lower_snake_case(
-                    &code_occurence_camel_case,
-                )
-                .to_lowercase();
             let foreign_type_camel_case = "ForeignType";
             let display_camel_case = "Display";
             let display_foreign_type_camel_case =
@@ -68,6 +63,7 @@ pub fn generate_with_serialize_deserialize_version(
                         "{proc_macro_name_ident_stringified} field.ident {}",
                         crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
                     ));
+                    let code_occurence_lower_case = crate::to_lower_snake_case::ToLowerSnakeCase::to_lower_snake_case(&code_occurence_camel_case).to_lowercase();
                     let error_or_code_occurence = match field_ident == code_occurence_lower_case {
                         true => {
                             let (code_occurence_type_stringified, code_occurence_lifetime) = {
