@@ -514,7 +514,7 @@ fn attribute_supported_container_inform_use_str_string_in_different_attribute(
     }
 }
 
-fn generate_field_type_with_serialize_deserialize_version(
+pub fn generate_field_type_with_serialize_deserialize_version(
     attribute: crate::error_occurence::named_attribute::NamedAttribute,
     supported_container: crate::error_occurence::supported_container::SupportedContainer,
     proc_macro_name_ident_stringified: &std::string::String,

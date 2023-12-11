@@ -1,3 +1,4 @@
+#[derive(Debug)]
 pub enum HashMapValueType {
     Path {
         value_segments_stringified: String,
