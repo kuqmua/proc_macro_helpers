@@ -1,4 +1,5 @@
 #[derive(
+    Debug,
     strum_macros::Display,
     PartialEq,
     Eq,
