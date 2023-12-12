@@ -265,6 +265,11 @@ impl Attribute {
             Attribute::Tvfrr511NetworkAuthenticationRequired => std::string::String::from("tvfrr_511_network_authentication_required"),
         }
     }
+    pub fn to_attribute_view_token_stream(&self) -> proc_macro2::TokenStream {
+        let value_stringified = format!("#[{}]", self.to_string());
+        value_stringified.parse::<proc_macro2::TokenStream>()
+        .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+    }
 }
 
 impl TryFrom<&syn::Variant> for Attribute {
