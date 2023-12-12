@@ -53,6 +53,76 @@ impl std::str::FromStr for NamedAttribute {
     }
 }
 
+impl TryFrom<&syn::Field> for NamedAttribute {
+    type Error = std::string::String;
+    fn try_from(value: &syn::Field) -> Result<Self, Self::Error> {
+        let mut error_occurence_attribute: Option<Self> = None;
+        for element in &value.attrs {
+            if let true = element.path.segments.len() == 1 {
+                match element.path.segments.first() {
+                    Some(value) => {
+                        if let Ok(value) = {
+                            use std::str::FromStr;
+                            Self::from_str(&value.ident.to_string())
+                        } {
+                            match error_occurence_attribute {
+                                Some(value) => {
+                                    return Err(format!("duplicated attributes {} are not supported", value.to_string()));
+                                },
+                                None => {
+                                    error_occurence_attribute = Some(value);
+                                }
+                            }
+                        }
+                    },
+                    None => {
+                        return Err(std::string::String::from("element.path.segments.first() is None"));
+                    }
+                }
+            }
+        }
+        match error_occurence_attribute {
+            Some(value) => Ok(value),
+            None => Err(std::string::String::from("supported attribute not found")),
+        }
+    }
+}
+
+impl TryFrom<&&syn::Field> for NamedAttribute {
+    type Error = std::string::String;
+    fn try_from(value: &&syn::Field) -> Result<Self, Self::Error> {
+        let mut error_occurence_attribute: Option<Self> = None;
+        for element in &value.attrs {
+            if let true = element.path.segments.len() == 1 {
+                match element.path.segments.first() {
+                    Some(value) => {
+                        if let Ok(value) = {
+                            use std::str::FromStr;
+                            Self::from_str(&value.ident.to_string())
+                        } {
+                            match error_occurence_attribute {
+                                Some(value) => {
+                                    return Err(format!("duplicated attributes {} are not supported", value.to_string()));
+                                },
+                                None => {
+                                    error_occurence_attribute = Some(value);
+                                }
+                            }
+                        }
+                    },
+                    None => {
+                        return Err(std::string::String::from("element.path.segments.first() is None"));
+                    }
+                }
+            }
+        }
+        match error_occurence_attribute {
+            Some(value) => Ok(value),
+            None => Err(std::string::String::from("supported attribute not found")),
+        }
+    }
+}
+
 impl std::string::ToString for NamedAttribute {
     fn to_string(&self) -> std::string::String {
         match self {
@@ -91,6 +161,6 @@ impl NamedAttribute {
     }
 }
 
-pub fn attribute_view(attribute: &String) -> String {
+pub fn attribute_view(attribute: &std::string::String) -> String {
     format!("attribute #[{attribute}]")
 }
