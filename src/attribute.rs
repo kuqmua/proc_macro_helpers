@@ -266,6 +266,39 @@ impl Attribute {
         }
     }
 }
+
+impl TryFrom<&syn::Variant> for Attribute {
+    type Error = std::string::String;
+    fn try_from(value: &syn::Variant) -> Result<Self, Self::Error> {
+        let mut option_attribute: Option<Self> = None;
+        for element in &value.attrs {
+            if let true = element.path.segments.len() == 1 {
+                match element.path.segments.first() {
+                    Some(segment) => {
+                        if let Ok(value) = Self::try_from(&segment.ident.to_string()) {
+                            match option_attribute {
+                                Some(value) => {
+                                    return Err(format!("duplicated attributes {value} are not supported"));
+                                },
+                                None => {
+                                    option_attribute = Some(value);
+                                }
+                            }
+                        }
+                    },
+                    None => {
+                        return Err(std::string::String::from("element.path.segments.first() is None"));
+                    }
+                }
+            }
+        }
+        match option_attribute {
+            Some(value) => Ok(value),
+            None => Err(std::string::String::from("attribute not found")),
+        }
+    }
+}
+
 impl TryFrom<&std::string::String> for Attribute {
     type Error = ();
     fn try_from(value: &std::string::String) -> Result<Self, Self::Error> {
