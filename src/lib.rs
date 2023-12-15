@@ -13,3 +13,4 @@ pub mod to_lower_snake_case;
 pub mod attribute;
 pub mod type_variants_from_request_response;
 pub mod write_token_stream_into_file;
+pub mod get_macro_attribute;
