@@ -69,6 +69,138 @@ pub enum Attribute {
     Tvfrr511NetworkAuthenticationRequired,
 }
 impl Attribute {
+    pub fn to_axum_http_status_code_quote(&self) -> proc_macro2::TokenStream {
+        match self {
+            Attribute::Tvfrr100Continue => quote::quote! {axum::http::StatusCode::CONTINUE},
+            Attribute::Tvfrr101SwitchingProtocols => {
+                quote::quote! {axum::http::StatusCode::SWITCHING_PROTOCOLS}
+            }
+            Attribute::Tvfrr102Processing => quote::quote! {axum::http::StatusCode::PROCESSING},
+            Attribute::Tvfrr200Ok => quote::quote! {axum::http::StatusCode::OK},
+            Attribute::Tvfrr201Created => quote::quote! {axum::http::StatusCode::CREATED},
+            Attribute::Tvfrr202Accepted => quote::quote! {axum::http::StatusCode::ACCEPTED},
+            Attribute::Tvfrr203NonAuthoritativeInformation => {
+                quote::quote! {axum::http::StatusCode::NON_AUTHORITATIVE_INFORMATION}
+            }
+            Attribute::Tvfrr204NoContent => quote::quote! {axum::http::StatusCode::NO_CONTENT},
+            Attribute::Tvfrr205ResetContent => quote::quote! {axum::http::StatusCode::RESET_CONTENT},
+            Attribute::Tvfrr206PartialContent => {
+                quote::quote! {axum::http::StatusCode::PARTIAL_CONTENT}
+            }
+            Attribute::Tvfrr207MultiStatus => quote::quote! {axum::http::StatusCode::MULTI_STATUS},
+            Attribute::Tvfrr208AlreadyReported => {
+                quote::quote! {axum::http::StatusCode::ALREADY_REPORTED}
+            }
+            Attribute::Tvfrr226ImUsed => quote::quote! {axum::http::StatusCode::IM_USED},
+            Attribute::Tvfrr300MultipleChoices => {
+                quote::quote! {axum::http::StatusCode::MULTIPLE_CHOICES}
+            }
+            Attribute::Tvfrr301MovedPermanently => {
+                quote::quote! {axum::http::StatusCode::MOVED_PERMANENTLY}
+            }
+            Attribute::Tvfrr302Found => quote::quote! {axum::http::StatusCode::FOUND},
+            Attribute::Tvfrr303SeeOther => quote::quote! {axum::http::StatusCode::SEE_OTHER},
+            Attribute::Tvfrr304NotModified => quote::quote! {axum::http::StatusCode::NOT_MODIFIED},
+            Attribute::Tvfrr305UseProxy => quote::quote! {axum::http::StatusCode::USE_PROXY},
+            Attribute::Tvfrr307TemporaryRedirect => {
+                quote::quote! {axum::http::StatusCode::TEMPORARY_REDIRECT}
+            }
+            Attribute::Tvfrr308PermanentRedirect => {
+                quote::quote! {axum::http::StatusCode::PERMANENT_REDIRECT}
+            }
+            Attribute::Tvfrr400BadRequest => quote::quote! {axum::http::StatusCode::BAD_REQUEST},
+            Attribute::Tvfrr401Unauthorized => quote::quote! {axum::http::StatusCode::UNAUTHORIZED},
+            Attribute::Tvfrr402PaymentRequired => {
+                quote::quote! {axum::http::StatusCode::PAYMENT_REQUIRED}
+            }
+            Attribute::Tvfrr403Forbidden => quote::quote! {axum::http::StatusCode::FORBIDDEN},
+            Attribute::Tvfrr404NotFound => quote::quote! {axum::http::StatusCode::NOT_FOUND},
+            Attribute::Tvfrr405MethodNotAllowed => {
+                quote::quote! {axum::http::StatusCode::METHOD_NOT_ALLOWED}
+            }
+            Attribute::Tvfrr406NotAcceptable => quote::quote! {axum::http::StatusCode::NOT_ACCEPTABLE},
+            Attribute::Tvfrr407ProxyAuthenticationRequired => {
+                quote::quote! {axum::http::StatusCode::PROXY_AUTHENTICATION_REQUIRED}
+            }
+            Attribute::Tvfrr408RequestTimeout => {
+                quote::quote! {axum::http::StatusCode::REQUEST_TIMEOUT}
+            }
+            Attribute::Tvfrr409Conflict => quote::quote! {axum::http::StatusCode::CONFLICT},
+            Attribute::Tvfrr410Gone => quote::quote! {axum::http::StatusCode::GONE},
+            Attribute::Tvfrr411LengthRequired => {
+                quote::quote! {axum::http::StatusCode::LENGTH_REQUIRED}
+            }
+            Attribute::Tvfrr412PreconditionFailed => {
+                quote::quote! {axum::http::StatusCode::PRECONDITION_FAILED}
+            }
+            Attribute::Tvfrr413PayloadTooLarge => {
+                quote::quote! {axum::http::StatusCode::PAYLOAD_TOO_LARGE}
+            }
+            Attribute::Tvfrr414UriTooLong => quote::quote! {axum::http::StatusCode::URI_TOO_LONG},
+            Attribute::Tvfrr415UnsupportedMediaType => {
+                quote::quote! {axum::http::StatusCode::UNSUPPORTED_MEDIA_TYPE}
+            }
+            Attribute::Tvfrr416RangeNotSatisfiable => {
+                quote::quote! {axum::http::StatusCode::RANGE_NOT_SATISFIABLE}
+            }
+            Attribute::Tvfrr417ExpectationFailed => {
+                quote::quote! {axum::http::StatusCode::EXPECTATION_FAILED}
+            }
+            Attribute::Tvfrr418ImATeapot => quote::quote! {axum::http::StatusCode::IM_A_TEAPOT},
+            Attribute::Tvfrr421MisdirectedRequest => {
+                quote::quote! {axum::http::StatusCode::MISDIRECTED_REQUEST}
+            }
+            Attribute::Tvfrr422UnprocessableEntity => {
+                quote::quote! {axum::http::StatusCode::UNPROCESSABLE_ENTITY}
+            }
+            Attribute::Tvfrr423Locked => quote::quote! {axum::http::StatusCode::LOCKED},
+            Attribute::Tvfrr424FailedDependency => {
+                quote::quote! {axum::http::StatusCode::FAILED_DEPENDENCY}
+            }
+            Attribute::Tvfrr426UpgradeRequired => {
+                quote::quote! {axum::http::StatusCode::UPGRADE_REQUIRED}
+            }
+            Attribute::Tvfrr428PreconditionRequired => {
+                quote::quote! {axum::http::StatusCode::PRECONDITION_REQUIRED}
+            }
+            Attribute::Tvfrr429TooManyRequests => {
+                quote::quote! {axum::http::StatusCode::TOO_MANY_REQUESTS}
+            }
+            Attribute::Tvfrr431RequestHeaderFieldsTooLarge => {
+                quote::quote! {axum::http::StatusCode::REQUEST_HEADER_FIELDS_TOO_LARGE}
+            }
+            Attribute::Tvfrr451UnavailableForLegalReasons => {
+                quote::quote! {axum::http::StatusCode::UNAVAILABLE_FOR_LEGAL_REASONS}
+            }
+            Attribute::Tvfrr500InternalServerError => {
+                quote::quote! {axum::http::StatusCode::INTERNAL_SERVER_ERROR}
+            }
+            Attribute::Tvfrr501NotImplemented => {
+                quote::quote! {axum::http::StatusCode::NOT_IMPLEMENTED}
+            }
+            Attribute::Tvfrr502BadGateway => quote::quote! {axum::http::StatusCode::BAD_GATEWAY},
+            Attribute::Tvfrr503ServiceUnavailable => {
+                quote::quote! {axum::http::StatusCode::SERVICE_UNAVAILABLE}
+            }
+            Attribute::Tvfrr504GatewayTimeout => {
+                quote::quote! {axum::http::StatusCode::GATEWAY_TIMEOUT}
+            }
+            Attribute::Tvfrr505HttpVersionNotSupported => {
+                quote::quote! {axum::http::StatusCode::HTTP_VERSION_NOT_SUPPORTED}
+            }
+            Attribute::Tvfrr506VariantAlsoNegotiates => {
+                quote::quote! {axum::http::StatusCode::VARIANT_ALSO_NEGOTIATES}
+            }
+            Attribute::Tvfrr507InsufficientStorage => {
+                quote::quote! {axum::http::StatusCode::INSUFFICIENT_STORAGE}
+            }
+            Attribute::Tvfrr508LoopDetected => quote::quote! {axum::http::StatusCode::LOOP_DETECTED},
+            Attribute::Tvfrr510NotExtended => quote::quote! {axum::http::StatusCode::NOT_EXTENDED},
+            Attribute::Tvfrr511NetworkAuthenticationRequired => {
+                quote::quote! {axum::http::StatusCode::NETWORK_AUTHENTICATION_REQUIRED}
+            }
+        }
+    }
     pub fn to_http_status_code_quote(&self) -> proc_macro2::TokenStream {
         match self {
             Attribute::Tvfrr100Continue => quote::quote! {http::StatusCode::CONTINUE},
