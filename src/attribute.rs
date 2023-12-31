@@ -70,7 +70,7 @@ pub enum Attribute {
 }
 
 impl Attribute {
-    pub fn to_axum_http_status_code_quote(&self) -> proc_macro2::TokenStream {
+    pub fn to_axum_http_status_code_token_stream(&self) -> proc_macro2::TokenStream {
         match self {
             Attribute::Tvfrr100Continue => quote::quote! {axum::http::StatusCode::CONTINUE},
             Attribute::Tvfrr101SwitchingProtocols => {
@@ -202,7 +202,7 @@ impl Attribute {
             }
         }
     }
-    pub fn to_http_status_code_quote(&self) -> proc_macro2::TokenStream {
+    pub fn to_http_status_code_token_stream(&self) -> proc_macro2::TokenStream {
         match self {
             Attribute::Tvfrr100Continue => quote::quote! {http::StatusCode::CONTINUE},
             Attribute::Tvfrr101SwitchingProtocols => {
