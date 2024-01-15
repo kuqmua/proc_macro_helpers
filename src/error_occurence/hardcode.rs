@@ -14,7 +14,7 @@ pub const SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED: &str = "syn::GenericArgument::T
 pub const PATH_UPPER_CAMEL_CASE: &str = "Path";
 pub const REFERENCE_UPPER_CAMEL_CASE: &str = "Reference";
 pub const STRING_UPPER_CAMEL_CASE: &str = "String";
-pub const STRING_LOWER_CASE: &str = "string";
+pub const STRING_SNAKE_CASE: &str = "string";
 pub const SUPPORTED_CONTAINER_DOUBLE_DOT_DOUBLE_DOT: &str =
     "proc_macro_helpers::error_occurence::supported_container::SupportedContainer::";
 pub const SUPPORTED_ENUM_VARIANT_STRINGIFIED: &str =
