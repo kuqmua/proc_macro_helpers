@@ -1,4 +1,4 @@
-pub trait ToUpperCamelCase<T> {//todo rename all variable names like _upper_camel_case instead of _camel_case
+pub trait ToUpperCamelCase<T> {
     fn to_upper_camel_case(&self) -> std::string::String;
 }
 
