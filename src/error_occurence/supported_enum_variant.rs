@@ -16,8 +16,8 @@ pub fn create_supported_enum_variant(
         crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
         crate::error_occurence::hardcode::SYN_FIELDS,
         crate::error_occurence::hardcode::SYN_FIELDS,
-        crate::error_occurence::hardcode::NAMED_CAMEL_CASE,
-        crate::error_occurence::hardcode::unnamed_camel_case()
+        crate::error_occurence::hardcode::NAMED_UPPER_CAMEL_CASE,
+        crate::error_occurence::hardcode::unnamed_upper_camel_case()
     );
     data_enum
         .variants
