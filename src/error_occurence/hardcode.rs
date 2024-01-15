@@ -34,26 +34,24 @@ pub fn with_serialize_deserialize_snake_case() -> std::string::String {
     crate::naming_conventions::ToSnakeCase::to_snake_case(
         &with_serialize_deserialize_upper_camel_case(),
     )
-    .to_lowercase()
 }
 pub fn error_occurence_upper_camel_case() -> std::string::String {
     format!("{}{}", ERROR_OCCURENCE_CASE, OCCURENCE_UPPER_CAMEL_CASE)
 }
 pub fn error_occurence_snake_case() -> std::string::String {
     crate::naming_conventions::ToSnakeCase::to_snake_case(&error_occurence_upper_camel_case())
-        .to_lowercase()
 }
 pub fn vec_snake_case() -> std::string::String {
-    VEC_UPPER_CAMEL_CASE.to_lowercase()
+    crate::naming_conventions::ToSnakeCase::to_snake_case(&VEC_UPPER_CAMEL_CASE)
 }
 pub fn hashmap_snake_case() -> std::string::String {
     crate::naming_conventions::ToSnakeCase::to_snake_case(&HASHMAP_UPPER_CAMEL_CASE)
 }
 pub fn key_snake_case() -> std::string::String {
-    KEY_UPPER_CAMEL_CASE.to_lowercase()
+    crate::naming_conventions::ToSnakeCase::to_snake_case(&KEY_UPPER_CAMEL_CASE)
 }
 pub fn value_snake_case() -> std::string::String {
-    VALUE_UPPER_CAMEL_CASE.to_lowercase()
+    crate::naming_conventions::ToSnakeCase::to_snake_case(&VALUE_UPPER_CAMEL_CASE)
 }
 pub fn syn_type_path_stringified() -> std::string::String {
     format!("syn::Type::{}", PATH_UPPER_CAMEL_CASE)
