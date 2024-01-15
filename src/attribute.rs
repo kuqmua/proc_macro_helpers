@@ -462,7 +462,7 @@ impl Attribute {
             Attribute::Tvfrr511NetworkAuthenticationRequired => quote::quote! {"network authentication required"},
         }
     }
-    pub fn to_string_lower_case(&self) -> std::string::String {
+    pub fn to_snake_case(&self) -> std::string::String {//todo use snake case trait instead
         match self {
             Attribute::Tvfrr100Continue => std::string::String::from("tvfrr_100_continue"),
             Attribute::Tvfrr101SwitchingProtocols => std::string::String::from("tvfrr_101_switching_protocols"),
