@@ -12,16 +12,16 @@ where
     }
 }
 
-pub trait ToLowerSnakeCase<T> {//todo rename as just snake case and all variable names
-    fn to_lower_snake_case(&self) -> std::string::String;
+pub trait ToSnakeCase<T> {//todo rename as just snake case and all variable names
+    fn to_snake_case(&self) -> std::string::String;
 }
 
-impl<T> ToLowerSnakeCase<T> for T
+impl<T> ToSnakeCase<T> for T
 where
     std::string::String: PartialEq<T>,
     Self: AsRef<str>,
 {
-    fn to_lower_snake_case(&self) -> std::string::String {
+    fn to_snake_case(&self) -> std::string::String {
         convert_case::Casing::to_case(self, convert_case::Case::Snake)
     }
 }
