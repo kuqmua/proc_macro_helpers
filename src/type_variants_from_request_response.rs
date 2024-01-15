@@ -1,6 +1,6 @@
 pub static STATUS_CODES_CHECKER: &str = "StatusCodesChecker";
 
-pub fn generate_enum_status_codes_checker_camel_case_token_stream(
+pub fn generate_enum_status_codes_checker_upper_camel_case_token_stream(
     ident: &syn::Ident,
     proc_macro_name_ident_stringified: &str,
 ) -> proc_macro2::TokenStream {
@@ -26,7 +26,7 @@ pub fn generate_tvfrr_extraction_logic_lower_case_token_stream(
         })
 }
 
-pub fn generate_ident_request_error_camel_case_token_stream(
+pub fn generate_ident_request_error_upper_camel_case_token_stream(
     ident: &syn::Ident,
     proc_macro_name_ident_stringified: &str,
 ) -> proc_macro2::TokenStream {
