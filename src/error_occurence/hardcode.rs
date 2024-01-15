@@ -22,7 +22,7 @@ pub const SUPPORTED_ENUM_VARIANT_STRINGIFIED: &str =
 pub const STD_STRINGIFIED: &str = "std";
 
 pub fn named_lower_case() -> std::string::String {
-    crate::to_lower_snake_case::ToLowerSnakeCase::to_lower_snake_case(&NAMED_CAMEL_CASE)
+    crate::naming_conventions::ToLowerSnakeCase::to_lower_snake_case(&NAMED_CAMEL_CASE)
 }
 pub fn unnamed_camel_case() -> std::string::String {
     format!("Un{}", named_lower_case())
@@ -31,7 +31,7 @@ pub fn with_serialize_deserialize_camel_case() -> std::string::String {
     format!("{}{}", WITH_CAMEL_CASE, SERIALIZE_DESERIALIZE_CAMEL_CASE)
 }
 pub fn with_serialize_deserialize_lower_case() -> std::string::String {
-    crate::to_lower_snake_case::ToLowerSnakeCase::to_lower_snake_case(
+    crate::naming_conventions::ToLowerSnakeCase::to_lower_snake_case(
         &with_serialize_deserialize_camel_case(),
     )
     .to_lowercase()
@@ -40,14 +40,14 @@ pub fn error_occurence_camel_case() -> std::string::String {
     format!("{}{}", ERROR_OCCURENCE_CASE, OCCURENCE_CAMEL_CASE)
 }
 pub fn error_occurence_lower_case() -> std::string::String {
-    crate::to_lower_snake_case::ToLowerSnakeCase::to_lower_snake_case(&error_occurence_camel_case())
+    crate::naming_conventions::ToLowerSnakeCase::to_lower_snake_case(&error_occurence_camel_case())
         .to_lowercase()
 }
 pub fn vec_lower_case() -> std::string::String {
     VEC_CAMEL_CASE.to_lowercase()
 }
 pub fn hashmap_lower_case() -> std::string::String {
-    crate::to_lower_snake_case::ToLowerSnakeCase::to_lower_snake_case(&HASHMAP_CAMEL_CASE)
+    crate::naming_conventions::ToLowerSnakeCase::to_lower_snake_case(&HASHMAP_CAMEL_CASE)
 }
 pub fn key_lower_case() -> std::string::String {
     KEY_CAMEL_CASE.to_lowercase()
