@@ -25,3 +25,4 @@ where
         convert_case::Casing::to_case(self, convert_case::Case::Snake)
     }
 }
+// todo SCREAMING_SNAKE_CASE
