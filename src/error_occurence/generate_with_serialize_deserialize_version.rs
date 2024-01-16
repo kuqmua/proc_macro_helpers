@@ -1,7 +1,7 @@
 pub fn generate_with_serialize_deserialize_version(
     supported_enum_variant: &crate::error_occurence::supported_enum_variant::SuportedEnumVariant,
     variants: &Vec<&syn::Variant>, //&syn::punctuated::Punctuated<syn::Variant, syn::token::Comma>
-    proc_macro_name_ident_stringified: &std::string::String,
+    proc_macro_name_ident_stringified: &str,
     generics_len: usize,
     ident_with_serialize_deserialize_token_stream: &proc_macro2::TokenStream,
     optional_additional_named_variant: Option<proc_macro2::TokenStream>,
@@ -313,9 +313,9 @@ pub fn generate_with_serialize_deserialize_version(
 }
 
 fn inform_use_str_string_in_different_attribute(
-    path: &std::string::String,
-    wrong_attribute: &std::string::String,
-    attribute_to_use: &std::string::String,
+    path: &str,
+    wrong_attribute: &str,
+    attribute_to_use: &str,
     str_stringified: &str,
     proc_macro_name_ident_stringified: &str,
     must_be_used_with_stringified: &str,
@@ -345,11 +345,11 @@ fn inform_use_str_string_in_different_attribute(
 fn attribute_supported_container_inform_use_str_string_in_different_attribute(
     attribute: &crate::error_occurence::named_attribute::NamedAttribute,
     supported_container: &crate::error_occurence::supported_container::SupportedContainer,
-    proc_macro_name_ident_stringified: &std::string::String,
-    attribute_display_with_serialize_deserialize_stringified: &std::string::String,
-    attribute_vec_display_with_serialize_deserialize_stringified: &std::string::String,
-    attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified: &std::string::String,
-    attribute_hashmap_key_display_foreign_type_value_display_with_serialize_deserialize_stringified: &std::string::String,
+    proc_macro_name_ident_stringified: &str,
+    attribute_display_with_serialize_deserialize_stringified: &str,
+    attribute_vec_display_with_serialize_deserialize_stringified: &str,
+    attribute_hashmap_key_display_with_serialize_deserialize_value_display_with_serialize_deserialize_stringified: &str,
+    attribute_hashmap_key_display_foreign_type_value_display_with_serialize_deserialize_stringified: &str,
 ) {
     let must_be_used_with_stringified = "must be used with";
     let str_stringified = "str";
@@ -516,7 +516,7 @@ fn attribute_supported_container_inform_use_str_string_in_different_attribute(
 pub fn generate_field_type_with_serialize_deserialize_version(
     attribute: crate::error_occurence::named_attribute::NamedAttribute,
     supported_container: crate::error_occurence::supported_container::SupportedContainer,
-    proc_macro_name_ident_stringified: &std::string::String,
+    proc_macro_name_ident_stringified: &str,
 ) -> proc_macro2::TokenStream {
     let with_serialize_deserialize_upper_camel_case = crate::error_occurence::hardcode::with_serialize_deserialize_upper_camel_case();
     let supports_only_supported_container_stringified = crate::error_occurence::hardcode::supports_only_supported_container_stringified();
@@ -1733,7 +1733,7 @@ fn modify_should_generate_impl_compile_time_check_error_occurence_members(
 
 pub fn generate_supported_container(
     field: &syn::Field,
-    proc_macro_name_ident_stringified: &std::string::String,
+    proc_macro_name_ident_stringified: &str,
 ) -> crate::error_occurence::supported_container::SupportedContainer {
     let syn_type_path_stringified = crate::error_occurence::hardcode::syn_type_path_stringified();
     let syn_type_reference = format!(

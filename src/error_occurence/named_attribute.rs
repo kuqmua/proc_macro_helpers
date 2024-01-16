@@ -156,11 +156,11 @@ impl NamedAttribute {
         value_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
-    pub fn attribute_view_stringified(&self) -> String {
+    pub fn attribute_view_stringified(&self) -> std::string::String {
         self.to_string()
     }
 }
 
-pub fn attribute_view(attribute: &std::string::String) -> String {
+pub fn attribute_view(attribute: &str) -> std::string::String {
     format!("attribute #[{attribute}]")
 }

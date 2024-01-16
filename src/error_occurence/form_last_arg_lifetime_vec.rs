@@ -1,6 +1,6 @@
 pub fn form_last_arg_lifetime_vec(
     segments: &syn::punctuated::Punctuated<syn::PathSegment, syn::token::Colon2>,
-    proc_macro_name_ident_stringified: &String,
+    proc_macro_name_ident_stringified: &str,
 ) -> Vec<crate::error_occurence::lifetime::Lifetime> {
     if let Some(path_segment) = segments.last() {
         match &path_segment.arguments {

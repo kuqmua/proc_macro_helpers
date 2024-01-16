@@ -1,9 +1,9 @@
 pub fn panic_if_not_string(
-    segments_stringified: &String,
-    std_string_string_stringified: &String,
-    proc_macro_name_ident_stringified: &String,
+    segments_stringified: &str,
+    std_string_string_stringified: &str,
+    proc_macro_name_ident_stringified: &str,
     supports_only_stringified: &str,
-    as_std_collections_hashmap_key_type_stringified: &String,
+    as_std_collections_hashmap_key_type_stringified: &str,
     attribute: &crate::error_occurence::named_attribute::NamedAttribute,
 ) {
     if let false = segments_stringified == std_string_string_stringified {
