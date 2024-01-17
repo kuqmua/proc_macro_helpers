@@ -1,8 +1,8 @@
-pub trait ToUpperCamelCase<T> {
+pub trait ToUpperCamelCase {
     fn to_upper_camel_case(&self) -> std::string::String;
 }
 
-impl<T> ToUpperCamelCase<T> for T
+impl<T> ToUpperCamelCase for T
 where
     std::string::String: PartialEq<T>,
     Self: AsRef<str>,
@@ -12,11 +12,11 @@ where
     }
 }
 
-pub trait ToSnakeCase<T> {//todo rename as just snake case and all variable names
+pub trait ToSnakeCase {//todo rename as just snake case and all variable names
     fn to_snake_case(&self) -> std::string::String;
 }
 
-impl<T> ToSnakeCase<T> for T
+impl<T> ToSnakeCase for T
 where
     std::string::String: PartialEq<T>,
     Self: AsRef<str>,
@@ -26,11 +26,11 @@ where
     }
 }
 
-pub trait ToScreamingSnakeCase<T> {
+pub trait ToScreamingSnakeCase {
     fn to_screaming_snake_case(&self) -> std::string::String;
 }
 
-impl<T> ToScreamingSnakeCase<T> for T
+impl<T> ToScreamingSnakeCase for T
 where
     std::string::String: PartialEq<T>,
     Self: AsRef<str>,
