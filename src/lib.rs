@@ -38,3 +38,32 @@ pub fn trait_path_token_stream() -> proc_macro2::TokenStream {
 pub fn std_string_string_token_stream() -> proc_macro2::TokenStream {
     quote::quote!{std::string::String}
 }
+
+
+/////
+
+
+// impl OperationHttpMethod {
+//     fn to_snake_case_token_stream(&self) -> proc_macro2::TokenStream {
+//         let value_snake_case_stringified = proc_macro_helpers::naming_conventions::ToSnakeCase::to_snake_case(self);
+//         value_snake_case_stringified.parse::<proc_macro2::TokenStream>()
+//         .unwrap_or_else(|_| panic!("{value_snake_case_stringified} {}", proc_macro_helpers::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+//     }
+// }
+
+// trait ParametersUpperCamelCaseTokenStream {
+//     fn parameters_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream;
+// }
+
+// impl<Generic> ParametersUpperCamelCaseTokenStream for Generic 
+//     where Generic: proc_macro_helpers::naming_conventions::ToUpperCamelCase
+// {
+//     fn parameters_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream {
+//         let value = format!(
+//             "{}Parameters",
+//             self.to_upper_camel_case()
+//         );
+//         value.parse::<proc_macro2::TokenStream>()
+//         .unwrap_or_else(|_| panic!("{value} {}", proc_macro_helpers::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+//     }
+// }
