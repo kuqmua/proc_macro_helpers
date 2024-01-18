@@ -20,7 +20,7 @@ pub fn generate_function_name_upper_camel_case_token_stream(
     proc_macro_name_stringified: &str,
     proc_macro_name_upper_camel_case_ident_stringified: &str,
 ) -> proc_macro2::TokenStream {
-    let value = crate::naming_conventions::ToUpperCamelCase::to_upper_camel_case(&proc_macro_name_stringified);
+    let value = crate::naming_conventions::ToUpperCamelCaseString::to_upper_camel_case_string(&proc_macro_name_stringified);
     value.parse::<proc_macro2::TokenStream>()
     .unwrap_or_else(|_| panic!("{proc_macro_name_upper_camel_case_ident_stringified} {value} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
 }
@@ -28,7 +28,7 @@ pub fn generate_function_name_snake_case_token_stream(
     proc_macro_name_upper_camel_case_stringified: &str,
     proc_macro_name_upper_camel_case_ident_stringified: &str,
 ) -> proc_macro2::TokenStream {
-    let value = crate::naming_conventions::ToSnakeCase::to_snake_case(&proc_macro_name_upper_camel_case_stringified);
+    let value = crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&proc_macro_name_upper_camel_case_stringified);
     value.parse::<proc_macro2::TokenStream>()
     .unwrap_or_else(|_| panic!("{proc_macro_name_upper_camel_case_ident_stringified} {value} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
 }

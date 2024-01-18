@@ -1,13 +1,13 @@
-pub trait ToUpperCamelCase {
-    fn to_upper_camel_case(&self) -> std::string::String;
+pub trait ToUpperCamelCaseString {
+    fn to_upper_camel_case_string(&self) -> std::string::String;
 }
 
-impl<T> ToUpperCamelCase for T
+impl<T> ToUpperCamelCaseString for T
 where
     std::string::String: PartialEq<T>,
     Self: AsRef<str>,
 {
-    fn to_upper_camel_case(&self) -> std::string::String {
+    fn to_upper_camel_case_string(&self) -> std::string::String {
         convert_case::Casing::to_case(self, convert_case::Case::UpperCamel)
     }
 }
@@ -26,32 +26,32 @@ where
 //     }
 // }
 
-pub trait ToSnakeCase {//todo rename as just snake case and all variable names
-    fn to_snake_case(&self) -> std::string::String;
+pub trait ToSnakeCaseString {//todo rename as just snake case and all variable names
+    fn to_snake_case_string(&self) -> std::string::String;
 }
 
-impl<T> ToSnakeCase for T
+impl<T> ToSnakeCaseString for T
 where
     std::string::String: PartialEq<T>,
     Self: AsRef<str>,
 {
-    fn to_snake_case(&self) -> std::string::String {
+    fn to_snake_case_string(&self) -> std::string::String {
         convert_case::Casing::to_case(self, convert_case::Case::Snake)
     }
 }
 
 //
 
-pub trait ToScreamingSnakeCase {
-    fn to_screaming_snake_case(&self) -> std::string::String;
+pub trait ToScreamingSnakeCaseString {
+    fn to_screaming_snake_case_string(&self) -> std::string::String;
 }
 
-impl<T> ToScreamingSnakeCase for T
+impl<T> ToScreamingSnakeCaseString for T
 where
     std::string::String: PartialEq<T>,
     Self: AsRef<str>,
 {
-    fn to_screaming_snake_case(&self) -> std::string::String {
+    fn to_screaming_snake_case_string(&self) -> std::string::String {
         convert_case::Casing::to_case(self, convert_case::Case::ScreamingSnake)
     }
 }

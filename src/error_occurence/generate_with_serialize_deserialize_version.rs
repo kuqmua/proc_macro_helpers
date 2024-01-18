@@ -36,11 +36,11 @@ pub fn generate_with_serialize_deserialize_version(
             let display_foreign_type_upper_camel_case =
                 format!("{display_upper_camel_case}{foreign_type_upper_camel_case}");
             let display_foreign_type_snake_case =
-                crate::naming_conventions::ToSnakeCase::to_snake_case(
+                crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(
                     &display_foreign_type_upper_camel_case,
                 );
             let display_snake_case =
-                crate::naming_conventions::ToSnakeCase::to_snake_case(
+                crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(
                     &display_upper_camel_case,
                 );
             let attribute_prefix_stringified = "eo_";
@@ -62,7 +62,7 @@ pub fn generate_with_serialize_deserialize_version(
                         "{proc_macro_name_ident_stringified} field.ident {}",
                         crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
                     ));
-                    let code_occurence_snake_case = crate::naming_conventions::ToSnakeCase::to_snake_case(&code_occurence_upper_camel_case);
+                    let code_occurence_snake_case = crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&code_occurence_upper_camel_case);
                     let error_or_code_occurence = match field_ident == code_occurence_snake_case {
                         true => {
                             let (code_occurence_type_stringified, code_occurence_lifetime) = {

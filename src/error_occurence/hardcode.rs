@@ -22,7 +22,7 @@ pub const SUPPORTED_ENUM_VARIANT_STRINGIFIED: &str =
 pub const STD_STRINGIFIED: &str = "std";
 
 pub fn named_snake_case() -> std::string::String {
-    crate::naming_conventions::ToSnakeCase::to_snake_case(&NAMED_UPPER_CAMEL_CASE)
+    crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&NAMED_UPPER_CAMEL_CASE)
 }
 pub fn unnamed_upper_camel_case() -> std::string::String {
     format!("Un{}", named_snake_case())
@@ -31,7 +31,7 @@ pub fn with_serialize_deserialize_upper_camel_case() -> std::string::String {
     format!("{}{}", WITH_UPPER_CAMEL_CASE, SERIALIZE_DESERIALIZE_UPPER_CAMEL_CASE)
 }
 pub fn with_serialize_deserialize_snake_case() -> std::string::String {
-    crate::naming_conventions::ToSnakeCase::to_snake_case(
+    crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(
         &with_serialize_deserialize_upper_camel_case(),
     )
 }
@@ -39,19 +39,19 @@ pub fn error_occurence_upper_camel_case() -> std::string::String {
     format!("{}{}", ERROR_OCCURENCE_CASE, OCCURENCE_UPPER_CAMEL_CASE)
 }
 pub fn error_occurence_snake_case() -> std::string::String {
-    crate::naming_conventions::ToSnakeCase::to_snake_case(&error_occurence_upper_camel_case())
+    crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&error_occurence_upper_camel_case())
 }
 pub fn vec_snake_case() -> std::string::String {
-    crate::naming_conventions::ToSnakeCase::to_snake_case(&VEC_UPPER_CAMEL_CASE)
+    crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&VEC_UPPER_CAMEL_CASE)
 }
 pub fn hashmap_snake_case() -> std::string::String {
-    crate::naming_conventions::ToSnakeCase::to_snake_case(&HASHMAP_UPPER_CAMEL_CASE)
+    crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&HASHMAP_UPPER_CAMEL_CASE)
 }
 pub fn key_snake_case() -> std::string::String {
-    crate::naming_conventions::ToSnakeCase::to_snake_case(&KEY_UPPER_CAMEL_CASE)
+    crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&KEY_UPPER_CAMEL_CASE)
 }
 pub fn value_snake_case() -> std::string::String {
-    crate::naming_conventions::ToSnakeCase::to_snake_case(&VALUE_UPPER_CAMEL_CASE)
+    crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&VALUE_UPPER_CAMEL_CASE)
 }
 pub fn syn_type_path_stringified() -> std::string::String {
     format!("syn::Type::{}", PATH_UPPER_CAMEL_CASE)
