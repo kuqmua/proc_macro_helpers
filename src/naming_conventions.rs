@@ -175,3 +175,16 @@ impl<Generic> PayloadTryFromPayloadWithSerializeDeserializeString for Generic
     }
 }
 
+pub trait PayloadTryFromPayloadWithSerializeDeserializeTokenStream {
+    fn payload_try_from_payload_with_serialize_deserialize_token_stream(&self) -> proc_macro2::TokenStream;
+}
+
+impl<Generic> PayloadTryFromPayloadWithSerializeDeserializeTokenStream for Generic 
+    where Generic: crate::naming_conventions::PayloadTryFromPayloadWithSerializeDeserializeString
+{
+    fn payload_try_from_payload_with_serialize_deserialize_token_stream(&self) -> proc_macro2::TokenStream {
+        let value_stringified = self.payload_try_from_payload_with_serialize_deserialize_string();
+        value_stringified.parse::<proc_macro2::TokenStream>()
+        .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+    }
+}
