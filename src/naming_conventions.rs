@@ -175,11 +175,3 @@ impl<Generic> PayloadTryFromPayloadWithSerializeDeserializeString for Generic
     }
 }
 
-// fn generate_operation_payload_try_from_payload_with_serialize_deserialize_stringified(
-//     operation_name_upper_camel_case_stringified: &str,
-//     payload_upper_camel_case_stringified: &str,
-//     try_from_upper_camel_case_stringified: &str,
-//     with_serialize_deserialize_upper_camel_case_stringified: &str,
-// ) -> std::string::String {
-//     format!("{operation_name_upper_camel_case_stringified}{payload_upper_camel_case_stringified}{try_from_upper_camel_case_stringified}{operation_name_upper_camel_case_stringified}{payload_upper_camel_case_stringified}{with_serialize_deserialize_upper_camel_case_stringified}")
-// }
