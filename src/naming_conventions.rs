@@ -12,19 +12,19 @@ where
     }
 }
 
-// pub trait ToUpperCamelCaseTokenStream {
-//     fn to_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream;
-// }
+pub trait ToUpperCamelCaseTokenStream {
+    fn to_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream;
+}
 
-// impl<T> ToUpperCamelCaseTokenStream for T
-//     where T: ToUpperCamelCase,
-// {
-//     fn to_upper_camel_case_token_stream(&self) -> std::string::String {
-//         let value_upper_camel_case_stringified = proc_macro_helpers::naming_conventions::ToUpperCamelCase::to_upper_camel_case(self);
-//         value_upper_camel_case_stringified.parse::<proc_macro2::TokenStream>()
-//         .unwrap_or_else(|_| panic!("{value_upper_camel_case_stringified} {}", proc_macro_helpers::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
-//     }
-// }
+impl<T> ToUpperCamelCaseTokenStream for T
+    where T: ToUpperCamelCaseString,
+{
+    fn to_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream {
+        let value_upper_camel_case_stringified = crate::naming_conventions::ToUpperCamelCaseString::to_upper_camel_case_string(self);
+        value_upper_camel_case_stringified.parse::<proc_macro2::TokenStream>()
+        .unwrap_or_else(|_| panic!("{value_upper_camel_case_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+    }
+}
 
 pub trait ToSnakeCaseString {//todo rename as just snake case and all variable names
     fn to_snake_case_string(&self) -> std::string::String;
@@ -40,7 +40,19 @@ where
     }
 }
 
-//
+pub trait ToSnakeCaseTokenStream {
+    fn to_snake_case_token_stream(&self) -> proc_macro2::TokenStream;
+}
+
+impl<T> ToSnakeCaseTokenStream for T
+    where T: ToSnakeCaseString,
+{
+    fn to_snake_case_token_stream(&self) -> proc_macro2::TokenStream {
+        let value_snake_case_stringified = crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(self);
+        value_snake_case_stringified.parse::<proc_macro2::TokenStream>()
+        .unwrap_or_else(|_| panic!("{value_snake_case_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+    }
+}
 
 pub trait ToScreamingSnakeCaseString {
     fn to_screaming_snake_case_string(&self) -> std::string::String;
@@ -53,5 +65,19 @@ where
 {
     fn to_screaming_snake_case_string(&self) -> std::string::String {
         convert_case::Casing::to_case(self, convert_case::Case::ScreamingSnake)
+    }
+}
+
+pub trait ToScreamingSnakeCaseTokenStream {
+    fn to_screaming_snake_case_token_stream(&self) -> proc_macro2::TokenStream;
+}
+
+impl<T> ToScreamingSnakeCaseTokenStream for T
+    where T: ToScreamingSnakeCaseString,
+{
+    fn to_screaming_snake_case_token_stream(&self) -> proc_macro2::TokenStream {
+        let value_screaming_snake_case_stringified = crate::naming_conventions::ToScreamingSnakeCaseString::to_screaming_snake_case_string(self);
+        value_screaming_snake_case_stringified.parse::<proc_macro2::TokenStream>()
+        .unwrap_or_else(|_| panic!("{value_screaming_snake_case_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
 }
