@@ -397,3 +397,53 @@ impl<T> PayloadElementUpperCamelCaseTokenStream for T
         .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
 }
+
+//
+pub trait PayloadElementTryFromPayloadElementWithSerializeDeserializeUpperCamelCaseString {
+    fn payload_element_try_from_payload_element_with_serialize_deserialize_upper_camel_case_string(&self) -> std::string::String;
+}
+
+impl<T> PayloadElementTryFromPayloadElementWithSerializeDeserializeUpperCamelCaseString for T 
+    where T: ToUpperCamelCaseString
+{
+    fn payload_element_try_from_payload_element_with_serialize_deserialize_upper_camel_case_string(&self) -> std::string::String {
+        format!(
+            "{}{}{}{}{}{}{}{}{}",
+            self.to_upper_camel_case_string(),
+            payload_upper_camel_case_stringified(),
+            element_upper_camel_case_stringified(),
+            try_upper_camel_case_stringified(),
+            from_upper_camel_case_stringified(),
+            self.to_upper_camel_case_string(),
+            payload_upper_camel_case_stringified(),
+            element_upper_camel_case_stringified(),
+            with_serialize_deserialize_upper_camel_case_stringified(),
+        )
+    }
+}
+
+pub trait PayloadElementTryFromPayloadElementWithSerializeDeserializeUpperCamelCaseTokenStream {
+    fn payload_element_try_from_payload_element_with_serialize_deserialize_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream;
+}
+
+impl<T> PayloadElementTryFromPayloadElementWithSerializeDeserializeUpperCamelCaseTokenStream for T 
+    where T: PayloadElementTryFromPayloadElementWithSerializeDeserializeUpperCamelCaseString
+{
+    fn payload_element_try_from_payload_element_with_serialize_deserialize_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream {
+        let value_stringified = self.payload_element_try_from_payload_element_with_serialize_deserialize_upper_camel_case_string();
+        value_stringified.parse::<proc_macro2::TokenStream>()
+        .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+    }
+}
+//
+// fn generate_operation_payload_element_try_from_payload_element_with_serialize_deserialize_upper_camel_case_stringified(
+//     operation_name_upper_camel_case_stringified: &str,
+//     payload_element_upper_camel_case_stringified: &str,
+//     try_from_upper_camel_case_stringified: &str,
+//     payload_element_with_serialize_deserialize_upper_camel_case_stringified: &str
+// ) -> std::string::String {
+//     format!(
+//         "{operation_name_upper_camel_case_stringified}{payload_element_upper_camel_case_stringified}{try_from_upper_camel_case_stringified}{operation_name_upper_camel_case_stringified}{payload_element_with_serialize_deserialize_upper_camel_case_stringified}"
+//     )
+// }
+//
