@@ -20,7 +20,7 @@ impl<T> ToUpperCamelCaseTokenStream for T
     where T: ToUpperCamelCaseString,
 {
     fn to_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream {
-        let value_upper_camel_case_stringified = crate::naming_conventions::ToUpperCamelCaseString::to_upper_camel_case_string(self);
+        let value_upper_camel_case_stringified = ToUpperCamelCaseString::to_upper_camel_case_string(self);
         value_upper_camel_case_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_upper_camel_case_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
@@ -48,7 +48,7 @@ impl<T> ToSnakeCaseTokenStream for T
     where T: ToSnakeCaseString,
 {
     fn to_snake_case_token_stream(&self) -> proc_macro2::TokenStream {
-        let value_snake_case_stringified = crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(self);
+        let value_snake_case_stringified = ToSnakeCaseString::to_snake_case_string(self);
         value_snake_case_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_snake_case_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
@@ -76,7 +76,7 @@ impl<T> ToScreamingSnakeCaseTokenStream for T
     where T: ToScreamingSnakeCaseString,
 {
     fn to_screaming_snake_case_token_stream(&self) -> proc_macro2::TokenStream {
-        let value_screaming_snake_case_stringified = crate::naming_conventions::ToScreamingSnakeCaseString::to_screaming_snake_case_string(self);
+        let value_screaming_snake_case_stringified = ToScreamingSnakeCaseString::to_screaming_snake_case_string(self);
         value_screaming_snake_case_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_screaming_snake_case_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
@@ -134,8 +134,8 @@ pub trait ParametersUpperCamelCaseTokenStream {
     fn parameters_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream;
 }
 
-impl<Generic> ParametersUpperCamelCaseTokenStream for Generic 
-    where Generic: crate::naming_conventions::ToUpperCamelCaseString
+impl<T> ParametersUpperCamelCaseTokenStream for T 
+    where T: ToUpperCamelCaseString
 {
     fn parameters_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream {
         let value = format!(
@@ -152,8 +152,8 @@ pub trait PayloadUpperCamelCaseTokenStream {
     fn payload_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream;
 }
 
-impl<Generic> PayloadUpperCamelCaseTokenStream for Generic 
-    where Generic: crate::naming_conventions::ToUpperCamelCaseString
+impl<T> PayloadUpperCamelCaseTokenStream for T 
+    where T: ToUpperCamelCaseString
 {
     fn payload_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream {
         let value = format!(
@@ -170,8 +170,8 @@ pub trait PayloadWithSerializeDeserializeUpperCamelCaseTokenStream {
     fn payload_with_serialize_deserialize_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream;
 }
 
-impl<Generic> PayloadWithSerializeDeserializeUpperCamelCaseTokenStream for Generic 
-    where Generic: crate::naming_conventions::ToUpperCamelCaseString
+impl<T> PayloadWithSerializeDeserializeUpperCamelCaseTokenStream for T 
+    where T: ToUpperCamelCaseString
 {
     fn payload_with_serialize_deserialize_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream {
         let value = format!(
@@ -189,8 +189,8 @@ pub trait PayloadTryFromPayloadWithSerializeDeserializeString {
     fn payload_try_from_payload_with_serialize_deserialize_string(&self) -> std::string::String;
 }
 
-impl<Generic> PayloadTryFromPayloadWithSerializeDeserializeString for Generic 
-    where Generic: crate::naming_conventions::ToUpperCamelCaseString
+impl<T> PayloadTryFromPayloadWithSerializeDeserializeString for T 
+    where T: ToUpperCamelCaseString
 {
     fn payload_try_from_payload_with_serialize_deserialize_string(&self) -> std::string::String {
         format!(
@@ -210,8 +210,8 @@ pub trait PayloadTryFromPayloadWithSerializeDeserializeTokenStream {
     fn payload_try_from_payload_with_serialize_deserialize_token_stream(&self) -> proc_macro2::TokenStream;
 }
 
-impl<Generic> PayloadTryFromPayloadWithSerializeDeserializeTokenStream for Generic 
-    where Generic: crate::naming_conventions::PayloadTryFromPayloadWithSerializeDeserializeString
+impl<T> PayloadTryFromPayloadWithSerializeDeserializeTokenStream for T 
+    where T: PayloadTryFromPayloadWithSerializeDeserializeString
 {
     fn payload_try_from_payload_with_serialize_deserialize_token_stream(&self) -> proc_macro2::TokenStream {
         let value_stringified = self.payload_try_from_payload_with_serialize_deserialize_string();
@@ -220,13 +220,12 @@ impl<Generic> PayloadTryFromPayloadWithSerializeDeserializeTokenStream for Gener
     }
 }
 
-//
 pub trait PayloadTryFromPayloadWithSerializeDeserializeSnakeCaseString {
     fn payload_try_from_payload_with_serialize_deserialize_snake_case_string(&self) -> std::string::String;
 }
 
-impl<Generic> PayloadTryFromPayloadWithSerializeDeserializeSnakeCaseString for Generic 
-    where Generic: crate::naming_conventions::ToSnakeCaseString
+impl<T> PayloadTryFromPayloadWithSerializeDeserializeSnakeCaseString for T 
+    where T: ToSnakeCaseString
 {
     fn payload_try_from_payload_with_serialize_deserialize_snake_case_string(&self) -> std::string::String {
         format!(
@@ -246,11 +245,41 @@ pub trait PayloadTryFromPayloadWithSerializeDeserializeSnakeCaseTokenStream {
     fn payload_try_from_payload_with_serialize_deserialize_snake_case_token_stream(&self) -> proc_macro2::TokenStream;
 }
 
-impl<Generic> PayloadTryFromPayloadWithSerializeDeserializeSnakeCaseTokenStream for Generic 
-    where Generic: PayloadTryFromPayloadWithSerializeDeserializeSnakeCaseString
+impl<T> PayloadTryFromPayloadWithSerializeDeserializeSnakeCaseTokenStream for T 
+    where T: PayloadTryFromPayloadWithSerializeDeserializeSnakeCaseString
 {
     fn payload_try_from_payload_with_serialize_deserialize_snake_case_token_stream(&self) -> proc_macro2::TokenStream {
         let value_stringified = self.payload_try_from_payload_with_serialize_deserialize_snake_case_string();
+        value_stringified.parse::<proc_macro2::TokenStream>()
+        .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+    }
+}
+
+pub trait TryOperationSnakeCaseString {
+    fn try_operation_snake_case_string(&self) -> std::string::String;
+}
+
+impl<T> TryOperationSnakeCaseString for T 
+    where T: ToSnakeCaseString
+{
+    fn try_operation_snake_case_string(&self) -> std::string::String {
+        format!(
+            "{}_{}",
+            try_snake_case_stringified(),
+            self.to_snake_case_string()
+        )
+    }
+}
+
+pub trait TryOperationSnakeCaseTokenStream {
+    fn try_operation_snake_case_token_stream(&self) -> proc_macro2::TokenStream;
+}
+
+impl<T> TryOperationSnakeCaseTokenStream for T 
+    where T: TryOperationSnakeCaseString
+{
+    fn try_operation_snake_case_token_stream(&self) -> proc_macro2::TokenStream {
+        let value_stringified = self.try_operation_snake_case_string();
         value_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
