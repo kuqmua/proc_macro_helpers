@@ -1,3 +1,5 @@
+//todo maybe add another generic - trait casing. and ToUpperCamelCaseString and others would implement it like .to_case::<UpperCamel>()
+
 pub trait ToUpperCamelCaseString {
     fn to_upper_camel_case_string(&self) -> std::string::String;
 }
@@ -83,6 +85,7 @@ impl<T> ToScreamingSnakeCaseTokenStream for T
 }
 
 ////
+//todo maybe use struct like struct Parameters<'a>(&'a str) and impl ToUpperCamelCaseString for it ?
 fn parameters_stringified() -> &'static str {
     "parameters"
 }
@@ -127,6 +130,15 @@ fn from_upper_camel_case_stringified() -> std::string::String {
 }
 fn from_snake_case_stringified() -> std::string::String {
     ToSnakeCaseString::to_snake_case_string(&from_stringified())
+}
+fn response_variants_stringified() -> &'static str {
+    "response_variants"
+}
+fn response_variants_upper_camel_case_stringified() -> std::string::String {
+    ToUpperCamelCaseString::to_upper_camel_case_string(&response_variants_stringified())
+}
+fn response_variants_snake_case_stringified() -> std::string::String {
+    ToSnakeCaseString::to_snake_case_string(&response_variants_stringified())
 }
 ///
 
@@ -280,6 +292,38 @@ impl<T> TryOperationSnakeCaseTokenStream for T
 {
     fn try_operation_snake_case_token_stream(&self) -> proc_macro2::TokenStream {
         let value_stringified = self.try_operation_snake_case_string();
+        value_stringified.parse::<proc_macro2::TokenStream>()
+        .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+    }
+}
+
+//
+pub trait TryOperationResponseVariantsUpperCamelCaseString {
+    fn try_operation_response_variants_upper_camel_case_string(&self) -> std::string::String;
+}
+
+impl<T> TryOperationResponseVariantsUpperCamelCaseString for T 
+    where T: ToUpperCamelCaseString
+{
+    fn try_operation_response_variants_upper_camel_case_string(&self) -> std::string::String {
+        format!(
+            "{}{}{}",
+            try_upper_camel_case_stringified(),
+            self.to_upper_camel_case_string(),
+            response_variants_upper_camel_case_stringified()
+        )
+    }
+}
+
+pub trait TryOperationResponseVariantsUpperCamelCaseTokenStream {
+    fn try_operation_response_variants_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream;
+}
+
+impl<T> TryOperationResponseVariantsUpperCamelCaseTokenStream for T 
+    where T: TryOperationResponseVariantsUpperCamelCaseString
+{
+    fn try_operation_response_variants_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream {
+        let value_stringified = self.try_operation_response_variants_upper_camel_case_string();
         value_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
