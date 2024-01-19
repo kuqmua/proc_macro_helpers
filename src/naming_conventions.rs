@@ -92,9 +92,9 @@ fn parameters_stringified() -> &'static str {
 fn parameters_upper_camel_case_stringified() -> std::string::String {
     ToUpperCamelCaseString::to_upper_camel_case_string(&parameters_stringified())
 }
-fn parameters_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&parameters_stringified())
-}
+// fn parameters_snake_case_stringified() -> std::string::String {
+//     ToSnakeCaseString::to_snake_case_string(&parameters_stringified())
+// }
 fn payload_stringified() -> &'static str {
     "payload"
 }
@@ -146,27 +146,27 @@ fn response_variants_stringified() -> &'static str {
 fn response_variants_upper_camel_case_stringified() -> std::string::String {
     ToUpperCamelCaseString::to_upper_camel_case_string(&response_variants_stringified())
 }
-fn response_variants_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&response_variants_stringified())
-}
+// fn response_variants_snake_case_stringified() -> std::string::String {
+//     ToSnakeCaseString::to_snake_case_string(&response_variants_stringified())
+// }
 fn error_stringified() -> &'static str {
     "error"
 }
 fn error_upper_camel_case_stringified() -> std::string::String {
     ToUpperCamelCaseString::to_upper_camel_case_string(&error_stringified())
 }
-fn error_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&error_stringified())
-}
+// fn error_snake_case_stringified() -> std::string::String {
+//     ToSnakeCaseString::to_snake_case_string(&error_stringified())
+// }
 fn named_stringified() -> &'static str {
     "named"
 }
 fn named_upper_camel_case_stringified() -> std::string::String {
     ToUpperCamelCaseString::to_upper_camel_case_string(&named_stringified())
 }
-fn named_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&named_stringified())
-}
+// fn named_snake_case_stringified() -> std::string::String {
+//     ToSnakeCaseString::to_snake_case_string(&named_stringified())
+// }
 ///
 
 pub trait ParametersUpperCamelCaseTokenStream {
