@@ -81,3 +81,22 @@ impl<T> ToScreamingSnakeCaseTokenStream for T
         .unwrap_or_else(|_| panic!("{value_screaming_snake_case_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
 }
+
+////
+
+pub trait ParametersUpperCamelCaseTokenStream {
+    fn parameters_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream;
+}
+
+impl<Generic> ParametersUpperCamelCaseTokenStream for Generic 
+    where Generic: crate::naming_conventions::ToUpperCamelCaseString
+{
+    fn parameters_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream {
+        let value = format!(
+            "{}Parameters",
+            self.to_upper_camel_case_string()
+        );
+        value.parse::<proc_macro2::TokenStream>()
+        .unwrap_or_else(|_| panic!("{value} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+    }
+}
