@@ -490,10 +490,6 @@ impl<T> PayloadElementTryFromPayloadElementWithSerializeDeserializeSnakeCaseToke
     }
 }
 
-
-
-
-//
 pub trait PayloadElementTryFromPayloadElementWithSerializeDeserializeErrorNamedUpperCamelCaseString {
     fn payload_element_try_from_payload_element_with_serialize_deserialize_error_named_upper_camel_case_string(&self) -> std::string::String;
 }
@@ -532,15 +528,3 @@ impl<T> PayloadElementTryFromPayloadElementWithSerializeDeserializeErrorNamedUpp
         .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
 }
-//
-// fn generate_payload_element_try_from_payload_element_with_serialize_deserialize_error_named_upper_camel_case_token_stream(
-//     payload_element_try_from_payload_element_with_serialize_deserialize_upper_camel_case_stringified: &str,
-//     error_named_upper_camel_case_stringified: &str,
-//     proc_macro_name_upper_camel_case_ident_stringified: &str
-// ) -> proc_macro2::TokenStream {
-//     let value = format!(
-//         "{payload_element_try_from_payload_element_with_serialize_deserialize_upper_camel_case_stringified}{error_named_upper_camel_case_stringified}"
-//     );
-//     value.parse::<proc_macro2::TokenStream>()
-//     .unwrap_or_else(|_| panic!("{proc_macro_name_upper_camel_case_ident_stringified} {value} {}", proc_macro_helpers::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
-// }
