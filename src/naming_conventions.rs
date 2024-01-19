@@ -446,7 +446,7 @@ impl<T> PayloadElementTryFromPayloadElementWithSerializeDeserializeSnakeCaseStri
 {
     fn payload_element_try_from_payload_element_with_serialize_deserialize_snake_sase_string(&self) -> std::string::String {
         format!(
-            "{}{}{}{}{}{}{}{}{}",
+            "{}_{}_{}_{}_{}_{}_{}_{}_{}",
             self.to_snake_case_string(),
             payload_snake_case_stringified(),
             element_snake_case_stringified(),
