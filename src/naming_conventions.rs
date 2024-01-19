@@ -117,3 +117,20 @@ impl<Generic> PayloadUpperCamelCaseTokenStream for Generic
         .unwrap_or_else(|_| panic!("{value} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
 }
+
+pub trait PayloadWithSerializeDeserializeUpperCamelCaseTokenStream {
+    fn payload_with_serialize_deserialize_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream;
+}
+
+impl<Generic> PayloadWithSerializeDeserializeUpperCamelCaseTokenStream for Generic 
+    where Generic: crate::naming_conventions::ToUpperCamelCaseString
+{
+    fn payload_with_serialize_deserialize_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream {
+        let value = format!(
+            "{}PayloadWithSerializeDeserialize",
+            self.to_upper_camel_case_string()
+        );
+        value.parse::<proc_macro2::TokenStream>()
+        .unwrap_or_else(|_| panic!("{value} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+    }
+}
