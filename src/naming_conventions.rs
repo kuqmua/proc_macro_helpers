@@ -270,15 +270,15 @@ where
     }
 }
 
-pub trait PayloadUpperCamelCaseTokenStream {
-    fn payload_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream;
+pub trait SelfPayloadUpperCamelCaseTokenStream {
+    fn self_payload_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream;
 }
 
-impl<T> PayloadUpperCamelCaseTokenStream for T
+impl<T> SelfPayloadUpperCamelCaseTokenStream for T
 where
     T: ToUpperCamelCaseString,
 {
-    fn payload_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream {
+    fn self_payload_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream {
         let value = format!(
             "{}{}",
             self.to_upper_camel_case_string(),
