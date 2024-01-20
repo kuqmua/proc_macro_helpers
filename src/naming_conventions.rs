@@ -45,11 +45,29 @@ pub fn string_upper_camel_case_stringified() -> std::string::String {
 pub fn string_snake_case_stringified() -> std::string::String {
     ToSnakeCaseString::to_snake_case_string(&STRING)
 }
+const PARAMETERS: &str = "parameters";
+fn parameters_upper_camel_case_stringified() -> std::string::String {
+    ToUpperCamelCaseString::to_upper_camel_case_string(&PARAMETERS)
+}
+// fn parameters_snake_case_stringified() -> std::string::String {
+//     ToSnakeCaseString::to_snake_case_string(&PARAMETERS)
+// }
+const PAYLOAD: &str = "payload";
+fn payload_upper_camel_case_stringified() -> std::string::String {
+    ToUpperCamelCaseString::to_upper_camel_case_string(&PAYLOAD)
+}
+fn payload_snake_case_stringified() -> std::string::String {
+    ToSnakeCaseString::to_snake_case_string(&PAYLOAD)
+}
+
+
+
+pub const WITH_UPPER_CAMEL_CASE: &str = "With";
+
 
 
 pub const VEC_UPPER_CAMEL_CASE: &str = "Vec";
 pub const SERIALIZE_DESERIALIZE_UPPER_CAMEL_CASE: &str = "SerializeDeserialize";
-pub const WITH_UPPER_CAMEL_CASE: &str = "With";
 pub const HASHMAP_UPPER_CAMEL_CASE: &str = "HashMap";
 pub const KEY_UPPER_CAMEL_CASE: &str = "Key";
 pub const VALUE_UPPER_CAMEL_CASE: &str = "Value";
@@ -195,24 +213,6 @@ where
 }
 
 //todo maybe use struct like struct Parameters<'a>(&'a str) and impl ToUpperCamelCaseString for it ?
-fn parameters_stringified() -> &'static str {
-    "parameters"
-}
-fn parameters_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&parameters_stringified())
-}
-// fn parameters_snake_case_stringified() -> std::string::String {
-//     ToSnakeCaseString::to_snake_case_string(&parameters_stringified())
-// }
-fn payload_stringified() -> &'static str {
-    "payload"
-}
-fn payload_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&payload_stringified())
-}
-fn payload_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&payload_stringified())
-}
 fn element_stringified() -> &'static str {
     "element"
 }
