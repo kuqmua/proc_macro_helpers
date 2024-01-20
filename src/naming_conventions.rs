@@ -27,105 +27,105 @@ pub const STD_STRINGIFIED: &str = "std";
 
 const NAMED: &str = "named";
 pub fn named_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&NAMED)
+    ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&NAMED)
 }
 pub fn named_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&NAMED)
+    ToSnakeCaseStringified::to_snake_case_stringified(&NAMED)
 }
 const ERROR: &str = "error";
 pub fn error_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&ERROR)
+    ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&ERROR)
 }
 pub fn error_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&ERROR)
+    ToSnakeCaseStringified::to_snake_case_stringified(&ERROR)
 }
 const OCCURENCE: &str = "occurence";
 pub fn occurence_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&OCCURENCE)
+    ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&OCCURENCE)
 }
 pub fn occurence_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&OCCURENCE)
+    ToSnakeCaseStringified::to_snake_case_stringified(&OCCURENCE)
 }
 const STRING: &str = "string";
 pub fn string_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&STRING)
+    ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&STRING)
 }
 pub fn string_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&STRING)
+    ToSnakeCaseStringified::to_snake_case_stringified(&STRING)
 }
 const PARAMETERS: &str = "parameters";
 pub fn parameters_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&PARAMETERS)
+    ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&PARAMETERS)
 }
 // pub fn parameters_snake_case_stringified() -> std::string::String {
-//     ToSnakeCaseString::to_snake_case_string(&PARAMETERS)
+//     ToSnakeCaseStringified::to_snake_case_stringified(&PARAMETERS)
 // }
 const PAYLOAD: &str = "payload";
 pub fn payload_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&PAYLOAD)
+    ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&PAYLOAD)
 }
 pub fn payload_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&PAYLOAD)
+    ToSnakeCaseStringified::to_snake_case_stringified(&PAYLOAD)
 }
 const ELEMENT: &str = "element";
 pub fn element_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&ELEMENT)
+    ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&ELEMENT)
 }
 pub fn element_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&ELEMENT)
+    ToSnakeCaseStringified::to_snake_case_stringified(&ELEMENT)
 }
 const TRY: &str = "try";
 pub fn try_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&TRY)
+    ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&TRY)
 }
 pub fn try_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&TRY)
+    ToSnakeCaseStringified::to_snake_case_stringified(&TRY)
 }
 const FROM: &str = "from";
 pub fn from_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&FROM)
+    ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&FROM)
 }
 pub fn from_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&FROM)
+    ToSnakeCaseStringified::to_snake_case_stringified(&FROM)
 }
 const RESPONSE_VARIANTS: &str = "response_variants";
 pub fn response_variants_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&RESPONSE_VARIANTS)
+    ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&RESPONSE_VARIANTS)
 }
 // pub fn response_variants_snake_case_stringified() -> std::string::String {
-//     ToSnakeCaseString::to_snake_case_string(&RESPONSE_VARIANTS)
+//     ToSnakeCaseStringified::to_snake_case_stringified(&RESPONSE_VARIANTS)
 // }
 const PATH: &str = "path";
 pub fn path_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&PATH)
+    ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&PATH)
 }
 pub fn path_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&PATH)
+    ToSnakeCaseStringified::to_snake_case_stringified(&PATH)
 }
 const KEY: &str = "key";
 pub fn key_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&KEY)
+    ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&KEY)
 }
 pub fn key_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&KEY)
+    ToSnakeCaseStringified::to_snake_case_stringified(&KEY)
 }
 const VALUE: &str = "value";
 pub fn value_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&VALUE)
+    ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&VALUE)
 }
 pub fn value_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&VALUE)
+    ToSnakeCaseStringified::to_snake_case_stringified(&VALUE)
 }
 const VEC: &str = "vec";
 pub fn vec_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&VEC)
+    ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&VEC)
 }
 pub fn vec_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&VEC)
+    ToSnakeCaseStringified::to_snake_case_stringified(&VEC)
 }
 const HASHMAP: &str = "HashMap";
 pub fn hashmap_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&HASHMAP)
+    ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&HASHMAP)
 }
 pub fn hashmap_snake_case_stringified() -> std::string::String {
     //naming exception - 
@@ -133,31 +133,31 @@ pub fn hashmap_snake_case_stringified() -> std::string::String {
 }
 const REFERENCE: &str = "reference";
 pub fn reference_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&REFERENCE)
+    ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&REFERENCE)
 }
 pub fn reference_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&REFERENCE)
+    ToSnakeCaseStringified::to_snake_case_stringified(&REFERENCE)
 }
 const WITH: &str = "with";
 pub fn with_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&WITH)
+    ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&WITH)
 }
 pub fn with_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&WITH)
+    ToSnakeCaseStringified::to_snake_case_stringified(&WITH)
 }
 const SERIALIZE: &str = "serialize";
 pub fn serialize_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&SERIALIZE)
+    ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&SERIALIZE)
 }
 pub fn serialize_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&SERIALIZE)
+    ToSnakeCaseStringified::to_snake_case_stringified(&SERIALIZE)
 }
 const DESERIALIZE: &str = "deserialize";
 pub fn deserialize_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&DESERIALIZE)
+    ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&DESERIALIZE)
 }
 pub fn deserialize_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&DESERIALIZE)
+    ToSnakeCaseStringified::to_snake_case_stringified(&DESERIALIZE)
 }
 
 
@@ -220,16 +220,16 @@ pub fn supports_only_supported_container_stringified() -> std::string::String {
 
 //todo maybe add another generic - trait casing. and ToUpperCamelCaseString and others would implement it like .to_case::<UpperCamel>()
 
-pub trait ToUpperCamelCaseString {
-    fn to_upper_camel_case_string(&self) -> std::string::String;
+pub trait ToUpperCamelCaseStringified {
+    fn to_upper_camel_case_stringified(&self) -> std::string::String;
 }
 
-impl<T> ToUpperCamelCaseString for T
+impl<T> ToUpperCamelCaseStringified for T
 where
     std::string::String: PartialEq<T>,
     Self: AsRef<str>,
 {
-    fn to_upper_camel_case_string(&self) -> std::string::String {
+    fn to_upper_camel_case_stringified(&self) -> std::string::String {
         convert_case::Casing::to_case(self, convert_case::Case::UpperCamel)
     }
 }
@@ -240,27 +240,27 @@ pub trait ToUpperCamelCaseTokenStream {
 
 impl<T> ToUpperCamelCaseTokenStream for T
 where
-    T: ToUpperCamelCaseString,
+    T: ToUpperCamelCaseStringified,
 {
     fn to_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream {
         let value_upper_camel_case_stringified =
-            ToUpperCamelCaseString::to_upper_camel_case_string(self);
+            ToUpperCamelCaseStringified::to_upper_camel_case_stringified(self);
         value_upper_camel_case_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_upper_camel_case_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
 }
 
-pub trait ToSnakeCaseString {
+pub trait ToSnakeCaseStringified {
     //todo rename as just snake case and all variable names
-    fn to_snake_case_string(&self) -> std::string::String;
+    fn to_snake_case_stringified(&self) -> std::string::String;
 }
 
-impl<T> ToSnakeCaseString for T
+impl<T> ToSnakeCaseStringified for T
 where
     std::string::String: PartialEq<T>,
     Self: AsRef<str>,
 {
-    fn to_snake_case_string(&self) -> std::string::String {
+    fn to_snake_case_stringified(&self) -> std::string::String {
         convert_case::Casing::to_case(self, convert_case::Case::Snake)
     }
 }
@@ -271,25 +271,25 @@ pub trait ToSnakeCaseTokenStream {
 
 impl<T> ToSnakeCaseTokenStream for T
 where
-    T: ToSnakeCaseString,
+    T: ToSnakeCaseStringified,
 {
     fn to_snake_case_token_stream(&self) -> proc_macro2::TokenStream {
-        let value_snake_case_stringified = ToSnakeCaseString::to_snake_case_string(self);
+        let value_snake_case_stringified = ToSnakeCaseStringified::to_snake_case_stringified(self);
         value_snake_case_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_snake_case_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
 }
 
-pub trait ToScreamingSnakeCaseString {
-    fn to_screaming_snake_case_string(&self) -> std::string::String;
+pub trait ToScreamingSnakeCaseStringified {
+    fn to_screaming_snake_case_stringified(&self) -> std::string::String;
 }
 
-impl<T> ToScreamingSnakeCaseString for T
+impl<T> ToScreamingSnakeCaseStringified for T
 where
     std::string::String: PartialEq<T>,
     Self: AsRef<str>,
 {
-    fn to_screaming_snake_case_string(&self) -> std::string::String {
+    fn to_screaming_snake_case_stringified(&self) -> std::string::String {
         convert_case::Casing::to_case(self, convert_case::Case::ScreamingSnake)
     }
 }
@@ -300,11 +300,10 @@ pub trait ToScreamingSnakeCaseTokenStream {
 
 impl<T> ToScreamingSnakeCaseTokenStream for T
 where
-    T: ToScreamingSnakeCaseString,
+    T: ToScreamingSnakeCaseStringified,
 {
     fn to_screaming_snake_case_token_stream(&self) -> proc_macro2::TokenStream {
-        let value_screaming_snake_case_stringified =
-            ToScreamingSnakeCaseString::to_screaming_snake_case_string(self);
+        let value_screaming_snake_case_stringified = ToScreamingSnakeCaseStringified::to_screaming_snake_case_stringified(self);
         value_screaming_snake_case_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_screaming_snake_case_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
@@ -317,12 +316,12 @@ pub trait SelfParametersUpperCamelCaseTokenStream {
 
 impl<T> SelfParametersUpperCamelCaseTokenStream for T
 where
-    T: ToUpperCamelCaseString,
+    T: ToUpperCamelCaseStringified,
 {
     fn self_parameters_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream {
         let value = format!(
             "{}{}",
-            self.to_upper_camel_case_string(),
+            self.to_upper_camel_case_stringified(),
             parameters_upper_camel_case_stringified()
         );
         value.parse::<proc_macro2::TokenStream>()
@@ -336,12 +335,12 @@ pub trait SelfPayloadUpperCamelCaseTokenStream {
 
 impl<T> SelfPayloadUpperCamelCaseTokenStream for T
 where
-    T: ToUpperCamelCaseString,
+    T: ToUpperCamelCaseStringified,
 {
     fn self_payload_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream {
         let value = format!(
             "{}{}",
-            self.to_upper_camel_case_string(),
+            self.to_upper_camel_case_stringified(),
             payload_upper_camel_case_stringified()
         );
         value.parse::<proc_macro2::TokenStream>()
@@ -357,14 +356,14 @@ pub trait SelfPayloadWithSerializeDeserializeUpperCamelCaseTokenStream {
 
 impl<T> SelfPayloadWithSerializeDeserializeUpperCamelCaseTokenStream for T
 where
-    T: ToUpperCamelCaseString,
+    T: ToUpperCamelCaseStringified,
 {
     fn self_payload_with_serialize_deserialize_upper_camel_case_token_stream(
         &self,
     ) -> proc_macro2::TokenStream {
         let value = format!(
             "{}{}{}",
-            self.to_upper_camel_case_string(),
+            self.to_upper_camel_case_stringified(),
             payload_upper_camel_case_stringified(),
             with_serialize_deserialize_upper_camel_case_stringified()
         );
@@ -373,22 +372,22 @@ where
     }
 }
 
-pub trait SelfPayloadTryFromSelfPayloadWithSerializeDeserializeString {
-    fn self_payload_try_from_self_payload_with_serialize_deserialize_string(&self) -> std::string::String;
+pub trait SelfPayloadTryFromSelfPayloadWithSerializeDeserializeStringified {
+    fn self_payload_try_from_self_payload_with_serialize_deserialize_stringified(&self) -> std::string::String;
 }
 
-impl<T> SelfPayloadTryFromSelfPayloadWithSerializeDeserializeString for T
+impl<T> SelfPayloadTryFromSelfPayloadWithSerializeDeserializeStringified for T
 where
-    T: ToUpperCamelCaseString,
+    T: ToUpperCamelCaseStringified,
 {
-    fn self_payload_try_from_self_payload_with_serialize_deserialize_string(&self) -> std::string::String {
+    fn self_payload_try_from_self_payload_with_serialize_deserialize_stringified(&self) -> std::string::String {
         format!(
             "{}{}{}{}{}{}{}",
-            self.to_upper_camel_case_string(),
+            self.to_upper_camel_case_stringified(),
             payload_upper_camel_case_stringified(),
             try_upper_camel_case_stringified(),
             from_upper_camel_case_stringified(),
-            self.to_upper_camel_case_string(),
+            self.to_upper_camel_case_stringified(),
             payload_upper_camel_case_stringified(),
             with_serialize_deserialize_upper_camel_case_stringified()
         )
@@ -403,37 +402,37 @@ pub trait SelfPayloadTryFromSelfPayloadWithSerializeDeserializeTokenStream {
 
 impl<T> SelfPayloadTryFromSelfPayloadWithSerializeDeserializeTokenStream for T
 where
-    T: SelfPayloadTryFromSelfPayloadWithSerializeDeserializeString,
+    T: SelfPayloadTryFromSelfPayloadWithSerializeDeserializeStringified,
 {
     fn self_payload_try_from_self_payload_with_serialize_deserialize_token_stream(
         &self,
     ) -> proc_macro2::TokenStream {
-        let value_stringified = self.self_payload_try_from_self_payload_with_serialize_deserialize_string();
+        let value_stringified = self.self_payload_try_from_self_payload_with_serialize_deserialize_stringified();
         value_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
 }
 
-pub trait SelfPayloadTryFromSelfPayloadWithSerializeDeserializeSnakeCaseString {
-    fn self_payload_try_from_self_payload_with_serialize_deserialize_snake_case_string(
+pub trait SelfPayloadTryFromSelfPayloadWithSerializeDeserializeSnakeCaseStringified {
+    fn self_payload_try_from_self_payload_with_serialize_deserialize_snake_case_stringified(
         &self,
     ) -> std::string::String;
 }
 
-impl<T> SelfPayloadTryFromSelfPayloadWithSerializeDeserializeSnakeCaseString for T
+impl<T> SelfPayloadTryFromSelfPayloadWithSerializeDeserializeSnakeCaseStringified for T
 where
-    T: ToSnakeCaseString,
+    T: ToSnakeCaseStringified,
 {
-    fn self_payload_try_from_self_payload_with_serialize_deserialize_snake_case_string(
+    fn self_payload_try_from_self_payload_with_serialize_deserialize_snake_case_stringified(
         &self,
     ) -> std::string::String {
         format!(
             "{}_{}_{}_{}_{}_{}_{}",
-            self.to_snake_case_string(),
+            self.to_snake_case_stringified(),
             payload_snake_case_stringified(),
             try_snake_case_stringified(),
             from_snake_case_stringified(),
-            self.to_snake_case_string(),
+            self.to_snake_case_stringified(),
             payload_snake_case_stringified(),
             with_serialize_deserialize_snake_case_stringified()
         )
@@ -448,31 +447,31 @@ pub trait SelfPayloadTryFromSelfPayloadWithSerializeDeserializeSnakeCaseTokenStr
 
 impl<T> SelfPayloadTryFromSelfPayloadWithSerializeDeserializeSnakeCaseTokenStream for T
 where
-    T: SelfPayloadTryFromSelfPayloadWithSerializeDeserializeSnakeCaseString,
+    T: SelfPayloadTryFromSelfPayloadWithSerializeDeserializeSnakeCaseStringified,
 {
     fn self_payload_try_from_self_payload_with_serialize_deserialize_snake_case_token_stream(
         &self,
     ) -> proc_macro2::TokenStream {
         let value_stringified =
-            self.self_payload_try_from_self_payload_with_serialize_deserialize_snake_case_string();
+            self.self_payload_try_from_self_payload_with_serialize_deserialize_snake_case_stringified();
         value_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
 }
 
-pub trait TrySelfSnakeCaseString {
-    fn try_self_snake_case_string(&self) -> std::string::String;
+pub trait TrySelfSnakeCaseStringified {
+    fn try_self_snake_case_stringified(&self) -> std::string::String;
 }
 
-impl<T> TrySelfSnakeCaseString for T
+impl<T> TrySelfSnakeCaseStringified for T
 where
-    T: ToSnakeCaseString,
+    T: ToSnakeCaseStringified,
 {
-    fn try_self_snake_case_string(&self) -> std::string::String {
+    fn try_self_snake_case_stringified(&self) -> std::string::String {
         format!(
             "{}_{}",
             try_snake_case_stringified(),
-            self.to_snake_case_string()
+            self.to_snake_case_stringified()
         )
     }
 }
@@ -483,28 +482,28 @@ pub trait TrySelfSnakeCaseTokenStream {
 
 impl<T> TrySelfSnakeCaseTokenStream for T
 where
-    T: TrySelfSnakeCaseString,
+    T: TrySelfSnakeCaseStringified,
 {
     fn try_self_snake_case_token_stream(&self) -> proc_macro2::TokenStream {
-        let value_stringified = self.try_self_snake_case_string();
+        let value_stringified = self.try_self_snake_case_stringified();
         value_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
 }
 
-pub trait TrySelfResponseVariantsUpperCamelCaseString {
-    fn try_self_response_variants_upper_camel_case_string(&self) -> std::string::String;
+pub trait TrySelfResponseVariantsUpperCamelCaseStringified {
+    fn try_self_response_variants_upper_camel_case_stringified(&self) -> std::string::String;
 }
 
-impl<T> TrySelfResponseVariantsUpperCamelCaseString for T
+impl<T> TrySelfResponseVariantsUpperCamelCaseStringified for T
 where
-    T: ToUpperCamelCaseString,
+    T: ToUpperCamelCaseStringified,
 {
-    fn try_self_response_variants_upper_camel_case_string(&self) -> std::string::String {
+    fn try_self_response_variants_upper_camel_case_stringified(&self) -> std::string::String {
         format!(
             "{}{}{}",
             try_upper_camel_case_stringified(),
-            self.to_upper_camel_case_string(),
+            self.to_upper_camel_case_stringified(),
             response_variants_upper_camel_case_stringified()
         )
     }
@@ -518,30 +517,30 @@ pub trait TrySelfResponseVariantsUpperCamelCaseTokenStream {
 
 impl<T> TrySelfResponseVariantsUpperCamelCaseTokenStream for T
 where
-    T: TrySelfResponseVariantsUpperCamelCaseString,
+    T: TrySelfResponseVariantsUpperCamelCaseStringified,
 {
     fn try_self_response_variants_upper_camel_case_token_stream(
         &self,
     ) -> proc_macro2::TokenStream {
-        let value_stringified = self.try_self_response_variants_upper_camel_case_string();
+        let value_stringified = self.try_self_response_variants_upper_camel_case_stringified();
         value_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
 }
 
-pub trait TrySelfUpperCamelCaseString {
-    fn try_self_upper_camel_case_string(&self) -> std::string::String;
+pub trait TrySelfUpperCamelCaseStringified {
+    fn try_self_upper_camel_case_stringified(&self) -> std::string::String;
 }
 
-impl<T> TrySelfUpperCamelCaseString for T
+impl<T> TrySelfUpperCamelCaseStringified for T
 where
-    T: ToUpperCamelCaseString,
+    T: ToUpperCamelCaseStringified,
 {
-    fn try_self_upper_camel_case_string(&self) -> std::string::String {
+    fn try_self_upper_camel_case_stringified(&self) -> std::string::String {
         format!(
             "{}{}",
             try_upper_camel_case_stringified(),
-            self.to_upper_camel_case_string(),
+            self.to_upper_camel_case_stringified(),
         )
     }
 }
@@ -552,27 +551,27 @@ pub trait TrySelfUpperCamelCaseTokenStream {
 
 impl<T> TrySelfUpperCamelCaseTokenStream for T
 where
-    T: TrySelfUpperCamelCaseString,
+    T: TrySelfUpperCamelCaseStringified,
 {
     fn try_self_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream {
-        let value_stringified = self.try_self_upper_camel_case_string();
+        let value_stringified = self.try_self_upper_camel_case_stringified();
         value_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
 }
 
-pub trait SelfPayloadElementUpperCamelCaseString {
-    fn self_payload_element_upper_camel_case_string(&self) -> std::string::String;
+pub trait SelfPayloadElementUpperCamelCaseStringified {
+    fn self_payload_element_upper_camel_case_stringified(&self) -> std::string::String;
 }
 
-impl<T> SelfPayloadElementUpperCamelCaseString for T
+impl<T> SelfPayloadElementUpperCamelCaseStringified for T
 where
-    T: ToUpperCamelCaseString,
+    T: ToUpperCamelCaseStringified,
 {
-    fn self_payload_element_upper_camel_case_string(&self) -> std::string::String {
+    fn self_payload_element_upper_camel_case_stringified(&self) -> std::string::String {
         format!(
             "{}{}{}",
-            self.to_upper_camel_case_string(),
+            self.to_upper_camel_case_stringified(),
             payload_upper_camel_case_stringified(),
             element_upper_camel_case_stringified(),
         )
@@ -585,36 +584,36 @@ pub trait SelfPayloadElementUpperCamelCaseTokenStream {
 
 impl<T> SelfPayloadElementUpperCamelCaseTokenStream for T
 where
-    T: SelfPayloadElementUpperCamelCaseString,
+    T: SelfPayloadElementUpperCamelCaseStringified,
 {
     fn self_payload_element_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream {
-        let value_stringified = self.self_payload_element_upper_camel_case_string();
+        let value_stringified = self.self_payload_element_upper_camel_case_stringified();
         value_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
 }
 
-pub trait SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeUpperCamelCaseString {
-    fn self_payload_element_try_from_self_payload_element_with_serialize_deserialize_upper_camel_case_string(
+pub trait SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeUpperCamelCaseStringified {
+    fn self_payload_element_try_from_self_payload_element_with_serialize_deserialize_upper_camel_case_stringified(
         &self,
     ) -> std::string::String;
 }
 
-impl<T> SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeUpperCamelCaseString for T
+impl<T> SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeUpperCamelCaseStringified for T
 where
-    T: ToUpperCamelCaseString,
+    T: ToUpperCamelCaseStringified,
 {
-    fn self_payload_element_try_from_self_payload_element_with_serialize_deserialize_upper_camel_case_string(
+    fn self_payload_element_try_from_self_payload_element_with_serialize_deserialize_upper_camel_case_stringified(
         &self,
     ) -> std::string::String {
         format!(
             "{}{}{}{}{}{}{}{}{}",
-            self.to_upper_camel_case_string(),
+            self.to_upper_camel_case_stringified(),
             payload_upper_camel_case_stringified(),
             element_upper_camel_case_stringified(),
             try_upper_camel_case_stringified(),
             from_upper_camel_case_stringified(),
-            self.to_upper_camel_case_string(),
+            self.to_upper_camel_case_stringified(),
             payload_upper_camel_case_stringified(),
             element_upper_camel_case_stringified(),
             with_serialize_deserialize_upper_camel_case_stringified(),
@@ -630,38 +629,38 @@ pub trait SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeUpp
 
 impl<T> SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeUpperCamelCaseTokenStream for T
 where
-    T: SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeUpperCamelCaseString,
+    T: SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeUpperCamelCaseStringified,
 {
     fn self_payload_element_try_from_self_payload_element_with_serialize_deserialize_upper_camel_case_token_stream(
         &self,
     ) -> proc_macro2::TokenStream {
-        let value_stringified = self.self_payload_element_try_from_self_payload_element_with_serialize_deserialize_upper_camel_case_string();
+        let value_stringified = self.self_payload_element_try_from_self_payload_element_with_serialize_deserialize_upper_camel_case_stringified();
         value_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
 }
 
-pub trait SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeSnakeCaseString {
-    fn self_payload_element_try_from_self_payload_element_with_serialize_deserialize_snake_sase_string(
+pub trait SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeSnakeCaseStringified {
+    fn self_payload_element_try_from_self_payload_element_with_serialize_deserialize_snake_sase_stringified(
         &self,
     ) -> std::string::String;
 }
 
-impl<T> SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeSnakeCaseString for T
+impl<T> SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeSnakeCaseStringified for T
 where
-    T: ToSnakeCaseString,
+    T: ToSnakeCaseStringified,
 {
-    fn self_payload_element_try_from_self_payload_element_with_serialize_deserialize_snake_sase_string(
+    fn self_payload_element_try_from_self_payload_element_with_serialize_deserialize_snake_sase_stringified(
         &self,
     ) -> std::string::String {
         format!(
             "{}_{}_{}_{}_{}_{}_{}_{}_{}",
-            self.to_snake_case_string(),
+            self.to_snake_case_stringified(),
             payload_snake_case_stringified(),
             element_snake_case_stringified(),
             try_snake_case_stringified(),
             from_snake_case_stringified(),
-            self.to_snake_case_string(),
+            self.to_snake_case_stringified(),
             payload_snake_case_stringified(),
             element_snake_case_stringified(),
             with_serialize_deserialize_snake_case_stringified(),
@@ -677,42 +676,42 @@ pub trait SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeSna
 
 impl<T> SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeSnakeCaseTokenStream for T
 where
-    T: SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeSnakeCaseString,
+    T: SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeSnakeCaseStringified,
 {
     fn self_payload_element_try_from_self_payload_element_with_serialize_deserialize_snake_sase_token_stream(
         &self,
     ) -> proc_macro2::TokenStream {
         let value_stringified = self
-            .self_payload_element_try_from_self_payload_element_with_serialize_deserialize_snake_sase_string(
+            .self_payload_element_try_from_self_payload_element_with_serialize_deserialize_snake_sase_stringified(
             );
         value_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
 }
 
-pub trait SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeErrorNamedUpperCamelCaseString
+pub trait SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeErrorNamedUpperCamelCaseStringified
 {
-    fn self_payload_element_try_from_self_payload_element_with_serialize_deserialize_error_named_upper_camel_case_string(
+    fn self_payload_element_try_from_self_payload_element_with_serialize_deserialize_error_named_upper_camel_case_stringified(
         &self,
     ) -> std::string::String;
 }
 
-impl<T> SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeErrorNamedUpperCamelCaseString
+impl<T> SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeErrorNamedUpperCamelCaseStringified
     for T
 where
-    T: ToUpperCamelCaseString,
+    T: ToUpperCamelCaseStringified,
 {
-    fn self_payload_element_try_from_self_payload_element_with_serialize_deserialize_error_named_upper_camel_case_string(
+    fn self_payload_element_try_from_self_payload_element_with_serialize_deserialize_error_named_upper_camel_case_stringified(
         &self,
     ) -> std::string::String {
         format!(
             "{}{}{}{}{}{}{}{}{}{}{}",
-            self.to_upper_camel_case_string(),
+            self.to_upper_camel_case_stringified(),
             payload_upper_camel_case_stringified(),
             element_upper_camel_case_stringified(),
             try_upper_camel_case_stringified(),
             from_upper_camel_case_stringified(),
-            self.to_upper_camel_case_string(),
+            self.to_upper_camel_case_stringified(),
             payload_upper_camel_case_stringified(),
             element_upper_camel_case_stringified(),
             with_serialize_deserialize_upper_camel_case_stringified(),
@@ -733,12 +732,12 @@ impl<T>
     SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeErrorNamedUpperCamelCaseTokenStream
     for T
 where
-    T: SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeErrorNamedUpperCamelCaseString,
+    T: SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeErrorNamedUpperCamelCaseStringified,
 {
     fn self_payload_element_try_from_self_payload_element_with_serialize_deserialize_error_named_upper_camel_case_token_stream(
         &self,
     ) -> proc_macro2::TokenStream {
-        let value_stringified = self.self_payload_element_try_from_self_payload_element_with_serialize_deserialize_error_named_upper_camel_case_string();
+        let value_stringified = self.self_payload_element_try_from_self_payload_element_with_serialize_deserialize_error_named_upper_camel_case_stringified();
         value_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
