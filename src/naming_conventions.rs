@@ -534,17 +534,17 @@ where
     }
 }
 
-pub trait PayloadElementTryFromPayloadElementWithSerializeDeserializeUpperCamelCaseString {
-    fn payload_element_try_from_payload_element_with_serialize_deserialize_upper_camel_case_string(
+pub trait SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeUpperCamelCaseString {
+    fn self_payload_element_try_from_self_payload_element_with_serialize_deserialize_upper_camel_case_string(
         &self,
     ) -> std::string::String;
 }
 
-impl<T> PayloadElementTryFromPayloadElementWithSerializeDeserializeUpperCamelCaseString for T
+impl<T> SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeUpperCamelCaseString for T
 where
     T: ToUpperCamelCaseString,
 {
-    fn payload_element_try_from_payload_element_with_serialize_deserialize_upper_camel_case_string(
+    fn self_payload_element_try_from_self_payload_element_with_serialize_deserialize_upper_camel_case_string(
         &self,
     ) -> std::string::String {
         format!(
@@ -562,20 +562,20 @@ where
     }
 }
 
-pub trait PayloadElementTryFromPayloadElementWithSerializeDeserializeUpperCamelCaseTokenStream {
-    fn payload_element_try_from_payload_element_with_serialize_deserialize_upper_camel_case_token_stream(
+pub trait SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeUpperCamelCaseTokenStream {
+    fn self_payload_element_try_from_self_payload_element_with_serialize_deserialize_upper_camel_case_token_stream(
         &self,
     ) -> proc_macro2::TokenStream;
 }
 
-impl<T> PayloadElementTryFromPayloadElementWithSerializeDeserializeUpperCamelCaseTokenStream for T
+impl<T> SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeUpperCamelCaseTokenStream for T
 where
-    T: PayloadElementTryFromPayloadElementWithSerializeDeserializeUpperCamelCaseString,
+    T: SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeUpperCamelCaseString,
 {
-    fn payload_element_try_from_payload_element_with_serialize_deserialize_upper_camel_case_token_stream(
+    fn self_payload_element_try_from_self_payload_element_with_serialize_deserialize_upper_camel_case_token_stream(
         &self,
     ) -> proc_macro2::TokenStream {
-        let value_stringified = self.payload_element_try_from_payload_element_with_serialize_deserialize_upper_camel_case_string();
+        let value_stringified = self.self_payload_element_try_from_self_payload_element_with_serialize_deserialize_upper_camel_case_string();
         value_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
