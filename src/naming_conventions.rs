@@ -313,15 +313,15 @@ where
     }
 }
 
-pub trait PayloadTryFromPayloadWithSerializeDeserializeString {
-    fn payload_try_from_payload_with_serialize_deserialize_string(&self) -> std::string::String;
+pub trait SelfPayloadTryFromSelfPayloadWithSerializeDeserializeString {
+    fn self_payload_try_from_self_payload_with_serialize_deserialize_string(&self) -> std::string::String;
 }
 
-impl<T> PayloadTryFromPayloadWithSerializeDeserializeString for T
+impl<T> SelfPayloadTryFromSelfPayloadWithSerializeDeserializeString for T
 where
     T: ToUpperCamelCaseString,
 {
-    fn payload_try_from_payload_with_serialize_deserialize_string(&self) -> std::string::String {
+    fn self_payload_try_from_self_payload_with_serialize_deserialize_string(&self) -> std::string::String {
         format!(
             "{}{}{}{}{}{}{}",
             self.to_upper_camel_case_string(),
@@ -335,20 +335,20 @@ where
     }
 }
 
-pub trait PayloadTryFromPayloadWithSerializeDeserializeTokenStream {
-    fn payload_try_from_payload_with_serialize_deserialize_token_stream(
+pub trait SelfPayloadTryFromSelfPayloadWithSerializeDeserializeTokenStream {
+    fn self_payload_try_from_self_payload_with_serialize_deserialize_token_stream(
         &self,
     ) -> proc_macro2::TokenStream;
 }
 
-impl<T> PayloadTryFromPayloadWithSerializeDeserializeTokenStream for T
+impl<T> SelfPayloadTryFromSelfPayloadWithSerializeDeserializeTokenStream for T
 where
-    T: PayloadTryFromPayloadWithSerializeDeserializeString,
+    T: SelfPayloadTryFromSelfPayloadWithSerializeDeserializeString,
 {
-    fn payload_try_from_payload_with_serialize_deserialize_token_stream(
+    fn self_payload_try_from_self_payload_with_serialize_deserialize_token_stream(
         &self,
     ) -> proc_macro2::TokenStream {
-        let value_stringified = self.payload_try_from_payload_with_serialize_deserialize_string();
+        let value_stringified = self.self_payload_try_from_self_payload_with_serialize_deserialize_string();
         value_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
