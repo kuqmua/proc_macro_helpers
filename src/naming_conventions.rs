@@ -1,3 +1,4 @@
+// todo maybe use struct like struct Parameters<'a>(&'a str) and impl ToUpperCamelCaseString for it ?
 // todo maybe reqwrite it this way
 // trait InnerValue<'a> {
 //     fn inner_value() -> &'a str;
@@ -16,6 +17,13 @@
 // }
 pub const SUPPORTS_ONLY_STRINGIFIED: &str = "supports only";
 pub const SYN_FIELDS: &str = "syn::Fields";
+pub const SUPPORTED_CONTAINER_DOUBLE_DOT_DOUBLE_DOT: &str =
+    "proc_macro_helpers::error_occurence::supported_container::SupportedContainer::";
+pub const SUPPORTED_ENUM_VARIANT_STRINGIFIED: &str =
+    "proc_macro_helpers::error_occurence::supported_enum_variant::SuportedEnumVariant";
+pub const SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED: &str = "syn::GenericArgument::Type";
+pub const IS_NONE_STRINGIFIED: &str = "is None";
+
 
 const NAMED: &str = "named";
 pub fn named_upper_camel_case_stringified() -> std::string::String {
@@ -59,26 +67,50 @@ fn payload_upper_camel_case_stringified() -> std::string::String {
 fn payload_snake_case_stringified() -> std::string::String {
     ToSnakeCaseString::to_snake_case_string(&PAYLOAD)
 }
-
-
+const ELEMENT: &str = "element";
+fn element_upper_camel_case_stringified() -> std::string::String {
+    ToUpperCamelCaseString::to_upper_camel_case_string(&ELEMENT)
+}
+fn element_snake_case_stringified() -> std::string::String {
+    ToSnakeCaseString::to_snake_case_string(&ELEMENT)
+}
+const TRY: &str = "try";
+fn try_upper_camel_case_stringified() -> std::string::String {
+    ToUpperCamelCaseString::to_upper_camel_case_string(&TRY)
+}
+fn try_snake_case_stringified() -> std::string::String {
+    ToSnakeCaseString::to_snake_case_string(&TRY)
+}
+const FROM: &str = "from";
+fn from_upper_camel_case_stringified() -> std::string::String {
+    ToUpperCamelCaseString::to_upper_camel_case_string(&FROM)
+}
+fn from_snake_case_stringified() -> std::string::String {
+    ToSnakeCaseString::to_snake_case_string(&FROM)
+}
+const RESPONSE_VARIANTS: &str = "response_variants";
+fn response_variants_upper_camel_case_stringified() -> std::string::String {
+    ToUpperCamelCaseString::to_upper_camel_case_string(&RESPONSE_VARIANTS)
+}
+// fn response_variants_snake_case_stringified() -> std::string::String {
+//     ToSnakeCaseString::to_snake_case_string(&RESPONSE_VARIANTS)
+// }
+const WITH_SERIALIZE_DESERIALIZE: &str = "with_serialize_deserialize";
+fn with_serialize_deserialize_upper_camel_case_stringified() -> std::string::String {
+    ToUpperCamelCaseString::to_upper_camel_case_string(&WITH_SERIALIZE_DESERIALIZE)
+}
+fn with_serialize_deserialize_snake_case_stringified() -> std::string::String {
+    ToSnakeCaseString::to_snake_case_string(&WITH_SERIALIZE_DESERIALIZE)
+}
 
 pub const WITH_UPPER_CAMEL_CASE: &str = "With";
-
-
-
-pub const VEC_UPPER_CAMEL_CASE: &str = "Vec";
 pub const SERIALIZE_DESERIALIZE_UPPER_CAMEL_CASE: &str = "SerializeDeserialize";
+pub const VEC_UPPER_CAMEL_CASE: &str = "Vec";
 pub const HASHMAP_UPPER_CAMEL_CASE: &str = "HashMap";
 pub const KEY_UPPER_CAMEL_CASE: &str = "Key";
 pub const VALUE_UPPER_CAMEL_CASE: &str = "Value";
-pub const IS_NONE_STRINGIFIED: &str = "is None";
-pub const SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED: &str = "syn::GenericArgument::Type";
 pub const PATH_UPPER_CAMEL_CASE: &str = "Path";
 pub const REFERENCE_UPPER_CAMEL_CASE: &str = "Reference";
-pub const SUPPORTED_CONTAINER_DOUBLE_DOT_DOUBLE_DOT: &str =
-    "proc_macro_helpers::error_occurence::supported_container::SupportedContainer::";
-pub const SUPPORTED_ENUM_VARIANT_STRINGIFIED: &str =
-    "proc_macro_helpers::error_occurence::supported_enum_variant::SuportedEnumVariant";
 pub const STD_STRINGIFIED: &str = "std";
 
 pub fn unnamed_upper_camel_case() -> std::string::String {
@@ -211,53 +243,6 @@ where
         .unwrap_or_else(|_| panic!("{value_screaming_snake_case_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
 }
-
-//todo maybe use struct like struct Parameters<'a>(&'a str) and impl ToUpperCamelCaseString for it ?
-fn element_stringified() -> &'static str {
-    "element"
-}
-fn element_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&element_stringified())
-}
-fn element_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&element_stringified())
-}
-fn with_serialize_deserialize_stringified() -> &'static str {
-    "with_serialize_deserialize"
-}
-fn with_serialize_deserialize_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&with_serialize_deserialize_stringified())
-}
-fn with_serialize_deserialize_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&with_serialize_deserialize_stringified())
-}
-fn try_stringified() -> &'static str {
-    "try"
-}
-fn try_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&try_stringified())
-}
-fn try_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&try_stringified())
-}
-fn from_stringified() -> &'static str {
-    "From"
-}
-fn from_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&from_stringified())
-}
-fn from_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&from_stringified())
-}
-fn response_variants_stringified() -> &'static str {
-    "response_variants"
-}
-fn response_variants_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&response_variants_stringified())
-}
-// fn response_variants_snake_case_stringified() -> std::string::String {
-//     ToSnakeCaseString::to_snake_case_string(&response_variants_stringified())
-// }
 
 
 pub trait SelfParametersUpperCamelCaseTokenStream {
