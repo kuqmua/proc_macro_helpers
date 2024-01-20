@@ -163,9 +163,9 @@ pub fn error_occurence_upper_camel_case() -> std::string::String {
 pub fn error_occurence_snake_case() -> std::string::String {
     crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&error_occurence_upper_camel_case())
 }
-pub fn vec_snake_case() -> std::string::String {
-    crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&VEC)
-}
+// pub fn vec_snake_case() -> std::string::String {
+//     crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&VEC)
+// }
 pub fn hashmap_snake_case() -> std::string::String {
     crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&HASHMAP_UPPER_CAMEL_CASE)
 }

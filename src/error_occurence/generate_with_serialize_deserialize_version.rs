@@ -20,7 +20,7 @@ pub fn generate_with_serialize_deserialize_version(
     let with_serialize_deserialize_upper_camel_case =
         crate::naming_conventions::with_serialize_deserialize_upper_camel_case();
     // let error_occurence_snake_case = crate::naming_conventions::error_occurence_snake_case();
-    let vec_snake_case = crate::naming_conventions::vec_snake_case();
+    let vec_snake_case = crate::naming_conventions::vec_snake_case_stringified();
     let hashmap_snake_case = crate::naming_conventions::hashmap_snake_case();
     let key_snake_case = crate::naming_conventions::key_upper_camel_case_stringified();
     let value_snake_case = crate::naming_conventions::value_upper_camel_case_stringified();
