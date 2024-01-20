@@ -109,8 +109,6 @@ pub fn key_upper_camel_case_stringified() -> std::string::String {
 pub fn key_snake_case_stringified() -> std::string::String {
     ToSnakeCaseString::to_snake_case_string(&KEY)
 }
-//
-// pub const VALUE_UPPER_CAMEL_CASE: &str = "Value";
 const VALUE: &str = "value";
 pub fn value_upper_camel_case_stringified() -> std::string::String {
     ToUpperCamelCaseString::to_upper_camel_case_string(&VALUE)
@@ -118,7 +116,20 @@ pub fn value_upper_camel_case_stringified() -> std::string::String {
 pub fn value_snake_case_stringified() -> std::string::String {
     ToSnakeCaseString::to_snake_case_string(&VALUE)
 }
-//
+pub const VEC_UPPER_CAMEL_CASE: &str = "Vec";
+const VEC: &str = "vec";
+pub fn vec_upper_camel_case_stringified() -> std::string::String {
+    ToUpperCamelCaseString::to_upper_camel_case_string(&VEC)
+}
+pub fn vec_snake_case_stringified() -> std::string::String {
+    ToSnakeCaseString::to_snake_case_string(&VEC)
+}
+
+
+
+
+
+
 const WITH_SERIALIZE_DESERIALIZE: &str = "with_serialize_deserialize";
 pub fn with_serialize_deserialize_upper_camel_case_stringified() -> std::string::String {
     ToUpperCamelCaseString::to_upper_camel_case_string(&WITH_SERIALIZE_DESERIALIZE)
@@ -129,7 +140,6 @@ pub fn with_serialize_deserialize_snake_case_stringified() -> std::string::Strin
 
 pub const WITH_UPPER_CAMEL_CASE: &str = "With";
 pub const SERIALIZE_DESERIALIZE_UPPER_CAMEL_CASE: &str = "SerializeDeserialize";
-pub const VEC_UPPER_CAMEL_CASE: &str = "Vec";
 pub const HASHMAP_UPPER_CAMEL_CASE: &str = "HashMap";
 
 
@@ -155,14 +165,11 @@ pub fn error_occurence_snake_case() -> std::string::String {
     crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&error_occurence_upper_camel_case())
 }
 pub fn vec_snake_case() -> std::string::String {
-    crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&VEC_UPPER_CAMEL_CASE)
+    crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&VEC)
 }
 pub fn hashmap_snake_case() -> std::string::String {
     crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&HASHMAP_UPPER_CAMEL_CASE)
 }
-// pub fn value_snake_case() -> std::string::String {
-//     crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&value_upper_camel_case_stringified())
-// }
 pub fn syn_type_path_stringified() -> std::string::String {
     format!("syn::Type::{}", path_upper_camel_case_stringified())
 }
