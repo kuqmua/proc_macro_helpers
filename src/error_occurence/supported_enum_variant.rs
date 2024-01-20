@@ -16,7 +16,7 @@ pub fn create_supported_enum_variant(
         crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED,
         crate::naming_conventions::SYN_FIELDS,
         crate::naming_conventions::SYN_FIELDS,
-        crate::naming_conventions::NAMED_UPPER_CAMEL_CASE,
+        crate::naming_conventions::NAMED,
         crate::naming_conventions::unnamed_upper_camel_case()
     );
     data_enum

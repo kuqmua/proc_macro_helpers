@@ -1,4 +1,21 @@
-pub const NAMED_UPPER_CAMEL_CASE: &str = "Named";
+// todo maybe reqwrite it this way
+// trait InnerValue<'a> {
+//     fn inner_value() -> &'a str;
+// }
+
+// pub struct Named;
+// impl<'a> InnerValue<'a> for Named {
+//     fn inner_value() -> &'a str {
+//         "named"
+//     }
+// }
+// impl ToUpperCamelCaseString for Named {
+//     fn to_upper_camel_case_string(&self) -> std::string::String {
+//         convert_case::Casing::to_case(&Self::inner_value(), convert_case::Case::UpperCamel)
+//     }
+// }
+
+pub const NAMED: &str = "Named";
 pub const SUPPORTS_ONLY_STRINGIFIED: &str = "supports only";
 pub const SYN_FIELDS: &str = "syn::Fields";
 pub const ERROR_OCCURENCE_CASE: &str = "Error";
@@ -22,7 +39,7 @@ pub const SUPPORTED_ENUM_VARIANT_STRINGIFIED: &str =
 pub const STD_STRINGIFIED: &str = "std";
 
 pub fn named_snake_case() -> std::string::String {
-    crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&NAMED_UPPER_CAMEL_CASE)
+    crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&NAMED)
 }
 pub fn unnamed_upper_camel_case() -> std::string::String {
     format!("Un{}", named_snake_case())
