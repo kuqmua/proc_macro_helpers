@@ -400,15 +400,15 @@ where
     }
 }
 
-pub trait TryOperationSnakeCaseString {
-    fn try_operation_snake_case_string(&self) -> std::string::String;
+pub trait TrySelfSnakeCaseString {
+    fn try_self_snake_case_string(&self) -> std::string::String;
 }
 
-impl<T> TryOperationSnakeCaseString for T
+impl<T> TrySelfSnakeCaseString for T
 where
     T: ToSnakeCaseString,
 {
-    fn try_operation_snake_case_string(&self) -> std::string::String {
+    fn try_self_snake_case_string(&self) -> std::string::String {
         format!(
             "{}_{}",
             try_snake_case_stringified(),
@@ -417,16 +417,16 @@ where
     }
 }
 
-pub trait TryOperationSnakeCaseTokenStream {
-    fn try_operation_snake_case_token_stream(&self) -> proc_macro2::TokenStream;
+pub trait TrySelfSnakeCaseTokenStream {
+    fn try_self_snake_case_token_stream(&self) -> proc_macro2::TokenStream;
 }
 
-impl<T> TryOperationSnakeCaseTokenStream for T
+impl<T> TrySelfSnakeCaseTokenStream for T
 where
-    T: TryOperationSnakeCaseString,
+    T: TrySelfSnakeCaseString,
 {
-    fn try_operation_snake_case_token_stream(&self) -> proc_macro2::TokenStream {
-        let value_stringified = self.try_operation_snake_case_string();
+    fn try_self_snake_case_token_stream(&self) -> proc_macro2::TokenStream {
+        let value_stringified = self.try_self_snake_case_string();
         value_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
