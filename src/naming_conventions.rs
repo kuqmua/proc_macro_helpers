@@ -138,21 +138,49 @@ pub fn reference_upper_camel_case_stringified() -> std::string::String {
 pub fn reference_snake_case_stringified() -> std::string::String {
     ToSnakeCaseString::to_snake_case_string(&REFERENCE)
 }
-// pub const WITH_UPPER_CAMEL_CASE: &str = "With";
-const WITH: &str = "With";
+const WITH: &str = "with";
 pub fn with_upper_camel_case_stringified() -> std::string::String {
     ToUpperCamelCaseString::to_upper_camel_case_string(&WITH)
 }
 pub fn with_snake_case_stringified() -> std::string::String {
     ToSnakeCaseString::to_snake_case_string(&WITH)
 }
+const SERIALIZE: &str = "serialize";
+pub fn serialize_upper_camel_case_stringified() -> std::string::String {
+    ToUpperCamelCaseString::to_upper_camel_case_string(&WITH)
+}
+pub fn serialize_snake_case_stringified() -> std::string::String {
+    ToSnakeCaseString::to_snake_case_string(&WITH)
+}
+const DESERIALIZE: &str = "deserialize";
+pub fn deserialize_upper_camel_case_stringified() -> std::string::String {
+    ToUpperCamelCaseString::to_upper_camel_case_string(&DESERIALIZE)
+}
+pub fn deserialize_snake_case_stringified() -> std::string::String {
+    ToSnakeCaseString::to_snake_case_string(&DESERIALIZE)
+}
+
+
+
 
 const WITH_SERIALIZE_DESERIALIZE: &str = "with_serialize_deserialize";
 pub fn with_serialize_deserialize_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&WITH_SERIALIZE_DESERIALIZE)
+    // ToUpperCamelCaseString::to_upper_camel_case_string(&WITH_SERIALIZE_DESERIALIZE)
+    format!(
+        "{}{}{}",
+        with_upper_camel_case_stringified(),
+        serialize_upper_camel_case_stringified(),
+        deserialize_upper_camel_case_stringified()
+    )
 }
 pub fn with_serialize_deserialize_snake_case_stringified() -> std::string::String {
-    ToSnakeCaseString::to_snake_case_string(&WITH_SERIALIZE_DESERIALIZE)
+    // ToSnakeCaseString::to_snake_case_string(&WITH_SERIALIZE_DESERIALIZE)
+    format!(
+        "{}_{}_{}",
+        with_snake_case_stringified(),
+        serialize_snake_case_stringified(),
+        deserialize_snake_case_stringified()
+    )
 }
 
 
@@ -162,11 +190,23 @@ pub const SERIALIZE_DESERIALIZE_UPPER_CAMEL_CASE: &str = "SerializeDeserialize";
 
 pub fn with_serialize_deserialize_upper_camel_case() -> std::string::String {
     format!("{}{}", with_upper_camel_case_stringified(), SERIALIZE_DESERIALIZE_UPPER_CAMEL_CASE)
+    // format!(
+    //     "{}{}{}",
+    //     with_upper_camel_case_stringified(),
+    //     serialize_upper_camel_case_stringified(),
+    //     deserialize_upper_camel_case_stringified()
+    // )
 }
 pub fn with_serialize_deserialize_snake_case() -> std::string::String {
     crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(
         &with_serialize_deserialize_upper_camel_case(),
     )
+    // format!(
+    //     "{}_{}_{}",
+    //     with_snake_case_stringified(),
+    //     serialize_snake_case_stringified(),
+    //     deserialize_snake_case_stringified()
+    // )
 }
 
 
