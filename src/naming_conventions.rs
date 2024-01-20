@@ -581,17 +581,17 @@ where
     }
 }
 
-pub trait PayloadElementTryFromPayloadElementWithSerializeDeserializeSnakeCaseString {
-    fn payload_element_try_from_payload_element_with_serialize_deserialize_snake_sase_string(
+pub trait SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeSnakeCaseString {
+    fn self_payload_element_try_from_self_payload_element_with_serialize_deserialize_snake_sase_string(
         &self,
     ) -> std::string::String;
 }
 
-impl<T> PayloadElementTryFromPayloadElementWithSerializeDeserializeSnakeCaseString for T
+impl<T> SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeSnakeCaseString for T
 where
     T: ToSnakeCaseString,
 {
-    fn payload_element_try_from_payload_element_with_serialize_deserialize_snake_sase_string(
+    fn self_payload_element_try_from_self_payload_element_with_serialize_deserialize_snake_sase_string(
         &self,
     ) -> std::string::String {
         format!(
@@ -609,21 +609,21 @@ where
     }
 }
 
-pub trait PayloadElementTryFromPayloadElementWithSerializeDeserializeSnakeCaseTokenStream {
-    fn payload_element_try_from_payload_element_with_serialize_deserialize_snake_sase_token_stream(
+pub trait SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeSnakeCaseTokenStream {
+    fn self_payload_element_try_from_self_payload_element_with_serialize_deserialize_snake_sase_token_stream(
         &self,
     ) -> proc_macro2::TokenStream;
 }
 
-impl<T> PayloadElementTryFromPayloadElementWithSerializeDeserializeSnakeCaseTokenStream for T
+impl<T> SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeSnakeCaseTokenStream for T
 where
-    T: PayloadElementTryFromPayloadElementWithSerializeDeserializeSnakeCaseString,
+    T: SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeSnakeCaseString,
 {
-    fn payload_element_try_from_payload_element_with_serialize_deserialize_snake_sase_token_stream(
+    fn self_payload_element_try_from_self_payload_element_with_serialize_deserialize_snake_sase_token_stream(
         &self,
     ) -> proc_macro2::TokenStream {
         let value_stringified = self
-            .payload_element_try_from_payload_element_with_serialize_deserialize_snake_sase_string(
+            .self_payload_element_try_from_self_payload_element_with_serialize_deserialize_snake_sase_string(
             );
         value_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
