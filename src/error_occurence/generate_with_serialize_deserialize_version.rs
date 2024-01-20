@@ -540,7 +540,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
     let hashmap_value_type_stringified = format!(
         "{}{}{type_upper_camel_case}",
         crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE,
-        crate::naming_conventions::VALUE_UPPER_CAMEL_CASE
+        crate::naming_conventions::value_upper_camel_case_stringified()
     );
     let hashmap_value_type_path_stringified = format!(
         "{hashmap_value_type_stringified}::{}",
