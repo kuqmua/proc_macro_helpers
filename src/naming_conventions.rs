@@ -14,6 +14,8 @@
 //         convert_case::Casing::to_case(&Self::inner_value(), convert_case::Case::UpperCamel)
 //     }
 // }
+pub const SUPPORTS_ONLY_STRINGIFIED: &str = "supports only";
+pub const SYN_FIELDS: &str = "syn::Fields";
 
 const NAMED: &str = "named";
 pub fn named_upper_camel_case_stringified() -> std::string::String {
@@ -22,9 +24,15 @@ pub fn named_upper_camel_case_stringified() -> std::string::String {
 pub fn named_snake_case_stringified() -> std::string::String {
     ToSnakeCaseString::to_snake_case_string(&NAMED)
 }
-pub const SUPPORTS_ONLY_STRINGIFIED: &str = "supports only";
-pub const SYN_FIELDS: &str = "syn::Fields";
-pub const ERROR_OCCURENCE_CASE: &str = "Error";
+const ERROR: &str = "error";
+pub fn error_upper_camel_case_stringified() -> std::string::String {
+    ToUpperCamelCaseString::to_upper_camel_case_string(&ERROR)
+}
+pub fn error_snake_case_stringified() -> std::string::String {
+    ToSnakeCaseString::to_snake_case_string(&ERROR)
+}
+
+
 pub const OCCURENCE_UPPER_CAMEL_CASE: &str = "Occurence";
 pub const VEC_UPPER_CAMEL_CASE: &str = "Vec";
 pub const SERIALIZE_DESERIALIZE_UPPER_CAMEL_CASE: &str = "SerializeDeserialize";
@@ -56,7 +64,7 @@ pub fn with_serialize_deserialize_snake_case() -> std::string::String {
     )
 }
 pub fn error_occurence_upper_camel_case() -> std::string::String {
-    format!("{}{}", ERROR_OCCURENCE_CASE, OCCURENCE_UPPER_CAMEL_CASE)
+    format!("{}{}", error_upper_camel_case_stringified(), OCCURENCE_UPPER_CAMEL_CASE)
 }
 pub fn error_occurence_snake_case() -> std::string::String {
     crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&error_occurence_upper_camel_case())
@@ -239,16 +247,6 @@ fn response_variants_upper_camel_case_stringified() -> std::string::String {
 // fn response_variants_snake_case_stringified() -> std::string::String {
 //     ToSnakeCaseString::to_snake_case_string(&response_variants_stringified())
 // }
-fn error_stringified() -> &'static str {
-    "error"
-}
-fn error_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&error_stringified())
-}
-// fn error_snake_case_stringified() -> std::string::String {
-//     ToSnakeCaseString::to_snake_case_string(&error_stringified())
-// }
-
 
 
 pub trait SelfParametersUpperCamelCaseTokenStream {
