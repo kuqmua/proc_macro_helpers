@@ -160,9 +160,9 @@ pub fn vec_snake_case() -> std::string::String {
 pub fn hashmap_snake_case() -> std::string::String {
     crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&HASHMAP_UPPER_CAMEL_CASE)
 }
-pub fn value_snake_case() -> std::string::String {
-    crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&value_upper_camel_case_stringified())
-}
+// pub fn value_snake_case() -> std::string::String {
+//     crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&value_upper_camel_case_stringified())
+// }
 pub fn syn_type_path_stringified() -> std::string::String {
     format!("syn::Type::{}", path_upper_camel_case_stringified())
 }

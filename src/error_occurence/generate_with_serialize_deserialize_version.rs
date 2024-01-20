@@ -23,7 +23,7 @@ pub fn generate_with_serialize_deserialize_version(
     let vec_snake_case = crate::naming_conventions::vec_snake_case();
     let hashmap_snake_case = crate::naming_conventions::hashmap_snake_case();
     let key_snake_case = crate::naming_conventions::key_upper_camel_case_stringified();
-    let value_snake_case = crate::naming_conventions::value_snake_case();
+    let value_snake_case = crate::naming_conventions::value_upper_camel_case_stringified();
     let syn_type_path_stringified = crate::naming_conventions::syn_type_path_stringified();
     let token_stream = match supported_enum_variant {
         crate::error_occurence::supported_enum_variant::SuportedEnumVariant::Named => {
