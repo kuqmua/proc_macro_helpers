@@ -289,17 +289,17 @@ where
     }
 }
 
-pub trait PayloadWithSerializeDeserializeUpperCamelCaseTokenStream {
-    fn payload_with_serialize_deserialize_upper_camel_case_token_stream(
+pub trait SelfPayloadWithSerializeDeserializeUpperCamelCaseTokenStream {
+    fn self_payload_with_serialize_deserialize_upper_camel_case_token_stream(
         &self,
     ) -> proc_macro2::TokenStream;
 }
 
-impl<T> PayloadWithSerializeDeserializeUpperCamelCaseTokenStream for T
+impl<T> SelfPayloadWithSerializeDeserializeUpperCamelCaseTokenStream for T
 where
     T: ToUpperCamelCaseString,
 {
-    fn payload_with_serialize_deserialize_upper_camel_case_token_stream(
+    fn self_payload_with_serialize_deserialize_upper_camel_case_token_stream(
         &self,
     ) -> proc_macro2::TokenStream {
         let value = format!(
