@@ -15,7 +15,17 @@
 //     }
 // }
 
-pub const NAMED: &str = "Named";
+const NAMED: &str = "Named";
+const NAMEDF: &str = "named";
+fn named_stringified() -> &'static str {
+    "named"
+}
+pub fn named_upper_camel_case_stringified() -> std::string::String {
+    ToUpperCamelCaseString::to_upper_camel_case_string(&NAMEDF)
+}
+// fn named_snake_case_stringified() -> std::string::String {
+//     ToSnakeCaseString::to_snake_case_string(&NAMEDF)
+// }
 pub const SUPPORTS_ONLY_STRINGIFIED: &str = "supports only";
 pub const SYN_FIELDS: &str = "syn::Fields";
 pub const ERROR_OCCURENCE_CASE: &str = "Error";
@@ -245,15 +255,9 @@ fn error_upper_camel_case_stringified() -> std::string::String {
 // fn error_snake_case_stringified() -> std::string::String {
 //     ToSnakeCaseString::to_snake_case_string(&error_stringified())
 // }
-fn named_stringified() -> &'static str {
-    "named"
-}
-fn named_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&named_stringified())
-}
-// fn named_snake_case_stringified() -> std::string::String {
-//     ToSnakeCaseString::to_snake_case_string(&named_stringified())
-// }
+
+
+
 pub trait SelfParametersUpperCamelCaseTokenStream {
     fn self_parameters_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream;
 }
