@@ -334,10 +334,10 @@ fn inform_use_str_string_in_different_attribute(
     else if path == string_string_stringified {
         panic!("{proc_macro_name_ident_stringified} {wrong_attribute_view} {string_string_stringified} {must_be_used_with_stringified} {attribute_to_use_view}");
     }
-    else if path == crate::naming_conventions::STRING_UPPER_CAMEL_CASE {
+    else if path == crate::naming_conventions::string_upper_camel_case_stringified() {
         panic!(
             "{proc_macro_name_ident_stringified} {wrong_attribute_view} {} {must_be_used_with_stringified} {attribute_to_use_view}",
-            crate::naming_conventions::STRING_UPPER_CAMEL_CASE
+            crate::naming_conventions::string_upper_camel_case_stringified()
         );
     }
 }
@@ -356,13 +356,13 @@ fn attribute_supported_container_inform_use_str_string_in_different_attribute(
     let string_string_stringified: String = format!(
         "{}::{}",
         crate::naming_conventions::STRING_SNAKE_CASE,
-        crate::naming_conventions::STRING_UPPER_CAMEL_CASE,
+        crate::naming_conventions::string_upper_camel_case_stringified(),
     );
     let std_string_string_stringified = format!(
         "{}::{}::{}",
         crate::naming_conventions::STD_STRINGIFIED,
         crate::naming_conventions::STRING_SNAKE_CASE,
-        crate::naming_conventions::STRING_UPPER_CAMEL_CASE
+        crate::naming_conventions::string_upper_camel_case_stringified()
     );
     match attribute {
         crate::error_occurence::named_attribute::NamedAttribute::EoDisplay => {
@@ -526,7 +526,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
         "{}::{}::{}",
         crate::naming_conventions::STD_STRINGIFIED,
         crate::naming_conventions::STRING_SNAKE_CASE,
-        crate::naming_conventions::STRING_UPPER_CAMEL_CASE
+        crate::naming_conventions::string_upper_camel_case_stringified()
     );
     let std_string_string_token_stream = std_string_string_stringified
     .parse::<proc_macro2::TokenStream>()

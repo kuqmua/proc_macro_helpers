@@ -31,12 +31,19 @@ pub fn error_upper_camel_case_stringified() -> std::string::String {
 pub fn error_snake_case_stringified() -> std::string::String {
     ToSnakeCaseString::to_snake_case_string(&ERROR)
 }
-const OCCURENCE: &str = "Occurence";
+const OCCURENCE: &str = "occurence";
 pub fn occurence_upper_camel_case_stringified() -> std::string::String {
     ToUpperCamelCaseString::to_upper_camel_case_string(&OCCURENCE)
 }
 pub fn occurence_snake_case_stringified() -> std::string::String {
     ToSnakeCaseString::to_snake_case_string(&OCCURENCE)
+}
+const STRING: &str = "string";
+pub fn string_upper_camel_case_stringified() -> std::string::String {
+    ToUpperCamelCaseString::to_upper_camel_case_string(&STRING)
+}
+pub fn string_snake_case_stringified() -> std::string::String {
+    ToSnakeCaseString::to_snake_case_string(&STRING)
 }
 
 
@@ -50,7 +57,7 @@ pub const IS_NONE_STRINGIFIED: &str = "is None";
 pub const SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED: &str = "syn::GenericArgument::Type";
 pub const PATH_UPPER_CAMEL_CASE: &str = "Path";
 pub const REFERENCE_UPPER_CAMEL_CASE: &str = "Reference";
-pub const STRING_UPPER_CAMEL_CASE: &str = "String";
+// pub const STRING_UPPER_CAMEL_CASE: &str = "String";
 pub const STRING_SNAKE_CASE: &str = "string";
 pub const SUPPORTED_CONTAINER_DOUBLE_DOT_DOUBLE_DOT: &str =
     "proc_macro_helpers::error_occurence::supported_container::SupportedContainer::";
