@@ -548,7 +548,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
     );
     let hashmap_value_type_reference_stringified = format!(
         "{hashmap_value_type_stringified}::{}",
-        crate::naming_conventions::REFERENCE_UPPER_CAMEL_CASE
+        crate::naming_conventions::reference_upper_camel_case_stringified()
     );
     let hashmap_key_type_stringified = format!(
         "{}{}{type_upper_camel_case}",
@@ -561,7 +561,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
     );
     let hashmap_key_type_reference_stringified = format!(
         "{hashmap_key_type_stringified}::{}",
-        crate::naming_conventions::REFERENCE_UPPER_CAMEL_CASE
+        crate::naming_conventions::reference_upper_camel_case_stringified()
     );
     let vec_element_type_path_stringified = format!(
         "crate::error_occurence::vec_element_type::VecElementType::{}",
@@ -610,7 +610,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                     crate::naming_conventions::SUPPORTED_CONTAINER_DOUBLE_DOT_DOUBLE_DOT,
                     crate::naming_conventions::path_upper_camel_case_stringified(),
                     crate::naming_conventions::SUPPORTED_CONTAINER_DOUBLE_DOT_DOUBLE_DOT,
-                    crate::naming_conventions::REFERENCE_UPPER_CAMEL_CASE
+                    crate::naming_conventions::reference_upper_camel_case_stringified()
                 ),
             }
         },
@@ -1738,7 +1738,7 @@ pub fn generate_supported_container(
     let syn_type_path_stringified = crate::naming_conventions::syn_type_path_stringified();
     let syn_type_reference = format!(
         "syn::Type::{}",
-        crate::naming_conventions::REFERENCE_UPPER_CAMEL_CASE
+        crate::naming_conventions::reference_upper_camel_case_stringified()
     );
     let error_message = format!(
         "{} {syn_type_path_stringified} and {syn_type_reference}",

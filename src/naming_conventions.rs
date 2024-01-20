@@ -23,7 +23,7 @@ pub const SUPPORTED_ENUM_VARIANT_STRINGIFIED: &str =
     "proc_macro_helpers::error_occurence::supported_enum_variant::SuportedEnumVariant";
 pub const SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED: &str = "syn::GenericArgument::Type";
 pub const IS_NONE_STRINGIFIED: &str = "is None";
-
+pub const STD_STRINGIFIED: &str = "std";
 
 const NAMED: &str = "named";
 pub fn named_upper_camel_case_stringified() -> std::string::String {
@@ -131,8 +131,13 @@ pub fn hashmap_snake_case_stringified() -> std::string::String {
     //naming exception - 
     std::string::String::from("hashmap")
 }
-
-
+const REFERENCE: &str = "reference";
+pub fn reference_upper_camel_case_stringified() -> std::string::String {
+    ToUpperCamelCaseString::to_upper_camel_case_string(&REFERENCE)
+}
+pub fn reference_snake_case_stringified() -> std::string::String {
+    ToSnakeCaseString::to_snake_case_string(&REFERENCE)
+}
 
 
 const WITH_SERIALIZE_DESERIALIZE: &str = "with_serialize_deserialize";
@@ -149,8 +154,8 @@ pub const SERIALIZE_DESERIALIZE_UPPER_CAMEL_CASE: &str = "SerializeDeserialize";
 
 
 
-pub const REFERENCE_UPPER_CAMEL_CASE: &str = "Reference";
-pub const STD_STRINGIFIED: &str = "std";
+
+
 
 pub fn unnamed_upper_camel_case() -> std::string::String {
     format!("Un{}", named_snake_case_stringified())
