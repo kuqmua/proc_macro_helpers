@@ -544,7 +544,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
     );
     let hashmap_value_type_path_stringified = format!(
         "{hashmap_value_type_stringified}::{}",
-        crate::naming_conventions::PATH_UPPER_CAMEL_CASE
+        crate::naming_conventions::path_upper_camel_case_stringified()
     );
     let hashmap_value_type_reference_stringified = format!(
         "{hashmap_value_type_stringified}::{}",
@@ -557,7 +557,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
     );
     let hashmap_key_type_path_stringified = format!(
         "{hashmap_key_type_stringified}::{}",
-        crate::naming_conventions::PATH_UPPER_CAMEL_CASE
+        crate::naming_conventions::path_upper_camel_case_stringified()
     );
     let hashmap_key_type_reference_stringified = format!(
         "{hashmap_key_type_stringified}::{}",
@@ -565,7 +565,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
     );
     let vec_element_type_path_stringified = format!(
         "crate::error_occurence::vec_element_type::VecElementType::{}",
-        crate::naming_conventions::PATH_UPPER_CAMEL_CASE
+        crate::naming_conventions::path_upper_camel_case_stringified()
     );
     match attribute {
         crate::error_occurence::named_attribute::NamedAttribute::EoDisplay => {
@@ -580,7 +580,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                     attribute.attribute_view_stringified(),
                     crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED,
                     crate::naming_conventions::SUPPORTED_CONTAINER_DOUBLE_DOT_DOUBLE_DOT,
-                    crate::naming_conventions::PATH_UPPER_CAMEL_CASE
+                    crate::naming_conventions::path_upper_camel_case_stringified()
                 )
             }
         },
@@ -608,7 +608,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                     "{proc_macro_name_ident_stringified} {} only supports {}{} and {}{}", 
                     attribute.attribute_view_stringified(),
                     crate::naming_conventions::SUPPORTED_CONTAINER_DOUBLE_DOT_DOUBLE_DOT,
-                    crate::naming_conventions::PATH_UPPER_CAMEL_CASE,
+                    crate::naming_conventions::path_upper_camel_case_stringified(),
                     crate::naming_conventions::SUPPORTED_CONTAINER_DOUBLE_DOT_DOUBLE_DOT,
                     crate::naming_conventions::REFERENCE_UPPER_CAMEL_CASE
                 ),
@@ -620,7 +620,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::naming_conventions::PATH_UPPER_CAMEL_CASE
+                    crate::naming_conventions::path_upper_camel_case_stringified()
                 );
             }
             quote::quote! {
@@ -640,7 +640,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::naming_conventions::PATH_UPPER_CAMEL_CASE
+                    crate::naming_conventions::path_upper_camel_case_stringified()
                 );
             }
         },
@@ -657,7 +657,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::naming_conventions::PATH_UPPER_CAMEL_CASE
+                    crate::naming_conventions::path_upper_camel_case_stringified()
                 );
             }
         },

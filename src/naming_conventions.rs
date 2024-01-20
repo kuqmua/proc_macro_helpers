@@ -54,52 +54,62 @@ pub fn string_snake_case_stringified() -> std::string::String {
     ToSnakeCaseString::to_snake_case_string(&STRING)
 }
 const PARAMETERS: &str = "parameters";
-fn parameters_upper_camel_case_stringified() -> std::string::String {
+pub fn parameters_upper_camel_case_stringified() -> std::string::String {
     ToUpperCamelCaseString::to_upper_camel_case_string(&PARAMETERS)
 }
-// fn parameters_snake_case_stringified() -> std::string::String {
+// pub fn parameters_snake_case_stringified() -> std::string::String {
 //     ToSnakeCaseString::to_snake_case_string(&PARAMETERS)
 // }
 const PAYLOAD: &str = "payload";
-fn payload_upper_camel_case_stringified() -> std::string::String {
+pub fn payload_upper_camel_case_stringified() -> std::string::String {
     ToUpperCamelCaseString::to_upper_camel_case_string(&PAYLOAD)
 }
-fn payload_snake_case_stringified() -> std::string::String {
+pub fn payload_snake_case_stringified() -> std::string::String {
     ToSnakeCaseString::to_snake_case_string(&PAYLOAD)
 }
 const ELEMENT: &str = "element";
-fn element_upper_camel_case_stringified() -> std::string::String {
+pub fn element_upper_camel_case_stringified() -> std::string::String {
     ToUpperCamelCaseString::to_upper_camel_case_string(&ELEMENT)
 }
-fn element_snake_case_stringified() -> std::string::String {
+pub fn element_snake_case_stringified() -> std::string::String {
     ToSnakeCaseString::to_snake_case_string(&ELEMENT)
 }
 const TRY: &str = "try";
-fn try_upper_camel_case_stringified() -> std::string::String {
+pub fn try_upper_camel_case_stringified() -> std::string::String {
     ToUpperCamelCaseString::to_upper_camel_case_string(&TRY)
 }
-fn try_snake_case_stringified() -> std::string::String {
+pub fn try_snake_case_stringified() -> std::string::String {
     ToSnakeCaseString::to_snake_case_string(&TRY)
 }
 const FROM: &str = "from";
-fn from_upper_camel_case_stringified() -> std::string::String {
+pub fn from_upper_camel_case_stringified() -> std::string::String {
     ToUpperCamelCaseString::to_upper_camel_case_string(&FROM)
 }
-fn from_snake_case_stringified() -> std::string::String {
+pub fn from_snake_case_stringified() -> std::string::String {
     ToSnakeCaseString::to_snake_case_string(&FROM)
 }
 const RESPONSE_VARIANTS: &str = "response_variants";
-fn response_variants_upper_camel_case_stringified() -> std::string::String {
+pub fn response_variants_upper_camel_case_stringified() -> std::string::String {
     ToUpperCamelCaseString::to_upper_camel_case_string(&RESPONSE_VARIANTS)
 }
-// fn response_variants_snake_case_stringified() -> std::string::String {
+// pub fn response_variants_snake_case_stringified() -> std::string::String {
 //     ToSnakeCaseString::to_snake_case_string(&RESPONSE_VARIANTS)
 // }
+//
+// pub const PATH_UPPER_CAMEL_CASE: &str = "Path";
+const PATH: &str = "path";
+pub fn path_upper_camel_case_stringified() -> std::string::String {
+    ToUpperCamelCaseString::to_upper_camel_case_string(&PATH)
+}
+pub fn path_snake_case_stringified() -> std::string::String {
+    ToSnakeCaseString::to_snake_case_string(&PATH)
+}
+//
 const WITH_SERIALIZE_DESERIALIZE: &str = "with_serialize_deserialize";
-fn with_serialize_deserialize_upper_camel_case_stringified() -> std::string::String {
+pub fn with_serialize_deserialize_upper_camel_case_stringified() -> std::string::String {
     ToUpperCamelCaseString::to_upper_camel_case_string(&WITH_SERIALIZE_DESERIALIZE)
 }
-fn with_serialize_deserialize_snake_case_stringified() -> std::string::String {
+pub fn with_serialize_deserialize_snake_case_stringified() -> std::string::String {
     ToSnakeCaseString::to_snake_case_string(&WITH_SERIALIZE_DESERIALIZE)
 }
 
@@ -109,7 +119,7 @@ pub const VEC_UPPER_CAMEL_CASE: &str = "Vec";
 pub const HASHMAP_UPPER_CAMEL_CASE: &str = "HashMap";
 pub const KEY_UPPER_CAMEL_CASE: &str = "Key";
 pub const VALUE_UPPER_CAMEL_CASE: &str = "Value";
-pub const PATH_UPPER_CAMEL_CASE: &str = "Path";
+
 pub const REFERENCE_UPPER_CAMEL_CASE: &str = "Reference";
 pub const STD_STRINGIFIED: &str = "std";
 
@@ -143,7 +153,7 @@ pub fn value_snake_case() -> std::string::String {
     crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&VALUE_UPPER_CAMEL_CASE)
 }
 pub fn syn_type_path_stringified() -> std::string::String {
-    format!("syn::Type::{}", PATH_UPPER_CAMEL_CASE)
+    format!("syn::Type::{}", path_upper_camel_case_stringified())
 }
 pub fn supports_only_supported_container_stringified() -> std::string::String {
     format!(
