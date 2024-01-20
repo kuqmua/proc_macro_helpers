@@ -31,9 +31,15 @@ pub fn error_upper_camel_case_stringified() -> std::string::String {
 pub fn error_snake_case_stringified() -> std::string::String {
     ToSnakeCaseString::to_snake_case_string(&ERROR)
 }
+const OCCURENCE: &str = "Occurence";
+pub fn occurence_upper_camel_case_stringified() -> std::string::String {
+    ToUpperCamelCaseString::to_upper_camel_case_string(&OCCURENCE)
+}
+pub fn occurence_snake_case_stringified() -> std::string::String {
+    ToSnakeCaseString::to_snake_case_string(&OCCURENCE)
+}
 
 
-pub const OCCURENCE_UPPER_CAMEL_CASE: &str = "Occurence";
 pub const VEC_UPPER_CAMEL_CASE: &str = "Vec";
 pub const SERIALIZE_DESERIALIZE_UPPER_CAMEL_CASE: &str = "SerializeDeserialize";
 pub const WITH_UPPER_CAMEL_CASE: &str = "With";
@@ -64,7 +70,7 @@ pub fn with_serialize_deserialize_snake_case() -> std::string::String {
     )
 }
 pub fn error_occurence_upper_camel_case() -> std::string::String {
-    format!("{}{}", error_upper_camel_case_stringified(), OCCURENCE_UPPER_CAMEL_CASE)
+    format!("{}{}", error_upper_camel_case_stringified(), occurence_upper_camel_case_stringified())
 }
 pub fn error_occurence_snake_case() -> std::string::String {
     crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&error_occurence_upper_camel_case())

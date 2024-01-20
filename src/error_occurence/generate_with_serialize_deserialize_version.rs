@@ -29,7 +29,7 @@ pub fn generate_with_serialize_deserialize_version(
         crate::error_occurence::supported_enum_variant::SuportedEnumVariant::Named => {
             let code_occurence_upper_camel_case = format!(
                 "Code{}",
-                crate::naming_conventions::OCCURENCE_UPPER_CAMEL_CASE
+                crate::naming_conventions::occurence_upper_camel_case_stringified()
             );
             let foreign_type_upper_camel_case = "ForeignType";
             let display_upper_camel_case = "Display";
