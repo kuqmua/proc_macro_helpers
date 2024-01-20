@@ -501,15 +501,15 @@ where
     }
 }
 
-pub trait PayloadElementUpperCamelCaseString {
-    fn payload_element_upper_camel_case_string(&self) -> std::string::String;
+pub trait SelfPayloadElementUpperCamelCaseString {
+    fn self_payload_element_upper_camel_case_string(&self) -> std::string::String;
 }
 
-impl<T> PayloadElementUpperCamelCaseString for T
+impl<T> SelfPayloadElementUpperCamelCaseString for T
 where
     T: ToUpperCamelCaseString,
 {
-    fn payload_element_upper_camel_case_string(&self) -> std::string::String {
+    fn self_payload_element_upper_camel_case_string(&self) -> std::string::String {
         format!(
             "{}{}{}",
             self.to_upper_camel_case_string(),
@@ -519,16 +519,16 @@ where
     }
 }
 
-pub trait PayloadElementUpperCamelCaseTokenStream {
-    fn payload_element_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream;
+pub trait SelfPayloadElementUpperCamelCaseTokenStream {
+    fn self_payload_element_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream;
 }
 
-impl<T> PayloadElementUpperCamelCaseTokenStream for T
+impl<T> SelfPayloadElementUpperCamelCaseTokenStream for T
 where
-    T: PayloadElementUpperCamelCaseString,
+    T: SelfPayloadElementUpperCamelCaseString,
 {
-    fn payload_element_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream {
-        let value_stringified = self.payload_element_upper_camel_case_string();
+    fn self_payload_element_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream {
+        let value_stringified = self.self_payload_element_upper_camel_case_string();
         value_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
