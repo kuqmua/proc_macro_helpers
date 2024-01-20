@@ -21,7 +21,7 @@ pub fn generate_with_serialize_deserialize_version(
         crate::naming_conventions::with_serialize_deserialize_upper_camel_case();
     // let error_occurence_snake_case = crate::naming_conventions::error_occurence_snake_case();
     let vec_snake_case = crate::naming_conventions::vec_snake_case_stringified();
-    let hashmap_snake_case = crate::naming_conventions::hashmap_snake_case();
+    let hashmap_snake_case = crate::naming_conventions::hashmap_snake_case_stringified();
     let key_snake_case = crate::naming_conventions::key_upper_camel_case_stringified();
     let value_snake_case = crate::naming_conventions::value_upper_camel_case_stringified();
     let syn_type_path_stringified = crate::naming_conventions::syn_type_path_stringified();
@@ -534,12 +534,12 @@ pub fn generate_field_type_with_serialize_deserialize_version(
     let as_std_collections_hashmap_key_type_stringified = format!(
         "as {}::collections::{} key type",
         crate::naming_conventions::STD_STRINGIFIED,
-        crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE
+        crate::naming_conventions::hashmap_upper_camel_case_stringified()
     );
     let type_upper_camel_case = "Type";
     let hashmap_value_type_stringified = format!(
         "{}{}{type_upper_camel_case}",
-        crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE,
+        crate::naming_conventions::hashmap_upper_camel_case_stringified(),
         crate::naming_conventions::value_upper_camel_case_stringified()
     );
     let hashmap_value_type_path_stringified = format!(
@@ -553,7 +553,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
     let hashmap_key_type_stringified = format!(
         "{}{}{type_upper_camel_case}",
         crate::naming_conventions::key_upper_camel_case_stringified(),
-        crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE
+        crate::naming_conventions::hashmap_upper_camel_case_stringified()
     );
     let hashmap_key_type_path_stringified = format!(
         "{hashmap_key_type_stringified}::{}",
@@ -895,7 +895,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE
+                    crate::naming_conventions::hashmap_upper_camel_case_stringified()
                 );
             };
             type_token_stream
@@ -1035,7 +1035,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE
+                    crate::naming_conventions::hashmap_upper_camel_case_stringified()
                 );
             }
         },
@@ -1116,7 +1116,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE
+                    crate::naming_conventions::hashmap_upper_camel_case_stringified()
                 );
             }
         },
@@ -1209,7 +1209,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE
+                    crate::naming_conventions::hashmap_upper_camel_case_stringified()
                 );
             }
         },
@@ -1302,7 +1302,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE
+                    crate::naming_conventions::hashmap_upper_camel_case_stringified()
                 );
             }
         },
@@ -1367,7 +1367,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE
+                    crate::naming_conventions::hashmap_upper_camel_case_stringified()
                 );
             };
             type_token_stream
@@ -1449,7 +1449,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE
+                    crate::naming_conventions::hashmap_upper_camel_case_stringified()
                 );
             }
         },
@@ -1511,7 +1511,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE
+                    crate::naming_conventions::hashmap_upper_camel_case_stringified()
                 );
             }
         },
@@ -1576,7 +1576,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE
+                    crate::naming_conventions::hashmap_upper_camel_case_stringified()
                 );
             }
         },
@@ -1641,7 +1641,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE
+                    crate::naming_conventions::hashmap_upper_camel_case_stringified()
                 );
             }
         },
@@ -1833,7 +1833,7 @@ pub fn generate_supported_container(
                     vec_element_type
                 }
             }
-            else if path_segment.ident == crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE {
+            else if path_segment.ident == crate::naming_conventions::hashmap_upper_camel_case_stringified() {
                 let (
                     hashmap_key_type,
                     hashmap_value_type
