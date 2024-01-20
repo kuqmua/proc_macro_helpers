@@ -15,17 +15,13 @@
 //     }
 // }
 
-const NAMED: &str = "Named";
-const NAMEDF: &str = "named";
-fn named_stringified() -> &'static str {
-    "named"
-}
+const NAMED: &str = "named";
 pub fn named_upper_camel_case_stringified() -> std::string::String {
-    ToUpperCamelCaseString::to_upper_camel_case_string(&NAMEDF)
+    ToUpperCamelCaseString::to_upper_camel_case_string(&NAMED)
 }
-// fn named_snake_case_stringified() -> std::string::String {
-//     ToSnakeCaseString::to_snake_case_string(&NAMEDF)
-// }
+pub fn named_snake_case_stringified() -> std::string::String {
+    ToSnakeCaseString::to_snake_case_string(&NAMED)
+}
 pub const SUPPORTS_ONLY_STRINGIFIED: &str = "supports only";
 pub const SYN_FIELDS: &str = "syn::Fields";
 pub const ERROR_OCCURENCE_CASE: &str = "Error";
@@ -48,11 +44,8 @@ pub const SUPPORTED_ENUM_VARIANT_STRINGIFIED: &str =
     "proc_macro_helpers::error_occurence::supported_enum_variant::SuportedEnumVariant";
 pub const STD_STRINGIFIED: &str = "std";
 
-pub fn named_snake_case() -> std::string::String {
-    crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&NAMED)
-}
 pub fn unnamed_upper_camel_case() -> std::string::String {
-    format!("Un{}", named_snake_case())
+    format!("Un{}", named_snake_case_stringified())
 }
 pub fn with_serialize_deserialize_upper_camel_case() -> std::string::String {
     format!("{}{}", WITH_UPPER_CAMEL_CASE, SERIALIZE_DESERIALIZE_UPPER_CAMEL_CASE)
