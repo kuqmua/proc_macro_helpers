@@ -138,7 +138,14 @@ pub fn reference_upper_camel_case_stringified() -> std::string::String {
 pub fn reference_snake_case_stringified() -> std::string::String {
     ToSnakeCaseString::to_snake_case_string(&REFERENCE)
 }
-
+// pub const WITH_UPPER_CAMEL_CASE: &str = "With";
+const WITH: &str = "With";
+pub fn with_upper_camel_case_stringified() -> std::string::String {
+    ToUpperCamelCaseString::to_upper_camel_case_string(&WITH)
+}
+pub fn with_snake_case_stringified() -> std::string::String {
+    ToSnakeCaseString::to_snake_case_string(&WITH)
+}
 
 const WITH_SERIALIZE_DESERIALIZE: &str = "with_serialize_deserialize";
 pub fn with_serialize_deserialize_upper_camel_case_stringified() -> std::string::String {
@@ -148,25 +155,24 @@ pub fn with_serialize_deserialize_snake_case_stringified() -> std::string::Strin
     ToSnakeCaseString::to_snake_case_string(&WITH_SERIALIZE_DESERIALIZE)
 }
 
-pub const WITH_UPPER_CAMEL_CASE: &str = "With";
+
 pub const SERIALIZE_DESERIALIZE_UPPER_CAMEL_CASE: &str = "SerializeDeserialize";
 
 
 
-
-
-
-
-pub fn unnamed_upper_camel_case() -> std::string::String {
-    format!("Un{}", named_snake_case_stringified())
-}
 pub fn with_serialize_deserialize_upper_camel_case() -> std::string::String {
-    format!("{}{}", WITH_UPPER_CAMEL_CASE, SERIALIZE_DESERIALIZE_UPPER_CAMEL_CASE)
+    format!("{}{}", with_upper_camel_case_stringified(), SERIALIZE_DESERIALIZE_UPPER_CAMEL_CASE)
 }
 pub fn with_serialize_deserialize_snake_case() -> std::string::String {
     crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(
         &with_serialize_deserialize_upper_camel_case(),
     )
+}
+
+
+
+pub fn unnamed_upper_camel_case() -> std::string::String {
+    format!("Un{}", named_snake_case_stringified())
 }
 pub fn error_occurence_upper_camel_case() -> std::string::String {
     format!("{}{}", error_upper_camel_case_stringified(), occurence_upper_camel_case_stringified())
