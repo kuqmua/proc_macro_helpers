@@ -355,13 +355,13 @@ fn attribute_supported_container_inform_use_str_string_in_different_attribute(
     let str_stringified = "str";
     let string_string_stringified: String = format!(
         "{}::{}",
-        crate::naming_conventions::STRING_SNAKE_CASE,
+        crate::naming_conventions::string_snake_case_stringified(),
         crate::naming_conventions::string_upper_camel_case_stringified(),
     );
     let std_string_string_stringified = format!(
         "{}::{}::{}",
         crate::naming_conventions::STD_STRINGIFIED,
-        crate::naming_conventions::STRING_SNAKE_CASE,
+        crate::naming_conventions::string_snake_case_stringified(),
         crate::naming_conventions::string_upper_camel_case_stringified()
     );
     match attribute {
@@ -525,7 +525,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
     let std_string_string_stringified = format!(
         "{}::{}::{}",
         crate::naming_conventions::STD_STRINGIFIED,
-        crate::naming_conventions::STRING_SNAKE_CASE,
+        crate::naming_conventions::string_snake_case_stringified(),
         crate::naming_conventions::string_upper_camel_case_stringified()
     );
     let std_string_string_token_stream = std_string_string_stringified
