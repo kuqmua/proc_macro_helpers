@@ -18,18 +18,18 @@ pub fn generate_with_serialize_deserialize_version(
     };
     let variants_len = variants.len();
     let with_serialize_deserialize_upper_camel_case =
-        crate::error_occurence::hardcode::with_serialize_deserialize_upper_camel_case();
-    // let error_occurence_snake_case = crate::error_occurence::hardcode::error_occurence_snake_case();
-    let vec_snake_case = crate::error_occurence::hardcode::vec_snake_case();
-    let hashmap_snake_case = crate::error_occurence::hardcode::hashmap_snake_case();
-    let key_snake_case = crate::error_occurence::hardcode::key_snake_case();
-    let value_snake_case = crate::error_occurence::hardcode::value_snake_case();
-    let syn_type_path_stringified = crate::error_occurence::hardcode::syn_type_path_stringified();
+        crate::naming_conventions::with_serialize_deserialize_upper_camel_case();
+    // let error_occurence_snake_case = crate::naming_conventions::error_occurence_snake_case();
+    let vec_snake_case = crate::naming_conventions::vec_snake_case();
+    let hashmap_snake_case = crate::naming_conventions::hashmap_snake_case();
+    let key_snake_case = crate::naming_conventions::key_snake_case();
+    let value_snake_case = crate::naming_conventions::value_snake_case();
+    let syn_type_path_stringified = crate::naming_conventions::syn_type_path_stringified();
     let token_stream = match supported_enum_variant {
         crate::error_occurence::supported_enum_variant::SuportedEnumVariant::Named => {
             let code_occurence_upper_camel_case = format!(
                 "Code{}",
-                crate::error_occurence::hardcode::OCCURENCE_UPPER_CAMEL_CASE
+                crate::naming_conventions::OCCURENCE_UPPER_CAMEL_CASE
             );
             let foreign_type_upper_camel_case = "ForeignType";
             let display_upper_camel_case = "Display";
@@ -44,7 +44,7 @@ pub fn generate_with_serialize_deserialize_version(
                     &display_upper_camel_case,
                 );
             let attribute_prefix_stringified = "eo_";
-            let with_serialize_deserialize_snake_case = crate::error_occurence::hardcode::with_serialize_deserialize_snake_case();
+            let with_serialize_deserialize_snake_case = crate::naming_conventions::with_serialize_deserialize_snake_case();
             let attribute_display_with_serialize_deserialize_stringified = format!(
                 "{attribute_prefix_stringified}{display_snake_case}_{with_serialize_deserialize_snake_case}");
             let attribute_vec_display_with_serialize_deserialize_stringified = format!("{attribute_prefix_stringified}{vec_snake_case}_{display_snake_case}_{with_serialize_deserialize_snake_case}");
@@ -60,7 +60,7 @@ pub fn generate_with_serialize_deserialize_version(
                 let variant_fields_vec = fields_named.named.iter().map(|field|{
                     let field_ident = field.ident.clone().unwrap_or_else(|| panic!(
                         "{proc_macro_name_ident_stringified} field.ident {}",
-                        crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                        crate::naming_conventions::IS_NONE_STRINGIFIED
                     ));
                     let code_occurence_snake_case = crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&code_occurence_upper_camel_case);
                     let error_or_code_occurence = match field_ident == code_occurence_snake_case {
@@ -99,7 +99,7 @@ pub fn generate_with_serialize_deserialize_version(
                                 else {
                                     panic!(
                                         "{proc_macro_name_ident_stringified} {code_occurence_snake_case} {} {syn_type_path_stringified}",
-                                        crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
+                                        crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED
                                     );
                                 }
                             };
@@ -136,7 +136,7 @@ pub fn generate_with_serialize_deserialize_version(
                                 });
                                 option_attribute.unwrap_or_else(|| panic!(
                                     "{proc_macro_name_ident_stringified} option attribute {}",
-                                    crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                                    crate::naming_conventions::IS_NONE_STRINGIFIED
                                 ))
                             };
                             let supported_container = generate_supported_container(
@@ -258,8 +258,8 @@ pub fn generate_with_serialize_deserialize_version(
                     if let false = unnamed.len() == 1 {
                         panic!(
                             "{proc_macro_name_ident_stringified} {}::{} variant fields unnamed len != 1",
-                            crate::error_occurence::hardcode::SUPPORTED_ENUM_VARIANT_STRINGIFIED,
-                            crate::error_occurence::hardcode::unnamed_upper_camel_case()
+                            crate::naming_conventions::SUPPORTED_ENUM_VARIANT_STRINGIFIED,
+                            crate::naming_conventions::unnamed_upper_camel_case()
                         );
                     }
                     match unnamed.iter().next() {
@@ -270,9 +270,9 @@ pub fn generate_with_serialize_deserialize_version(
                 else {
                     panic!(
                         "{proc_macro_name_ident_stringified} {} {}::{}",
-                        crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
-                        crate::error_occurence::hardcode::SYN_FIELDS,
-                        crate::error_occurence::hardcode::unnamed_upper_camel_case()
+                        crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED,
+                        crate::naming_conventions::SYN_FIELDS,
+                        crate::naming_conventions::unnamed_upper_camel_case()
                     );
                 };
                 let type_token_stream = if let syn::Type::Path(type_path) = field_type {
@@ -287,7 +287,7 @@ pub fn generate_with_serialize_deserialize_version(
                 else {
                     panic!(
                         "{proc_macro_name_ident_stringified} {} {syn_type_path_stringified}",
-                        crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
+                        crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED
                     )
                 };
                 logic_for_enum_with_serialize_deserialize.push({
@@ -334,10 +334,10 @@ fn inform_use_str_string_in_different_attribute(
     else if path == string_string_stringified {
         panic!("{proc_macro_name_ident_stringified} {wrong_attribute_view} {string_string_stringified} {must_be_used_with_stringified} {attribute_to_use_view}");
     }
-    else if path == crate::error_occurence::hardcode::STRING_UPPER_CAMEL_CASE {
+    else if path == crate::naming_conventions::STRING_UPPER_CAMEL_CASE {
         panic!(
             "{proc_macro_name_ident_stringified} {wrong_attribute_view} {} {must_be_used_with_stringified} {attribute_to_use_view}",
-            crate::error_occurence::hardcode::STRING_UPPER_CAMEL_CASE
+            crate::naming_conventions::STRING_UPPER_CAMEL_CASE
         );
     }
 }
@@ -355,14 +355,14 @@ fn attribute_supported_container_inform_use_str_string_in_different_attribute(
     let str_stringified = "str";
     let string_string_stringified: String = format!(
         "{}::{}",
-        crate::error_occurence::hardcode::STRING_SNAKE_CASE,
-        crate::error_occurence::hardcode::STRING_UPPER_CAMEL_CASE,
+        crate::naming_conventions::STRING_SNAKE_CASE,
+        crate::naming_conventions::STRING_UPPER_CAMEL_CASE,
     );
     let std_string_string_stringified = format!(
         "{}::{}::{}",
-        crate::error_occurence::hardcode::STD_STRINGIFIED,
-        crate::error_occurence::hardcode::STRING_SNAKE_CASE,
-        crate::error_occurence::hardcode::STRING_UPPER_CAMEL_CASE
+        crate::naming_conventions::STD_STRINGIFIED,
+        crate::naming_conventions::STRING_SNAKE_CASE,
+        crate::naming_conventions::STRING_UPPER_CAMEL_CASE
     );
     match attribute {
         crate::error_occurence::named_attribute::NamedAttribute::EoDisplay => {
@@ -518,54 +518,54 @@ pub fn generate_field_type_with_serialize_deserialize_version(
     supported_container: crate::error_occurence::supported_container::SupportedContainer,
     proc_macro_name_ident_stringified: &str,
 ) -> proc_macro2::TokenStream {
-    let with_serialize_deserialize_upper_camel_case = crate::error_occurence::hardcode::with_serialize_deserialize_upper_camel_case();
-    let supports_only_supported_container_stringified = crate::error_occurence::hardcode::supports_only_supported_container_stringified();
+    let with_serialize_deserialize_upper_camel_case = crate::naming_conventions::with_serialize_deserialize_upper_camel_case();
+    let supports_only_supported_container_stringified = crate::naming_conventions::supports_only_supported_container_stringified();
     let does_not_support_stringified = "does not support";
     let str_stringified = "str";
     let std_string_string_stringified = format!(
         "{}::{}::{}",
-        crate::error_occurence::hardcode::STD_STRINGIFIED,
-        crate::error_occurence::hardcode::STRING_SNAKE_CASE,
-        crate::error_occurence::hardcode::STRING_UPPER_CAMEL_CASE
+        crate::naming_conventions::STD_STRINGIFIED,
+        crate::naming_conventions::STRING_SNAKE_CASE,
+        crate::naming_conventions::STRING_UPPER_CAMEL_CASE
     );
     let std_string_string_token_stream = std_string_string_stringified
     .parse::<proc_macro2::TokenStream>()
     .unwrap_or_else(|_| panic!("{proc_macro_name_ident_stringified} {std_string_string_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE));
     let as_std_collections_hashmap_key_type_stringified = format!(
         "as {}::collections::{} key type",
-        crate::error_occurence::hardcode::STD_STRINGIFIED,
-        crate::error_occurence::hardcode::HASHMAP_UPPER_CAMEL_CASE
+        crate::naming_conventions::STD_STRINGIFIED,
+        crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE
     );
     let type_upper_camel_case = "Type";
     let hashmap_value_type_stringified = format!(
         "{}{}{type_upper_camel_case}",
-        crate::error_occurence::hardcode::HASHMAP_UPPER_CAMEL_CASE,
-        crate::error_occurence::hardcode::VALUE_UPPER_CAMEL_CASE
+        crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE,
+        crate::naming_conventions::VALUE_UPPER_CAMEL_CASE
     );
     let hashmap_value_type_path_stringified = format!(
         "{hashmap_value_type_stringified}::{}",
-        crate::error_occurence::hardcode::PATH_UPPER_CAMEL_CASE
+        crate::naming_conventions::PATH_UPPER_CAMEL_CASE
     );
     let hashmap_value_type_reference_stringified = format!(
         "{hashmap_value_type_stringified}::{}",
-        crate::error_occurence::hardcode::REFERENCE_UPPER_CAMEL_CASE
+        crate::naming_conventions::REFERENCE_UPPER_CAMEL_CASE
     );
     let hashmap_key_type_stringified = format!(
         "{}{}{type_upper_camel_case}",
-        crate::error_occurence::hardcode::KEY_UPPER_CAMEL_CASE,
-        crate::error_occurence::hardcode::HASHMAP_UPPER_CAMEL_CASE
+        crate::naming_conventions::KEY_UPPER_CAMEL_CASE,
+        crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE
     );
     let hashmap_key_type_path_stringified = format!(
         "{hashmap_key_type_stringified}::{}",
-        crate::error_occurence::hardcode::PATH_UPPER_CAMEL_CASE
+        crate::naming_conventions::PATH_UPPER_CAMEL_CASE
     );
     let hashmap_key_type_reference_stringified = format!(
         "{hashmap_key_type_stringified}::{}",
-        crate::error_occurence::hardcode::REFERENCE_UPPER_CAMEL_CASE
+        crate::naming_conventions::REFERENCE_UPPER_CAMEL_CASE
     );
     let vec_element_type_path_stringified = format!(
         "crate::error_occurence::vec_element_type::VecElementType::{}",
-        crate::error_occurence::hardcode::PATH_UPPER_CAMEL_CASE
+        crate::naming_conventions::PATH_UPPER_CAMEL_CASE
     );
     match attribute {
         crate::error_occurence::named_attribute::NamedAttribute::EoDisplay => {
@@ -578,9 +578,9 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {} {}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
-                    crate::error_occurence::hardcode::SUPPORTED_CONTAINER_DOUBLE_DOT_DOUBLE_DOT,
-                    crate::error_occurence::hardcode::PATH_UPPER_CAMEL_CASE
+                    crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED,
+                    crate::naming_conventions::SUPPORTED_CONTAINER_DOUBLE_DOT_DOUBLE_DOT,
+                    crate::naming_conventions::PATH_UPPER_CAMEL_CASE
                 )
             }
         },
@@ -599,7 +599,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                         &reference_ident,
                         str_stringified,
                         proc_macro_name_ident_stringified,
-                        crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
+                        crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED,
                         &attribute
                     );
                     quote::quote!{#std_string_string_token_stream}
@@ -607,10 +607,10 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 _ => panic!(
                     "{proc_macro_name_ident_stringified} {} only supports {}{} and {}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::error_occurence::hardcode::SUPPORTED_CONTAINER_DOUBLE_DOT_DOUBLE_DOT,
-                    crate::error_occurence::hardcode::PATH_UPPER_CAMEL_CASE,
-                    crate::error_occurence::hardcode::SUPPORTED_CONTAINER_DOUBLE_DOT_DOUBLE_DOT,
-                    crate::error_occurence::hardcode::REFERENCE_UPPER_CAMEL_CASE
+                    crate::naming_conventions::SUPPORTED_CONTAINER_DOUBLE_DOT_DOUBLE_DOT,
+                    crate::naming_conventions::PATH_UPPER_CAMEL_CASE,
+                    crate::naming_conventions::SUPPORTED_CONTAINER_DOUBLE_DOT_DOUBLE_DOT,
+                    crate::naming_conventions::REFERENCE_UPPER_CAMEL_CASE
                 ),
             }
         },
@@ -620,7 +620,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::error_occurence::hardcode::PATH_UPPER_CAMEL_CASE
+                    crate::naming_conventions::PATH_UPPER_CAMEL_CASE
                 );
             }
             quote::quote! {
@@ -640,7 +640,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::error_occurence::hardcode::PATH_UPPER_CAMEL_CASE
+                    crate::naming_conventions::PATH_UPPER_CAMEL_CASE
                 );
             }
         },
@@ -657,7 +657,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::error_occurence::hardcode::PATH_UPPER_CAMEL_CASE
+                    crate::naming_conventions::PATH_UPPER_CAMEL_CASE
                 );
             }
         },
@@ -676,7 +676,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                     panic!(
                         "{proc_macro_name_ident_stringified} {} {} {vec_element_type_path_stringified}", 
                         attribute.attribute_view_stringified(),
-                        crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
+                        crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED
                     );
                 }
             }
@@ -684,7 +684,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::error_occurence::hardcode::VEC_UPPER_CAMEL_CASE
+                    crate::naming_conventions::VEC_UPPER_CAMEL_CASE
                 );
             }
         },
@@ -705,7 +705,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                             &reference_ident,
                             str_stringified,
                             proc_macro_name_ident_stringified,
-                            crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
+                            crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED,
                             &attribute
                         );
                         {
@@ -721,7 +721,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::error_occurence::hardcode::VEC_UPPER_CAMEL_CASE
+                    crate::naming_conventions::VEC_UPPER_CAMEL_CASE
                 );
             }
         },
@@ -735,7 +735,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                     panic!(
                         "{proc_macro_name_ident_stringified} {} {} {vec_element_type_path_stringified}", 
                         attribute.attribute_view_stringified(),
-                        crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
+                        crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED
                     );
                 }
             }
@@ -743,7 +743,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::error_occurence::hardcode::VEC_UPPER_CAMEL_CASE
+                    crate::naming_conventions::VEC_UPPER_CAMEL_CASE
                 );
             }
             quote::quote! {
@@ -767,7 +767,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                     panic!(
                         "{proc_macro_name_ident_stringified} {} {} {vec_element_type_path_stringified}", 
                         attribute.attribute_view_stringified(),
-                        crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
+                        crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED
                     );
                 }
             }
@@ -775,7 +775,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::error_occurence::hardcode::VEC_UPPER_CAMEL_CASE
+                    crate::naming_conventions::VEC_UPPER_CAMEL_CASE
                 );
             }
         },
@@ -796,7 +796,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                     panic!(
                         "{proc_macro_name_ident_stringified} {} {} {vec_element_type_path_stringified}", 
                         attribute.attribute_view_stringified(),
-                        crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
+                        crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED
                     );
                 }
             }
@@ -804,7 +804,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::error_occurence::hardcode::VEC_UPPER_CAMEL_CASE
+                    crate::naming_conventions::VEC_UPPER_CAMEL_CASE
                 );
             }
         },
@@ -822,7 +822,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                         &key_segments_stringified,
                         &std_string_string_stringified,
                         proc_macro_name_ident_stringified,
-                        crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
+                        crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED,
                         &as_std_collections_hashmap_key_type_stringified,
                         &attribute
                     );
@@ -895,7 +895,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::error_occurence::hardcode::HASHMAP_UPPER_CAMEL_CASE
+                    crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE
                 );
             };
             type_token_stream
@@ -921,7 +921,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                             &key_segments_stringified,
                             &std_string_string_stringified,
                             proc_macro_name_ident_stringified,
-                            crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
+                            crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED,
                             &as_std_collections_hashmap_key_type_stringified,
                             &attribute
                         );
@@ -950,7 +950,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                             &key_segments_stringified,
                             &std_string_string_stringified,
                             proc_macro_name_ident_stringified,
-                            crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
+                            crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED,
                             &as_std_collections_hashmap_key_type_stringified,
                             &attribute
                         );
@@ -958,7 +958,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                             &value_reference_ident,
                             str_stringified,
                             proc_macro_name_ident_stringified,
-                            crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
+                            crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED,
                             &attribute
                         );
                         {
@@ -985,7 +985,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                             &key_reference_ident,
                             str_stringified,
                             proc_macro_name_ident_stringified,
-                            crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
+                            crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED,
                             &attribute
                         );
                         {
@@ -1012,14 +1012,14 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                             &key_reference_ident,
                             str_stringified,
                             proc_macro_name_ident_stringified,
-                            crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
+                            crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED,
                             &attribute
                         );
                         crate::error_occurence::panic_if_not_str::panic_if_not_str(
                             &value_reference_ident,
                             str_stringified,
                             proc_macro_name_ident_stringified,
-                            crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
+                            crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED,
                             &attribute
                         );
                         {
@@ -1035,7 +1035,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::error_occurence::hardcode::HASHMAP_UPPER_CAMEL_CASE
+                    crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE
                 );
             }
         },
@@ -1116,7 +1116,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::error_occurence::hardcode::HASHMAP_UPPER_CAMEL_CASE
+                    crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE
                 );
             }
         },
@@ -1141,7 +1141,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                             &key_segments_stringified,
                             &std_string_string_stringified,
                             proc_macro_name_ident_stringified,
-                            crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
+                            crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED,
                             &as_std_collections_hashmap_key_type_stringified,
                             &attribute
                         );
@@ -1180,7 +1180,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                             &key_reference_ident,
                             str_stringified,
                             proc_macro_name_ident_stringified,
-                            crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
+                            crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED,
                             &attribute
                         );
                         {
@@ -1209,7 +1209,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::error_occurence::hardcode::HASHMAP_UPPER_CAMEL_CASE
+                    crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE
                 );
             }
         },
@@ -1234,7 +1234,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                             &key_segments_stringified,
                             &std_string_string_stringified,
                             proc_macro_name_ident_stringified,
-                            crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
+                            crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED,
                             &as_std_collections_hashmap_key_type_stringified,
                             &attribute
                         );
@@ -1273,7 +1273,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                             &key_reference_ident,
                             str_stringified,
                             proc_macro_name_ident_stringified,
-                            crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
+                            crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED,
                             &attribute
                         );
                         {
@@ -1302,7 +1302,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::error_occurence::hardcode::HASHMAP_UPPER_CAMEL_CASE
+                    crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE
                 );
             }
         },
@@ -1367,7 +1367,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::error_occurence::hardcode::HASHMAP_UPPER_CAMEL_CASE
+                    crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE
                 );
             };
             type_token_stream
@@ -1411,7 +1411,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                             &value_reference_ident,
                             str_stringified,
                             proc_macro_name_ident_stringified,
-                            crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
+                            crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED,
                             &attribute
                         );
                         {
@@ -1449,7 +1449,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::error_occurence::hardcode::HASHMAP_UPPER_CAMEL_CASE
+                    crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE
                 );
             }
         },
@@ -1511,7 +1511,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::error_occurence::hardcode::HASHMAP_UPPER_CAMEL_CASE
+                    crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE
                 );
             }
         },
@@ -1576,7 +1576,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::error_occurence::hardcode::HASHMAP_UPPER_CAMEL_CASE
+                    crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE
                 );
             }
         },
@@ -1641,7 +1641,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::error_occurence::hardcode::HASHMAP_UPPER_CAMEL_CASE
+                    crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE
                 );
             }
         },
@@ -1735,14 +1735,14 @@ pub fn generate_supported_container(
     field: &syn::Field,
     proc_macro_name_ident_stringified: &str,
 ) -> crate::error_occurence::supported_container::SupportedContainer {
-    let syn_type_path_stringified = crate::error_occurence::hardcode::syn_type_path_stringified();
+    let syn_type_path_stringified = crate::naming_conventions::syn_type_path_stringified();
     let syn_type_reference = format!(
         "syn::Type::{}",
-        crate::error_occurence::hardcode::REFERENCE_UPPER_CAMEL_CASE
+        crate::naming_conventions::REFERENCE_UPPER_CAMEL_CASE
     );
     let error_message = format!(
         "{} {syn_type_path_stringified} and {syn_type_reference}",
-        crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
+        crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED
     );
     match &field.ty {
         syn::Type::Path(type_path) => {
@@ -1754,9 +1754,9 @@ pub fn generate_supported_container(
             let path_segment = type_path.path.segments.iter().last()
             .unwrap_or_else(|| panic!(
                 "{proc_macro_name_ident_stringified} type_path.path.segments.into_iter().last() {}",
-                crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                crate::naming_conventions::IS_NONE_STRINGIFIED
             ));
-            if path_segment.ident == crate::error_occurence::hardcode::VEC_UPPER_CAMEL_CASE {
+            if path_segment.ident == crate::naming_conventions::VEC_UPPER_CAMEL_CASE {
                 let vec_element_type = if let syn::PathArguments::AngleBracketed(angle_brackets_generic_arguments) = &path_segment.arguments {
                     if let true = angle_brackets_generic_arguments.args.len() == 1 {
                         if let syn::GenericArgument::Type(type_handle) =
@@ -1764,7 +1764,7 @@ pub fn generate_supported_container(
                             .iter().next()
                             .unwrap_or_else(|| panic!(
                                 "{proc_macro_name_ident_stringified} angle_brackets_generic_arguments.args.into_iter().nth(0) {}",
-                                crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                                crate::naming_conventions::IS_NONE_STRINGIFIED
                             ))
                         {
                             match type_handle {
@@ -1782,7 +1782,7 @@ pub fn generate_supported_container(
                                             .into_iter().next()
                                             .unwrap_or_else(|| panic!(
                                                 "{proc_macro_name_ident_stringified} type_path.path.segments.into_iter().nth(0) {}",
-                                                crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                                                crate::naming_conventions::IS_NONE_STRINGIFIED
                                             ))
                                             .ident
                                         }
@@ -1793,28 +1793,28 @@ pub fn generate_supported_container(
                                     else {
                                         panic!(
                                             "{proc_macro_name_ident_stringified} {syn_type_reference} type_reference.elem {} {syn_type_path_stringified}",
-                                            crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
+                                            crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED
                                         );
                                     };
                                     crate::error_occurence::vec_element_type::VecElementType::Reference {
                                         reference_ident,
                                         lifetime_ident: type_reference.lifetime.clone().unwrap_or_else(|| panic!(
                                             "{proc_macro_name_ident_stringified} {syn_type_reference} lifetime {}",
-                                            crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                                            crate::naming_conventions::IS_NONE_STRINGIFIED
                                         )).ident
                                     }
                                 },
                                 _ => panic!(
                                     "{proc_macro_name_ident_stringified} type_handle {} {syn_type_path_stringified} and {syn_type_reference}",
-                                    crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
+                                    crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED
                                 ),
                             }
                         }
                         else {
                             panic!(
                                 "{proc_macro_name_ident_stringified} angle_brackets_generic_arguments.args[0] {} {}",
-                                crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
-                                crate::error_occurence::hardcode::SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED
+                                crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED,
+                                crate::naming_conventions::SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED
                             );
                         }
                     }
@@ -1825,7 +1825,7 @@ pub fn generate_supported_container(
                 else {
                     panic!(
                         "{proc_macro_name_ident_stringified} path_segment.arguments {} syn::PathArguments::AngleBracketed",
-                        crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
+                        crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED
                     );
                 };
                 crate::error_occurence::supported_container::SupportedContainer::Vec{
@@ -1833,7 +1833,7 @@ pub fn generate_supported_container(
                     vec_element_type
                 }
             }
-            else if path_segment.ident == crate::error_occurence::hardcode::HASHMAP_UPPER_CAMEL_CASE {
+            else if path_segment.ident == crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE {
                 let (
                     hashmap_key_type,
                     hashmap_value_type
@@ -1862,11 +1862,11 @@ pub fn generate_supported_container(
                             (
                                 key_generic_argument_option.unwrap_or_else(|| panic!(
                                     "{proc_macro_name_ident_stringified} key_generic_argument_option {}",
-                                    crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                                    crate::naming_conventions::IS_NONE_STRINGIFIED
                                 )),
                                 value_generic_argument_option.unwrap_or_else(|| panic!(
                                     "{proc_macro_name_ident_stringified} value_generic_argument_option {}",
-                                    crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                                    crate::naming_conventions::IS_NONE_STRINGIFIED
                                 ))
                             )
                         };
@@ -1891,7 +1891,7 @@ pub fn generate_supported_container(
                                             .into_iter().next()
                                             .unwrap_or_else(|| panic!(
                                                 "{proc_macro_name_ident_stringified} type_path.path.segments.into_iter().nth(0) {}",
-                                                crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                                                crate::naming_conventions::IS_NONE_STRINGIFIED
                                             ))
                                             .ident
                                         }
@@ -1902,28 +1902,28 @@ pub fn generate_supported_container(
                                     else {
                                         panic!(
                                             "{proc_macro_name_ident_stringified} {syn_type_reference} type_reference.elem {} {syn_type_path_stringified}",
-                                            crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
+                                            crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED
                                         );
                                     };
                                     crate::error_occurence::hashmap_value_type::HashMapKeyType::Reference {
                                         key_reference_ident,
                                         key_lifetime_ident: type_reference.lifetime.clone().unwrap_or_else(|| panic!(
                                             "{proc_macro_name_ident_stringified} {syn_type_reference} lifetime {}",
-                                            crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                                            crate::naming_conventions::IS_NONE_STRINGIFIED
                                         )).ident
                                     }
                                 },
                                 _ => panic!(
                                     "{proc_macro_name_ident_stringified} type_handle {} {syn_type_path_stringified} and {syn_type_reference}",
-                                    crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
+                                    crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED
                                 ),
                             }
                         }
                         else {
                             panic!(
                                 "{proc_macro_name_ident_stringified} key_generic_argument {} {}",
-                                crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
-                                crate::error_occurence::hardcode::SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED
+                                crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED,
+                                crate::naming_conventions::SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED
                             );
                         };
                         let hashmap_value_type = if let syn::GenericArgument::Type(type_handle) = value_generic_argument {
@@ -1944,7 +1944,7 @@ pub fn generate_supported_container(
                                             .into_iter().next()
                                             .unwrap_or_else(|| panic!(
                                                 "{proc_macro_name_ident_stringified} type_path.path.segments.into_iter().nth(0) {}",
-                                                crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                                                crate::naming_conventions::IS_NONE_STRINGIFIED
                                             ))
                                             .ident
                                         }
@@ -1955,28 +1955,28 @@ pub fn generate_supported_container(
                                     else {
                                         panic!(
                                             "{proc_macro_name_ident_stringified} {syn_type_reference} type_reference.elem {} {syn_type_path_stringified}",
-                                            crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
+                                            crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED
                                         );
                                     };
                                    crate::error_occurence::hashmap_key_type::HashMapValueType::Reference {
                                         value_reference_ident,
                                         value_lifetime_ident: type_reference.lifetime.clone().unwrap_or_else(|| panic!(
                                             "{proc_macro_name_ident_stringified} {syn_type_reference} lifetime {}",
-                                            crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                                            crate::naming_conventions::IS_NONE_STRINGIFIED
                                         )).ident
                                     }
                                 },
                                 _ => panic!(
                                     "{proc_macro_name_ident_stringified} type_handle {} {syn_type_path_stringified} and syn::Type::Reference",
-                                    crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
+                                    crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED
                                 ),
                             }
                         }
                         else {
                             panic!(
                                 "{proc_macro_name_ident_stringified} angle_brackets_generic_arguments.args[0] {} {}",
-                                crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
-                                crate::error_occurence::hardcode::SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED
+                                crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED,
+                                crate::naming_conventions::SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED
                             );
                         };
                         (
@@ -1991,7 +1991,7 @@ pub fn generate_supported_container(
                 else {
                     panic!(
                         "{proc_macro_name_ident_stringified} path_segment.arguments {} syn::PathArguments::AngleBracketed",
-                        crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
+                        crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED
                     );
                 };
                 crate::error_occurence::supported_container::SupportedContainer::HashMap{
@@ -2014,7 +2014,7 @@ pub fn generate_supported_container(
                     .into_iter().next()
                     .unwrap_or_else(|| panic!(
                         "{proc_macro_name_ident_stringified} type_path.path.segments.into_iter().nth(0) {}",
-                        crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                        crate::naming_conventions::IS_NONE_STRINGIFIED
                     ))
                     .ident
                 }
@@ -2025,14 +2025,14 @@ pub fn generate_supported_container(
             else {
                 panic!(
                     "{proc_macro_name_ident_stringified} {syn_type_reference} type_reference.elem {} {syn_type_path_stringified}",
-                    crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED
+                    crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED
                 );
             };
             crate::error_occurence::supported_container::SupportedContainer::Reference{
                 reference_ident,
                 lifetime_ident: type_reference.lifetime.clone().unwrap_or_else(|| panic!(
                     "{proc_macro_name_ident_stringified} {syn_type_reference} lifetime {}",
-                    crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+                    crate::naming_conventions::IS_NONE_STRINGIFIED
                 )).ident,
             }
         },

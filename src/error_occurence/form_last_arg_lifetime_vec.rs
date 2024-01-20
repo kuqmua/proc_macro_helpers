@@ -12,8 +12,8 @@ pub fn form_last_arg_lifetime_vec(
                         syn::GenericArgument::Type(_) => crate::error_occurence::lifetime::Lifetime::NotSpecified,
                         _ => panic!(
                             "{proc_macro_name_ident_stringified} type_path.path.segments.last() angle_bracketed_generic_argument.args[0] {} syn::GenericArgument::Lifetime and {}",
-                            crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
-                            crate::error_occurence::hardcode::SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED
+                            crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED,
+                            crate::naming_conventions::SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED
                         )
                     }
                 })
@@ -24,7 +24,7 @@ pub fn form_last_arg_lifetime_vec(
     } else {
         panic!(
             "{proc_macro_name_ident_stringified} type_path.path.segments.last() {}",
-            crate::error_occurence::hardcode::IS_NONE_STRINGIFIED
+            crate::naming_conventions::IS_NONE_STRINGIFIED
         );
     }
 }

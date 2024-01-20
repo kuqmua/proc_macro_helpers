@@ -13,11 +13,11 @@ pub fn create_supported_enum_variant(
         panic!("{proc_macro_name_ident_stringified} enum variants are empty");
     }
     let error_message = format!("{proc_macro_name_ident_stringified} {} enums where all variants are {}::{} or all variants are {}::{}",
-        crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED,
-        crate::error_occurence::hardcode::SYN_FIELDS,
-        crate::error_occurence::hardcode::SYN_FIELDS,
-        crate::error_occurence::hardcode::NAMED_UPPER_CAMEL_CASE,
-        crate::error_occurence::hardcode::unnamed_upper_camel_case()
+        crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED,
+        crate::naming_conventions::SYN_FIELDS,
+        crate::naming_conventions::SYN_FIELDS,
+        crate::naming_conventions::NAMED_UPPER_CAMEL_CASE,
+        crate::naming_conventions::unnamed_upper_camel_case()
     );
     data_enum
         .variants
@@ -48,6 +48,6 @@ pub fn create_supported_enum_variant(
     if let Some(supported_enum_variant) = all_equal {
         supported_enum_variant
     } else {
-        panic!("{proc_macro_name_ident_stringified} {} with enums where all variants are named or unnamed", crate::error_occurence::hardcode::SUPPORTS_ONLY_STRINGIFIED);
+        panic!("{proc_macro_name_ident_stringified} {} with enums where all variants are named or unnamed", crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED);
     }
 }
