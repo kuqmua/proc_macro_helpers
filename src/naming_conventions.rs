@@ -116,7 +116,6 @@ pub fn value_upper_camel_case_stringified() -> std::string::String {
 pub fn value_snake_case_stringified() -> std::string::String {
     ToSnakeCaseString::to_snake_case_string(&VALUE)
 }
-pub const VEC_UPPER_CAMEL_CASE: &str = "Vec";
 const VEC: &str = "vec";
 pub fn vec_upper_camel_case_stringified() -> std::string::String {
     ToUpperCamelCaseString::to_upper_camel_case_string(&VEC)

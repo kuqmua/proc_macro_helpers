@@ -684,7 +684,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::naming_conventions::VEC_UPPER_CAMEL_CASE
+                    crate::naming_conventions::vec_upper_camel_case_stringified()
                 );
             }
         },
@@ -721,7 +721,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::naming_conventions::VEC_UPPER_CAMEL_CASE
+                    crate::naming_conventions::vec_upper_camel_case_stringified()
                 );
             }
         },
@@ -743,7 +743,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::naming_conventions::VEC_UPPER_CAMEL_CASE
+                    crate::naming_conventions::vec_upper_camel_case_stringified()
                 );
             }
             quote::quote! {
@@ -775,7 +775,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::naming_conventions::VEC_UPPER_CAMEL_CASE
+                    crate::naming_conventions::vec_upper_camel_case_stringified()
                 );
             }
         },
@@ -804,7 +804,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 panic!(
                     "{proc_macro_name_ident_stringified} {} {supports_only_supported_container_stringified}{}", 
                     attribute.attribute_view_stringified(),
-                    crate::naming_conventions::VEC_UPPER_CAMEL_CASE
+                    crate::naming_conventions::vec_upper_camel_case_stringified()
                 );
             }
         },
@@ -1756,7 +1756,7 @@ pub fn generate_supported_container(
                 "{proc_macro_name_ident_stringified} type_path.path.segments.into_iter().last() {}",
                 crate::naming_conventions::IS_NONE_STRINGIFIED
             ));
-            if path_segment.ident == crate::naming_conventions::VEC_UPPER_CAMEL_CASE {
+            if path_segment.ident == crate::naming_conventions::vec_upper_camel_case_stringified() {
                 let vec_element_type = if let syn::PathArguments::AngleBracketed(angle_brackets_generic_arguments) = &path_segment.arguments {
                     if let true = angle_brackets_generic_arguments.args.len() == 1 {
                         if let syn::GenericArgument::Type(type_handle) =
