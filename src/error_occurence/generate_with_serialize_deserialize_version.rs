@@ -44,7 +44,7 @@ pub fn generate_with_serialize_deserialize_version(
                     &display_upper_camel_case,
                 );
             let attribute_prefix_stringified = "eo_";
-            let with_serialize_deserialize_snake_case = crate::naming_conventions::with_serialize_deserialize_snake_case();
+            let with_serialize_deserialize_snake_case = crate::naming_conventions::with_serialize_deserialize_snake_case_stringified();
             let attribute_display_with_serialize_deserialize_stringified = format!(
                 "{attribute_prefix_stringified}{display_snake_case}_{with_serialize_deserialize_snake_case}");
             let attribute_vec_display_with_serialize_deserialize_stringified = format!("{attribute_prefix_stringified}{vec_snake_case}_{display_snake_case}_{with_serialize_deserialize_snake_case}");
