@@ -259,7 +259,7 @@ pub fn generate_with_serialize_deserialize_version(
                         panic!(
                             "{proc_macro_name_ident_stringified} {}::{} variant fields unnamed len != 1",
                             crate::naming_conventions::SUPPORTED_ENUM_VARIANT_STRINGIFIED,
-                            crate::naming_conventions::unnamed_upper_camel_case()
+                            crate::naming_conventions::unnamed_upper_camel_case_stringified()
                         );
                     }
                     match unnamed.iter().next() {
@@ -272,7 +272,7 @@ pub fn generate_with_serialize_deserialize_version(
                         "{proc_macro_name_ident_stringified} {} {}::{}",
                         crate::naming_conventions::SUPPORTS_ONLY_STRINGIFIED,
                         crate::naming_conventions::SYN_FIELDS,
-                        crate::naming_conventions::unnamed_upper_camel_case()
+                        crate::naming_conventions::unnamed_upper_camel_case_stringified()
                     );
                 };
                 let type_token_stream = if let syn::Type::Path(type_path) = field_type {
