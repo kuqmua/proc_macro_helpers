@@ -432,15 +432,15 @@ where
     }
 }
 
-pub trait TryOperationResponseVariantsUpperCamelCaseString {
-    fn try_operation_response_variants_upper_camel_case_string(&self) -> std::string::String;
+pub trait TrySelfResponseVariantsUpperCamelCaseString {
+    fn try_self_response_variants_upper_camel_case_string(&self) -> std::string::String;
 }
 
-impl<T> TryOperationResponseVariantsUpperCamelCaseString for T
+impl<T> TrySelfResponseVariantsUpperCamelCaseString for T
 where
     T: ToUpperCamelCaseString,
 {
-    fn try_operation_response_variants_upper_camel_case_string(&self) -> std::string::String {
+    fn try_self_response_variants_upper_camel_case_string(&self) -> std::string::String {
         format!(
             "{}{}{}",
             try_upper_camel_case_stringified(),
@@ -450,20 +450,20 @@ where
     }
 }
 
-pub trait TryOperationResponseVariantsUpperCamelCaseTokenStream {
-    fn try_operation_response_variants_upper_camel_case_token_stream(
+pub trait TrySelfResponseVariantsUpperCamelCaseTokenStream {
+    fn try_self_response_variants_upper_camel_case_token_stream(
         &self,
     ) -> proc_macro2::TokenStream;
 }
 
-impl<T> TryOperationResponseVariantsUpperCamelCaseTokenStream for T
+impl<T> TrySelfResponseVariantsUpperCamelCaseTokenStream for T
 where
-    T: TryOperationResponseVariantsUpperCamelCaseString,
+    T: TrySelfResponseVariantsUpperCamelCaseString,
 {
-    fn try_operation_response_variants_upper_camel_case_token_stream(
+    fn try_self_response_variants_upper_camel_case_token_stream(
         &self,
     ) -> proc_macro2::TokenStream {
-        let value_stringified = self.try_operation_response_variants_upper_camel_case_string();
+        let value_stringified = self.try_self_response_variants_upper_camel_case_string();
         value_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
