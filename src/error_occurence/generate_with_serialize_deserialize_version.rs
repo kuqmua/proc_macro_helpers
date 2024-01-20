@@ -18,7 +18,7 @@ pub fn generate_with_serialize_deserialize_version(
     };
     let variants_len = variants.len();
     let with_serialize_deserialize_upper_camel_case =
-        crate::naming_conventions::with_serialize_deserialize_upper_camel_case();
+        crate::naming_conventions::with_serialize_deserialize_upper_camel_case_stringified();
     // let error_occurence_snake_case = crate::naming_conventions::error_occurence_snake_case();
     let vec_snake_case = crate::naming_conventions::vec_snake_case_stringified();
     let hashmap_snake_case = crate::naming_conventions::hashmap_snake_case_stringified();
@@ -518,7 +518,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
     supported_container: crate::error_occurence::supported_container::SupportedContainer,
     proc_macro_name_ident_stringified: &str,
 ) -> proc_macro2::TokenStream {
-    let with_serialize_deserialize_upper_camel_case = crate::naming_conventions::with_serialize_deserialize_upper_camel_case();
+    let with_serialize_deserialize_upper_camel_case = crate::naming_conventions::with_serialize_deserialize_upper_camel_case_stringified();
     let supports_only_supported_container_stringified = crate::naming_conventions::supports_only_supported_container_stringified();
     let does_not_support_stringified = "does not support";
     let str_stringified = "str";
