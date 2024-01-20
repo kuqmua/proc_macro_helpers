@@ -22,7 +22,7 @@ pub fn generate_with_serialize_deserialize_version(
     // let error_occurence_snake_case = crate::naming_conventions::error_occurence_snake_case();
     let vec_snake_case = crate::naming_conventions::vec_snake_case();
     let hashmap_snake_case = crate::naming_conventions::hashmap_snake_case();
-    let key_snake_case = crate::naming_conventions::key_snake_case();
+    let key_snake_case = crate::naming_conventions::key_upper_camel_case_stringified();
     let value_snake_case = crate::naming_conventions::value_snake_case();
     let syn_type_path_stringified = crate::naming_conventions::syn_type_path_stringified();
     let token_stream = match supported_enum_variant {
@@ -552,7 +552,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
     );
     let hashmap_key_type_stringified = format!(
         "{}{}{type_upper_camel_case}",
-        crate::naming_conventions::KEY_UPPER_CAMEL_CASE,
+        crate::naming_conventions::key_upper_camel_case_stringified(),
         crate::naming_conventions::HASHMAP_UPPER_CAMEL_CASE
     );
     let hashmap_key_type_path_stringified = format!(

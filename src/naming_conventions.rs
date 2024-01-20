@@ -95,14 +95,21 @@ pub fn response_variants_upper_camel_case_stringified() -> std::string::String {
 // pub fn response_variants_snake_case_stringified() -> std::string::String {
 //     ToSnakeCaseString::to_snake_case_string(&RESPONSE_VARIANTS)
 // }
-//
-// pub const PATH_UPPER_CAMEL_CASE: &str = "Path";
 const PATH: &str = "path";
 pub fn path_upper_camel_case_stringified() -> std::string::String {
     ToUpperCamelCaseString::to_upper_camel_case_string(&PATH)
 }
 pub fn path_snake_case_stringified() -> std::string::String {
     ToSnakeCaseString::to_snake_case_string(&PATH)
+}
+//
+// pub const KEY_UPPER_CAMEL_CASE: &str = "Key";
+const KEY: &str = "key";
+pub fn key_upper_camel_case_stringified() -> std::string::String {
+    ToUpperCamelCaseString::to_upper_camel_case_string(&KEY)
+}
+pub fn key_snake_case_stringified() -> std::string::String {
+    ToSnakeCaseString::to_snake_case_string(&KEY)
 }
 //
 const WITH_SERIALIZE_DESERIALIZE: &str = "with_serialize_deserialize";
@@ -117,7 +124,7 @@ pub const WITH_UPPER_CAMEL_CASE: &str = "With";
 pub const SERIALIZE_DESERIALIZE_UPPER_CAMEL_CASE: &str = "SerializeDeserialize";
 pub const VEC_UPPER_CAMEL_CASE: &str = "Vec";
 pub const HASHMAP_UPPER_CAMEL_CASE: &str = "HashMap";
-pub const KEY_UPPER_CAMEL_CASE: &str = "Key";
+
 pub const VALUE_UPPER_CAMEL_CASE: &str = "Value";
 
 pub const REFERENCE_UPPER_CAMEL_CASE: &str = "Reference";
@@ -145,9 +152,6 @@ pub fn vec_snake_case() -> std::string::String {
 }
 pub fn hashmap_snake_case() -> std::string::String {
     crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&HASHMAP_UPPER_CAMEL_CASE)
-}
-pub fn key_snake_case() -> std::string::String {
-    crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&KEY_UPPER_CAMEL_CASE)
 }
 pub fn value_snake_case() -> std::string::String {
     crate::naming_conventions::ToSnakeCaseString::to_snake_case_string(&VALUE_UPPER_CAMEL_CASE)
