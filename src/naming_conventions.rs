@@ -910,62 +910,37 @@ where
     }
 }
 
-//
-// pub trait TrySelfResponseVariantsDesirableAttributeStringified {
-//     fn try_self_response_variants_desirable_attribute_stringified(
-//         &self,
-//         attribute: &crate::attribute::Attribute
-//     ) -> std::string::String;
-// }
+pub trait TryOperationWithSerializeDeserializeStringified {
+    fn try_operation_with_serialize_deserialize_stringified(&self) -> std::string::String;
+}
 
-// impl<T> TrySelfResponseVariantsDesirableAttributeStringified for T
-// where
-//     T: proc_macro_common::naming_conventions::ToUpperCamelCaseStringified,
-// {
-//     fn try_self_response_variants_desirable_attribute_stringified(
-//         &self,
-//         attribute: &crate::attribute::Attribute
-//     ) -> std::string::String {
-//         format!(
-//             "{}{}{}{}{}",
-//             try_upper_camel_case_stringified(),
-//             self.to_upper_camel_case_stringified(),
-//             response_upper_camel_case_stringified(),
-//             variants_upper_camel_case_stringified(),
-//             proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(attribute),
-//         )
-//     }
-// }
+impl<T> TryOperationWithSerializeDeserializeStringified for T
+where
+    T: proc_macro_common::naming_conventions::ToUpperCamelCaseStringified,
+{
+    fn try_operation_with_serialize_deserialize_stringified(&self) -> std::string::String {
+        format!(
+            "{}{}{}{}{}",
+            try_upper_camel_case_stringified(),
+            self.to_upper_camel_case_stringified(),
+            with_upper_camel_case_stringified(),
+            serialize_upper_camel_case_stringified(),
+            deserialize_upper_camel_case_stringified()
+        )
+    }
+}
 
-// pub trait TrySelfResponseVariantsDesirableAttributeTokenStream {
-//     fn try_self_response_variants_desirable_attribute_token_stream(
-//         &self,
-//         attribute: &crate::attribute::Attribute
-//     ) -> proc_macro2::TokenStream;
-// }
+pub trait TryOperationWithSerializeDeserializeTokenStream {
+    fn try_operation_with_serialize_deserialize_token_stream(&self) -> proc_macro2::TokenStream;
+}
 
-// impl<T> TrySelfResponseVariantsDesirableAttributeTokenStream for T
-// where
-//     T: TrySelfResponseVariantsDesirableAttributeStringified,
-// {
-//     fn try_self_response_variants_desirable_attribute_token_stream(
-//         &self,
-//         attribute: &crate::attribute::Attribute
-//     ) -> proc_macro2::TokenStream {
-//         let value_stringified = self.try_self_response_variants_desirable_attribute_stringified(attribute);
-//         value_stringified.parse::<proc_macro2::TokenStream>()
-//         .unwrap_or_else(|_| panic!("{value_stringified} {}", proc_macro_common::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
-//     }
-// }
-// fn generate_try_operation_with_serialize_deserialize_token_stream(
-//     try_operation_upper_camel_case_stringified: &str,
-//     with_serialize_deserialize_upper_camel_case_stringified: &str,
-//     proc_macro_name_upper_camel_case_ident_stringified: &str
-// ) -> proc_macro2::TokenStream {
-//     let try_operation_with_serialize_deserialize_stringified =
-//         format!("{try_operation_upper_camel_case_stringified}{with_serialize_deserialize_upper_camel_case_stringified}");
-//     try_operation_with_serialize_deserialize_stringified
-//     .parse::<proc_macro2::TokenStream>()
-//     .unwrap_or_else(|_| panic!("{proc_macro_name_upper_camel_case_ident_stringified} {try_operation_with_serialize_deserialize_stringified} {}", proc_macro_common::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
-// }
-//
+impl<T> TryOperationWithSerializeDeserializeTokenStream for T
+where
+    T: TryOperationWithSerializeDeserializeStringified,
+{
+    fn try_operation_with_serialize_deserialize_token_stream(&self) -> proc_macro2::TokenStream {
+        let value_stringified = self.try_operation_with_serialize_deserialize_stringified();
+        value_stringified.parse::<proc_macro2::TokenStream>()
+        .unwrap_or_else(|_| panic!("{value_stringified} {}", proc_macro_common::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+    }
+}
