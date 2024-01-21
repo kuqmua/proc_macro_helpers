@@ -742,3 +742,87 @@ where
         .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
 }
+
+pub trait TrySelfErrorNamedUpperCamelCaseTokenStream
+{
+    fn try_self_error_named_upper_camel_case_token_stream(
+        &self,
+    ) -> proc_macro2::TokenStream;
+}
+
+impl<T>
+    TrySelfErrorNamedUpperCamelCaseTokenStream
+    for T
+where
+    T: ToUpperCamelCaseStringified,
+{
+    fn try_self_error_named_upper_camel_case_token_stream(
+        &self,
+    ) -> proc_macro2::TokenStream {
+        let value_stringified = format!(
+            "{}{}{}{}",
+            try_upper_camel_case_stringified(),
+            self.to_upper_camel_case_stringified(),
+            error_upper_camel_case_stringified(),
+            named_upper_camel_case_stringified()
+        );
+        value_stringified.parse::<proc_macro2::TokenStream>()
+        .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+    }
+}
+
+
+
+// pub trait SelfHandleTryFromSelfHandleWithSerializeDeserializeUpperCamelCasePunctuated
+// {
+//     fn self_handle_try_from_self_handle_with_serialize_deserialize_upper_camel_case_punctuated(
+//         &self,
+//     ) -> syn::punctuated::Punctuated::<syn::PathSegment, syn::token::Colon2>;
+// }
+
+// impl<T>
+//     SelfHandleTryFromSelfHandleWithSerializeDeserializeUpperCamelCasePunctuated
+//     for T
+// where
+//     T: SelfPayloadElementTryFromSelfPayloadElementWithSerializeDeserializeErrorNamedUpperCamelCaseStringified,
+// {
+//     fn self_payload_element_try_from_self_payload_element_with_serialize_deserialize_error_named_upper_camel_case_token_stream(
+//         &self,
+//     ) -> proc_macro2::TokenStream {
+//         let value_stringified = self.self_payload_element_try_from_self_payload_element_with_serialize_deserialize_error_named_upper_camel_case_stringified();
+//         value_stringified.parse::<proc_macro2::TokenStream>()
+//         .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+//     }
+// }
+
+// fn generate_operation_handle_try_from_operation_handle_with_serialize_deserialize_upper_camel_case(
+//     operation_handle_try_from_operation_handle_with_serialize_deserialize_upper_camel_case_stringified: &str,
+//     error_named_upper_camel_case_stringified: &str
+// ) -> syn::punctuated::Punctuated::<syn::PathSegment, syn::token::Colon2> {
+//     let mut handle = syn::punctuated::Punctuated::<syn::PathSegment, syn::token::Colon2>::new();
+//     handle.push_value(
+//         syn::PathSegment {
+//             ident: proc_macro2::Ident::new(
+//                 &generate_with_error_named_postfix_stringified(
+//                     &operation_handle_try_from_operation_handle_with_serialize_deserialize_upper_camel_case_stringified,
+//                     &error_named_upper_camel_case_stringified,
+//                 ),
+//                 proc_macro2::Span::call_site()
+//             ),
+//             arguments: syn::PathArguments::None,
+//         }
+//     );
+//     handle
+// }
+
+// fn generate_url_handle_token_stream(
+//     table_name_stringified: &str,
+//     operation_name_snake_case_stringified: &str,
+//     proc_macro_name_upper_camel_case_ident_stringified: &str,
+// ) -> proc_macro2::TokenStream {
+//     let url_path = generate_url_path(&table_name_stringified);
+//     let url_handle_stringified = format!("\"{url_path}/{operation_name_snake_case_stringified}\"");
+//     url_handle_stringified.parse::<proc_macro2::TokenStream>()
+//     .unwrap_or_else(|_| panic!("{proc_macro_name_upper_camel_case_ident_stringified} {url_handle_stringified} {}", proc_macro_helpers::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+// }
+//
