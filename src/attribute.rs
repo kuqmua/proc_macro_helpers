@@ -531,7 +531,7 @@ impl Attribute {
     pub fn to_attribute_view_token_stream(&self) -> proc_macro2::TokenStream {
         let value_stringified = format!("#[{}]", self.to_string());
         value_stringified.parse::<proc_macro2::TokenStream>()
-        .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+        .unwrap_or_else(|_| panic!("{value_stringified} {}", proc_macro_common::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
 }
 
