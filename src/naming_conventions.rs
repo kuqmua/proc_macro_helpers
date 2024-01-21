@@ -578,6 +578,42 @@ where
     }
 }
 
+pub trait SelfPayloadElementWithSerializeDeserializeUpperCamelCaseStringified {
+    fn self_payload_element_with_serialize_deserialize_upper_camel_case_stringified(&self) -> std::string::String;
+}
+
+impl<T> SelfPayloadElementWithSerializeDeserializeUpperCamelCaseStringified for T
+where
+    T: ToUpperCamelCaseStringified,
+{
+    fn self_payload_element_with_serialize_deserialize_upper_camel_case_stringified(&self) -> std::string::String {
+        format!(
+            "{}{}{}{}{}{}",
+            self.to_upper_camel_case_stringified(),
+            payload_upper_camel_case_stringified(),
+            element_upper_camel_case_stringified(),
+            with_upper_camel_case_stringified(),
+            serialize_upper_camel_case_stringified(),
+            deserialize_upper_camel_case_stringified()
+        )
+    }
+}
+
+pub trait SelfPayloadElementWithSerializeDeserializeUpperCamelCaseTokenStream {
+    fn self_payload_element_with_serialize_deserialize_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream;
+}
+
+impl<T> SelfPayloadElementWithSerializeDeserializeUpperCamelCaseTokenStream for T
+where
+    T: SelfPayloadElementWithSerializeDeserializeUpperCamelCaseStringified,
+{
+    fn self_payload_element_with_serialize_deserialize_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream {
+        let value_stringified = self.self_payload_element_with_serialize_deserialize_upper_camel_case_stringified();
+        value_stringified.parse::<proc_macro2::TokenStream>()
+        .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+    }
+}
+
 pub trait SelfPayloadElementUpperCamelCaseTokenStream {
     fn self_payload_element_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream;
 }
