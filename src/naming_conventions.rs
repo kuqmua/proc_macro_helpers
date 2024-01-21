@@ -898,16 +898,48 @@ where
     }
 }
 
+pub trait TryOperationWithSerializeDeserializeUpperCamelCaseStringified {
+    fn try_operation_with_serialize_deserialize_upper_camel_case_stringified(
+        &self,
+    ) -> std::string::String;
+}
 
-//
-// fn generate_try_operation_response_variants_upper_camel_case_stringified(
-//     try_upper_camel_case_stringified: &str,
-//     operation_name_upper_camel_case_stringified: &str,
-//     response_variants_upper_camel_case_stringified: &str
-// ) -> std::string::String {
-//     format!("{try_upper_camel_case_stringified}{operation_name_upper_camel_case_stringified}{response_variants_upper_camel_case_stringified}")
-// }
-//
+impl<T> TryOperationWithSerializeDeserializeUpperCamelCaseStringified for T
+where
+    T: ToUpperCamelCaseStringified,
+{
+    fn try_operation_with_serialize_deserialize_upper_camel_case_stringified(
+        &self,
+    ) -> std::string::String {
+        format!(
+            "{}{}{}{}{}",
+            try_upper_camel_case_stringified(),
+            self.to_upper_camel_case_stringified(),
+            with_upper_camel_case_stringified(),
+            serialize_upper_camel_case_stringified(),
+            deserialize_upper_camel_case_stringified()
+        )
+    }
+}
+
+pub trait TryOperationWithSerializeDeserializeUpperCamelCaseTokenStream {
+    fn try_operation_with_serialize_deserialize_upper_camel_case_token_stream(
+        &self,
+    ) -> proc_macro2::TokenStream;
+}
+
+impl<T> TryOperationWithSerializeDeserializeUpperCamelCaseTokenStream for T
+where
+    T: TryOperationWithSerializeDeserializeUpperCamelCaseStringified,
+{
+    fn try_operation_with_serialize_deserialize_upper_camel_case_token_stream(
+        &self,
+    ) -> proc_macro2::TokenStream {
+        let value_stringified = self.try_operation_with_serialize_deserialize_upper_camel_case_stringified();
+        value_stringified.parse::<proc_macro2::TokenStream>()
+        .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+    }
+}
 
 // pub trait SelfHandleTryFromSelfHandleWithSerializeDeserializeUpperCamelCasePunctuated
 // {
