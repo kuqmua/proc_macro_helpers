@@ -8,7 +8,6 @@
 
 pub mod error_occurence;
 pub mod global_variables;
-pub mod panic_location;
 pub mod attribute;
 pub mod generate_quotes;
 pub mod type_variants_from_request_response;
