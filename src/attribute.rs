@@ -5,8 +5,8 @@
     Eq,
     Clone,
     Hash,
-    // proc_macro_assistants::ToUpperCamelCaseStringified,
-    // proc_macro_assistants::ToSnakeCaseStringified,
+    proc_macro_assistants::ToUpperCamelCaseStringified,
+    proc_macro_assistants::ToSnakeCaseStringified,
 )]
 pub enum Attribute {
     Tvfrr100Continue,

@@ -884,7 +884,7 @@ where
             self.to_upper_camel_case_stringified(),
             response_upper_camel_case_stringified(),
             variants_upper_camel_case_stringified(),
-            attribute,//todo to_upper_camel_case_stringified()
+            proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(attribute),
         )
     }
 }
