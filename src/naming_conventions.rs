@@ -159,6 +159,14 @@ pub fn deserialize_upper_camel_case_stringified() -> std::string::String {
 pub fn deserialize_snake_case_stringified() -> std::string::String {
     ToSnakeCaseStringified::to_snake_case_stringified(&DESERIALIZE)
 }
+const REQUEST: &str = "request";
+pub fn request_upper_camel_case_stringified() -> std::string::String {
+    ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&REQUEST)
+}
+pub fn request_snake_case_stringified() -> std::string::String {
+    ToSnakeCaseStringified::to_snake_case_stringified(&REQUEST)
+}
+
 
 
 pub fn serialize_deserialize_upper_camel_case_stringified() -> std::string::String {
@@ -807,7 +815,47 @@ where
     }
 }
 
+pub trait TrySelfRequestErrorUpperCamelCaseStringified {
+    fn try_self_request_error_upper_camel_case_stringified(
+        &self,
+    ) -> std::string::String;
+}
 
+impl<T> TrySelfRequestErrorUpperCamelCaseStringified for T
+where
+    T: ToUpperCamelCaseStringified,
+{
+    fn try_self_request_error_upper_camel_case_stringified(
+        &self,
+    ) -> std::string::String {
+        format!(
+            "{}{}{}{}",
+            try_upper_camel_case_stringified(),
+            self.to_upper_camel_case_stringified(),
+            request_upper_camel_case_stringified(),
+            error_upper_camel_case_stringified()
+        )
+    }
+}
+
+pub trait TrySelfRequestErrorUpperCamelCaseTokenStream {
+    fn try_self_request_error_upper_camel_case_token_stream(
+        &self,
+    ) -> proc_macro2::TokenStream;
+}
+
+impl<T> TrySelfRequestErrorUpperCamelCaseTokenStream for T
+where
+    T: TrySelfRequestErrorUpperCamelCaseStringified,
+{
+    fn try_self_request_error_upper_camel_case_token_stream(
+        &self,
+    ) -> proc_macro2::TokenStream {
+        let value_stringified = self.try_self_request_error_upper_camel_case_stringified();
+        value_stringified.parse::<proc_macro2::TokenStream>()
+        .unwrap_or_else(|_| panic!("{value_stringified} {}", crate::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+    }
+}
 
 // pub trait SelfHandleTryFromSelfHandleWithSerializeDeserializeUpperCamelCasePunctuated
 // {
