@@ -898,6 +898,17 @@ where
     }
 }
 
+
+//
+// fn generate_try_operation_response_variants_upper_camel_case_stringified(
+//     try_upper_camel_case_stringified: &str,
+//     operation_name_upper_camel_case_stringified: &str,
+//     response_variants_upper_camel_case_stringified: &str
+// ) -> std::string::String {
+//     format!("{try_upper_camel_case_stringified}{operation_name_upper_camel_case_stringified}{response_variants_upper_camel_case_stringified}")
+// }
+//
+
 // pub trait SelfHandleTryFromSelfHandleWithSerializeDeserializeUpperCamelCasePunctuated
 // {
 //     fn self_handle_try_from_self_handle_with_serialize_deserialize_upper_camel_case_punctuated(
