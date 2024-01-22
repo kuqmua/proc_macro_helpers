@@ -1059,22 +1059,3 @@ where
         }
     }
 }
-// fn generate_wrapped_into_start_end_println_operation_test_content_token_stream(
-//     test_content_token_stream: &proc_macro2::TokenStream,
-//     operation: &Operation
-// ) -> proc_macro2::TokenStream {
-//     let start_println_token_stream = proc_macro_helpers::naming_conventions::TrySelfSnakeCasePrintlnTokenStream::try_self_snake_case_println_token_stream(
-//         operation,
-//         &proc_macro_helpers::TestOperationPrintlnInfo::Start,
-//     );
-//     let end_println_token_stream = proc_macro_helpers::naming_conventions::TrySelfSnakeCasePrintlnTokenStream::try_self_snake_case_println_token_stream(
-//         operation,
-//         &proc_macro_helpers::TestOperationPrintlnInfo::End,
-//     );
-//     quote::quote!{
-//         #start_println_token_stream
-//         #test_content_token_stream
-//         #end_println_token_stream
-//     }
-// }
-//
