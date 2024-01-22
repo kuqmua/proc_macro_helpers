@@ -180,6 +180,13 @@ pub fn variants_upper_camel_case_stringified() -> std::string::String {
 pub fn variants_snake_case_stringified() -> std::string::String {
     proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&VARIANTS)
 }
+pub const TVFRR_EXTRACTION_LOGIC: &str = "tvfrr_extraction_logic";
+// pub fn tvfrr_extraction_logic_upper_camel_case_stringified() -> std::string::String {
+//     proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&TVFRR_EXTRACTION_LOGIC)
+// }
+pub fn tvfrr_extraction_logic_snake_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&TVFRR_EXTRACTION_LOGIC)
+}
 
 
 
@@ -940,6 +947,39 @@ where
 {
     fn try_operation_with_serialize_deserialize_token_stream(&self) -> proc_macro2::TokenStream {
         let value_stringified = self.try_operation_with_serialize_deserialize_stringified();
+        value_stringified.parse::<proc_macro2::TokenStream>()
+        .unwrap_or_else(|_| panic!("{value_stringified} {}", proc_macro_common::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+    }
+}
+
+pub trait TvfrrExtractionLogicTrySelfSnakeCaseStringified {
+    fn tvfrr_extraction_logic_try_self_snake_case_stringified(&self) -> std::string::String;
+}
+
+impl<T> TvfrrExtractionLogicTrySelfSnakeCaseStringified for T
+where
+    T: proc_macro_common::naming_conventions::ToSnakeCaseStringified,
+{
+    fn tvfrr_extraction_logic_try_self_snake_case_stringified(&self) -> std::string::String {
+        format!(
+            "{}_{}_{}",
+            tvfrr_extraction_logic_snake_case_stringified(),
+            try_snake_case_stringified(),
+            self.to_snake_case_stringified()
+        )
+    }
+}
+
+pub trait TvfrrExtractionLogicTrySelfSnakeCaseTokenStream {
+    fn tvfrr_extraction_logic_try_self_snake_case_token_stream(&self) -> proc_macro2::TokenStream;
+}
+
+impl<T> TvfrrExtractionLogicTrySelfSnakeCaseTokenStream for T
+where
+    T: TvfrrExtractionLogicTrySelfSnakeCaseStringified,
+{
+    fn tvfrr_extraction_logic_try_self_snake_case_token_stream(&self) -> proc_macro2::TokenStream {
+        let value_stringified = self.tvfrr_extraction_logic_try_self_snake_case_stringified();
         value_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_stringified} {}", proc_macro_common::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
