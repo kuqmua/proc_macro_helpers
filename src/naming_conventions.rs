@@ -309,15 +309,15 @@ where
     }
 }
 
-pub trait SelfPayloadTryFromSelfPayloadWithSerializeDeserializeStringified {
-    fn self_payload_try_from_self_payload_with_serialize_deserialize_stringified(&self) -> std::string::String;
+pub trait SelfPayloadTryFromSelfPayloadWithSerializeDeserializeUpperCamelCaseStringified {
+    fn self_payload_try_from_self_payload_with_serialize_deserialize_upper_camel_case_stringified(&self) -> std::string::String;
 }
 
-impl<T> SelfPayloadTryFromSelfPayloadWithSerializeDeserializeStringified for T
+impl<T> SelfPayloadTryFromSelfPayloadWithSerializeDeserializeUpperCamelCaseStringified for T
 where
     T: proc_macro_common::naming_conventions::ToUpperCamelCaseStringified,
 {
-    fn self_payload_try_from_self_payload_with_serialize_deserialize_stringified(&self) -> std::string::String {
+    fn self_payload_try_from_self_payload_with_serialize_deserialize_upper_camel_case_stringified(&self) -> std::string::String {
         format!(
             "{}{}{}{}{}{}{}",
             self.to_upper_camel_case_stringified(),
@@ -331,24 +331,63 @@ where
     }
 }
 
-pub trait SelfPayloadTryFromSelfPayloadWithSerializeDeserializeTokenStream {
-    fn self_payload_try_from_self_payload_with_serialize_deserialize_token_stream(
+pub trait SelfPayloadTryFromSelfPayloadWithSerializeDeserializeUpperCamelCaseTokenStream {
+    fn self_payload_try_from_self_payload_with_serialize_deserialize_upper_camel_case_token_stream(
         &self,
     ) -> proc_macro2::TokenStream;
 }
 
-impl<T> SelfPayloadTryFromSelfPayloadWithSerializeDeserializeTokenStream for T
+impl<T> SelfPayloadTryFromSelfPayloadWithSerializeDeserializeUpperCamelCaseTokenStream for T
 where
-    T: SelfPayloadTryFromSelfPayloadWithSerializeDeserializeStringified,
+    T: SelfPayloadTryFromSelfPayloadWithSerializeDeserializeUpperCamelCaseStringified,
 {
-    fn self_payload_try_from_self_payload_with_serialize_deserialize_token_stream(
+    fn self_payload_try_from_self_payload_with_serialize_deserialize_upper_camel_case_token_stream(
         &self,
     ) -> proc_macro2::TokenStream {
-        let value_stringified = self.self_payload_try_from_self_payload_with_serialize_deserialize_stringified();
+        let value_stringified = self.self_payload_try_from_self_payload_with_serialize_deserialize_upper_camel_case_stringified();
         value_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_stringified} {}", proc_macro_common::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
 }
+
+//
+// pub trait SelfPayloadTryFromSelfPayloadWithSerializeDeserializeErrorNamedPunctuated {
+//     fn self_payload_try_from_self_payload_with_serialize_deserialize_error_named_punctuated(
+//         &self,
+//     ) -> proc_macro2::TokenStream;
+// }
+
+// impl<T> SelfPayloadTryFromSelfPayloadWithSerializeDeserializeErrorNamedPunctuated for T
+// where
+//     T: SelfPayloadTryFromSelfPayloadWithSerializeDeserializeErrorNamedStringified,
+// {
+//     fn self_payload_try_from_self_payload_with_serialize_deserialize_error_named_punctuated(
+//         &self,
+//     ) -> proc_macro2::TokenStream {
+//         let value_stringified = self.self_payload_try_from_self_payload_with_serialize_deserialize_error_named_stringified();
+//         value_stringified.parse::<proc_macro2::TokenStream>()
+//         .unwrap_or_else(|_| panic!("{value_stringified} {}", proc_macro_common::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+//     }
+// }
+//
+// fn generate_operation_handle_try_from_operation_handle_with_serialize_deserialize_upper_camel_case(
+//     operation_handle_try_from_operation_handle_with_serialize_deserialize_upper_camel_case_stringified: &str,
+//     error_named_upper_camel_case_stringified: &str
+// ) -> syn::punctuated::Punctuated::<syn::PathSegment, syn::token::Colon2> {
+//     let mut handle = syn::punctuated::Punctuated::<syn::PathSegment, syn::token::Colon2>::new();
+//     handle.push_value(
+//         syn::PathSegment {
+//             ident: proc_macro2::Ident::new(
+//                 &format!("{operation_handle_try_from_operation_handle_with_serialize_deserialize_upper_camel_case_stringified}{error_named_upper_camel_case_stringified}"),
+//                 proc_macro2::Span::call_site()
+//             ),
+//             arguments: syn::PathArguments::None,
+//         }
+//     );
+//     handle
+// }
+//
+//
 
 pub trait SelfPayloadTryFromSelfPayloadWithSerializeDeserializeSnakeCaseStringified {
     fn self_payload_try_from_self_payload_with_serialize_deserialize_snake_case_stringified(
@@ -794,14 +833,14 @@ pub trait PayloadTryFromPayloadWithSerializeDeserializeErrorNamedUpperCamelCaseS
 
 impl<T> PayloadTryFromPayloadWithSerializeDeserializeErrorNamedUpperCamelCaseStringified for T
 where
-    T: SelfPayloadTryFromSelfPayloadWithSerializeDeserializeStringified,
+    T: SelfPayloadTryFromSelfPayloadWithSerializeDeserializeUpperCamelCaseStringified,
 {
     fn payload_try_from_payload_with_serialize_deserialize_error_named_upper_camel_case_stringified(
         &self,
     ) -> std::string::String {
         format!(
             "{}{}{}",
-            self.self_payload_try_from_self_payload_with_serialize_deserialize_stringified(),
+            self.self_payload_try_from_self_payload_with_serialize_deserialize_upper_camel_case_stringified(),
             error_upper_camel_case_stringified(),
             named_upper_camel_case_stringified()
         )
