@@ -1029,7 +1029,8 @@ where
         test_operation_print_in_info: &crate::TestOperationPrintlnInfo,
     ) -> proc_macro2::TokenStream {
         let value_stringified = self.try_self_snake_case_println_stringified(test_operation_print_in_info);
-        value_stringified.parse::<proc_macro2::TokenStream>()
-        .unwrap_or_else(|_| panic!("{value_stringified} {}", proc_macro_common::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+        let value_token_stream = value_stringified.parse::<proc_macro2::TokenStream>()
+        .unwrap_or_else(|_| panic!("{value_stringified} {}", proc_macro_common::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE));
+        quote::quote!{println!(#value_token_stream);}
     }
 }
