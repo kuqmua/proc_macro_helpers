@@ -1059,3 +1059,35 @@ where
         }
     }
 }
+
+pub trait SwaggerUrlPathSelfQuotesStringified {
+    fn swagger_url_path_self_quotes_stringified(&self, table_name_stringified: &str) -> std::string::String;
+}
+
+impl<T> SwaggerUrlPathSelfQuotesStringified for T
+where
+    T: proc_macro_common::naming_conventions::ToSnakeCaseStringified,
+{
+    fn swagger_url_path_self_quotes_stringified(&self, table_name_stringified: &str) -> std::string::String {
+        proc_macro_common::generate_quotes::generate_quotes_stringified(&format!(
+            "/{}/{}",
+            table_name_stringified,
+            self.to_snake_case_stringified(),
+        ))
+    }
+}
+
+pub trait SwaggerUrlPathSelfQuotesTokenStream {
+    fn swagger_url_path_self_quotes_token_stream(&self, table_name_stringified: &str) -> proc_macro2::TokenStream;
+}
+
+impl<T> SwaggerUrlPathSelfQuotesTokenStream for T
+where
+    T: SwaggerUrlPathSelfQuotesStringified,
+{
+    fn swagger_url_path_self_quotes_token_stream(&self, table_name_stringified: &str) -> proc_macro2::TokenStream {
+        let value_stringified = self.swagger_url_path_self_quotes_stringified(table_name_stringified);
+        value_stringified.parse::<proc_macro2::TokenStream>()
+        .unwrap_or_else(|_| panic!("{value_stringified} {}", proc_macro_common::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+    }
+}
