@@ -986,52 +986,50 @@ where
 }
 
 //
-// pub trait TrySelfSnakeCasePrintlnStringified {
-//     fn try_self_snake_case_println_stringified(&self) -> std::string::String;
-// }
+pub trait TrySelfSnakeCasePrintlnStringified {
+    fn try_self_snake_case_println_stringified(
+        &self,
+        test_operation_print_in_info: &crate::TestOperationPrintlnInfo,
+    ) -> std::string::String;
+}
 
-// impl<T> TrySelfSnakeCasePrintlnStringified for T
-// where
-//     T: proc_macro_common::naming_conventions::ToSnakeCaseStringified,
-// {
-//     fn try_self_snake_case_println_stringified(&self) -> std::string::String {
-//         let try_operation_snake_case_stringified = proc_macro_helpers::naming_conventions::TrySelfSnakeCaseStringified::try_self_snake_case_stringified(operation);
-//         let slashes = "-------";
-//         format!(
-//             "\"{}{}{} {test_operation_print_in_info}{slashes}\"",
-//             slashes,
-//             try_snake_case_stringified(),
-//             self.to_snake_case_stringified(),
+impl<T> TrySelfSnakeCasePrintlnStringified for T
+where
+    T: proc_macro_common::naming_conventions::ToSnakeCaseStringified,
+{
+    fn try_self_snake_case_println_stringified(
+        &self,
+        test_operation_print_in_info: &crate::TestOperationPrintlnInfo,
+    ) -> std::string::String {
+        let slashes = "-------";
+        format!(
+            "\"{}{}{} {}{}\"",
+            slashes,
+            try_snake_case_stringified(),
+            self.to_snake_case_stringified(),
+            proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(test_operation_print_in_info),
+            slashes,
+        )
+    }
+}
 
-//             slashes,
-//         )
-//     }
-// }
+pub trait TrySelfSnakeCasePrintlnTokenStream {
+    fn try_self_snake_case_println_token_stream(
+        &self,
+        test_operation_print_in_info: &crate::TestOperationPrintlnInfo,
+    ) -> proc_macro2::TokenStream;
+}
 
-// pub trait TrySelfSnakeCasePrintlnTokenStream {
-//     fn try_self_snake_case_println_token_stream(&self) -> proc_macro2::TokenStream;
-// }
-
-// impl<T> TrySelfSnakeCasePrintlnTokenStream for T
-// where
-//     T: TrySelfSnakeCasePrintlnStringified,
-// {
-//     fn try_self_snake_case_println_token_stream(&self) -> proc_macro2::TokenStream {
-//         let value_stringified = self.try_self_snake_case_println_stringified();
-//         value_stringified.parse::<proc_macro2::TokenStream>()
-//         .unwrap_or_else(|_| panic!("{value_stringified} {}", proc_macro_common::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
-//     }
-// }
-// fn generate_try_operation_snake_case_println_token_stream(
-//     test_operation_print_in_info: TestOperationPrintlnInfo,
-//     proc_macro_name_upper_camel_case_ident_stringified: &str,
-//     operation: &Operation,
-// ) -> proc_macro2::TokenStream {
-//     let try_operation_snake_case_stringified = proc_macro_helpers::naming_conventions::TrySelfSnakeCaseStringified::try_self_snake_case_stringified(operation);
-//     let slashes = "-------";
-//     let try_operation_snake_case_println_content_stringified = format!("\"{slashes}{try_operation_snake_case_stringified} {test_operation_print_in_info}{slashes}\"");
-//     let try_operation_snake_case_println_content_token_stream = try_operation_snake_case_println_content_stringified.parse::<proc_macro2::TokenStream>()
-//     .unwrap_or_else(|_| panic!("{proc_macro_name_upper_camel_case_ident_stringified} {try_operation_snake_case_println_content_stringified} {}", proc_macro_common::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE));
-//     quote::quote!{println!(#try_operation_snake_case_println_content_token_stream);}
-// }
-//
+impl<T> TrySelfSnakeCasePrintlnTokenStream for T
+where
+    T: TrySelfSnakeCasePrintlnStringified,
+{
+    fn try_self_snake_case_println_token_stream(
+        &self,
+        test_operation_print_in_info: &crate::TestOperationPrintlnInfo,
+    ) -> proc_macro2::TokenStream {
+        let value_stringified = self.try_self_snake_case_println_stringified(test_operation_print_in_info);
+        value_stringified.parse::<proc_macro2::TokenStream>()
+        .unwrap_or_else(|_| panic!("{value_stringified} {}", proc_macro_common::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+    }
+}
