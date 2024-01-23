@@ -934,20 +934,20 @@ where
     }
 }
 
-pub trait TrySelfResponseVariantsDesirableAttributeStringified {
-    fn try_self_response_variants_desirable_attribute_stringified(
+pub trait TrySelfResponseVariantsStatusCodeStringified {
+    fn try_self_response_variants_status_code_stringified(
         &self,
-        attribute: &crate::attribute::Attribute
+        status_code: &crate::status_code::StatusCode
     ) -> std::string::String;
 }
 
-impl<T> TrySelfResponseVariantsDesirableAttributeStringified for T
+impl<T> TrySelfResponseVariantsStatusCodeStringified for T
 where
     T: proc_macro_common::naming_conventions::ToUpperCamelCaseStringified,
 {
-    fn try_self_response_variants_desirable_attribute_stringified(
+    fn try_self_response_variants_status_code_stringified(
         &self,
-        attribute: &crate::attribute::Attribute
+        status_code: &crate::status_code::StatusCode
     ) -> std::string::String {
         format!(
             "{}{}{}{}{}",
@@ -955,27 +955,27 @@ where
             self.to_upper_camel_case_stringified(),
             response_upper_camel_case_stringified(),
             variants_upper_camel_case_stringified(),
-            proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(attribute),
+            proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(status_code),
         )
     }
 }
 
-pub trait TrySelfResponseVariantsDesirableAttributeTokenStream {
-    fn try_self_response_variants_desirable_attribute_token_stream(
+pub trait TrySelfResponseVariantsStatusCodeTokenStream {
+    fn try_self_response_variants_status_code_token_stream(
         &self,
-        attribute: &crate::attribute::Attribute
+        status_code: &crate::status_code::StatusCode
     ) -> proc_macro2::TokenStream;
 }
 
-impl<T> TrySelfResponseVariantsDesirableAttributeTokenStream for T
+impl<T> TrySelfResponseVariantsStatusCodeTokenStream for T
 where
-    T: TrySelfResponseVariantsDesirableAttributeStringified,
+    T: TrySelfResponseVariantsStatusCodeStringified,
 {
-    fn try_self_response_variants_desirable_attribute_token_stream(
+    fn try_self_response_variants_status_code_token_stream(
         &self,
-        attribute: &crate::attribute::Attribute
+        status_code: &crate::status_code::StatusCode
     ) -> proc_macro2::TokenStream {
-        let value_stringified = self.try_self_response_variants_desirable_attribute_stringified(attribute);
+        let value_stringified = self.try_self_response_variants_status_code_stringified(status_code);
         value_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_stringified} {}", proc_macro_common::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
