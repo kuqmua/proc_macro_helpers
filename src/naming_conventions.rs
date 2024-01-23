@@ -1155,3 +1155,60 @@ where
         .unwrap_or_else(|_| panic!("{value_stringified} {}", proc_macro_common::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
     }
 }
+
+
+//
+pub trait UrlHandleSelfSnakeCaseStringified {
+    fn url_handle_self_snake_case_stringified(
+        &self,
+        table_name_stringified: &str,
+    ) -> std::string::String;
+}
+
+impl<T> UrlHandleSelfSnakeCaseStringified for T
+where
+    T: proc_macro_common::naming_conventions::ToSnakeCaseStringified,
+{
+    fn url_handle_self_snake_case_stringified(
+        &self,
+        table_name_stringified: &str,
+    ) -> std::string::String {
+        format!(
+            "\"{{}}/{}/{}\"",
+            table_name_stringified,
+            self.to_snake_case_stringified()
+        )
+    }
+}
+
+pub trait UrlHandleSelfSnakeCaseTokenStream {
+    fn url_handle_self_snake_case_token_stream(
+        &self,
+        table_name_stringified: &str,
+    ) -> proc_macro2::TokenStream;
+}
+
+impl<T> UrlHandleSelfSnakeCaseTokenStream for T
+where
+    T: UrlHandleSelfSnakeCaseStringified,
+{
+    fn url_handle_self_snake_case_token_stream(
+        &self,
+        table_name_stringified: &str,
+    ) -> proc_macro2::TokenStream {
+        let value_stringified =
+            self.url_handle_self_snake_case_stringified(table_name_stringified);
+        value_stringified.parse::<proc_macro2::TokenStream>()
+        .unwrap_or_else(|_| panic!("{value_stringified} {}", proc_macro_common::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+    }
+}
+// fn generate_url_handle_token_stream(
+//     table_name_stringified: &str,
+//     operation_name_snake_case_stringified: &str,
+//     proc_macro_name_upper_camel_case_ident_stringified: &str,
+// ) -> proc_macro2::TokenStream {
+//     let url_handle_stringified = format!("\"{{}}/{table_name_stringified}/{operation_name_snake_case_stringified}\"");
+//     url_handle_stringified.parse::<proc_macro2::TokenStream>()
+//     .unwrap_or_else(|_| panic!("{proc_macro_name_upper_camel_case_ident_stringified} {url_handle_stringified} {}", proc_macro_common::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+// }
+//
