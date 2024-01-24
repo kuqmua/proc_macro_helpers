@@ -474,18 +474,18 @@ impl StatusCode {
 impl TryFrom<&syn::Variant> for StatusCode {
     type Error = std::string::String;
     fn try_from(value: &syn::Variant) -> Result<Self, Self::Error> {
-        let mut option_attribute: Option<Self> = None;
+        let mut option_status_code: Option<Self> = None;
         for element in &value.attrs {
             if let true = element.path.segments.len() == 1 {
                 match element.path.segments.first() {
                     Some(segment) => {
                         if let Ok(value) = Self::try_from(&segment.ident.to_string()) {
-                            match option_attribute {
+                            match option_status_code {
                                 Some(value) => {
-                                    return Err(format!("duplicated attributes {value} are not supported"));
+                                    return Err(format!("duplicated status_code attributes {value} are not supported"));
                                 },
                                 None => {
-                                    option_attribute = Some(value);
+                                    option_status_code = Some(value);
                                 }
                             }
                         }
@@ -496,9 +496,9 @@ impl TryFrom<&syn::Variant> for StatusCode {
                 }
             }
         }
-        match option_attribute {
+        match option_status_code {
             Some(value) => Ok(value),
-            None => Err(std::string::String::from("attribute not found")),
+            None => Err(std::string::String::from("status_code attribute not found")),
         }
     }
 }
