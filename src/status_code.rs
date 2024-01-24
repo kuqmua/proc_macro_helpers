@@ -474,18 +474,18 @@ impl StatusCode {
 impl TryFrom<&syn::Variant> for StatusCode {
     type Error = std::string::String;
     fn try_from(value: &syn::Variant) -> Result<Self, Self::Error> {
-        let mut option_status_code: Option<Self> = None;
+        let mut option_self: Option<Self> = None;
         for element in &value.attrs {
             if let true = element.path.segments.len() == 1 {
                 match element.path.segments.first() {
                     Some(segment) => {
                         if let Ok(value) = Self::try_from(&segment.ident.to_string()) {
-                            match option_status_code {
+                            match option_self {
                                 Some(value) => {
                                     return Err(format!("duplicated status_code attributes {value} are not supported"));
                                 },
                                 None => {
-                                    option_status_code = Some(value);
+                                    option_self = Some(value);
                                 }
                             }
                         }
@@ -496,7 +496,7 @@ impl TryFrom<&syn::Variant> for StatusCode {
                 }
             }
         }
-        match option_status_code {
+        match option_self {
             Some(value) => Ok(value),
             None => Err(std::string::String::from("status_code attribute not found")),
         }
@@ -506,18 +506,18 @@ impl TryFrom<&syn::Variant> for StatusCode {
 impl TryFrom<&&syn::Variant> for StatusCode {
     type Error = std::string::String;
     fn try_from(value: &&syn::Variant) -> Result<Self, Self::Error> {
-        let mut option_attribute: Option<Self> = None;
+        let mut option_self: Option<Self> = None;
         for element in &value.attrs {
             if let true = element.path.segments.len() == 1 {
                 match element.path.segments.first() {
                     Some(segment) => {
                         if let Ok(value) = Self::try_from(&segment.ident.to_string()) {
-                            match option_attribute {
+                            match option_self {
                                 Some(value) => {
-                                    return Err(format!("duplicated attributes {value} are not supported"));
+                                    return Err(format!("duplicated status_code attributes {value} are not supported"));
                                 },
                                 None => {
-                                    option_attribute = Some(value);
+                                    option_self = Some(value);
                                 }
                             }
                         }
@@ -528,9 +528,9 @@ impl TryFrom<&&syn::Variant> for StatusCode {
                 }
             }
         }
-        match option_attribute {
+        match option_self {
             Some(value) => Ok(value),
-            None => Err(std::string::String::from("attribute not found")),
+            None => Err(std::string::String::from("status_code attribute not found")),
         }
     }
 }
@@ -664,25 +664,25 @@ impl TryFrom<&std::string::String> for StatusCode {
     }
 }
 
-pub fn get_only_one_attribute(
+pub fn get_only_one_status_code(
     variant: &syn::Variant,
     proc_macro_name_ident_stringified: &std::string::String
 ) -> StatusCode {
-    let mut option_attribute = None;
+    let mut option_self = None;
     variant.attrs.iter().for_each(|attr| {
         if let true = attr.path.segments.len() == 1 {
             if let Ok(named_attribute) = StatusCode::try_from(&attr.path.segments[0].ident.to_string()) {
-                if let true = option_attribute.is_some() {
-                    panic!("{proc_macro_name_ident_stringified} duplicated attributes are not supported");
+                if let true = option_self.is_some() {
+                    panic!("{proc_macro_name_ident_stringified} duplicated status_code attributes are not supported");
                 } else {
-                    option_attribute = Some(named_attribute);
+                    option_self = Some(named_attribute);
                 }
             }
         }
     });
-    if let Some(attr) = option_attribute {
+    if let Some(attr) = option_self {
         attr
     } else {
-        panic!("{proc_macro_name_ident_stringified} no supported attribute");
+        panic!("{proc_macro_name_ident_stringified} not supported status_code attribute");
     }
 }
