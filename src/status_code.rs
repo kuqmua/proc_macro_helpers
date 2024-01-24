@@ -464,7 +464,7 @@ impl StatusCode {
             StatusCode::Tvfrr511NetworkAuthenticationRequired => quote::quote! {"network authentication required"},
         }
     }
-    pub fn to_attribute_view_token_stream(&self) -> proc_macro2::TokenStream {
+    pub fn to_proc_macro_attribute_view_token_stream(&self) -> proc_macro2::TokenStream {
         let value_stringified = format!("#[{}]", self.to_string());
         value_stringified.parse::<proc_macro2::TokenStream>()
         .unwrap_or_else(|_| panic!("{value_stringified} {}", proc_macro_common::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
