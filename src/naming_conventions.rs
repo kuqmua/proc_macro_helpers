@@ -293,7 +293,6 @@ pub fn get_upper_camel_case_stringified() -> std::string::String {
 pub fn get_snake_case_stringified() -> std::string::String {
     proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&GET)
 }
-
 const COLUMN: &str = "column";
 pub fn column_upper_camel_case_stringified() -> std::string::String {
     proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&COLUMN)
@@ -301,6 +300,30 @@ pub fn column_upper_camel_case_stringified() -> std::string::String {
 pub fn column_snake_case_stringified() -> std::string::String {
     proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&COLUMN)
 }
+const SELECT: &str = "select";
+pub fn select_upper_camel_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&SELECT)
+}
+pub fn select_snake_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&SELECT)
+}
+const ORDER: &str = "order";
+pub fn order_upper_camel_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&ORDER)
+}
+pub fn order_snake_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&ORDER)
+}
+const BY: &str = "by";
+pub fn by_upper_camel_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&BY)
+}
+pub fn by_snake_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&BY)
+}
+
+
+
 
 
 
