@@ -230,9 +230,27 @@ pub fn str_upper_camel_case_stringified() -> std::string::String {
 pub fn str_snake_case_stringified() -> std::string::String {
     proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&STR)
 }
-
-
-
+const UUID: &str = "uuid";
+pub fn uuid_upper_camel_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&UUID)
+}
+pub fn uuid_snake_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&UUID)
+}
+const WRAPPER: &str = "wrapper";
+pub fn wrapper_upper_camel_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&WRAPPER)
+}
+pub fn wrapper_snake_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&WRAPPER)
+}
+const POSSIBLE: &str = "possible";
+pub fn possible_upper_camel_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&POSSIBLE)
+}
+pub fn possible_snake_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&POSSIBLE)
+}
 
 
 
