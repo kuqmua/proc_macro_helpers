@@ -251,7 +251,13 @@ pub fn possible_upper_camel_case_stringified() -> std::string::String {
 pub fn possible_snake_case_stringified() -> std::string::String {
     proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&POSSIBLE)
 }
-
+const SOURCE: &str = "source";
+pub fn source_upper_camel_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&SOURCE)
+}
+pub fn source_snake_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&SOURCE)
+}
 
 
 
