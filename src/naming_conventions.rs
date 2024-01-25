@@ -258,6 +258,38 @@ pub fn source_upper_camel_case_stringified() -> std::string::String {
 pub fn source_snake_case_stringified() -> std::string::String {
     proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&SOURCE)
 }
+const DISPLAY: &str = "display";
+pub fn display_upper_camel_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&DISPLAY)
+}
+pub fn display_snake_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&DISPLAY)
+}
+const FOREIGN: &str = "foreign";
+pub fn foreign_upper_camel_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&FOREIGN)
+}
+pub fn foreign_snake_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&FOREIGN)
+}
+const TYPE: &str = "type";
+pub fn type_upper_camel_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&TYPE)
+}
+pub fn type_snake_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&TYPE)
+}
+const INTO: &str = "into";
+pub fn into_upper_camel_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&INTO)
+}
+pub fn into_snake_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&INTO)
+}
+
+
+
+
 
 
 
