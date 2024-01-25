@@ -289,12 +289,22 @@ pub fn code_occurence_upper_camel_case_stringified() -> std::string::String {
         occurence_upper_camel_case_stringified()
     )
 }
+pub fn code_occurence_upper_camel_case_token_stream() -> proc_macro2::TokenStream {
+    let value = code_occurence_upper_camel_case_stringified();
+    value.parse::<proc_macro2::TokenStream>()
+    .unwrap_or_else(|_| panic!("{value} {}", proc_macro_common::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+}
 pub fn code_occurence_snake_case_stringified() -> std::string::String {
     format!(
         "{}_{}", 
         code_snake_case_stringified(), 
         occurence_snake_case_stringified()
     )
+}
+pub fn code_occurence_snake_case_token_stream() -> proc_macro2::TokenStream {
+    let value = code_occurence_snake_case_stringified();
+    value.parse::<proc_macro2::TokenStream>()
+    .unwrap_or_else(|_| panic!("{value} {}", proc_macro_common::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
 }
 
 
