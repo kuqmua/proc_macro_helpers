@@ -209,8 +209,20 @@ pub fn config_upper_camel_case_stringified() -> std::string::String {
 pub fn config_snake_case_stringified() -> std::string::String {
     proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&CONFIG)
 }
-
-
+const IS: &str = "is";
+pub fn is_upper_camel_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&IS)
+}
+pub fn is_snake_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&IS)
+}
+const NONE: &str = "none";
+pub fn none_upper_camel_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&NONE)
+}
+pub fn none_snake_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&NONE)
+}
 
 
 
@@ -306,8 +318,20 @@ pub fn code_occurence_snake_case_token_stream() -> proc_macro2::TokenStream {
     value.parse::<proc_macro2::TokenStream>()
     .unwrap_or_else(|_| panic!("{value} {}", proc_macro_common::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
 }
-
-
+pub fn is_none_upper_camel_case_stringified() -> std::string::String {
+    format!(
+        "{}{}", 
+        is_upper_camel_case_stringified(), 
+        none_upper_camel_case_stringified()
+    )
+}
+pub fn is_none_snake_case_stringified() -> std::string::String {
+    format!(
+        "{}_{}", 
+        is_snake_case_stringified(), 
+        none_snake_case_stringified()
+    )
+}
 
 
 
