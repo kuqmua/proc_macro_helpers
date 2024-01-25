@@ -286,7 +286,13 @@ pub fn into_upper_camel_case_stringified() -> std::string::String {
 pub fn into_snake_case_stringified() -> std::string::String {
     proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&INTO)
 }
-
+const GET: &str = "get";
+pub fn get_upper_camel_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&GET)
+}
+pub fn get_snake_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&GET)
+}
 
 
 
