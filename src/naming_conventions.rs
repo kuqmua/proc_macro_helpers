@@ -199,9 +199,26 @@ const CODE: &str = "code";
 pub fn code_upper_camel_case_stringified() -> std::string::String {
     proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&CODE)
 }
-// pub fn code_snake_case_stringified() -> std::string::String {
-//     proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&CODE)
-// }
+pub fn code_snake_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&CODE)
+}
+const CONFIG: &str = "config";
+pub fn config_upper_camel_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&CONFIG)
+}
+pub fn config_snake_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&CONFIG)
+}
+
+
+
+
+
+
+
+
+
+
 
 
 pub fn serialize_deserialize_upper_camel_case_stringified() -> std::string::String {
@@ -272,6 +289,23 @@ pub fn code_occurence_upper_camel_case_stringified() -> std::string::String {
         occurence_upper_camel_case_stringified()
     )
 }
+pub fn code_occurence_snake_case_stringified() -> std::string::String {
+    format!(
+        "{}_{}", 
+        code_snake_case_stringified(), 
+        occurence_snake_case_stringified()
+    )
+}
+
+
+
+
+
+
+
+
+
+
 
 pub trait SelfParametersUpperCamelCaseTokenStream {
     fn self_parameters_upper_camel_case_token_stream(&self) -> proc_macro2::TokenStream;
