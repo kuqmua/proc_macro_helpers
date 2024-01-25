@@ -181,14 +181,27 @@ pub fn variants_upper_camel_case_stringified() -> std::string::String {
 pub fn variants_snake_case_stringified() -> std::string::String {
     proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&VARIANTS)
 }
-pub const TVFRR_EXTRACTION_LOGIC: &str = "tvfrr_extraction_logic";
+const TVFRR_EXTRACTION_LOGIC: &str = "tvfrr_extraction_logic";
 // pub fn tvfrr_extraction_logic_upper_camel_case_stringified() -> std::string::String {
 //     proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&TVFRR_EXTRACTION_LOGIC)
 // }
 pub fn tvfrr_extraction_logic_snake_case_stringified() -> std::string::String {
     proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&TVFRR_EXTRACTION_LOGIC)
 }
-
+const OPTIONS: &str = "options";
+pub fn options_upper_camel_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&OPTIONS)
+}
+// pub fn options_snake_case_stringified() -> std::string::String {
+//     proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&OPTIONS)
+// }
+const CODE: &str = "code";
+pub fn code_upper_camel_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&CODE)
+}
+// pub fn code_snake_case_stringified() -> std::string::String {
+//     proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&CODE)
+// }
 
 
 pub fn serialize_deserialize_upper_camel_case_stringified() -> std::string::String {
@@ -250,6 +263,13 @@ pub fn supports_only_supported_container_stringified() -> std::string::String {
     format!(
         "{} {}",
         SUPPORTS_ONLY_STRINGIFIED, SUPPORTED_CONTAINER_DOUBLE_DOT_DOUBLE_DOT
+    )
+}
+pub fn code_occurence_upper_camel_case_stringified() -> std::string::String {
+    format!(
+        "{}{}", 
+        code_upper_camel_case_stringified(), 
+        occurence_upper_camel_case_stringified()
     )
 }
 
