@@ -294,7 +294,13 @@ pub fn get_snake_case_stringified() -> std::string::String {
     proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&GET)
 }
 
-
+const COLUMN: &str = "column";
+pub fn column_upper_camel_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&COLUMN)
+}
+pub fn column_snake_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&COLUMN)
+}
 
 
 
