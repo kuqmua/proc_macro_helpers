@@ -27,10 +27,7 @@ pub fn generate_with_serialize_deserialize_version(
     let syn_type_path_stringified = crate::naming_conventions::syn_type_path_stringified();
     let token_stream = match supported_enum_variant {
         crate::error_occurence::supported_enum_variant::SuportedEnumVariant::Named => {
-            let code_occurence_upper_camel_case = format!(
-                "Code{}",
-                crate::naming_conventions::occurence_upper_camel_case_stringified()
-            );
+            let code_occurence_upper_camel_case = crate::naming_conventions::code_occurence_upper_camel_case_stringified();
             let foreign_type_upper_camel_case = "ForeignType";
             let display_upper_camel_case = "Display";
             let display_foreign_type_upper_camel_case =
