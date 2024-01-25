@@ -24,6 +24,7 @@ pub const SUPPORTED_ENUM_VARIANT_STRINGIFIED: &str =
 pub const SYN_GENERIC_ARGUMENT_TYPE_STRINGIFIED: &str = "syn::GenericArgument::Type";
 pub const IS_NONE_STRINGIFIED: &str = "is None";
 pub const STD_STRINGIFIED: &str = "std";
+pub const SQLX_TYPES_UUID_STRINGIFIED: &str = "sqlx::types::Uuid";
 
 const NAMED: &str = "named";
 pub fn named_upper_camel_case_stringified() -> std::string::String {
