@@ -212,6 +212,11 @@ pub fn with_serialize_deserialize_upper_camel_case_stringified() -> std::string:
         deserialize_upper_camel_case_stringified()
     )
 }
+// pub fn with_serialize_deserialize_upper_camel_case_token_stream() -> proc_macro2::TokenStream {
+//     let value = with_serialize_deserialize_upper_camel_case_stringified();
+//     value.parse::<proc_macro2::TokenStream>()
+//     .unwrap_or_else(|_| panic!("{value} {}", proc_macro_common::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+// }
 pub fn with_serialize_deserialize_snake_case_stringified() -> std::string::String {
     format!(
         "{}_{}_{}",
