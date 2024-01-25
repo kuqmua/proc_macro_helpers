@@ -223,7 +223,13 @@ pub fn none_upper_camel_case_stringified() -> std::string::String {
 pub fn none_snake_case_stringified() -> std::string::String {
     proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&NONE)
 }
-
+const STR: &str = "str";
+pub fn str_upper_camel_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&STR)
+}
+pub fn str_snake_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&STR)
+}
 
 
 
@@ -332,7 +338,27 @@ pub fn is_none_snake_case_stringified() -> std::string::String {
         none_snake_case_stringified()
     )
 }
-
+pub fn error_named_upper_camel_case_stringified() -> std::string::String {
+    format!(
+        "{}{}", 
+        error_upper_camel_case_stringified(), 
+        named_upper_camel_case_stringified()
+    )
+}
+pub fn try_from_upper_camel_case_stringified() -> std::string::String {
+    format!(
+        "{}{}", 
+        try_upper_camel_case_stringified(), 
+        from_upper_camel_case_stringified()
+    )
+}
+pub fn from_str_upper_camel_case_stringified() -> std::string::String {
+    format!(
+        "{}{}", 
+        from_upper_camel_case_stringified(), 
+        str_upper_camel_case_stringified()
+    )
+}
 
 
 
