@@ -322,8 +322,20 @@ pub fn by_upper_camel_case_stringified() -> std::string::String {
 pub fn by_snake_case_stringified() -> std::string::String {
     proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&BY)
 }
-
-
+const NOT: &str = "not";
+pub fn not_upper_camel_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&NOT)
+}
+pub fn not_snake_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&NOT)
+}
+const FOUND: &str = "found";
+pub fn found_upper_camel_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&FOUND)
+}
+pub fn found_snake_case_stringified() -> std::string::String {
+    proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&FOUND)
+}
 
 
 
@@ -451,7 +463,14 @@ pub fn from_str_upper_camel_case_stringified() -> std::string::String {
         str_upper_camel_case_stringified()
     )
 }
-
+pub fn column_not_found_upper_camel_case_stringified() -> std::string::String {
+    format!(
+        "{}{}{}", 
+        column_upper_camel_case_stringified(), 
+        not_upper_camel_case_stringified(),
+        found_upper_camel_case_stringified(),
+    )
+}
 
 
 
