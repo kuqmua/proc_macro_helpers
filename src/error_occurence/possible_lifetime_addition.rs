@@ -1,5 +1,5 @@
 pub fn possible_lifetime_addition(
-    lifetime: String,
+    lifetime: std::string::String,
     lifetimes_for_serialize_deserialize: &mut Vec<String>,
 ) {
     if let false = lifetimes_for_serialize_deserialize.contains(&lifetime) {

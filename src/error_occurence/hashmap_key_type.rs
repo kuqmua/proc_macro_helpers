@@ -1,7 +1,7 @@
 #[derive(Debug)]
 pub enum HashMapValueType {
     Path {
-        value_segments_stringified: String,
+        value_segments_stringified: std::string::String,
         value_vec_lifetime: Vec<crate::error_occurence::lifetime::Lifetime>,
     },
     Reference {

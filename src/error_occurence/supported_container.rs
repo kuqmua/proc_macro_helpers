@@ -1,16 +1,16 @@
 #[derive(Debug)]
 pub enum SupportedContainer {
     Vec {
-        path: String,
+        path: std::string::String,
         vec_element_type: crate::error_occurence::vec_element_type::VecElementType,
     },
     HashMap {
-        path: String,
+        path: std::string::String,
         hashmap_key_type: crate::error_occurence::hashmap_value_type::HashMapKeyType,
         hashmap_value_type: crate::error_occurence::hashmap_key_type::HashMapValueType,
     },
     Path {
-        path: String,
+        path: std::string::String,
         vec_lifetime: Vec<crate::error_occurence::lifetime::Lifetime>,
     },
     Reference {

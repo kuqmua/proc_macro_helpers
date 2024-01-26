@@ -1,7 +1,7 @@
 #[derive(Debug)]
 pub enum VecElementType {
     Path {
-        element_path: String,
+        element_path: std::string::String,
         vec_lifetime: Vec<crate::error_occurence::lifetime::Lifetime>,
     },
     Reference {

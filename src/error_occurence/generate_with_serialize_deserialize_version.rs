@@ -350,7 +350,7 @@ fn attribute_supported_container_inform_use_str_string_in_different_attribute(
 ) {
     let must_be_used_with_stringified = "must be used with";
     let str_stringified = "str";
-    let string_string_stringified: String = format!(
+    let string_string_stringified: std::string::String = format!(
         "{}::{}",
         crate::naming_conventions::string_snake_case_stringified(),
         crate::naming_conventions::string_upper_camel_case_stringified(),
@@ -812,7 +812,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 hashmap_value_type,
             } = supported_container {
                 let hashmap_key_type_path_case = |
-                    key_segments_stringified: String,
+                    key_segments_stringified: std::string::String,
                     key_vec_lifetime: Vec<crate::error_occurence::lifetime::Lifetime>,
                 | -> proc_macro2::TokenStream {
                     crate::error_occurence::panic_if_not_string::panic_if_not_string(
@@ -1043,7 +1043,7 @@ pub fn generate_field_type_with_serialize_deserialize_version(
                 hashmap_value_type
             } = supported_container {
                 let hashmap_key_type_path_case = |
-                    key_segments_stringified: String,
+                    key_segments_stringified: std::string::String,
                     key_vec_lifetime: Vec<crate::error_occurence::lifetime::Lifetime>,
                 | -> proc_macro2::TokenStream {
                     {
